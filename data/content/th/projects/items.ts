@@ -4,7 +4,7 @@ import { projectMedia } from './media';
 export interface ExtendedProject extends Project {
   githubUrl?: string;
   liveUrl?: string;
-  media: typeof projectMedia.bookmind; // ใช้อ้างอิงโครงสร้างจาก media.ts
+  media: typeof projectMedia.bookmind;
 }
 
 export const bookmind: ExtendedProject = {
@@ -16,7 +16,7 @@ export const bookmind: ExtendedProject = {
   media: projectMedia.bookmind,
   tags: ['RAG', 'Vector Database', 'LLM', 'Intelligence'],
   client: 'Open Source',
-  year: '2024',
+  year: '2026',
   slug: 'bookmind',
   githubUrl: 'https://github.com/Mike0165115321/BookMind.git'
 };
@@ -30,7 +30,7 @@ export const robotGuide: ExtendedProject = {
   media: projectMedia.robotGuide,
   tags: ['AI Agent', 'Decision Tree', 'Contextual Computing'],
   client: 'Portfolio Project',
-  year: '2024',
+  year: '2026',
   slug: 'ai-robot-guide',
   githubUrl: 'https://github.com/Mike0165115321/AI-Robot-Guide-.git'
 };
@@ -44,7 +44,7 @@ export const treesBot: ExtendedProject = {
   media: projectMedia.treesBot,
   tags: ['Automation', 'Bot Engineering', 'Workflow Efficiency'],
   client: 'Private Client',
-  year: '2023',
+  year: '2026',
   slug: 'trees4-bot',
   githubUrl: 'https://github.com/Mike0165115321/trees4_bot.git'
 };
@@ -58,7 +58,7 @@ export const aetoxWeb: ExtendedProject = {
   media: projectMedia.aetoxWeb,
   tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'System Architecture'],
   client: 'Self-Project',
-  year: '2024',
+  year: '2026',
   slug: 'aetox-foundation',
   liveUrl: 'https://aetox.dev'
 };
