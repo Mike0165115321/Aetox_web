@@ -7,9 +7,14 @@ Everything you build here must adhere to the following **Identity, Design, and T
 ---
 
 ## 1. Brand Identity & Tone
-- **Tone**: Corporate Premium, B2B, High-Tech, Software Architecture.
-- **The Founder**: Chayapol Promsavana (National AI Gold Medalist). 
-- **Value Proposition**: We don't just write code; we architect intelligent ecosystems (AI + Automation + Full-Stack).
+- **Tone**: Corporate Premium, B2B, Strategic Technology Partner.
+- **The Founder**: Chayapol Promsavana (National AI Gold Medalist)
+- **Core Positioning**:
+  We solve business problems by engineering scalable systems.
+- **Value Proposition**:
+  We don’t just write code — we design systems that reduce manual work, increase speed, and enable real business growth.
+- **Technology Layer (Support, not headline)**:
+  AI + Automation + Scalable Architecture
 - **No Emojis**: Use professional language and SVG/Lucide icons only.
 
 ## 2. Design System (Ultra Dark Cyberpunk)
