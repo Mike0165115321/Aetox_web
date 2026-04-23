@@ -10,19 +10,29 @@ export const aiAgentsContent = {
   },
   showcase: [
     {
-      title: "Step 01: Query Decomposition",
+      title: "Step 01: Receive Query",
+      subtitle: "รับโจทย์เชิงกลยุทธ์",
+      desc: "ระบบรับคำถามธุรกิจที่ซับซ้อนในภาษาธรรมชาติ พร้อมจำแนกประเภทโจทย์และกำหนด Persona ผู้เชี่ยวชาญที่เหมาะสมก่อนเริ่มกระบวนการ"
+    },
+    {
+      title: "Step 02: Query Decomposition",
       subtitle: "วิเคราะห์และแตกโจทย์",
       desc: "เมื่อได้รับคำถามที่ซับซ้อน ระบบจะทำหน้าที่เป็น Architect แตกปัญหาออกเป็นส่วนย่อยๆ เพื่อการค้นหาที่แม่นยำที่สุด"
     },
     {
-      title: "Step 02: Multi-hop Retrieval",
+      title: "Step 03: Hybrid Retrieval",
       subtitle: "สืบค้นข้อมูลเชิงลึก",
       desc: "ระบบจะทำการค้นหาแบบ Hybrid (Semantic + Keyword) ข้ามฐานข้อมูลทุกแหล่ง และตรวจสอบความสมบูรณ์ของข้อมูลแบบ Real-time"
     },
     {
-      title: "Step 03: Strategic Generation",
+      title: "Step 04: Evaluate & Loop",
+      subtitle: "ประเมินและวนซ้ำ",
+      desc: "ระบบประเมิน Confidence Score หากข้อมูลไม่ถึงเกณฑ์ 0.7 จะสร้างคำถามต่อยอดและวนลูปค้นหาเพิ่มเติมจนสมบูรณ์"
+    },
+    {
+      title: "Step 05: Strategic Output",
       subtitle: "สังเคราะห์ผลลัพธ์",
-      desc: "AI สวมบทบาทผู้เชี่ยวชาญ สรุปคำตอบพร้อมระบุความเสี่ยงและข้อเสนอแนะที่นำไปใช้งานจริงได้ทันที"
+      desc: "AI สวมบทบาทผู้เชี่ยวชาญ สรุปคำตอบพร้อมระบุความเสี่ยงและข้อเสนอแนะที่นำไปใช้งานจริงได้ทันที ผ่าน SSE Streaming"
     }
   ],
   pillars: {

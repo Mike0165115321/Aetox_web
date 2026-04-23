@@ -111,15 +111,18 @@ function WebShowcase({ steps }: { steps: any[] }) {
           </motion.div>
         </AnimatePresence>
       </div>
-      <div className="flex items-center justify-between gap-4 px-2">
-        <div className="flex gap-2">
+      <div className="relative flex items-center justify-center h-16 mt-4">
+        {/* Centered Dots with a slight left offset (ml-[-72px] to balance visual weight of arrows) */}
+        <div className="flex gap-2 ml-[-72px]">
           {steps.map((_, i) => (
             <button key={i} onClick={() => setActiveStep(i)} className={`h-1.5 transition-all duration-500 rounded-full ${activeStep === i ? 'w-12 bg-cyber-blue shadow-cyber-glow' : 'w-4 bg-white/10 hover:bg-white/20'}`} />
           ))}
         </div>
-        <div className="flex gap-3">
+        
+        {/* Navigation Arrows positioned absolutely to the right */}
+        <div className="absolute right-0 flex gap-3">
           <button onClick={() => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length)} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 hover:border-cyber-blue/30 transition-all">←</button>
-          <button onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-cyber-blue/20 hover:border-cyber-blue/50 transition-all">→</button>
+          <button onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-cyber-blue/20 hover:border-cyber-blue/50 transition-all shadow-cyber-glow/10">→</button>
         </div>
       </div>
     </div>
