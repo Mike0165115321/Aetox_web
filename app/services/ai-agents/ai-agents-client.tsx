@@ -155,7 +155,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
             {/* Left: Hero Content */}
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-1/2 space-y-8">
               <div className="space-y-6">
-                <LayerBadge icon={Bot} label={dict.hero.badge} />
+
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">{dict.hero.title.white}<br /><span className="text-cyber-blue drop-shadow-cyber-glow">{dict.hero.title.accent}</span></h1>
                 <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-cyber-blue/30 pl-6">{dict.hero.description}</p>
               </div>
