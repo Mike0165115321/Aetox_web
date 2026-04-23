@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
+import ServiceSection from '@/components/ServiceSection';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
@@ -17,8 +18,13 @@ export default async function Home() {
       <Navbar dict={navDict.navbar} />
       <HeroSection dict={dict.hero} />
 
+      {/* Services Overview Section */}
+      <div id="services">
+        <ServiceSection dict={dict.services} />
+      </div>
+
       {/* About / Story Section */}
-      <section className="py-24 relative z-10 border-t border-white/5">
+      <section id="about" className="py-24 relative z-10 border-t border-white/5">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">

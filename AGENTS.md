@@ -33,6 +33,12 @@ Everything you build here must adhere to the following **Identity, Design, and T
 - Interactive elements must have clear **Hover States** using the Cyber-blue theme.
 - Forms must use the specific prompt: *"เล่างานที่น่าเบื่อที่สุดของคุณให้เราฟัง"*.
 
+## 5. Layout & Interaction Standards (Strict)
+- **Centered Navigation**: The Navbar menu must always be centered relative to the viewport (using `absolute left-1/2 -translate-x-1/2`), ensuring it remains perfectly centered regardless of the content length on the left (Logo) or right (Actions).
+- **Consistent Spacing**: All major sections and the Navbar container must use `container mx-auto` (without additional px-6) to ensure perfectly aligned horizontal edges based on the global padding defined in `tailwind.config.js`.
+- **Tactile Feedback**: All buttons and interactive cards must include an `active:scale-95` transition to provide a premium, tactile feel upon clicking.
+- **Z-Index Management**: Navbar must always have `z-[100]` to stay above all animations and 3D elements.
+
 ---
 
 > [!IMPORTANT]

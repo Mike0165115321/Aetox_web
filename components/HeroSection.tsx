@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 export default function HeroSection({ dict }: { dict: any }) {
   const content = dict || {
     headline: { white: "Turn Problems Into", accent: "Efficient Systems." },
@@ -55,12 +56,18 @@ export default function HeroSection({ dict }: { dict: any }) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
-          <a href="#services" className="px-8 py-3 rounded-full bg-cyber-blue hover:bg-cyber-blue/80 text-white font-semibold transition-all shadow-cyber-glow">
+          <Link 
+            href="/services" 
+            className="px-8 py-3 rounded-full bg-cyber-blue hover:bg-cyber-blue/80 text-white font-bold transition-all shadow-cyber-glow transform active:scale-95"
+          >
             {content.cta.primary}
-          </a>
-          <a href="#contact" className="px-8 py-3 rounded-full border border-white/10 hover:border-cyber-blue/50 text-gray-400 transition-all">
+          </Link>
+          <Link 
+            href="/contact" 
+            className="px-8 py-3 rounded-full border border-white/10 hover:border-cyber-blue/50 text-gray-400 font-bold transition-all transform active:scale-95"
+          >
             {content.cta.secondary}
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
