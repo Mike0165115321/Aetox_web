@@ -3,79 +3,107 @@ import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, CheckCircle2, ArrowLeft, Link as LinkIcon } from 'lucide-react';
+import { Zap, CheckCircle2, ArrowLeft, Link as LinkIcon, Layers, Settings, Share2, MousePointer2 } from 'lucide-react';
 import Link from 'next/link';
 
-/* ─── Interactive Automation Showcase ────────────────────────────── */
+/* ─── Shared badge ────────────────────────────────────────────────── */
+function LayerBadge({ icon: Icon, label, colorClass = "text-deep-blue" }: { icon: any; label: string; colorClass?: string }) {
+  const bgClass = colorClass.includes('deep-blue') ? 'bg-deep-blue/10 border-deep-blue/20' : 'bg-cyber-blue/10 border-cyber-blue/20';
+  return (
+    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${bgClass} ${colorClass} text-sm font-bold tracking-widest uppercase`}>
+      <Icon className="w-4 h-4" /> {label}
+    </div>
+  );
+}
+
+/* ─── Feature grid item ───────────────────────────────────────────── */
+function FeatureItem({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="group space-y-3 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-deep-blue/30 transition-all duration-300 hover:bg-deep-blue/[0.02]">
+      <div className="flex items-center gap-3 font-bold text-white group-hover:text-deep-blue transition-colors">
+        <div className="w-1.5 h-1.5 rounded-full bg-deep-blue shadow-deep-glow" />
+        {title}
+      </div>
+      <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+    </div>
+  );
+}
+
+/* ─── Automation Showcase Carousel ────────────────────────────────── */
 function AutomationShowcase() {
   const [activeStep, setActiveStep] = useState(0);
   const steps = [
     {
-      title: "Step 01: Intelligent Connect",
+      title: "Step 01: Multi-Platform Connect",
       subtitle: "เชื่อมต่อทุกแพลตฟอร์ม",
-      desc: "เชื่อมต่อ API จาก ERP, CRM, Marketplace หรือ Social Media ของคุณเข้าด้วยกันอย่างไร้รอยต่อ เพื่อให้ข้อมูลไหลเวียนได้ทันที",
+      desc: "เชื่อมโยงข้อมูลจาก LINE, Facebook, Email และ Database ต่างๆ เข้าสู่ระบบเดียวด้วย API อัจฉริยะ",
       visual: (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
-          <div className="flex gap-4">
-             {['Shopify', 'Lazada', 'Salesforce'].map((app, i) => (
-                <motion.div
-                  key={app}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.2 }}
-                  className="px-4 py-2 rounded-lg bg-white/5 border border-deep-blue/30 text-[10px] text-white"
+        <div className="relative h-full flex items-center justify-center p-8">
+           <div className="grid grid-cols-2 gap-4">
+              {[1, 2, 3, 4].map(i => (
+                <motion.div 
+                  key={i}
+                  animate={{ opacity: [0.3, 1, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+                  className="w-12 h-12 rounded-lg bg-white/5 border border-deep-blue/30 flex items-center justify-center text-deep-blue"
                 >
-                  {app}
+                   <Share2 className="w-5 h-5" />
                 </motion.div>
-             ))}
-          </div>
-          <motion.div 
-            animate={{ scale: [1, 1.1, 1] }} 
-            transition={{ duration: 2, repeat: Infinity }}
-            className="mt-8 w-20 h-20 rounded-full bg-deep-blue/20 flex items-center justify-center border border-deep-blue/40"
-          >
-             <LinkIcon className="w-8 h-8 text-deep-blue" />
-          </motion.div>
+              ))}
+           </div>
+           <motion.div 
+             animate={{ scale: [1, 1.1, 1] }}
+             transition={{ duration: 2, repeat: Infinity }}
+             className="absolute w-20 h-20 rounded-2xl bg-deep-blue/20 border border-deep-blue flex items-center justify-center"
+           >
+              <Settings className="w-8 h-8 text-deep-blue animate-spin-slow" />
+           </motion.div>
         </div>
       )
     },
     {
-      title: "Step 02: Logical Processing",
-      subtitle: "จัดการงานที่น่าเบื่อ",
-      desc: "ระบบจะทำหน้าที่ตรวจสอบความถูกต้อง (Validation) ปรับเปลี่ยนรูปแบบข้อมูล (Transformation) และดำเนินการตาม SOP ที่ตั้งไว้ 100%",
+      title: "Step 02: Logic-Based Processing",
+      subtitle: "ประมวลผลตามเงื่อนไข",
+      desc: "คัดกรองข้อมูล วิเคราะห์ความสำคัญ และตัดสินใจดำเนินการแทนคุณตาม Business Logic ที่กำหนดไว้",
       visual: (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
-           <div className="w-full max-w-xs space-y-3">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                   <motion.div 
-                     initial={{ x: "-100%" }}
-                     animate={{ x: "0%" }}
-                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                     className="h-full w-full bg-deep-blue"
-                   />
-                </div>
-              ))}
-           </div>
-           <Zap className="mt-8 w-12 h-12 text-deep-blue animate-pulse" />
+        <div className="relative h-full flex flex-col items-center justify-center p-8 gap-4">
+           {[0, 1, 2].map(i => (
+             <motion.div 
+               key={i}
+               initial={{ x: -50, opacity: 0 }}
+               animate={{ x: 0, opacity: 1 }}
+               transition={{ delay: i * 0.3 }}
+               className="w-full max-w-[200px] h-3 bg-white/5 rounded-full overflow-hidden"
+             >
+                <motion.div 
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.5 }}
+                  className="w-1/2 h-full bg-deep-blue shadow-deep-glow"
+                />
+             </motion.div>
+           ))}
         </div>
       )
     },
     {
       title: "Step 03: Automated Delivery",
-      subtitle: "ส่งมอบผลลัพธ์ทันที",
-      desc: "ออกใบแจ้งหนี้, แจ้งเตือนฝ่ายขาย, หรืออัปเดตสต็อกสินค้าได้แบบ Real-time โดยที่คุณไม่ต้องคลิกเลยแม้แต่ครั้งเดียว",
+      subtitle: "ส่งผลลัพธ์อัตโนมัติ",
+      desc: "ส่งรายงาน แจ้งเตือนลูกค้า หรืออัปเดตสถานะในระบบ CRM โดยไม่ต้องใช้คนทำแม้แต่ขั้นตอนเดียว",
       visual: (
         <div className="relative h-full flex flex-col items-center justify-center p-8">
-           <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
-              <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="p-4 rounded-xl bg-deep-blue/10 border border-deep-blue/30 text-center">
-                 <div className="text-[8px] text-deep-blue font-bold">INVOICE SENT</div>
-              </motion.div>
-              <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ delay: 0.2 }} className="p-4 rounded-xl bg-deep-blue/10 border border-deep-blue/30 text-center">
-                 <div className="text-[8px] text-deep-blue font-bold">LINE NOTIFY</div>
-              </motion.div>
-           </div>
-           <CheckCircle2 className="mt-8 w-12 h-12 text-deep-blue" />
+           <motion.div
+             animate={{ y: [0, -10, 0] }}
+             transition={{ duration: 2, repeat: Infinity }}
+             className="p-6 rounded-2xl bg-deep-blue/10 border border-deep-blue/30 relative"
+           >
+              <CheckCircle2 className="w-12 h-12 text-deep-blue shadow-deep-glow" />
+              <motion.div 
+                animate={{ scale: [1, 2], opacity: [0.5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="absolute inset-0 border border-deep-blue rounded-2xl"
+              />
+           </motion.div>
+           <div className="mt-8 text-deep-blue font-mono text-[10px] tracking-widest">TASK COMPLETED 100%</div>
         </div>
       )
     }
@@ -94,7 +122,7 @@ function AutomationShowcase() {
             transition={{ duration: 0.4 }}
             className="absolute inset-0 flex flex-col"
           >
-            <div className="flex-1">
+            <div className="flex-1 bg-gradient-to-b from-transparent to-black/40">
               {steps[activeStep].visual}
             </div>
             <div className="p-8 md:p-12 bg-ultra-dark/90 backdrop-blur-xl border-t border-white/5 space-y-4">
@@ -140,9 +168,25 @@ function AutomationShowcase() {
 }
 
 export default function AutomationPage() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
+    <main className="min-h-screen bg-ultra-dark selection:bg-deep-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
+      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-20" />
       <Navbar />
 
       <section className="py-24 relative z-10">
@@ -153,56 +197,117 @@ export default function AutomationPage() {
           </Link>
 
           <div className="flex flex-col lg:flex-row items-start gap-20">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="lg:w-1/2 space-y-12"
-            >
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-deep-blue/10 border-deep-blue/20 text-deep-blue text-sm font-bold tracking-widest uppercase">
-                  <Zap className="w-4 h-4" /> Execution Layer
+            {/* Left: Hero + Details */}
+            <div className="lg:w-7/12">
+              
+              {/* ─── Hero Content ─── */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="space-y-8 mb-20"
+              >
+                <div className="space-y-6">
+                  <LayerBadge icon={Zap} label="Execution Layer" />
+                  <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
+                    Workflow<br />
+                    <span className="text-deep-blue drop-shadow-deep-glow">Automation</span>
+                  </h1>
+                  <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                    เปลี่ยนขั้นตอนที่ซ้ำซากให้กลายเป็นระบบอัตโนมัติที่ทำงานได้ 24/7 ลดความผิดพลาด และช่วยให้ทีมของคุณโฟกัสกับงานที่สร้างมูลค่าได้มากขึ้น
+                  </p>
                 </div>
-                <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
-                  Workflow<br />
-                  <span className="text-deep-blue drop-shadow-deep-glow">Automation</span>
-                </h1>
-                <p className="text-gray-400 text-xl leading-relaxed">
-                  เปลี่ยนความวุ่นวายให้เป็นความแม่นยำ 100% เราเชื่อมต่อทุกซอฟต์แวร์ที่คุณใช้เข้าด้วยกัน เพื่อให้งาน Manual ที่น่าเบื่อหายไป และเปลี่ยนเป็นระบบอัตโนมัติที่ทำงานได้ 24/7
-                </p>
-              </div>
 
-              <div className="space-y-6">
-                {[
-                  { title: "API Integration", desc: "เชื่อมต่อ ERP, CRM และ Social Media ได้ไร้รอยต่อ" },
-                  { title: "Auto-Document", desc: "ออกเอกสารและใบกำกับภาษีโดยไม่ต้องแตะเลย" },
-                  { title: "Data Pipeline", desc: "ประมวลผลข้อมูลขนาดใหญ่ด้วยความเร็วระดับอุตสาหกรรม" },
-                  { title: "Smart Alerts", desc: "แจ้งเตือนอัจฉริยะผ่าน Line / Email เมื่อมีเหตุการณ์สำคัญ" }
-                ].map((item, i) => (
-                  <div key={item.title} className="flex gap-4 p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-deep-blue/30 transition-all">
-                    <CheckCircle2 className="w-6 h-6 text-deep-blue shrink-0" />
-                    <div>
-                      <h3 className="text-white font-bold mb-1">{item.title}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                {/* ─── Quick Nav Menu ─── */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-8">
+                  {[
+                    { id: 'connect', title: 'Data Connect', icon: Share2 },
+                    { id: 'process', title: 'Logic Engine', icon: Settings },
+                    { id: 'deliver', title: 'Auto Delivery', icon: CheckCircle2 }
+                  ].map((nav) => (
+                    <button
+                      key={nav.id}
+                      onClick={() => scrollToSection(nav.id)}
+                      className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-deep-blue/30 hover:bg-deep-blue/5 transition-all text-left group"
+                    >
+                      <div className="p-2 rounded-lg bg-white/5 text-gray-500 group-hover:text-deep-blue transition-colors">
+                        <nav.icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors">{nav.title}</span>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* ─── Technical Pillars ─── */}
+              <div className="space-y-32 mt-40">
+                {/* Pillar 1 */}
+                <div id="connect" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
+                      <Share2 className="w-6 h-6 text-deep-blue" />
                     </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Platform Connector</h2>
                   </div>
-                ))}
-              </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FeatureItem title="Omnichannel Input" desc="เชื่อมต่อข้อมูลจาก LINE OA, Email, Google Sheets และระบบ Database เดิมของคุณ" />
+                    <FeatureItem title="Real-time Webhooks" desc="ตอบสนองต่อเหตุการณ์ที่เกิดขึ้นในทันที ไม่ต้องรอกดรันระบบเอง" />
+                    <FeatureItem title="Secure API Bridge" desc="การเชื่อมต่อที่ปลอดภัยด้วยมาตรฐาน OAuth2 และ JWT Encryption" />
+                  </div>
+                </div>
 
-              <div className="pt-6 border-t border-white/5">
-                <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Applied In</p>
-                <div className="flex flex-wrap gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-deep-blue/20 text-deep-blue text-xs font-medium">
-                    <LinkIcon className="w-3 h-3" /> E-Commerce Auto-Billing
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-deep-blue/20 text-deep-blue text-xs font-medium">
-                    <LinkIcon className="w-3 h-3" /> Real-estate Management System
-                  </span>
+                {/* Pillar 2 */}
+                <div id="process" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
+                      <Settings className="w-6 h-6 text-deep-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. Intelligent Logic Engine</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FeatureItem title="Conditional Routing" desc="กำหนดเงื่อนไขการทำงานที่ซับซ้อนได้แบบ If-Then-Else ที่แม่นยำ" />
+                    <FeatureItem title="Data Transformation" desc="จัดระเบียบและแปลงข้อมูลจากรูปแบบหนึ่งไปสู่อีกรูปแบบหนึ่งโดยอัตโนมัติ" />
+                    <FeatureItem title="Error Handling" desc="ระบบตรวจจับข้อผิดพลาดและแจ้งเตือนทันทีหากมีขั้นตอนใดสะดุด" />
+                  </div>
+                </div>
+
+                {/* Pillar 3 */}
+                <div id="deliver" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
+                      <Layers className="w-6 h-6 text-deep-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Automated Delivery</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FeatureItem title="Auto-Reporting" desc="สรุปผลการทำงานส่งเข้า LINE หรือ Email รายวัน/รายสัปดาห์แบบอัตโนมัติ" />
+                    <FeatureItem title="CRM Auto-Update" desc="อัปเดตสถานะลูกค้าในระบบหลังบ้านทันทีที่เกิดการสั่งซื้อหรือติดต่อ" />
+                    <FeatureItem title="Document Automation" desc="สร้างไฟล์ PDF, Invoice หรือสัญญาโดยใช้ข้อมูลจากระบบโดยตรง" />
+                  </div>
                 </div>
               </div>
-            </motion.div>
 
-            <div className="lg:w-1/2 lg:sticky lg:top-32 w-full">
-               <AutomationShowcase />
+              <div className="mt-24">
+                <div className="pt-6 border-t border-white/5">
+                  <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Applied In</p>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-deep-blue/20 text-deep-blue text-xs font-medium">
+                      <LinkIcon className="w-3 h-3" /> E-commerce Auto-Order
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-deep-blue/20 text-deep-blue text-xs font-medium">
+                      <LinkIcon className="w-3 h-3" /> Real-time Stock Sync
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Sticky Showcase */}
+            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit">
+              <div className="space-y-4 mb-6">
+                <div className="text-deep-blue text-xs font-mono uppercase tracking-[0.3em]">Live Interaction</div>
+                <h3 className="text-xl font-bold text-white">Workflow Visualization</h3>
+              </div>
+              <AutomationShowcase />
             </div>
           </div>
         </div>

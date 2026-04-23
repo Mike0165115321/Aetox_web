@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Zap, Database, Cpu, CheckCircle2, Link as LinkIcon, ArrowLeft } from 'lucide-react';
+import { Bot, Zap, Database, Cpu, CheckCircle2, Link as LinkIcon, ArrowLeft, MousePointer2 } from 'lucide-react';
 import Link from 'next/link';
 
 /* ─── Shared badge ────────────────────────────────────────────────── */
@@ -190,6 +190,22 @@ function AiShowcase() {
 }
 
 export default function AiAgentsPage() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
@@ -204,33 +220,57 @@ export default function AiAgentsPage() {
 
           <div className="flex flex-col lg:flex-row items-start gap-20">
             {/* Left Column: Hero + Pillars (Scrolling) */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="lg:w-7/12 space-y-24"
-            >
-              {/* ─── Hero Content ─── */}
-              <div className="space-y-6">
-                <LayerBadge icon={Bot} label="Intelligence Layer" />
-                <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
-                  Advanced Agentic<br />
-                  <span className="text-cyber-blue drop-shadow-cyber-glow">RAG System</span>
-                </h1>
-                <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
-                  เราสร้าง "นักวิจัยดิจิทัล" ที่มีกลไกการคิด วิเคราะห์ และสืบค้นข้อมูลเชิงลึกแบบ Multi-hop Retrieval เพื่อให้ได้คำตอบที่แม่นยำระดับธุรกิจ
-                </p>
-              </div>
+            <div className="lg:w-7/12">
+              
+              {/* ─── Hero Content (Flexible) ─── */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="space-y-8 mb-20 min-h-fit"
+              >
+                <div className="space-y-6">
+                  <LayerBadge icon={Bot} label="Intelligence Layer" />
+                  <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
+                    Advanced Agentic<br />
+                    <span className="text-cyber-blue drop-shadow-cyber-glow">RAG System</span>
+                  </h1>
+                  <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    เราสร้าง "นักวิจัยดิจิทัล" ที่มีกลไกการคิด วิเคราะห์ และสืบค้นข้อมูลเชิงลึกแบบ Multi-hop Retrieval เพื่อให้ได้คำตอบที่แม่นยำระดับธุรกิจ
+                  </p>
+                </div>
 
-              {/* ─── Technical Pillars ─── */}
-              <div className="space-y-24">
+                {/* ─── Quick Nav Menu ─── */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-8">
+                  {[
+                    { id: 'orchestrator', title: 'Orchestrator', icon: Cpu },
+                    { id: 'retrieval', title: 'Retrieval', icon: Database },
+                    { id: 'generation', title: 'Generation', icon: Zap }
+                  ].map((nav) => (
+                    <button
+                      key={nav.id}
+                      onClick={() => scrollToSection(nav.id)}
+                      className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-cyber-blue/30 hover:bg-cyber-blue/5 transition-all text-left group"
+                    >
+                      <div className="p-2 rounded-lg bg-white/5 text-gray-500 group-hover:text-cyber-blue transition-colors">
+                        <nav.icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors">{nav.title}</span>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* ─── Technical Pillars (Pushed Down) ─── */}
+              <div className="space-y-32 mt-40">
                 {/* Pillar 1 */}
-                <div className="space-y-8">
+                <div id="orchestrator" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
                       <Cpu className="w-6 h-6 text-cyber-blue" />
                     </div>
                     <h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Agentic Orchestrator</h2>
                   </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FeatureItem title="Query Decomposition" desc="แตกคำถามซับซ้อนออกเป็นคำถามย่อย (Sub-queries) หลายมิติที่สืบค้นได้ง่ายขึ้นอัตโนมัติ" />
                     <FeatureItem title="Sufficiency Evaluation" desc="ประเมินความมั่นใจว่าข้อมูลเพียงพอหรือไม่ (Confidence >= 0.7) หากไม่พอจะวนลูปสืบค้นเพิ่มจนสมบูรณ์" />
@@ -239,7 +279,7 @@ export default function AiAgentsPage() {
                 </div>
 
                 {/* Pillar 2 */}
-                <div className="space-y-8">
+                <div id="retrieval" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
                       <Database className="w-6 h-6 text-cyber-blue" />
@@ -254,7 +294,7 @@ export default function AiAgentsPage() {
                 </div>
 
                 {/* Pillar 3 */}
-                <div className="space-y-8">
+                <div id="generation" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
                       <Zap className="w-6 h-6 text-cyber-blue" />
@@ -269,16 +309,62 @@ export default function AiAgentsPage() {
                 </div>
               </div>
 
-              <AppliedIn items={['BookMind: AI Intelligent Library', 'AI Robot "น้องน่าน"', 'Legal Document Analyzer']} />
-            </motion.div>
-
-            {/* Right Column: Sticky Showcase (Starts from the top) */}
-            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full">
-              <div className="space-y-4 mb-6">
-                <div className="text-cyber-blue text-xs font-mono uppercase tracking-[0.3em]">Live Interaction</div>
-                <h3 className="text-xl font-bold text-white">System Visualization</h3>
+              <div className="mt-24">
+                <AppliedIn items={['BookMind: AI Intelligent Library', 'AI Robot "น้องน่าน"', 'Legal Document Analyzer']} />
               </div>
-              <AiShowcase />
+            </div>
+
+            {/* Right Column: Sticky Showcase */}
+            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit space-y-10">
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <div className="text-cyber-blue text-xs font-mono uppercase tracking-[0.3em]">Live Interaction</div>
+                  <h3 className="text-xl font-bold text-white">System Visualization</h3>
+                </div>
+                <AiShowcase />
+              </div>
+
+              {/* ─── Moved: ส่วนแสดงการทำงาน (Workflow Box) ─── */}
+              <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-10">
+                   <Bot className="w-16 h-16 text-cyber-blue" />
+                </div>
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-center gap-2 text-cyber-blue mb-4">
+                    <MousePointer2 className="w-4 h-4" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Workflow: 1. Agentic Orchestrator</span>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {/* Step 1 */}
+                    <div className="flex gap-4">
+                      <div className="text-cyber-blue font-mono text-xs pt-1">01</div>
+                      <div className="space-y-1">
+                        <div className="text-white font-bold text-xs uppercase tracking-wider">Decomposition</div>
+                        <p className="text-gray-500 text-[11px] leading-relaxed">AI วิเคราะห์เจตนาและแยกงานออกเป็นภารกิจย่อย</p>
+                      </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="flex gap-4">
+                      <div className="text-cyber-blue font-mono text-xs pt-1">02</div>
+                      <div className="space-y-1">
+                        <div className="text-white font-bold text-xs uppercase tracking-wider">Reasoning Loop</div>
+                        <p className="text-gray-500 text-[11px] leading-relaxed">ตรวจสอบความสมบูรณ์และวนลูปค้นหาจนมั่นใจ</p>
+                      </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="flex gap-4">
+                      <div className="text-cyber-blue font-mono text-xs pt-1">03</div>
+                      <div className="space-y-1">
+                        <div className="text-white font-bold text-xs uppercase tracking-wider">Final Execution</div>
+                        <p className="text-gray-500 text-[11px] leading-relaxed">รวบรวมข้อมูลและสรุปรายงานเชิงกลยุทธ์</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
