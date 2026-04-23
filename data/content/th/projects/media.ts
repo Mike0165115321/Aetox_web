@@ -14,15 +14,15 @@ export const projectMedia = {
     ]
   },
   robotGuide: {
-    cover: `${BASE_PATH}/robot-guide/cover.jpg`,
+    cover: `${BASE_PATH}/ai-robot-guide/cover.jpg`,
     gallery: []
   },
   treesBot: {
-    cover: `${BASE_PATH}/trees-bot/cover.jpg`,
+    cover: `${BASE_PATH}/trees4-bot/cover.jpg`,
     gallery: []
   },
   aetoxWeb: {
-    cover: `${BASE_PATH}/aetox-web/cover.jpg`,
+    cover: `${BASE_PATH}/aetox-foundation/cover.jpg`,
     gallery: []
   }
 };
