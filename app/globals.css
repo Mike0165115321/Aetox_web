@@ -23,4 +23,18 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-cyber-blue to-deep-blue;
   }
+
+  /* Cyber Form Utilities */
+  .form-input-cyber, .form-select-cyber, .form-textarea-cyber {
+    @apply w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 
+           focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all;
+  }
+
+  .form-select-cyber {
+    @apply appearance-none cursor-pointer;
+  }
+
+  .form-textarea-cyber {
+    @apply resize-none;
+  }
 }

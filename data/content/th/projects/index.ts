@@ -1,0 +1,13 @@
+import { projectCategories } from './categories';
+import * as items from './items';
+
+export const allProjects = Object.values(items);
+
+export const projectsContent = {
+  hero: {
+    title: "Engineering Masterpieces",
+    subtitle: "เปลี่ยนความซับซ้อนให้เป็นความได้เปรียบทางธุรกิจ ด้วยระบบที่ถูกออกแบบมาอย่างประณีต"
+  },
+  categories: projectCategories,
+  items: allProjects
+};

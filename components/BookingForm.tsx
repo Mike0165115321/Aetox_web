@@ -1,48 +1,34 @@
 'use client';
 import { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, User, Building2, MessageSquare, Target, Wallet, Clock, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function BookingForm({ dict }: { dict?: any }) {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const content = dict || {
-    hero: {
-      title: "เล่างานที่น่าเบื่อที่สุดของคุณให้เราฟัง",
-      subtitle: "เพื่อสถาปัตยกรรมระบบที่ออกแบบมาเพื่อธุรกิจคุณโดยเฉพาะ"
-    },
-    success: {
-      title: "รับทราบเป้าหมายแล้ว!",
-      message: "สถาปนิกของเรากำลังวิเคราะห์ปัญหาและงบประมาณเบื้องต้น แล้วจะติดต่อกลับโดยเร็วที่สุด"
-    },
-    form: {
-      identity: {
-        name: { label: "ชื่อ - นามสกุล", placeholder: "ระบุชื่อของคุณ" },
-        company: { label: "ชื่อบริษัท / องค์กร (ไม่บังคับ)", placeholder: "ระบุชื่อหน่วยงานของคุณ" },
-        email: { label: "อีเมลติดต่อ", placeholder: "your@email.com" },
-        contact: { label: "เบอร์โทรศัพท์ / LINE ID", placeholder: "เพื่อให้เราติดต่อกลับได้รวดเร็วขึ้น" }
-      },
-      category: {
-        label: "เป้าหมายที่คุณต้องการ",
-        options: []
-      },
-      budget: {
-        label: "งบประมาณที่วางไว้ (Budget Range)",
-        options: []
-      },
-      challenge: {
-        label: "ปัญหาที่คุณเจอ หรือระบบที่อยากให้สร้าง (Business Pain Points)",
-        placeholder: "เล่ารายละเอียดงานที่น่าเบื่อ หรืองานคอขวดที่อยากกำจัดทิ้ง..."
-      },
-      submit: "ท้าทายระบบของเรา"
-    }
+  const content = dict || {};
+  const form = content.form || {};
+  
+  const identity = form.identity || {
+    name: { label: "ชื่อ - นามสกุล", placeholder: "" },
+    company: { label: "บริษัท", placeholder: "" },
+    email: { label: "อีเมล", placeholder: "" },
+    preferredMethod: { label: "ช่องทางที่สะดวก", options: [] },
+    contactDetail: { label: "ข้อมูลติดต่อ", placeholder: "" },
+    contactTime: { label: "ช่วงเวลาที่สะดวก", options: [] }
   };
+
+  const category = form.category || { label: "เป้าหมาย", options: [] };
+  const budget = form.budget || { label: "งบประมาณ", options: [] };
+  const timeline = form.timeline || { label: "กรอบเวลา", options: [] };
+  const challenge = form.challenge || { label: "ปัญหา", placeholder: "" };
+  const hero = content.hero || { title: "", subtitle: "" };
+  const success = content.success || { title: "", message: "" };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
       setSubmitted(true);
@@ -52,29 +38,24 @@ export default function BookingForm({ dict }: { dict?: any }) {
 
   return (
     <section className="py-24 relative overflow-hidden" id="contact-form">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-cyber-blue/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-deep-blue/5 rounded-full blur-[100px] pointer-events-none" />
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight"
             >
-              {content.hero.title}
+              {hero.title}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
             >
-              {content.hero.subtitle}
+              {hero.subtitle}
             </motion.p>
           </div>
 
@@ -89,9 +70,9 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 <div className="w-20 h-20 bg-cyber-blue/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-cyber-blue/40">
                   <CheckCircle2 className="w-10 h-10 text-cyber-blue" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-4">{content.success.title}</h3>
+                <h3 className="text-3xl font-black text-white mb-4">{success.title}</h3>
                 <p className="text-gray-400 text-lg max-w-md mx-auto leading-relaxed">
-                  {content.success.message}
+                  {success.message}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
@@ -106,100 +87,131 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 onSubmit={handleSubmit}
-                className="glass-card rounded-3xl p-8 md:p-12 border-white/10 shadow-2xl space-y-10"
+                className="space-y-12"
               >
-                {/* 1. Identity Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                      {content.form.identity.name.label}
-                    </label>
-                    <input 
-                      type="text" required
-                      placeholder={content.form.identity.name.placeholder}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all"
-                    />
+                {/* Section 1: Client Identity */}
+                <div className="glass-card rounded-3xl p-8 md:p-10 border-white/5 space-y-8">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center">
+                      <User className="w-4 h-4 text-cyber-blue" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">ข้อมูลพื้นฐานของคุณ</h3>
                   </div>
-                  <div className="space-y-3">
-                    <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                      {content.form.identity.company.label}
-                    </label>
-                    <input 
-                      type="text"
-                      placeholder={content.form.identity.company.placeholder}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all"
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                      {content.form.identity.email.label}
-                    </label>
-                    <input 
-                      type="email" required
-                      placeholder={content.form.identity.email.placeholder}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all"
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                      {content.form.identity.contact.label}
-                    </label>
-                    <input 
-                      type="text" required
-                      placeholder={content.form.identity.contact.placeholder}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all"
-                    />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <label className="text-[15px] font-semibold text-gray-300 ml-1">{identity.name.label}</label>
+                      <input type="text" required placeholder={identity.name.placeholder} className="form-input-cyber" />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[15px] font-semibold text-gray-300 ml-1">{identity.email.label}</label>
+                      <div className="relative">
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                        <input type="email" required placeholder={identity.email.placeholder} className="form-input-cyber pl-12" />
+                      </div>
+                    </div>
+                    <div className="md:col-span-2 space-y-3">
+                      <label className="text-[15px] font-semibold text-gray-300 ml-1">{identity.company.label}</label>
+                      <div className="relative">
+                        <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                        <input type="text" placeholder={identity.company.placeholder} className="form-input-cyber pl-12" />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* 2. Selectors Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                      {content.form.category.label}
-                    </label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white appearance-none focus:outline-none focus:border-cyber-blue/50 transition-all cursor-pointer">
-                      {content.form.category.options.map((opt: string) => (
-                        <option key={opt} value={opt} className="bg-ultra-dark text-white">{opt}</option>
-                      ))}
-                    </select>
+                {/* Section 2: Contact Preference */}
+                <div className="glass-card rounded-3xl p-8 md:p-10 border-white/5 space-y-8">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-deep-blue/10 flex items-center justify-center">
+                      <MessageSquare className="w-4 h-4 text-deep-blue" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">ช่องทางการติดต่อ</h3>
                   </div>
-                  <div className="space-y-3">
-                    <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                      {content.form.budget.label}
-                    </label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white appearance-none focus:outline-none focus:border-cyber-blue/50 transition-all cursor-pointer">
-                      {content.form.budget.options.map((opt: string) => (
-                        <option key={opt} value={opt} className="bg-ultra-dark text-white">{opt}</option>
-                      ))}
-                    </select>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="space-y-3">
+                      <label className="text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] flex items-end pb-1">{identity.preferredMethod.label}</label>
+                      <select className="form-select-cyber">
+                        {identity.preferredMethod.options?.map((opt: string) => (
+                          <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] flex items-end pb-1">{identity.contactDetail.label}</label>
+                      <input type="text" required placeholder={identity.contactDetail.placeholder} className="form-input-cyber" />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] flex items-end pb-1">{identity.contactTime.label}</label>
+                      <select className="form-select-cyber">
+                        {identity.contactTime.options?.map((opt: string) => (
+                          <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
 
-                {/* 3. Pain Points */}
-                <div className="space-y-3">
-                  <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">
-                    {content.form.challenge.label}
-                  </label>
-                  <textarea 
-                    rows={4} required
-                    placeholder={content.form.challenge.placeholder}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all resize-none"
-                  />
+                {/* Section 3: Project Scope */}
+                <div className="glass-card rounded-3xl p-8 md:p-10 border-white/5 space-y-8">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center">
+                      <Target className="w-4 h-4 text-cyber-blue" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">รายละเอียดโปรเจกต์</h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="space-y-3">
+                      <label className="flex items-center gap-2 text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
+                        <Target className="w-3 h-3 flex-shrink-0 mb-1" /> {category.label}
+                      </label>
+                      <select className="form-select-cyber">
+                        {category.options?.map((opt: string) => (
+                          <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-3">
+                      <label className="flex items-center gap-2 text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
+                        <Wallet className="w-3 h-3 flex-shrink-0 mb-1" /> {budget.label}
+                      </label>
+                      <select className="form-select-cyber">
+                        {budget.options?.map((opt: string) => (
+                          <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-3">
+                      <label className="flex items-center gap-2 text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
+                        <Clock className="w-3 h-3 flex-shrink-0 mb-1" /> {timeline.label}
+                      </label>
+                      <select className="form-select-cyber">
+                        {timeline.options?.map((opt: string) => (
+                          <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-4">
+                    <label className="text-[15px] font-semibold text-gray-300 ml-1">{challenge.label}</label>
+                    <textarea rows={5} required placeholder={challenge.placeholder} className="form-textarea-cyber" />
+                  </div>
                 </div>
 
-                {/* 4. Submit */}
                 <button 
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-5 rounded-2xl bg-white text-black font-black text-lg uppercase tracking-widest hover:bg-cyber-blue hover:text-white transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
+                  className="w-full py-6 rounded-2xl bg-white text-black font-black text-xl uppercase tracking-[0.2em] hover:bg-cyber-blue hover:text-white transition-all transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 group shadow-cyber-glow"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
-                      {content.form.submit}
-                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      {form.submit || 'ส่งข้อความหาเรา'}
+                      <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </>
                   )}
                 </button>
