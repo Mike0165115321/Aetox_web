@@ -15,7 +15,7 @@ export default function Home() {
 
       {/* About / Story Section */}
       <section className="py-24 relative z-10 border-t border-white/5">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Not Just Coding. <span className="text-cyber-blue">Architecting.</span>

@@ -13,7 +13,7 @@ export default function BookingForm() {
 
   return (
     <section className="py-32 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         <div className="max-w-4xl mx-auto glass-card rounded-3xl p-8 md:p-16 relative overflow-hidden">
           {/* Subtle background glow for the form card */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyber-blue/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 -translate-y-1/2" />

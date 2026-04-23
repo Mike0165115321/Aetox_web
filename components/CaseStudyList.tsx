@@ -24,7 +24,7 @@ export default function CaseStudyList() {
 
   return (
     <section className="py-24 relative border-t border-white/5">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Proven Authority</h2>
