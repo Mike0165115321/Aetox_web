@@ -58,7 +58,7 @@ function AiShowcase() {
              "ช่วยวิเคราะห์ความเสี่ยงธุรกิจพลังงานในปี 2026 เมื่อเทียบกับคู่แข่ง A และ B"
           </div>
           <div className="flex flex-col gap-3 w-full max-w-xs">
-            <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 1: แนวโน้มพลังงาน 2026</motion.div>
+            <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 1: แนวโน้มตลาด</motion.div>
             <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.7 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 2: งบการเงินคู่แข่ง A</motion.div>
             <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.9 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 3: งบการเงินคู่แข่ง B</motion.div>
           </div>
@@ -203,11 +203,13 @@ export default function AiAgentsPage() {
           </Link>
 
           <div className="flex flex-col lg:flex-row items-start gap-20">
+            {/* Left Column: Hero + Pillars (Scrolling) */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              className="lg:w-7/12 space-y-16"
+              className="lg:w-7/12 space-y-24"
             >
+              {/* ─── Hero Content ─── */}
               <div className="space-y-6">
                 <LayerBadge icon={Bot} label="Intelligence Layer" />
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
@@ -219,49 +221,63 @@ export default function AiAgentsPage() {
                 </p>
               </div>
 
-              {/* Pillar 1 */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <Cpu className="w-8 h-8 text-cyber-blue" />
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wider">1. Agentic Orchestrator</h2>
+              {/* ─── Technical Pillars ─── */}
+              <div className="space-y-24">
+                {/* Pillar 1 */}
+                <div className="space-y-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Cpu className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Agentic Orchestrator</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FeatureItem title="Query Decomposition" desc="แตกคำถามซับซ้อนออกเป็นคำถามย่อย (Sub-queries) หลายมิติที่สืบค้นได้ง่ายขึ้นอัตโนมัติ" />
+                    <FeatureItem title="Sufficiency Evaluation" desc="ประเมินความมั่นใจว่าข้อมูลเพียงพอหรือไม่ (Confidence >= 0.7) หากไม่พอจะวนลูปสืบค้นเพิ่มจนสมบูรณ์" />
+                    <FeatureItem title="Balanced Source Selection" desc="กลไก Round-robin เพื่อให้แน่ใจว่า AI ได้รับมุมมองจากทุกแหล่งข้อมูลอย่างสมดุล" />
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="Query Decomposition" desc="แตกคำถามซับซ้อนออกเป็นคำถามย่อย (Sub-queries) หลายมิติที่สืบค้นได้ง่ายขึ้นอัตโนมัติ" />
-                  <FeatureItem title="Sufficiency Evaluation" desc="ประเมินความมั่นใจว่าข้อมูลเพียงพอหรือไม่ (Confidence >= 0.7) หากไม่พอจะวนลูปสืบค้นเพิ่มจนสมบูรณ์" />
-                  <FeatureItem title="Balanced Source Selection" desc="กลไก Round-robin เพื่อให้แน่ใจว่า AI ได้รับมุมมองจากทุกแหล่งข้อมูลอย่างสมดุล" />
-                </div>
-              </div>
 
-              {/* Pillar 2 */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <Database className="w-8 h-8 text-cyber-blue" />
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wider">2. Hybrid Precision Retrieval</h2>
+                {/* Pillar 2 */}
+                <div className="space-y-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Database className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. Hybrid Precision Retrieval</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FeatureItem title="HyDE Embedding" desc="AI จินตนาการคำตอบจำลองล่วงหน้าเพื่อใช้เป็นเป้าหมายในการดึงข้อมูลที่แม่นยำที่สุด" />
+                    <FeatureItem title="Hybrid (FAISS + BM25)" desc="ผสาน Semantic Search ประมวลผลด้วย GPU กับการค้นหา Keyword Matching ได้อย่างไร้รอยต่อ" />
+                    <FeatureItem title="Adaptive Reranking" desc="จัดอันดับซ้ำด้วย Cross-Encoder หากผลลัพธ์กำกวมระบบจะรีดความแม่นยำสูงสุด" />
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="HyDE Embedding" desc="AI จินตนาการคำตอบจำลองล่วงหน้าเพื่อใช้เป็นเป้าหมายในการดึงข้อมูลที่แม่นยำที่สุด" />
-                  <FeatureItem title="Hybrid (FAISS + BM25)" desc="ผสาน Semantic Search ประมวลผลด้วย GPU กับการค้นหา Keyword Matching ได้อย่างไร้รอยต่อ" />
-                  <FeatureItem title="Adaptive Reranking" desc="จัดอันดับซ้ำด้วย Cross-Encoder หากผลลัพธ์กำกวมระบบจะรีดความแม่นยำสูงสุด" />
-                </div>
-              </div>
 
-              {/* Pillar 3 */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <Zap className="w-8 h-8 text-cyber-blue" />
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wider">3. Strategic Generation</h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="Adaptive Role-Playing" desc="วิเคราะห์คำถามและปรับบทบาทเป็นผู้เชี่ยวชาญ ระบุความเสี่ยงและสิ่งที่ต้องแลกได้อย่างเฉียบขาด" />
-                  <FeatureItem title="Cross-Concept Synthesis" desc="วิเคราะห์จุดเหมือน จุดต่าง และสังเคราะห์โมเดลความคิดใหม่ๆ แบบข้ามฐานข้อมูลได้" />
-                  <FeatureItem title="SSE Streaming" desc="สถาปัตยกรรมส่งข้อมูลแบบ Token-by-token มอบประสบการณ์ที่ไหลลื่นและรวดเร็ว" />
+                {/* Pillar 3 */}
+                <div className="space-y-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Strategic Generation</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FeatureItem title="Adaptive Role-Playing" desc="วิเคราะห์คำถามและปรับบทบาทเป็นผู้เชี่ยวชาญ ระบุความเสี่ยงและสิ่งที่ต้องแลกได้อย่างเฉียบขาด" />
+                    <FeatureItem title="Cross-Concept Synthesis" desc="วิเคราะห์จุดเหมือน จุดต่าง และสังเคราะห์โมเดลความคิดใหม่ๆ แบบข้ามฐานข้อมูลได้" />
+                    <FeatureItem title="SSE Streaming" desc="สถาปัตยกรรมส่งข้อมูลแบบ Token-by-token มอบประสบการณ์ที่ไหลลื่นและรวดเร็ว" />
+                  </div>
                 </div>
               </div>
 
               <AppliedIn items={['BookMind: AI Intelligent Library', 'AI Robot "น้องน่าน"', 'Legal Document Analyzer']} />
             </motion.div>
 
+            {/* Right Column: Sticky Showcase (Starts from the top) */}
             <div className="lg:w-5/12 lg:sticky lg:top-32 w-full">
+              <div className="space-y-4 mb-6">
+                <div className="text-cyber-blue text-xs font-mono uppercase tracking-[0.3em]">Live Interaction</div>
+                <h3 className="text-xl font-bold text-white">System Visualization</h3>
+              </div>
               <AiShowcase />
             </div>
           </div>
