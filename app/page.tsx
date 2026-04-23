@@ -21,7 +21,7 @@ export default function Home() {
               Not Just Coding. <span className="text-cyber-blue">Architecting.</span>
             </h2>
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              Aetox.dev ก่อตั้งโดยชยพล พรหมสวนา (National AI Gold Medalist) ด้วยวิสัยทัศน์ที่ต้องการยกระดับโครงสร้างพื้นฐานทางเทคโนโลยีขององค์กรในไทย เราไม่เพียงแค่เขียนโค้ด แต่เราออกแบบ "ระบบนิเวศ" (Ecosystem) ที่ผสานรวม AI, Automation และโครงสร้างเว็บประสิทธิภาพสูงเข้าด้วยกัน เพื่อผลลัพธ์ที่ยั่งยืนและขยายตัวได้จริง
+              Aetox.dev ก่อตั้งโดยชยพล พรหมสวนา (National AI Gold Medalist) ด้วยวิสัยทัศน์ที่ต้องการยกระดับโครงสร้างพื้นฐานทางเทคโนโลยีขององค์กรในไทย เราไม่เพียงแค่เขียนโค้ด แต่เราออกแบบ &quot;ระบบนิเวศ&quot; (Ecosystem) ที่ผสานรวม AI, Automation และโครงสร้างเว็บประสิทธิภาพสูงเข้าด้วยกัน เพื่อผลลัพธ์ที่ยั่งยืนและขยายตัวได้จริง
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyber-blue/10 text-cyber-blue font-semibold hover:bg-cyber-blue hover:text-black transition-all border border-cyber-blue/20">

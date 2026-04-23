@@ -1,10 +1,11 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Zap, Database, Cpu, Link as LinkIcon, ArrowLeft, MousePointer2 } from 'lucide-react';
+import { Bot, Zap, Database, Cpu, Link as LinkIcon, ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 
 /* ─── Shared UI Components ────────────────────────────────────────── */
 function LayerBadge({ icon: Icon, label }: { icon: any; label: string }) {
@@ -27,15 +28,26 @@ function FeatureItem({ title, desc }: { title: string; desc: string }) {
   );
 }
 
-function AppliedIn({ items }: { items: string[] }) {
+function AppliedIn({ items }: { items: { name: string; link?: string }[] }) {
   return (
     <div className="pt-6 border-t border-white/5">
       <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Applied In</p>
       <div className="flex flex-wrap gap-3">
-        {items.map((name) => (
-          <span key={name} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-cyber-blue/20 text-cyber-blue text-xs font-medium cursor-pointer transition-colors hover:bg-cyber-blue/10">
-            <LinkIcon className="w-3 h-3" /> {name}
-          </span>
+        {items.map((item) => (
+          <a 
+            key={item.name} 
+            href={item.link || '#'} 
+            target={item.link ? "_blank" : undefined}
+            rel={item.link ? "noopener noreferrer" : undefined}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-cyber-blue/20 text-cyber-blue text-xs font-medium transition-all ${item.link ? 'cursor-pointer hover:bg-cyber-blue/10 hover:border-cyber-blue/40' : 'cursor-default'}`}
+          >
+            {item.link?.includes('github.com') ? (
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            ) : (
+              <LinkIcon className="w-3 h-3" />
+            )}
+            {item.name}
+          </a>
         ))}
       </div>
     </div>
@@ -53,11 +65,11 @@ function AiShowcase() {
       visual: (
         <div className="relative h-full flex flex-col items-center justify-center p-8">
           <div className="w-full max-w-md p-4 rounded-xl bg-white/5 border border-cyber-blue/30 mb-8 font-mono text-sm text-cyber-blue">
-             "ช่วยวิเคราะห์ความเสี่ยงธุรกิจพลังงานในปี 2026 เมื่อเทียบกับคู่แข่ง A และ B"
+             &quot;ช่วยวิเคราะห์ความเสี่ยงธุรกิจพลังงานในปี 2026 เมื่อเทียบกับคู่แข่ง A และ B&quot;
           </div>
           <div className="flex flex-col gap-3 w-full max-w-xs">
             <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 1: แนวโน้มตลาด</motion.div>
-            <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.7 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 2: งบการเงินคู่แข่ง A</motion.div>
+            <motion.div initial={{ x: 20, opacity: 0 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 2: งบการเงินคู่แข่ง A</motion.div>
             <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.9 }} className="p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] text-white">Sub-query 3: งบการเงินคู่แข่ง B</motion.div>
           </div>
         </div>
@@ -96,7 +108,7 @@ function AiShowcase() {
                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="h-2 w-4/6 bg-cyber-blue/20 rounded" />
               </div>
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] text-gray-400 leading-relaxed italic">
-                "จากข้อมูลข้างต้น ธุรกิจพลังงานในปี 2026 มีความเสี่ยงด้านกฎเกณฑ์ใหม่ 15% อย่างไรก็ตามการปรับตัวของคู่แข่ง B ยังล่าช้ากว่าคุณ..."
+                &quot;จากข้อมูลข้างต้น ธุรกิจพลังงานในปี 2026 มีความเสี่ยงด้านกฎเกณฑ์ใหม่ 15% อย่างไรก็ตามการปรับตัวของคู่แข่ง B ยังล่าช้ากว่าคุณ...&quot;
               </div>
            </div>
         </div>
@@ -133,61 +145,11 @@ function AiShowcase() {
   );
 }
 
-/* ─── Bottom Layer: Dynamic Workflow Details ────────────────────── */
-const workflowData = {
-  orchestrator: {
-    title: '1. Agentic Orchestrator',
-    steps: [
-      { id: '01', title: 'Decomposition', desc: 'AI วิเคราะห์เจตนาและแยกงานออกเป็นภารกิจย่อย' },
-      { id: '02', title: 'Reasoning Loop', desc: 'ตรวจสอบความสมบูรณ์และวนลูปค้นหาจนมั่นใจ' },
-      { id: '03', title: 'Final Execution', desc: 'รวบรวมข้อมูลและสรุปรายงานเชิงกลยุทธ์' }
-    ]
-  },
-  retrieval: {
-    title: '2. Hybrid Retrieval',
-    steps: [
-      { id: '01', title: 'Vector Search', desc: 'สืบค้นความหมายเชิงบริบทผ่าน High-dimensional Vectors' },
-      { id: '02', title: 'Keyword Match', desc: 'ดึงข้อมูลที่ตรงตัวเป๊ะๆ ผ่านกลไก BM25 แบบดั้งเดิม' },
-      { id: '03', title: 'Reranking', desc: 'จัดอันดับผลลัพธ์ด้วย Cross-Encoder เพื่อความแม่นยำสูงสุด' }
-    ]
-  },
-  generation: {
-    title: '3. Strategic Gen',
-    steps: [
-      { id: '01', title: 'Role Framing', desc: 'สวมบทบาทผู้เชี่ยวชาญตามบริบทของโจทย์ที่ได้รับ' },
-      { id: '02', title: 'Evidence Check', desc: 'ตรวจสอบข้อเท็จจริงอ้างอิงตาม Source ที่ดึงมาได้' },
-      { id: '03', title: 'Multi-Format', desc: 'สรุปผลลัพธ์เป็นตาราง กราฟ หรือบทสรุปเชิงลึก' }
-    ]
-  }
-};
-
 export default function AiAgentsPage() {
-  const [activeSection, setActiveSection] = useState<'orchestrator' | 'retrieval' | 'generation'>('orchestrator');
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as any);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    ['orchestrator', 'retrieval', 'generation'].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      window.scrollTo({ top: element.offsetTop - 100, behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -209,12 +171,26 @@ export default function AiAgentsPage() {
               <div className="space-y-6">
                 <LayerBadge icon={Bot} label="Intelligence Layer" />
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">Advanced Agentic<br /><span className="text-cyber-blue drop-shadow-cyber-glow">RAG System</span></h1>
-                <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-cyber-blue/30 pl-6">เราสร้าง "นักวิจัยดิจิทัล" ที่มีกลไกการคิด วิเคราะห์ และสืบค้นข้อมูลเชิงลึกแบบ Multi-hop Retrieval เพื่อให้ได้คำตอบที่แม่นยำระดับธุรกิจ</p>
+                <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-cyber-blue/30 pl-6">ยกระดับจาก &apos;แชทบอททั่วไป&apos; สู่ &apos;สมองกลประจำองค์กร&apos; ที่ถูกสร้างมาเพื่อเชื่อมต่อกับฐานข้อมูลของคุณโดยเฉพาะ ช่วยคิด วิเคราะห์ และตัดสินใจแก้ปัญหาซับซ้อนได้อย่างแม่นยำ</p>
               </div>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+                <button 
+                  onClick={() => scrollToSection('cta-section')}
+                  className="px-8 py-4 rounded-full bg-cyber-blue text-black font-black text-lg hover:shadow-cyber-glow transition-all active:scale-95 flex items-center gap-3 group shadow-cyber-glow/20"
+                >
+                  สนใจ RAG System
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
 
               {/* Quick Nav */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-4">
-                {[{ id: 'orchestrator', title: 'Orchestrator', icon: Cpu }, { id: 'retrieval', title: 'Retrieval', icon: Database }, { id: 'generation', title: 'Generation', icon: Zap }].map((nav) => (
+                {[
+                  { id: 'orchestrator', title: 'สมองกล', icon: Cpu }, 
+                  { id: 'retrieval', title: 'การสืบค้น', icon: Database }, 
+                  { id: 'generation', title: 'การสังเคราะห์', icon: Zap }
+                ].map((nav) => (
                   <button key={nav.id} onClick={() => scrollToSection(nav.id)} className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-cyber-blue/30 hover:bg-cyber-blue/5 transition-all text-left group">
                     <div className="p-2 rounded-lg bg-white/5 text-gray-500 group-hover:text-cyber-blue transition-colors"><nav.icon className="w-4 h-4" /></div>
                     <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors">{nav.title}</span>
@@ -232,63 +208,196 @@ export default function AiAgentsPage() {
       {/* ─── Divider ─── */}
       <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
 
-      {/* ─── Layer 2: Technical Deep Dive (Separate Floor) ─── */}
+      {/* ─── Layer 2: Technical Deep Dive ─── */}
       <section className="py-24 relative z-10">
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-20">
-            {/* Left: Pillars */}
-            <div className="lg:w-7/12 space-y-32">
-              <div id="orchestrator" className="space-y-8 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Cpu className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Agentic Orchestrator</h2></div>
+          {/* Technical Deep Dive - Each Pillar has its own Side-by-Side Visual */}
+          <div className="space-y-40">
+            
+            {/* Pillar 1: Agentic Orchestrator */}
+            <div id="orchestrator" className="flex flex-col lg:flex-row gap-20 items-center scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Cpu className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. ระบบสมองกลวิเคราะห์และวางแผน (Agentic Orchestrator)</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    ระบบถูกออกแบบให้คิดและทำงานเป็นลูป (Loop) เหมือนมนุษย์ แทนที่จะค้นหาเพียงครั้งเดียว
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="Query Decomposition" desc="แตกคำถามซับซ้อนออกเป็นคำถามย่อย หลายมิติที่สืบค้นได้ง่ายขึ้นอัตโนมัติ" />
-                  <FeatureItem title="Sufficiency Evaluation" desc="ประเมินความมั่นใจว่าข้อมูลเพียงพอหรือไม่ หากไม่พอจะวนลูปสืบค้นเพิ่มจนสมบูรณ์" />
+                  <FeatureItem title="Query Decomposition" desc="เมื่อเจอคำถามซับซ้อนเชิงกลยุทธ์ ระบบจะแตกคำถามใหญ่ออกเป็นคำถามย่อย (Sub-queries) หลายมิติที่สืบค้นได้ง่ายขึ้นโดยอัตโนมัติ" />
+                  <FeatureItem title="Sufficiency Evaluation" desc="ประเมินความมั่นใจว่าข้อมูลเพียงพอหรือไม่ (Confidence >= 0.7) หากไม่พอจะสร้างคำถามต่อยอดและวนลูปค้นหาเพิ่มจนสมบูรณ์" />
+                  <FeatureItem title="Balanced Source Selection" desc="ป้องกันข้อมูลเอนเอียง โดยใช้กลไก Round-robin เพื่อให้แน่ใจว่า AI ได้รับมุมมองจากทุกแหล่งข้อมูลอย่างสมดุลก่อนสังเคราะห์คำตอบ" />
                 </div>
               </div>
-
-              <div id="retrieval" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Database className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. Hybrid Precision Retrieval</h2></div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="HyDE Embedding" desc="AI จินตนาการคำตอบจำลองล่วงหน้าเพื่อใช้เป็นเป้าหมายในการดึงข้อมูลที่แม่นยำที่สุด" />
-                  <FeatureItem title="FAISS + BM25" desc="ผสาน Semantic Search ประมวลผลด้วย GPU กับการค้นหา Keyword Matching ได้อย่างไร้รอยต่อ" />
+              
+              {/* Visual 1 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Logic Flow Processing</span>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center relative">
+                      <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute w-40 h-40 border border-cyber-blue/20 rounded-full border-dashed" />
+                      <div className="relative z-10 p-6 rounded-2xl bg-cyber-blue/10 border border-cyber-blue/30">
+                         <Cpu className="w-12 h-12 text-cyber-blue" />
+                      </div>
+                      {[0, 90, 180, 270].map((deg) => (
+                        <motion.div key={deg} animate={{ scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: deg/100 }} className="absolute" style={{ transform: `rotate(${deg}deg) translateY(-60px)` }}>
+                           <div className="w-2 h-2 rounded-full bg-cyber-blue" />
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div className="mt-8 space-y-2">
+                       <div className="flex justify-between text-[10px] font-mono text-gray-500 uppercase"><span>Task Status</span><span>92% Analyzed</span></div>
+                       <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden"><motion.div animate={{ width: ['0%', '92%', '92%'] }} transition={{ duration: 3, repeat: Infinity }} className="h-full bg-cyber-blue shadow-cyber-glow" /></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div id="generation" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Zap className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Strategic Generation</h2></div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="Adaptive Role-Playing" desc="วิเคราะห์คำถามและปรับบทบาทเป็นผู้เชี่ยวชาญ ระบุความเสี่ยงและสิ่งที่ต้องแลก" />
-                  <FeatureItem title="SSE Streaming" desc="สถาปัตยกรรมส่งข้อมูลแบบ Token-by-token มอบประสบการณ์ที่ไหลลื่นและรวดเร็ว" />
-                </div>
-              </div>
-              <div className="mt-24"><AppliedIn items={['BookMind: AI Intelligent Library', 'AI Robot "น้องน่าน"', 'Legal Document Analyzer']} /></div>
             </div>
 
-            {/* Right: Sticky Live Workflow */}
-            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit space-y-8">
-              <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 opacity-10"><Bot className="w-16 h-16 text-cyber-blue" /></div>
-                <div className="relative z-10 space-y-8">
-                  <div className="flex items-center gap-2 text-cyber-blue mb-4"><MousePointer2 className="w-4 h-4" /><span className="text-[10px] font-bold uppercase tracking-widest">Live Workflow Status</span></div>
-                  <AnimatePresence mode="wait">
-                    <motion.div key={activeSection} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                      <h4 className="text-white font-bold uppercase tracking-widest text-sm border-b border-white/10 pb-4">{workflowData[activeSection].title}</h4>
-                      <div className="space-y-6">
-                        {workflowData[activeSection].steps.map((s) => (
-                          <div key={s.id} className="flex gap-4">
-                            <div className="text-cyber-blue font-mono text-xs pt-1">{s.id}</div>
-                            <div className="space-y-1"><div className="text-white font-bold text-xs uppercase tracking-wider">{s.title}</div><p className="text-gray-500 text-[11px] leading-relaxed">{s.desc}</p></div>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+            {/* Pillar 2: Hybrid Precision Retrieval */}
+            <div id="retrieval" className="flex flex-col lg:flex-row-reverse gap-20 items-center pt-24 border-t border-white/5 scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Database className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. กลไกสืบค้นความแม่นยำสูง (Hybrid Precision Retrieval)</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    ทลายข้อจำกัดการค้นหาด้วยคีย์เวิร์ดแบบเดิมๆ ด้วยการผสาน 3 สถาปัตยกรรมระดับโลกเข้าด้วยกัน
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FeatureItem title="HyDE Embedding" desc="AI จินตนาการคำตอบจำลองล่วงหน้าเพื่อใช้เป็นเป้าหมายในการดึงข้อมูลที่แม่นยำที่สุด" />
+                  <FeatureItem title="Hybrid Search" desc="ผสานการค้นหาเชิงความหมายประมวลผลด้วย GPU กับการค้นหา Keyword Matching ทำให้ระบบเข้าใจทั้งบริบทและศัพท์เฉพาะทาง" />
+                  <FeatureItem title="Adaptive Reranking" desc="จัดอันดับอัจฉริยะด้วย Cross-Encoder หากผลลัพธ์ชัดเจนจะข้ามการจัดอันดับเพื่อความเร็ว (~15ms)" />
                 </div>
               </div>
+
+              {/* Visual 2 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Vector Space Scanning</span>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center gap-4">
+                       {[45, 72, 38, 65].map((w, i) => (
+                         <div key={i} className="relative h-6 bg-white/5 rounded-lg border border-white/5 overflow-hidden">
+                            <motion.div animate={{ x: ['-100%', '300%'] }} transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }} className="absolute inset-0 w-1/4 bg-gradient-to-r from-transparent via-cyber-blue/40 to-transparent" />
+                            <div className="absolute inset-0 flex items-center px-4 gap-2">
+                               <div className="w-1 h-1 rounded-full bg-cyber-blue/60" />
+                               <div className="h-1 bg-white/10 rounded-full" style={{ width: `${w}%` }} />
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+                    <div className="mt-8 flex items-center justify-between p-4 rounded-xl bg-cyber-blue/5 border border-cyber-blue/20">
+                       <div className="flex items-center gap-3">
+                          <Database className="w-4 h-4 text-cyber-blue" />
+                          <span className="text-[10px] font-mono text-white">Latency: ~15ms</span>
+                       </div>
+                       <div className="text-[10px] font-mono text-cyber-blue">MATCH FOUND</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 3: Strategic Output Generation */}
+            <div id="generation" className="flex flex-col lg:flex-row gap-20 items-center pt-24 border-t border-white/5 scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. การสังเคราะห์ข้อมูลเชิงกลยุทธ์ (Strategic Output Generation)</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    ผลลัพธ์ไม่ใช่แค่การสรุปความ แต่เป็นการให้คำปรึกษาทางธุรกิจระดับสูง
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FeatureItem title="Adaptive Role-Playing" desc="AI จะปรับบทบาทตัวเองตามโจทย์ เช่น สวมบทบาทนักวางแผนที่สามารถระบุความเสี่ยงและสิ่งที่ต้องแลกได้อย่างเฉียบขาด" />
+                  <FeatureItem title="Cross-Concept Synthesis" desc="ระบบสามารถวิเคราะห์จุดเหมือน จุดต่าง และสังเคราะห์โมเดลความคิดใหม่ๆ แบบข้ามฐานข้อมูลได้" />
+                  <FeatureItem title="Real-time SSE Streaming" desc="สถาปัตยกรรมการส่งข้อมูลแบบ Token-by-token มอบประสบการณ์การตอบสนองที่ไหลลื่นและรวดเร็ว" />
+                </div>
+              </div>
+
+              {/* Visual 3 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Strategic Insight Generation</span>
+                    </div>
+                    <div className="flex-1 bg-black/40 rounded-2xl border border-white/5 p-6 font-mono text-[10px] text-gray-400 space-y-4 overflow-hidden relative">
+                       <div className="flex gap-2 items-center text-cyber-blue mb-4">
+                          <Bot className="w-4 h-4" />
+                          <span className="animate-pulse">Synthesizing final report...</span>
+                       </div>
+                       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }} className="space-y-2">
+                          <div className="h-2 w-3/4 bg-white/10 rounded-full" />
+                          <div className="h-2 w-full bg-white/10 rounded-full" />
+                          <div className="h-2 w-1/2 bg-cyber-blue/20 rounded-full" />
+                          <div className="h-2 w-5/6 bg-white/10 rounded-full" />
+                       </motion.div>
+                       <div className="absolute bottom-6 right-6 p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/30">
+                          <Zap className="w-5 h-5 text-cyber-blue shadow-cyber-glow" />
+                       </div>
+                    </div>
+                    <div className="mt-8 flex gap-2">
+                       {[1, 2, 3, 4].map(i => (
+                         <motion.div key={i} animate={{ height: [10, 25, 10] }} transition={{ duration: 1.5, repeat: Infinity, delay: i*0.2 }} className="flex-1 bg-cyber-blue/40 rounded-t-sm" />
+                       ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-24">
+              <AppliedIn items={[
+                { name: 'BookMind: AI Intelligent Library', link: 'https://github.com/Mike0165115321/BookMind.git' },
+                { name: 'AI Robot &quot;น้องน่าน&quot;', link: 'https://github.com/Mike0165115321/AI-Robot-Guide-.git' },
+                { name: 'Legal Document Analyzer' }
+              ]} />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Strategic CTA Section */}
+      <ServiceBottomCTA 
+        serviceId="ai-agents" 
+        serviceName="Agentic RAG Systems" 
+        hirePoints={[
+          "มีฐานข้อมูลเอกสารมหาศาลที่ต้องการระบบสืบค้นอัจฉริยะ",
+          "ต้องการความแม่นยำสูงสุดและลดปัญหา AI หลอน (Hallucination)",
+          "ต้องการระบบที่สามารถวิเคราะห์และวางแผนงานเองได้อัตโนมัติ"
+        ]}
+        learnPoints={[
+          "Software Architect ที่ต้องการยกระดับทักษะการออกแบบ AI",
+          "นักพัฒนาที่ต้องการเข้าใจกลไก Agentic RAG ตั้งแต่ฐานราก",
+          "ทีมเทคนิคที่ต้องการสร้างระบบ AI ใช้งานเองภายในองค์กร"
+        ]}
+      />
 
       <Footer />
     </main>

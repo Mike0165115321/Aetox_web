@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +25,7 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <img src="/images/1001.svg" alt="Aetox Logo" className="h-10 w-auto" />
+          <Image src="/images/1001.svg" alt="Aetox Logo" width={40} height={40} className="h-10 w-auto" />
           <span className="text-xl font-black tracking-widest text-white">
             AETO<span className="text-cyber-blue drop-shadow-cyber-glow">X</span>
           </span>

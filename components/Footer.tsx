@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <img src="/images/1001.svg" alt="Aetox Logo" className="h-8 w-auto" />
+              <Image src="/images/1001.svg" alt="Aetox Logo" width={32} height={32} className="h-8 w-auto" />
               <span className="text-xl font-black tracking-widest text-white">
                 AETO<span className="text-cyber-blue drop-shadow-cyber-glow">X</span>
               </span>

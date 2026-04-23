@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function HeroSection() {
   return (
@@ -14,9 +15,11 @@ export default function HeroSection() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-6"
         >
-          <img 
+          <Image 
             src="/images/1001.svg" 
             alt="Aetox Logo" 
+            width={128}
+            height={128}
             className="w-24 md:w-32 h-auto mx-auto drop-shadow-cyber-glow"
           />
         </motion.div>

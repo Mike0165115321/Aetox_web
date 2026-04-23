@@ -1,14 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans_Thai, Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const ibmPlexThai = IBM_Plex_Sans_Thai({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["thai", "latin"],
+  variable: "--font-ibm-plex-thai",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata = {
@@ -18,8 +21,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="th" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="th" className={`${ibmPlexThai.variable} ${inter.variable} font-sans`}>
+      <body className="bg-ultra-dark text-foreground antialiased overflow-x-hidden min-h-screen">
+        {children}
+      </body>
     </html>
   );
 }

@@ -236,8 +236,8 @@ export default function WebSystemsPage() {
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-start gap-20">
             {/* Left: Pillars */}
-            <div className="lg:w-7/12 space-y-32">
-              <div id="arch" className="space-y-8 scroll-mt-32">
+            <div className="lg:w-7/12 space-y-40">
+              <div id="arch" className="space-y-12 scroll-mt-32">
                 <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Globe className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Next.js Excellence</h2></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FeatureItem title="App Router Architecture" desc="ใช้โครงสร้างใหม่ล่าสุดของ Next.js เพื่อความเร็วและการจัดการ Data Fetching ที่มีประสิทธิภาพ" />
@@ -264,7 +264,7 @@ export default function WebSystemsPage() {
             </div>
 
             {/* Right: Sticky Live Workflow */}
-            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit space-y-8">
+            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit">
               <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-4 opacity-10"><Laptop className="w-16 h-16 text-cyber-blue" /></div>
                 <div className="relative z-10 space-y-8">

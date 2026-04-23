@@ -34,6 +34,9 @@ module.exports = {
       animation: {
         "pulse-glow": "pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
+      fontFamily: {
+        sans: ["var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
+      },
       keyframes: {
         "pulse-glow": {
           "0%, 100%": { opacity: 1, boxShadow: "0 0 20px rgba(6, 182, 212, 0.4)" },
