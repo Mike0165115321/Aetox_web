@@ -1,0 +1,51 @@
+'use client';
+import { Bot, Zap, Globe } from 'lucide-react';
+import ServiceCard from './ServiceCard';
+
+export default function ServiceSection() {
+  const services = [
+    {
+      id: 'ai',
+      title: 'Custom AI Agents',
+      description: 'ระบบสมองกล RAG และแชทบอทวิเคราะห์ข้อมูลเฉพาะทาง',
+      Icon: Bot,
+    },
+    {
+      id: 'automation',
+      title: 'Workflow Automation',
+      description: 'เปลี่ยนงาน Manual ที่น่าเบื่อให้เป็นระบบอัตโนมัติ 100%',
+      Icon: Zap,
+    },
+    {
+      id: 'web',
+      title: 'Full-Stack Web Systems',
+      description: 'พัฒนาเว็บแอปพลิเคชันที่ทรงพลังและพร้อมเชื่อมต่อกับ AI',
+      Icon: Globe,
+    }
+  ];
+
+  return (
+    <section className="py-24 relative z-10">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Core Architecture</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            บริการหลักที่เราเชี่ยวชาญ เพื่อยกระดับองค์กรของคุณสู่ยุค Digital & AI เต็มรูปแบบ
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <ServiceCard 
+              key={service.id} 
+              title={service.title} 
+              description={service.description} 
+              Icon={service.Icon} 
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
