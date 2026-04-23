@@ -1,15 +1,17 @@
 'use client';
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, Check, Link as LinkIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ServiceCardProps {
   title: string;
   description: string;
+  features?: string[];
+  relatedProjects?: string[];
   Icon: LucideIcon;
   index: number;
 }
 
-export default function ServiceCard({ title, description, Icon, index }: ServiceCardProps) {
+export default function ServiceCard({ title, description, features, relatedProjects, Icon, index }: ServiceCardProps) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
@@ -27,9 +29,34 @@ export default function ServiceCard({ title, description, Icon, index }: Service
       <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyber-blue transition-colors">
         {title}
       </h3>
-      <p className="text-gray-400 leading-relaxed text-sm">
+      <p className="text-gray-400 leading-relaxed text-sm mb-6">
         {description}
       </p>
+
+      {features && (
+        <ul className="space-y-3 mb-6 flex-grow">
+          {features.map((feature, i) => (
+            <li key={i} className="flex items-start gap-2 text-xs text-gray-400">
+              <Check className="w-3.5 h-3.5 text-cyber-blue mt-0.5 shrink-0" />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {relatedProjects && relatedProjects.length > 0 && (
+        <div className="mt-auto pt-4 border-t border-white/10 w-full">
+          <p className="text-xs text-gray-500 mb-2 font-medium tracking-wider uppercase">Applied In</p>
+          <ul className="space-y-2">
+            {relatedProjects.map((project, i) => (
+              <li key={i} className="flex items-center gap-2 text-xs text-cyber-blue hover:text-white transition-colors cursor-pointer">
+                <LinkIcon className="w-3 h-3" />
+                <span>{project}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </motion.div>
   );
 }

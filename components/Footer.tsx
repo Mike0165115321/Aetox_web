@@ -6,13 +6,16 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
           <div className="space-y-4">
-            <div className="text-2xl font-black tracking-widest text-white">
-              AETOX.DEV
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/images/1001.svg" alt="Aetox Logo" className="h-8 w-auto" />
+              <span className="text-xl font-black tracking-widest text-white">
+                AETO<span className="text-cyber-blue drop-shadow-cyber-glow">X</span>
+              </span>
             </div>
             <div className="text-gray-400 max-w-sm">
-              <p className="font-medium text-white">Chayapol Promsavana</p>
+              <p className="font-medium text-white">ชยพล พรมสะวะนา (Chayaopol Promsavana)</p>
               <p className="text-cyber-blue text-sm font-semibold tracking-wider">
-                Founder & System Architect | National AI Gold Medalist
+                Founder & System Architect | เจ้าของเหรียญทอง AI ระดับประเทศ
               </p>
             </div>
             <div className="flex items-center gap-2 text-gray-400 text-sm">

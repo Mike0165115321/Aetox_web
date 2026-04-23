@@ -8,7 +8,18 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyber-blue/10 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
-        {/* โลโก้ SVG Aetox จะวางตรงนี้ */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-6"
+        >
+          <img 
+            src="/images/1001.svg" 
+            alt="Aetox Logo" 
+            className="w-24 md:w-32 h-auto mx-auto drop-shadow-cyber-glow"
+          />
+        </motion.div>
         
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}

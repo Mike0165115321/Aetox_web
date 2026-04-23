@@ -1,30 +1,41 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# AETOX.DEV Project Charter & AI Guidelines
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+Welcome, Agent. You are assisting in the development of **Aetox.dev**, a high-end B2B landing page for a Software Engineering Architect & National AI Gold Medalist. 
 
-<!-- BEGIN:aetox-design-system -->
-# AETOX B2B Design System Rules
+Everything you build here must adhere to the following **Identity, Design, and Technical Rules**.
 
-Whenever modifying or creating new UI components for Aetox.dev, you MUST adhere to these design rules:
+---
 
-1. **Theme & Colors (Tailwind)**
-   - **Background**: Ultra Dark Mode (`bg-ultra-dark` -> `#0A0F1C`)
-   - **Accents**: Cyberpunk Blue (`text-cyber-blue` -> `#06B6D4`, `text-deep-blue` -> `#3B82F6`)
-   - **Glow Effects**: Use `shadow-cyber-glow` or `shadow-deep-glow` for hover states. DO NOT use generic box shadows.
+## 1. Brand Identity & Tone
+- **Tone**: Corporate Premium, B2B, High-Tech, Software Architecture.
+- **The Founder**: Chayapol Promsavana (National AI Gold Medalist). 
+- **Value Proposition**: We don't just write code; we architect intelligent ecosystems (AI + Automation + Full-Stack).
+- **No Emojis**: Use professional language and SVG/Lucide icons only.
 
-2. **Component Architecture (Glassmorphism)**
-   - Use the custom `.glass-card` class for all panels and cards.
-   - For interactive cards, add `.glass-card-hover` to trigger the translation, border highlight, and cyber-glow.
-   - Avoid solid background colors for cards; they must always be slightly transparent with `backdrop-blur-2xl`.
+## 2. Design System (Ultra Dark Cyberpunk)
+- **Background**: `#0A0F1C` (Tailwind: `bg-ultra-dark`)
+- **Accent 1 (Cyan)**: `#06B6D4` (Tailwind: `text-cyber-blue`)
+- **Accent 2 (Blue)**: `#3B82F6` (Tailwind: `text-deep-blue`)
+- **Glassmorphism**: 
+  - Use the `.glass-card` utility class.
+  - Cards MUST have `backdrop-blur-2xl`, subtle white borders (`border-white/10`), and an inner reflection (`border-t-white/20`).
+- **Glow**: Use `shadow-cyber-glow` or `shadow-deep-glow` for hover interactions.
 
-3. **Typography & Styling**
-   - Use `text-white` for primary headings, `text-gray-400` or `text-gray-300` for subtitles and descriptions.
-   - For hero or main headlines, apply the `.text-gradient` utility class to create the blue gradient text.
-   - Icons must be drawn from `lucide-react`. Do not use emojis.
+## 3. Tech Stack Requirements
+- **Framework**: Next.js (App Router).
+- **Styling**: Tailwind CSS (Configuration is in `tailwind.config.js`).
+- **Animations**: Framer Motion (Keep them subtle, smooth, and high-end).
+- **Type Safety**: TypeScript (`.tsx`) is the standard for all new components.
+- **Icons**: `lucide-react`. If an icon is missing (like brand logos), use an inline SVG.
 
-4. **Tone & Branding**
-   - The tone is "Corporate Premium, B2B, High-Tech, Silicon Valley Architecture". 
-   - Highlight the founder "Chayapol Promsavana" as a "National AI Gold Medalist" to build B2B authority.
-<!-- END:aetox-design-system -->
+## 4. Component Standards
+- All sections must be **Responsive** (Mobile-first).
+- Interactive elements must have clear **Hover States** using the Cyber-blue theme.
+- Forms must use the specific prompt: *"เล่างานที่น่าเบื่อที่สุดของคุณให้เราฟัง"*.
+
+---
+
+> [!IMPORTANT]
+> This file is the Source of Truth for the Aetox brand. Any changes to the UI must respect these constraints to maintain a "National Gold Medalist" level of quality.
+
+<!-- AI Context Marker: AETOX_CHARTER_V1 -->
