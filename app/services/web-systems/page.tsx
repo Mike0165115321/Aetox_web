@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe, CheckCircle2, ArrowLeft, Link as LinkIcon, Laptop, Bot, Server, Shield, Rocket, MousePointer2 } from 'lucide-react';
+import { Globe, CheckCircle2, ArrowLeft, Link as LinkIcon, Laptop, Bot, Server, Shield, Rocket, MousePointer2, Database } from 'lucide-react';
 import Link from 'next/link';
-
+import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 /* ─── Shared UI Components ────────────────────────────────────────── */
 function LayerBadge({ icon: Icon, label }: { icon: any; label: string }) {
   return (
@@ -27,15 +27,22 @@ function FeatureItem({ title, desc }: { title: string; desc: string }) {
   );
 }
 
-function AppliedIn({ items }: { items: string[] }) {
+function AppliedIn({ items }: { items: { name: string; link?: string }[] }) {
   return (
     <div className="pt-6 border-t border-white/5">
       <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Applied In</p>
       <div className="flex flex-wrap gap-3">
-        {items.map((name) => (
-          <span key={name} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-cyber-blue/20 text-cyber-blue text-xs font-medium cursor-pointer transition-colors hover:bg-cyber-blue/10">
-            <LinkIcon className="w-3 h-3" /> {name}
-          </span>
+        {items.map((item) => (
+          <a 
+            key={item.name} 
+            href={item.link || '#'} 
+            target={item.link ? "_blank" : undefined}
+            rel={item.link ? "noopener noreferrer" : undefined}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-cyber-blue/20 text-cyber-blue text-xs font-medium transition-all ${item.link ? 'cursor-pointer hover:bg-cyber-blue/10 hover:border-cyber-blue/40' : 'cursor-default'}`}
+          >
+            <LinkIcon className="w-3 h-3" />
+            {item.name}
+          </a>
         ))}
       </div>
     </div>
@@ -132,61 +139,20 @@ function WebShowcase() {
   );
 }
 
-/* ─── Bottom Layer: Workflow Data ───────────────────────────────── */
-const workflowData = {
-  arch: {
-    title: '1. Next.js Excellence',
-    steps: [
-      { id: '01', title: 'App Router', desc: 'ใช้โครงสร้างล่าสุดของ Next.js เพื่อความเร็วและการจัดการ Data Fetching' },
-      { id: '02', title: 'TypeScript', desc: 'เขียนโค้ดด้วย Type-safe 100% ลดข้อผิดพลาดและง่ายต่อการขยาย' },
-      { id: '03', title: 'Cloud Native', desc: 'ระบบออกแบบให้พร้อม Deploy บน AWS, Vercel หรือ Google Cloud' }
-    ]
-  },
-  perf: {
-    title: '2. High Performance',
-    steps: [
-      { id: '01', title: 'Lighthouse Mastery', desc: 'ปรับแต่งทุกองค์ประกอบให้ได้คะแนน Performance 95+ เสมอ' },
-      { id: '02', title: 'Edge Computing', desc: 'ใช้ Cache ระดับ Global เพื่อให้เข้าถึงเว็บได้รวดเร็วจากทุกที่' },
-      { id: '03', title: 'Asset Optmize', desc: 'จัดการรูปภาพและไฟล์แบบ Next-gen เพื่อความไวระดับเสี้ยววินาที' }
-    ]
-  },
-  sec: {
-    title: '3. Enterprise Security',
-    steps: [
-      { id: '01', title: 'Access Control', desc: 'ระบบสมาชิกและความปลอดภัยระดับสูงด้วย JWT หรือ Auth0' },
-      { id: '02', title: 'Data Encryption', desc: 'ปกป้องข้อมูลสำคัญด้วยการเข้ารหัสทุกขั้นตอนตามมาตรฐาน B2B' },
-      { id: '03', title: 'Threat Protection', desc: 'ป้องกัน CSRF & XSS ด้วย Security Headers ที่เข้มงวด' }
-    ]
-  }
-};
-
 export default function WebSystemsPage() {
-  const [activeSection, setActiveSection] = useState<'arch' | 'perf' | 'sec'>('arch');
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as any);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    ['arch', 'perf', 'sec'].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      window.scrollTo({ top: element.offsetTop - 100, behavior: 'smooth' });
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -231,63 +197,190 @@ export default function WebSystemsPage() {
       {/* ─── Divider ─── */}
       <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
 
-      {/* ─── Layer 2: Technical Deep Dive (Separate Floor) ─── */}
+      {/* ─── Layer 2: Technical Deep Dive ─── */}
       <section className="py-24 relative z-10">
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-20">
-            {/* Left: Pillars */}
-            <div className="lg:w-7/12 space-y-40">
-              <div id="arch" className="space-y-12 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Globe className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Next.js Excellence</h2></div>
+          <div className="space-y-40">
+            
+            {/* Pillar 1: Next.js Excellence */}
+            <div id="arch" className="flex flex-col lg:flex-row gap-20 items-center scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Globe className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Next.js Excellence</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    โครงสร้างพื้นฐานระดับองค์กร สร้างด้วยเทคโนโลยีที่ทันสมัยที่สุดเพื่อรองรับผู้ใช้นับล้านและพร้อมสำหรับการขยายสเกลเสมอ
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FeatureItem title="App Router Architecture" desc="ใช้โครงสร้างใหม่ล่าสุดของ Next.js เพื่อความเร็วและการจัดการ Data Fetching ที่มีประสิทธิภาพ" />
                   <FeatureItem title="TypeScript Standards" desc="เขียนโค้ดด้วย Type-safe 100% ลดข้อผิดพลาดและง่ายต่อการขยายระบบในระยะยาว" />
+                  <FeatureItem title="Cloud Native Ready" desc="ระบบออกแบบให้พร้อม Deploy บน AWS, Vercel หรือ Google Cloud อย่างแนบเนียน" />
                 </div>
               </div>
 
-              <div id="perf" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Rocket className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. High-Speed Performance</h2></div>
+              {/* Visual 1 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Stack Architecture</span>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center items-center gap-4 relative">
+                       <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity }} className="w-48 p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3 backdrop-blur-md z-30">
+                          <Laptop className="w-5 h-5 text-cyber-blue" />
+                          <div className="space-y-1 w-full"><div className="h-1.5 w-1/2 bg-cyber-blue rounded-full" /><div className="h-1 w-1/3 bg-white/20 rounded-full" /></div>
+                       </motion.div>
+                       <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} className="w-56 p-4 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center gap-3 backdrop-blur-md z-20">
+                          <Server className="w-5 h-5 text-cyber-blue" />
+                          <div className="space-y-1 w-full"><div className="h-1.5 w-3/4 bg-cyber-blue/80 rounded-full" /><div className="h-1 w-1/2 bg-white/20 rounded-full" /></div>
+                       </motion.div>
+                       <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="w-64 p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3 backdrop-blur-md z-10">
+                          <Database className="w-5 h-5 text-cyber-blue/50" />
+                          <div className="space-y-1 w-full"><div className="h-1.5 w-full bg-white/30 rounded-full" /><div className="h-1 w-2/3 bg-white/10 rounded-full" /></div>
+                       </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 2: High-Speed Performance */}
+            <div id="perf" className="flex flex-col lg:flex-row-reverse gap-20 items-center pt-24 border-t border-white/5 scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Rocket className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. High-Speed Performance</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    เพราะความเร็วคือโอกาส เราออกแบบทุกระบบให้มีคะแนนประสิทธิภาพทะลุขีดสุดเพื่อสร้างความประทับใจแรกให้ลูกค้าของคุณ
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FeatureItem title="Lighthouse Mastery" desc="ปรับแต่งทุกองค์ประกอบให้ได้คะแนน Performance 95+ เพื่อ SEO และ User Experience" />
                   <FeatureItem title="Edge Computing" desc="ใช้ระบบ Cache ระดับ Global เพื่อให้ผู้ใช้งานเข้าถึงเว็บได้รวดเร็วจากทุกมุมโลก" />
+                  <FeatureItem title="Asset Optimize" desc="จัดการรูปภาพและสคริปต์อัตโนมัติ เพื่อการโหลดระดับเสี้ยววินาทีแบบไม่เสียคุณภาพ" />
                 </div>
               </div>
 
-              <div id="sec" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center"><Shield className="w-6 h-6 text-cyber-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Enterprise Security</h2></div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FeatureItem title="Auth & Access Control" desc="ระบบสมาชิกและความปลอดภัยระดับสูงด้วย JWT, Auth0 หรือ Clerk" />
-                  <FeatureItem title="Data Encryption" desc="ปกป้องข้อมูลสำคัญด้วยการเข้ารหัสทุกขั้นตอนตามมาตรฐาน B2B" />
+              {/* Visual 2 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Performance Metrics</span>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center items-center gap-6">
+                       <div className="relative w-40 h-40">
+                          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                             <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
+                             <motion.circle cx="50" cy="50" r="45" fill="none" stroke="#06B6D4" strokeWidth="8" strokeDasharray="283" initial={{ strokeDashoffset: 283 }} animate={{ strokeDashoffset: 14 }} transition={{ duration: 2, ease: "easeOut" }} strokeLinecap="round" />
+                          </svg>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center">
+                             <span className="text-4xl font-black text-white">99</span>
+                             <span className="text-[10px] text-cyber-blue font-bold tracking-widest">SCORE</span>
+                          </div>
+                       </div>
+                       <div className="flex gap-4 w-full">
+                          <div className="flex-1 bg-white/5 p-3 rounded-xl border border-white/10">
+                             <div className="text-[10px] text-gray-500 uppercase mb-1">Load</div>
+                             <div className="text-sm font-bold text-cyber-blue">0.4s</div>
+                          </div>
+                          <div className="flex-1 bg-white/5 p-3 rounded-xl border border-white/10">
+                             <div className="text-[10px] text-gray-500 uppercase mb-1">CLS</div>
+                             <div className="text-sm font-bold text-cyber-blue">0.00</div>
+                          </div>
+                       </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="mt-24"><AppliedIn items={['Aetox Core Platform', 'Enterprise CRM Dashboard', 'AI Agent Management Portal']} /></div>
             </div>
 
-            {/* Right: Sticky Live Workflow */}
-            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit">
-              <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 opacity-10"><Laptop className="w-16 h-16 text-cyber-blue" /></div>
-                <div className="relative z-10 space-y-8">
-                  <div className="flex items-center gap-2 text-cyber-blue mb-4"><MousePointer2 className="w-4 h-4" /><span className="text-[10px] font-bold uppercase tracking-widest">Live System Status</span></div>
-                  <AnimatePresence mode="wait">
-                    <motion.div key={activeSection} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                      <h4 className="text-white font-bold uppercase tracking-widest text-sm border-b border-white/10 pb-4">{workflowData[activeSection].title}</h4>
-                      <div className="space-y-6">
-                        {workflowData[activeSection].steps.map((s) => (
-                          <div key={s.id} className="flex gap-4">
-                            <div className="text-cyber-blue font-mono text-xs pt-1">{s.id}</div>
-                            <div className="space-y-1"><div className="text-white font-bold text-xs uppercase tracking-wider">{s.title}</div><p className="text-gray-500 text-[11px] leading-relaxed">{s.desc}</p></div>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+            {/* Pillar 3: Enterprise Security */}
+            <div id="sec" className="flex flex-col lg:flex-row gap-20 items-center pt-24 border-t border-white/5 scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-cyber-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Enterprise Security</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-cyber-blue/30 pl-6">
+                    ปลอดภัยตั้งแต่ระดับสถาปัตยกรรม (Secure by Design) ปกป้องข้อมูลธุรกิจของคุณด้วยเทคโนโลยีความปลอดภัยระดับ B2B
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FeatureItem title="Auth & Access Control" desc="ระบบสมาชิกและความปลอดภัยระดับสูงจัดการด้วยมาตรฐาน JWT หรือ Provider ชั้นนำ" />
+                  <FeatureItem title="Data Encryption" desc="ปกป้องข้อมูลสำคัญด้วยการเข้ารหัสทุกขั้นตอนตามมาตรฐานความปลอดภัย" />
+                  <FeatureItem title="Threat Protection" desc="ป้องกันการโจมตีทางไซเบอร์ เช่น CSRF & XSS ด้วย Security Headers ที่เข้มงวด" />
                 </div>
               </div>
+
+              {/* Visual 3 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Security Protocol</span>
+                    </div>
+                    <div className="flex-1 flex flex-col items-center justify-center relative">
+                       <Shield className="w-24 h-24 text-cyber-blue/20" />
+                       <div className="absolute inset-0 flex items-center justify-center">
+                          <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity }} className="p-4 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 backdrop-blur-md">
+                             <CheckCircle2 className="w-8 h-8 text-cyber-blue" />
+                          </motion.div>
+                       </div>
+                       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                          <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono text-gray-400">Encrypted</div>
+                          <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono text-gray-400">Auth Token Valid</div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-24">
+              <AppliedIn items={[
+                { name: 'Aetox Core Platform', link: '#' },
+                { name: 'Enterprise CRM Dashboard', link: '#' },
+                { name: 'AI Agent Management Portal', link: '#' }
+              ]} />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Strategic CTA Section */}
+      <ServiceBottomCTA 
+        serviceId="web-systems" 
+        serviceName="Web Systems" 
+        hirePoints={[
+          'ธุรกิจที่ต้องการระบบที่ปรับแต่งได้ 100%',
+          'สตาร์ทอัพที่ต้องการระบบที่ขยายตัวได้จริง',
+          'องค์กรที่ซอฟต์แวร์สำเร็จรูปไม่ตอบโจทย์'
+        ]}
+        learnPoints={[
+          "นักพัฒนาที่ต้องการเรียนรู้ Next.js แบบลงลึก",
+          "ทีมที่ต้องการปรับปรุง Performance ของระบบเดิม",
+          "ผู้ที่สนใจเรื่อง Web Security Architecture"
+        ]}
+      />
 
       <Footer />
     </main>

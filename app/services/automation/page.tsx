@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, CheckCircle2, ArrowLeft, Link as LinkIcon, Layers, Settings, Share2, MousePointer2 } from 'lucide-react';
 import Link from 'next/link';
-
+import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 /* ─── Shared UI Components ────────────────────────────────────────── */
 function LayerBadge({ icon: Icon, label, colorClass = "text-deep-blue" }: { icon: any; label: string; colorClass?: string }) {
   const bgClass = colorClass.includes('deep-blue') ? 'bg-deep-blue/10 border-deep-blue/20' : 'bg-cyber-blue/10 border-cyber-blue/20';
@@ -28,15 +28,22 @@ function FeatureItem({ title, desc }: { title: string; desc: string }) {
   );
 }
 
-function AppliedIn({ items }: { items: string[] }) {
+function AppliedIn({ items }: { items: { name: string; link?: string }[] }) {
   return (
     <div className="pt-6 border-t border-white/5">
       <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Applied In</p>
       <div className="flex flex-wrap gap-3">
-        {items.map((name) => (
-          <span key={name} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 border border-deep-blue/20 text-deep-blue text-xs font-medium cursor-pointer transition-colors hover:bg-deep-blue/10">
-            <LinkIcon className="w-3 h-3" /> {name}
-          </span>
+        {items.map((item) => (
+          <a 
+            key={item.name} 
+            href={item.link || '#'} 
+            target={item.link ? "_blank" : undefined}
+            rel={item.link ? "noopener noreferrer" : undefined}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-deep-blue/20 text-deep-blue text-xs font-medium transition-all ${item.link ? 'cursor-pointer hover:bg-deep-blue/10 hover:border-deep-blue/40' : 'cursor-default'}`}
+          >
+            <LinkIcon className="w-3 h-3" />
+            {item.name}
+          </a>
         ))}
       </div>
     </div>
@@ -125,61 +132,20 @@ function AutomationShowcase() {
   );
 }
 
-/* ─── Bottom Layer: Workflow Data ───────────────────────────────── */
-const workflowData = {
-  connect: {
-    title: '1. Platform Connector',
-    steps: [
-      { id: '01', title: 'Omnichannel Input', desc: 'เชื่อมต่อข้อมูลจาก LINE OA, Email, Sheets และ Database' },
-      { id: '02', title: 'Real-time Webhooks', desc: 'ตอบสนองต่อเหตุการณ์ที่เกิดขึ้นในทันทีแบบ Automated' },
-      { id: '03', title: 'Secure API Bridge', desc: 'การเชื่อมต่อที่ปลอดภัยด้วยมาตรฐาน JWT Encryption' }
-    ]
-  },
-  process: {
-    title: '2. Logic Engine',
-    steps: [
-      { id: '01', title: 'Conditional Routing', desc: 'กำหนดเงื่อนไขการทำงานแบบ If-Then-Else ที่ซับซ้อน' },
-      { id: '02', title: 'Data Transformation', desc: 'จัดระเบียบและแปลงข้อมูลสู่รูปแบบที่พร้อมใช้งาน' },
-      { id: '03', title: 'Error Handling', desc: 'ระบบตรวจจับข้อผิดพลาดและแจ้งเตือนทีมทันที' }
-    ]
-  },
-  deliver: {
-    title: '3. Auto Delivery',
-    steps: [
-      { id: '01', title: 'Auto-Reporting', desc: 'สรุปผลส่งเข้า LINE หรือ Email รายวันแบบอัตโนมัติ' },
-      { id: '02', title: 'CRM Auto-Update', desc: 'อัปเดตสถานะลูกค้าในระบบหลังบ้านทันที' },
-      { id: '03', title: 'Document Automation', desc: 'สร้าง Invoice หรือสัญญาโดยใช้ข้อมูลจากระบบโดยตรง' }
-    ]
-  }
-};
-
 export default function AutomationPage() {
-  const [activeSection, setActiveSection] = useState<'connect' | 'process' | 'deliver'>('connect');
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as any);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    ['connect', 'process', 'deliver'].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      window.scrollTo({ top: element.offsetTop - 100, behavior: 'smooth' });
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -224,63 +190,192 @@ export default function AutomationPage() {
       {/* ─── Divider ─── */}
       <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
 
-      {/* ─── Layer 2: Technical Deep Dive (Separate Floor) ─── */}
+      {/* ─── Layer 2: Technical Deep Dive ─── */}
       <section className="py-24 relative z-10">
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-20">
-            {/* Left: Pillars */}
-            <div className="lg:w-7/12 space-y-40">
-              <div id="connect" className="space-y-12 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center"><Share2 className="w-6 h-6 text-deep-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Platform Connector</h2></div>
+          <div className="space-y-40">
+            
+            {/* Pillar 1: Platform Connector */}
+            <div id="connect" className="flex flex-col lg:flex-row gap-20 items-center scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
+                      <Share2 className="w-6 h-6 text-deep-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">1. Platform Connector</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                    เชื่อมต่อทุกระบบเข้าด้วยกัน เปลี่ยนจากการทำงานแบบไซโล (Silo) เป็นระบบนิเวศที่ข้อมูลไหลเวียนอัตโนมัติ
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FeatureItem title="Omnichannel Input" desc="เชื่อมต่อข้อมูลจาก LINE OA, Email, Google Sheets และระบบ Database เดิมของคุณ" />
                   <FeatureItem title="Real-time Webhooks" desc="ตอบสนองต่อเหตุการณ์ที่เกิดขึ้นในทันที ไม่ต้องรอกดรันระบบเอง" />
+                  <FeatureItem title="Secure API Bridge" desc="การเชื่อมต่อที่ปลอดภัยด้วยมาตรฐาน JWT Encryption เพื่อปกป้องข้อมูลสำคัญ" />
                 </div>
               </div>
+              
+              {/* Visual 1 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-deep-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest">API Gateway Processing</span>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center relative">
+                      <motion.div animate={{ rotate: -360 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute w-48 h-48 border border-deep-blue/20 rounded-full border-dashed" />
+                      <div className="relative z-10 p-6 rounded-2xl bg-deep-blue/10 border border-deep-blue/30">
+                         <Share2 className="w-12 h-12 text-deep-blue" />
+                      </div>
+                      {[0, 120, 240].map((deg) => (
+                        <motion.div key={deg} animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, delay: deg/100 }} className="absolute" style={{ transform: `rotate(${deg}deg) translateY(-80px)` }}>
+                           <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-deep-blue/70">
+                              <LinkIcon className="w-4 h-4" />
+                           </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div className="mt-8 space-y-2">
+                       <div className="flex justify-between text-[10px] font-mono text-gray-500 uppercase"><span>Active Connections</span><span>3/3 Online</span></div>
+                       <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden"><div className="h-full bg-deep-blue shadow-deep-glow w-full" /></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-              <div id="process" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center"><Settings className="w-6 h-6 text-deep-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. Intelligent Logic Engine</h2></div>
+            {/* Pillar 2: Intelligent Logic Engine */}
+            <div id="process" className="flex flex-col lg:flex-row-reverse gap-20 items-center pt-24 border-t border-white/5 scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
+                      <Settings className="w-6 h-6 text-deep-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">2. Intelligent Logic Engine</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                    สร้างสมองกลในการตัดสินใจด้วยเงื่อนไขทางธุรกิจที่ซับซ้อน (Business Logic) เพื่อให้ระบบทำงานแทนคนได้อย่างสมบูรณ์แบบ
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FeatureItem title="Conditional Routing" desc="กำหนดเงื่อนไขการทำงานที่ซับซ้อนได้แบบ If-Then-Else ที่แม่นยำ" />
                   <FeatureItem title="Data Transformation" desc="จัดระเบียบและแปลงข้อมูลจากรูปแบบหนึ่งไปสู่อีกรูปแบบหนึ่งโดยอัตโนมัติ" />
+                  <FeatureItem title="Error Handling" desc="ระบบตรวจจับข้อผิดพลาดและแจ้งเตือนทีมทันทีเมื่อมีข้อมูลไม่ตรงเงื่อนไข" />
                 </div>
               </div>
 
-              <div id="deliver" className="space-y-8 pt-16 border-t border-white/5 scroll-mt-32">
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center"><Layers className="w-6 h-6 text-deep-blue" /></div><h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Automated Delivery</h2></div>
+              {/* Visual 2 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-deep-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest">Logic Tree Processing</span>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center items-center gap-6">
+                       <div className="w-32 h-10 rounded-lg bg-deep-blue/20 border border-deep-blue/40 flex items-center justify-center text-xs font-bold text-deep-blue">INPUT</div>
+                       <div className="flex gap-12 relative w-full justify-center">
+                          <div className="absolute top-[-24px] left-[calc(50%-1px)] w-[2px] h-6 bg-deep-blue/30" />
+                          <div className="absolute top-[-12px] left-[calc(50%-30px)] w-[60px] h-[2px] bg-deep-blue/30" />
+                          
+                          <div className="absolute top-[-12px] left-[calc(50%-30px)] w-[2px] h-3 bg-deep-blue/30" />
+                          <div className="absolute top-[-12px] right-[calc(50%-30px)] w-[2px] h-3 bg-deep-blue/30" />
+
+                          <motion.div animate={{ borderColor: ['rgba(255,255,255,0.1)', 'rgba(59,130,246,0.8)', 'rgba(255,255,255,0.1)'] }} transition={{ duration: 2, repeat: Infinity }} className="w-24 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-mono text-gray-400">TRUE</motion.div>
+                          <div className="w-24 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-mono text-gray-400 opacity-50">FALSE</div>
+                       </div>
+                    </div>
+                    <div className="mt-8 flex items-center justify-between p-4 rounded-xl bg-deep-blue/5 border border-deep-blue/20">
+                       <div className="flex items-center gap-3">
+                          <Settings className="w-4 h-4 text-deep-blue animate-spin-slow" />
+                          <span className="text-[10px] font-mono text-white">Rule Executed</span>
+                       </div>
+                       <div className="text-[10px] font-mono text-deep-blue">SUCCESS</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 3: Automated Delivery */}
+            <div id="deliver" className="flex flex-col lg:flex-row gap-20 items-center pt-24 border-t border-white/5 scroll-mt-32">
+              <div className="lg:w-7/12 space-y-12">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
+                      <Layers className="w-6 h-6 text-deep-blue" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white uppercase tracking-wider">3. Automated Delivery</h2>
+                  </div>
+                  <p className="text-gray-400 leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                    ส่งต่อผลลัพธ์ไปยังเป้าหมายอย่างแม่นยำ ไม่ว่าจะเป็นการสร้างรายงาน อัปเดตฐานข้อมูล หรือแจ้งเตือนลูกค้า
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FeatureItem title="Auto-Reporting" desc="สรุปผลการทำงานส่งเข้า LINE หรือ Email รายวัน/รายสัปดาห์แบบอัตโนมัติ" />
                   <FeatureItem title="CRM Auto-Update" desc="อัปเดตสถานะลูกค้าในระบบหลังบ้านทันทีที่เกิดการสั่งซื้อหรือติดต่อ" />
+                  <FeatureItem title="Document Automation" desc="สร้าง Invoice หรือสัญญาโดยใช้ข้อมูลจากระบบโดยตรงแบบไม่ต้องพิมพ์เอง" />
                 </div>
               </div>
-              <div className="mt-24"><AppliedIn items={['E-commerce Auto-Order', 'Real-time Stock Sync', 'Automated Customer Support']} /></div>
+
+              {/* Visual 3 */}
+              <div className="lg:w-5/12 w-full">
+                <div className="glass-card p-8 rounded-[32px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+                  <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-8">
+                       <div className="w-2 h-2 rounded-full bg-deep-blue animate-pulse" />
+                       <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest">Delivery Protocol</span>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center gap-4 relative">
+                       {[1, 2, 3].map((i) => (
+                         <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div className="w-8 h-8 rounded-lg bg-deep-blue/10 flex items-center justify-center">
+                               <CheckCircle2 className="w-4 h-4 text-deep-blue" />
+                            </div>
+                            <div className="flex-1 space-y-2">
+                               <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }} className="h-1.5 bg-deep-blue/50 rounded-full" />
+                               <div className="h-1.5 w-1/2 bg-white/10 rounded-full" />
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Right: Sticky Live Workflow */}
-            <div className="lg:w-5/12 lg:sticky lg:top-32 w-full h-fit">
-              <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 opacity-10"><Zap className="w-16 h-16 text-deep-blue" /></div>
-                <div className="relative z-10 space-y-8">
-                  <div className="flex items-center gap-2 text-deep-blue mb-4"><MousePointer2 className="w-4 h-4" /><span className="text-[10px] font-bold uppercase tracking-widest">Live Workflow Status</span></div>
-                  <AnimatePresence mode="wait">
-                    <motion.div key={activeSection} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                      <h4 className="text-white font-bold uppercase tracking-widest text-sm border-b border-white/10 pb-4">{workflowData[activeSection].title}</h4>
-                      <div className="space-y-6">
-                        {workflowData[activeSection].steps.map((s) => (
-                          <div key={s.id} className="flex gap-4">
-                            <div className="text-deep-blue font-mono text-xs pt-1">{s.id}</div>
-                            <div className="space-y-1"><div className="text-white font-bold text-xs uppercase tracking-wider">{s.title}</div><p className="text-gray-500 text-[11px] leading-relaxed">{s.desc}</p></div>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
+            <div className="mt-24">
+              <AppliedIn items={[
+                { name: 'E-commerce Auto-Order', link: '#' },
+                { name: 'Real-time Stock Sync', link: '#' },
+                { name: 'Automated Customer Support', link: '#' }
+              ]} />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Strategic CTA Section */}
+      <ServiceBottomCTA 
+        serviceId="automation" 
+        serviceName="Workflow Automation" 
+        hirePoints={[
+          'ธุรกิจที่เบื่อการคีย์งานซ้ำซ้อน',
+          'ต้องการลดความผิดพลาดของมนุษย์ให้เป็นศูนย์',
+          'ทีมงานที่ต้องการระบบที่ทำงานได้ 24/7'
+        ]}
+        learnPoints={[
+          "ผู้ที่ต้องการวางระบบหลังบ้านให้ทำงานอัตโนมัติ",
+          "ผู้บริหารที่ต้องการลดต้นทุนแฝงจากการใช้คนทำงานซ้ำๆ",
+          "นักพัฒนาที่ต้องการศึกษาการผสาน API ระดับองค์กร"
+        ]}
+      />
 
       <Footer />
     </main>
