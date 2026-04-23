@@ -10,6 +10,12 @@ interface CTAProps {
   learnPoints?: string[];
   learnPath?: string;
   hirePath?: string;
+  dict?: {
+    title: { white: string; accent: string; suffix: string };
+    subtitle: string;
+    hire: { title: string; desc: string; label: string; suitLabel: string };
+    learn: { title: string; desc: string; label: string; suitLabel: string };
+  };
 }
 
 export default function ServiceBottomCTA({ 
@@ -18,8 +24,26 @@ export default function ServiceBottomCTA({
   hirePoints = [],
   learnPoints = [],
   learnPath = "/contact",
-  hirePath = "/contact" 
+  hirePath = "/contact",
+  dict
 }: CTAProps) {
+  const content = dict || {
+    title: { white: "พร้อมวางรากฐาน", accent: "อัจฉริยะ", suffix: "ให้ธุรกิจคุณหรือยัง?" },
+    subtitle: "เลือกก้าวต่อไปที่เหมาะกับเป้าหมายของคุณ",
+    hire: {
+      title: `จ้างเราทำระบบ ${serviceName} สิ`,
+      desc: `ให้เราออกแบบและวางระบบ ${serviceName} ระดับองค์กรที่แม่นยำ ปลอดภัย และปรับแต่งมาเพื่อแก้ปัญหาธุรกิจของคุณโดยเฉพาะ`,
+      label: "ปรึกษาเรา",
+      suitLabel: "เหมาะสำหรับองค์กรที่"
+    },
+    learn: {
+      title: `มาเรียนการสร้าง ${serviceName} สิ`,
+      desc: `เจาะลึกเบื้องหลังการสร้างระบบ ${serviceName} ตั้งแต่ทฤษฎีจนถึงการใช้งานจริงในระดับโปรดักชัน ผ่านหลักสูตรจากประสบการณ์ตรง`,
+      label: "สมัครเรียนกับเรา",
+      suitLabel: "เหมาะสำหรับผู้ที่"
+    }
+  };
+
   return (
     <section id="cta-section" className="py-24 relative overflow-hidden scroll-mt-32">
       {/* Decorative Glow */}
@@ -28,10 +52,10 @@ export default function ServiceBottomCTA({
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-            พร้อมวางรากฐาน <br className="hidden md:block" />
-            <span className="text-cyber-blue drop-shadow-cyber-glow">อัจฉริยะ</span> ให้ธุรกิจคุณหรือยัง?
+            {content.title.white} <br className="hidden md:block" />
+            <span className="text-cyber-blue drop-shadow-cyber-glow">{content.title.accent}</span> {content.title.suffix}
           </h2>
-          <p className="text-gray-400 text-lg">เลือกก้าวต่อไปที่เหมาะกับเป้าหมายของคุณ</p>
+          <p className="text-gray-400 text-lg">{content.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -46,13 +70,13 @@ export default function ServiceBottomCTA({
                   <Rocket className="w-7 h-7 text-cyber-blue" />
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-cyber-blue transition-colors">จ้างเราทำระบบ {serviceName} สิ</h3>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-cyber-blue transition-colors">{content.hire.title}</h3>
                   <p className="text-gray-400 leading-relaxed text-sm">
-                    ให้เราออกแบบและวางระบบ {serviceName} ระดับองค์กรที่แม่นยำ ปลอดภัย และปรับแต่งมาเพื่อแก้ปัญหาธุรกิจของคุณโดยเฉพาะ
+                    {content.hire.desc}
                   </p>
                   {hirePoints.length > 0 && (
                     <div className="pt-4 space-y-3">
-                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">เหมาะสำหรับองค์กรที่</p>
+                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{content.hire.suitLabel}</p>
                       <ul className="space-y-2">
                         {hirePoints.map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
@@ -70,7 +94,7 @@ export default function ServiceBottomCTA({
                 href={`${hirePath}?source=${serviceId}&intent=hire`}
                 className="mt-10 flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-cyber-blue group-hover:text-black transition-all font-bold"
               >
-                ปรึกษาเรา
+                {content.hire.label}
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
@@ -89,13 +113,13 @@ export default function ServiceBottomCTA({
                   <GraduationCap className="w-7 h-7 text-deep-blue" />
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-deep-blue transition-colors">มาเรียนการสร้าง {serviceName} สิ</h3>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-deep-blue transition-colors">{content.learn.title}</h3>
                   <p className="text-gray-400 leading-relaxed text-sm">
-                    เจาะลึกเบื้องหลังการสร้างระบบ {serviceName} ตั้งแต่ทฤษฎีจนถึงการใช้งานจริงในระดับโปรดักชัน ผ่านหลักสูตรจากประสบการณ์ตรง
+                    {content.learn.desc}
                   </p>
                   {learnPoints.length > 0 && (
                     <div className="pt-4 space-y-3">
-                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">เหมาะสำหรับผู้ที่</p>
+                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{content.learn.suitLabel}</p>
                       <ul className="space-y-2">
                         {learnPoints.map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
@@ -113,7 +137,7 @@ export default function ServiceBottomCTA({
                 onClick={() => alert('ยังไม่มีบทเรียนที่พร้อมใช้งาน')}
                 className="mt-10 flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-deep-blue group-hover:text-white transition-all font-bold w-full"
               >
-                สมัครเรียนกับเรา
+                {content.learn.label}
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>

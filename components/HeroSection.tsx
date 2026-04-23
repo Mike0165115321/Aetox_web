@@ -1,8 +1,12 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-
-export default function HeroSection() {
+export default function HeroSection({ dict }: { dict: any }) {
+  const content = dict || {
+    headline: { white: "Turn Problems Into", accent: "Efficient Systems." },
+    description: "เราไม่ได้สร้างแค่ Web Application แต่เราเปลี่ยนปัญหาเดิม ให้กลายเป็นระบบที่ทำงานได้เร็วขึ้น แม่นยำขึ้น และใช้คนน้อยลง",
+    cta: { primary: "สำรวจระบบอัจฉริยะ", secondary: "เล่าปัญหาธุรกิจของคุณ" }
+  };
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Glow */}
@@ -30,9 +34,9 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-7xl font-extrabold text-white tracking-tight"
         >
-          Architecting <br />
+          {content.headline.white} <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue to-deep-blue">
-            Intelligent Ecosystems
+            {content.headline.accent}
           </span>
         </motion.h1>
 
@@ -40,12 +44,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed"
+          className="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed whitespace-pre-line"
         >
-          เราไม่ได้สร้างแค่ Web Application แต่เราพัฒนาระบบนิเวศดิจิทัลแบบครบวงจร 
-          ที่ผสาน <span className="text-cyber-blue font-semibold">สมองกล AI</span>, <span className="text-deep-blue font-semibold">สถาปัตยกรรมฐานข้อมูล</span>, 
-          และ <span className="text-cyber-blue font-semibold">Workflow Automation</span> เข้าด้วยกัน 
-          เพื่อขจัดงานซ้ำซ้อนและปลดล็อกศักยภาพธุรกิจคุณอย่างไร้ขีดจำกัด
+          {content.description}
         </motion.p>
 
         <motion.div 
@@ -55,10 +56,10 @@ export default function HeroSection() {
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
           <a href="#services" className="px-8 py-3 rounded-full bg-cyber-blue hover:bg-cyber-blue/80 text-white font-semibold transition-all shadow-cyber-glow">
-            สำรวจระบบอัจฉริยะ
+            {content.cta.primary}
           </a>
           <a href="#contact" className="px-8 py-3 rounded-full border border-white/10 hover:border-cyber-blue/50 text-gray-400 transition-all">
-            เล่าปัญหาธุรกิจของคุณ
+            {content.cta.secondary}
           </a>
         </motion.div>
       </div>

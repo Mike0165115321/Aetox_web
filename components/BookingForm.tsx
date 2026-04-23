@@ -2,8 +2,29 @@
 import { useState } from 'react';
 import { Send } from 'lucide-react';
 
-export default function BookingForm() {
+export default function BookingForm({ dict }: { dict?: any }) {
   const [submitted, setSubmitted] = useState(false);
+  const content = dict || {
+    hero: {
+      title: "เล่างานที่น่าเบื่อที่สุดของคุณให้เราฟัง",
+      subtitle: "แล้วเราจะเปลี่ยนมันเป็นระบบอัตโนมัติให้คุณ"
+    },
+    success: {
+      title: "รับทราบเป้าหมายแล้ว!",
+      message: "สถาปนิกของเรากำลังวิเคราะห์ปัญหาและจะติดต่อกลับโดยเร็วที่สุด"
+    },
+    form: {
+      challenge: {
+        label: "งานคอขวดของคุณคืออะไร?",
+        placeholder: "เช่น ต้องคีย์ข้อมูลจาก PDF ลง Excel ทุกวัน..."
+      },
+      contact: {
+        label: "ช่องทางติดต่อกลับ",
+        placeholder: "Email หรือ เบอร์โทรศัพท์"
+      },
+      submit: "ท้าทายระบบของเรา"
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,42 +41,42 @@ export default function BookingForm() {
           
           <div className="relative z-10 text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              เล่างานที่น่าเบื่อที่สุดของคุณให้เราฟัง
+              {content.hero.title}
             </h2>
             <p className="text-gray-400 text-lg">
-              แล้วเราจะเปลี่ยนมันเป็นระบบอัตโนมัติให้คุณ
+              {content.hero.subtitle}
             </p>
           </div>
 
           {submitted ? (
             <div className="bg-cyber-blue/10 border border-cyber-blue/30 rounded-xl p-8 text-center">
-              <h3 className="text-2xl font-bold text-cyber-blue mb-2">รับทราบเป้าหมายแล้ว!</h3>
-              <p className="text-white">สถาปนิกของเรากำลังวิเคราะห์ปัญหาและจะติดต่อกลับโดยเร็วที่สุด</p>
+              <h3 className="text-2xl font-bold text-cyber-blue mb-2">{content.success.title}</h3>
+              <p className="text-white">{content.success.message}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto relative z-10">
               <div className="space-y-2">
                 <label htmlFor="challenge" className="text-sm font-medium text-gray-400 uppercase tracking-wider">
-                  งานคอขวดของคุณคืออะไร?
+                  {content.form.challenge.label}
                 </label>
                 <textarea 
                   id="challenge" 
                   rows={4}
                   required
-                  placeholder="เช่น ต้องคีย์ข้อมูลจาก PDF ลง Excel ทุกวัน..."
+                  placeholder={content.form.challenge.placeholder}
                   className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-gray-600 focus:outline-none focus:border-cyber-blue focus:ring-1 focus:ring-cyber-blue transition-all"
                 />
               </div>
               
               <div className="space-y-2">
                 <label htmlFor="contact" className="text-sm font-medium text-gray-400 uppercase tracking-wider">
-                  ช่องทางติดต่อกลับ
+                  {content.form.contact.label}
                 </label>
                 <input 
                   type="text" 
                   id="contact" 
                   required
-                  placeholder="Email หรือ เบอร์โทรศัพท์"
+                  placeholder={content.form.contact.placeholder}
                   className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-gray-600 focus:outline-none focus:border-cyber-blue focus:ring-1 focus:ring-cyber-blue transition-all"
                 />
               </div>
@@ -64,7 +85,7 @@ export default function BookingForm() {
                 type="submit" 
                 className="w-full bg-white text-black hover:bg-gray-200 font-bold text-lg py-4 px-8 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-deep-glow"
               >
-                ท้าทายระบบของเรา <Send className="w-5 h-5" />
+                {content.form.submit} <Send className="w-5 h-5" />
               </button>
             </form>
           )}

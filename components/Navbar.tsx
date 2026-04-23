@@ -3,8 +3,17 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Navbar() {
+export default function Navbar({ dict }: { dict?: any }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Use default Thai values if dict is not provided (for backward compatibility during transition)
+  const menuItems = dict?.menu || [
+    { label: "หน้าแรก", href: "/" },
+    { label: "บริการ", href: "/services" },
+    { label: "ผลงาน", href: "/authority" },
+    { label: "ติดต่อ", href: "/contact" }
+  ];
+  const ctaLabel = dict?.cta || "ปรึกษาปัญหา";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,16 +42,21 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
-          <Link href="/" className="text-base font-medium text-gray-300 hover:text-white hover:drop-shadow-cyber-glow transition-all">หน้าแรก</Link>
-          <Link href="/services" className="text-base font-medium text-gray-300 hover:text-white hover:drop-shadow-cyber-glow transition-all">บริการ</Link>
-          <Link href="/authority" className="text-base font-medium text-gray-300 hover:text-white hover:drop-shadow-cyber-glow transition-all">ผลงาน</Link>
-          <Link href="/contact" className="text-base font-medium text-gray-300 hover:text-white hover:drop-shadow-cyber-glow transition-all">ติดต่อ</Link>
+          {menuItems.map((item: any) => (
+            <Link 
+              key={item.href} 
+              href={item.href} 
+              className="text-base font-medium text-gray-300 hover:text-white hover:drop-shadow-cyber-glow transition-all"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         {/* CTA Button */}
         <div className="hidden md:block">
           <Link href="/contact" className="px-5 py-2.5 rounded-full bg-white/10 text-white text-sm font-semibold hover:bg-white hover:text-black transition-all border border-white/20 hover:border-transparent hover:shadow-cyber-glow">
-            เริ่มวางระบบ
+            {ctaLabel}
           </Link>
         </div>
         
