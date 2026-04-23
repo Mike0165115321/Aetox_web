@@ -46,16 +46,11 @@ export default function ProjectShowcase({ content }: { content: any }) {
         </div>
 
         {/* Projects Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project: any) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+          {filteredProjects.map((project: any) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-20">
