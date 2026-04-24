@@ -1,178 +1,194 @@
+
 export const aiAgentsContent = {
   hero: {
     badge: "Intelligence Layer",
     title: {
-      white: "Advanced Agentic",
-      accent: "RAG System"
+      white: "Agentic",
+      accent: "AI & RAG Systems"
     },
-    description: "ยกระดับจาก 'แชทบอททั่วไป' สู่ 'สมองกลประจำองค์กร' ที่ถูกสร้างมาเพื่อเชื่อมต่อกับฐานข้อมูลของคุณโดยเฉพาะ ช่วยคิด วิเคราะห์ และตัดสินใจแก้ปัญหาซับซ้อนได้อย่างแม่นยำ",
-    cta: "สนใจ RAG System"
+    description: "เปลี่ยนฐานข้อมูลดิบให้เป็นขุมพลังอัจฉริยะด้วยระบบ RAG (Retrieval-Augmented Generation) ที่มีความแม่นยำสูง และ Agentic Workflow ที่คิดวิเคราะห์และตัดสินใจได้เสมือนผู้เชี่ยวชาญ",
+    cta: "เริ่มออกแบบระบบ AI ของคุณ"
   },
+
   showcase: [
     {
-      title: "Step 01: Receive Query",
-      subtitle: "รับโจทย์เชิงกลยุทธ์",
-      desc: "ระบบรับคำถามธุรกิจที่ซับซ้อนในภาษาธรรมชาติ พร้อมจำแนกประเภทโจทย์และกำหนด Persona ผู้เชี่ยวชาญที่เหมาะสมก่อนเริ่มกระบวนการ"
+      title: "Orchestrator: สมองส่วนกลาง",
+      subtitle: "Agentic Thinking Process",
+      desc: "ไม่ใช่แค่การสืบค้นข้อมูล แต่ระบบจะทำการ 'คิด' และแตกโจทย์ซับซ้อนเป็นแผนการทำงานย่อย เพื่อหาคำตอบที่ครอบคลุมที่สุด"
     },
     {
-      title: "Step 02: Query Decomposition",
-      subtitle: "วิเคราะห์และแตกโจทย์",
-      desc: "เมื่อได้รับคำถามที่ซับซ้อน ระบบจะทำหน้าที่เป็น Architect แตกปัญหาออกเป็นส่วนย่อยๆ เพื่อการค้นหาที่แม่นยำที่สุด"
+      title: "Hybrid Search: ค้นหาความหมาย",
+      subtitle: "Multi-Vector Retrieval",
+      desc: "ผสานพลังระหว่าง Semantic Search (GPU-powered) และ Keyword Search เพื่อให้ได้ข้อมูลที่แม่นยำที่สุดจากฐานข้อมูลของคุณ"
     },
     {
-      title: "Step 03: Hybrid Retrieval",
-      subtitle: "สืบค้นข้อมูลเชิงลึก",
-      desc: "ระบบจะทำการค้นหาแบบ Hybrid (Semantic + Keyword) ข้ามฐานข้อมูลทุกแหล่ง และตรวจสอบความสมบูรณ์ของข้อมูลแบบ Real-time"
+      title: "Self-Correction: ตรวจสอบตัวเอง",
+      subtitle: "Confidence Threshold Loop",
+      desc: "ระบบมีกลไกตรวจสอบความถูกต้องของข้อมูลก่อนตอบ หากความมั่นใจต่ำเกินไป AI จะทำการสืบค้นใหม่โดยอัตโนมัติ"
     },
     {
-      title: "Step 04: Evaluate & Loop",
-      subtitle: "ประเมินและวนซ้ำ",
-      desc: "ระบบประเมิน Confidence Score หากข้อมูลไม่ถึงเกณฑ์ 0.7 จะสร้างคำถามต่อยอดและวนลูปค้นหาเพิ่มเติมจนสมบูรณ์"
+      title: "Strategic Output: สังเคราะห์แผนงาน",
+      subtitle: "Context-Aware Generation",
+      desc: "นำข้อมูลที่สืบค้นได้มาสังเคราะห์เป็นคำตอบหรือแผนงานเชิงกลยุทธ์ โดยระบุแหล่งที่มา (Citation) ได้อย่างแม่นยำ"
     },
     {
-      title: "Step 05: Strategic Output",
-      subtitle: "สังเคราะห์ผลลัพธ์",
-      desc: "AI สวมบทบาทผู้เชี่ยวชาญ สรุปคำตอบพร้อมระบุความเสี่ยงและข้อเสนอแนะที่นำไปใช้งานจริงได้ทันที ผ่าน SSE Streaming"
+      title: "Real-time Stream: ไหลลื่น ไร้รอยต่อ",
+      subtitle: "SSE Streaming Interface",
+      desc: "แสดงผลลัพธ์แบบ Token-by-token ทันทีที่ AI เริ่มคิดเสร็จ ไม่ต้องรอให้เจนเสร็จทั้งหมด ประสบการณ์ใช้งานระดับพรีเมียม"
     }
   ],
+
   pillars: {
     pillar1: {
-      title: "1. ระบบสมองกลวิเคราะห์และวางแผน (Agentic Orchestrator)",
-      description: "ระบบถูกออกแบบให้คิดและทำงานเป็นลูป (Loop) เหมือนมนุษย์ แทนที่จะค้นหาเพียงครั้งเดียว",
+      title: "1. Agentic Orchestrator",
+      description: "ระบบควบคุมอัจฉริยะที่ทำหน้าที่เป็น 'หัวหน้าทีม' ในการรับโจทย์จากผู้ใช้ และวางแผนการสืบค้นข้อมูลอย่างเป็นระบบ",
       features: [
-        { title: "Query Decomposition", desc: "เมื่อเจอคำถามซับซ้อนเชิงกลยุทธ์ ระบบจะแตกคำถามใหญ่ออกเป็นคำถามย่อย (Sub-queries) หลายมิติที่สืบค้นได้ง่ายขึ้นโดยอัตโนมัติ" },
-        { title: "Sufficiency Evaluation", desc: "ประเมินความมั่นใจว่าข้อมูลเพียงพอหรือไม่ (Confidence >= 0.7) หากไม่พอจะสร้างคำถามต่อยอดและวนลูปค้นหาเพิ่มจนสมบูรณ์" },
-        { title: "Balanced Source Selection", desc: "ป้องกันข้อมูลเอนเอียง โดยใช้กลไก Round-robin เพื่อให้แน่ใจว่า AI ได้รับมุมมองจากทุกแหล่งข้อมูลอย่างสมดุลก่อนสังเคราะห์คำตอบ" }
+        {
+          title: "Query Decomposition",
+          desc: "แตกปัญหาใหญ่เป็น Sub-queries หลายมิติ เพื่อการหาคำตอบที่ลึกและกว้างกว่า AI ทั่วไป"
+        },
+        {
+          title: "Reasoning Loop",
+          desc: "AI จะตรวจสอบข้อมูลที่หาได้ หากยังไม่เพียงพอจะวางแผนหาเพิ่มจนกว่าจะได้คำตอบที่สมบูรณ์"
+        },
+        {
+          title: "Tool Use Ready",
+          desc: "พร้อมเชื่อมต่อกับระบบภายนอก (API) เพื่อดึงข้อมูลสดใหม่หรือสั่งการระบบอื่น ๆ ได้ทันที"
+        }
       ]
     },
+
     pillar2: {
-      title: "2. กลไกสืบค้นความแม่นยำสูง (Hybrid Precision Retrieval)",
-      description: "ทลายข้อจำกัดการค้นหาด้วยคีย์เวิร์ดแบบเดิมๆ ด้วยการผสาน 3 สถาปัตยกรรมระดับโลกเข้าด้วยกัน",
+      title: "2. Hybrid Precision Retrieval",
+      description: "กระบวนการสืบค้นข้อมูลที่ทันสมัยที่สุด ผสานพลังของ GPU และอัลกอริทึมการค้นหาตามความหมาย",
       features: [
-        { title: "HyDE Embedding", desc: "AI จินตนาการคำตอบจำลองล่วงหน้าเพื่อใช้เป็นเป้าหมายในการดึงข้อมูลที่แม่นยำที่สุด" },
-        { title: "Hybrid Search", desc: "ผสานการค้นหาเชิงความหมายประมวลผลด้วย GPU กับการค้นหา Keyword Matching ทำให้ระบบเข้าใจทั้งบริบทและศัพท์เฉพาะทาง" },
-        { title: "Adaptive Reranking", desc: "จัดอันดับอัจฉริยะด้วย Cross-Encoder หากผลลัพธ์ชัดเจนจะข้ามการจัดอันดับเพื่อความเร็ว (~15ms)" }
+        {
+          title: "Semantic Vector Search",
+          desc: "ค้นหาด้วย 'ความเข้าใจ' ไม่ใช่แค่คำเหมือน ทำให้ AI เข้าใจบริบทและเจตนาของผู้ใช้อย่างแท้จริง"
+        },
+        {
+          title: "Cross-Encoder Reranking",
+          desc: "ระบบจัดลำดับความสำคัญของข้อมูลใหม่ เพื่อเลือกเฉพาะส่วนที่เกี่ยวข้องที่สุดมาตอบ"
+        },
+        {
+          title: "Dense & Sparse Hybrid",
+          desc: "รวมจุดเด่นของการค้นหาแบบคำหลักและแบบความหมายเข้าด้วยกัน เพื่อความแม่นยำสูงสุด"
+        }
       ]
     },
+
     pillar3: {
-      title: "3. การสังเคราะห์ข้อมูลเชิงกลยุทธ์ (Strategic Output Generation)",
-      description: "ผลลัพธ์ไม่ใช่แค่การสรุปความ แต่เป็นการให้คำปรึกษาทางธุรกิจระดับสูง",
+      title: "3. Strategic Generation",
+      description: "การสังเคราะห์คำตอบที่มีคุณภาพสูง ปลอดภัย และนำไปใช้งานเชิงธุรกิจได้จริง",
       features: [
-        { title: "Adaptive Role-Playing", desc: "AI จะปรับบทบาทตัวเองตามโจทย์ เช่น สวมบทบาทนักวางแผนที่สามารถระบุความเสี่ยงและสิ่งที่ต้องแลกได้อย่างเฉียบขาด" },
-        { title: "Cross-Concept Synthesis", desc: "ระบบสามารถวิเคราะห์จุดเหมือน จุดต่าง และสังเคราะห์โมเดลความคิดใหม่ๆ แบบข้ามฐานข้อมูลได้" },
-        { title: "Real-time SSE Streaming", desc: "สถาปัตยกรรมการส่งข้อมูลแบบ Token-by-token มอบประสบการณ์การตอบสนองที่ไหลลื่นและรวดเร็ว" }
+        {
+          title: "Source Citations",
+          desc: "ระบุแหล่งที่มา หน้าเอกสาร และบรรทัดอ้างอิงอย่างชัดเจน ตรวจสอบย้อนกลับได้ 100%"
+        },
+        {
+          title: "Anti-Hallucination Guard",
+          desc: "มีกลไกตรวจสอบและจำกัดขอบเขตข้อมูล (Grounding) ป้องกัน AI มั่วคำตอบเอง"
+        },
+        {
+          title: "Professional Persona",
+          desc: "ปรับแต่งโทนการตอบให้เข้ากับแบรนด์หรือสไตล์ของผู้เชี่ยวชาญในธุรกิจของคุณ"
+        }
       ]
+    }
+  },
+
+  simulator: {
+    title: {
+      white: "ROI & Impact",
+      accent: "Simulator"
+    },
+    description: "คำนวณความคุ้มค่าของการนำระบบ AI Agents ไปใช้ในธุรกิจของคุณ เมื่อเทียบกับการทำงานแบบเดิม",
+    useCases: [
+      { id: 'hr', title: 'HR & Internal Policy', icon: 'hr' },
+      { id: 'student', title: 'Education & Library', icon: 'student' },
+      { id: 'librarian', title: 'Customer Support', icon: 'librarian' },
+      { id: 'legal', title: 'Legal & Compliance', icon: 'legal' }
+    ],
+    features: [
+      { 
+        title: "Grounding with Private Knowledge", 
+        desc: "ลดปัญหาการมั่วข้อมูล (Hallucination) โดยกำหนดให้ AI อ้างอิงคำตอบจากฐานข้อมูลภายในองค์กรที่ได้รับอนุญาตเท่านั้น",
+        icon: "CheckCircle2"
+      },
+      { 
+        title: "Dynamic Data Ingestion", 
+        desc: "รองรับการเพิ่มหรืออัปเดตเอกสารใหม่ได้ตลอดเวลา โดยระบบจะประมวลผลเข้าฐานข้อมูลเพื่อพร้อมใช้งานในทันที",
+        icon: "RefreshCw"
+      },
+      { 
+        title: "Modular Infrastructure", 
+        desc: "สถาปัตยกรรมที่แยกส่วนระหว่างฐานความรู้และตัวโมเดล ช่วยให้รักษาความปลอดภัยของข้อมูลได้โดยไม่ต้องส่งไป Retrain ภายนอก",
+        icon: "ShieldCheck"
+      },
+      { 
+        title: "Strategic Reasoning Engine", 
+        desc: "วิเคราะห์บริบทของคำถามและวางแผนการสืบค้นข้อมูลในหลายมิติ เพื่อให้ได้คำตอบที่มีความซับซ้อนเชิงธุรกิจ",
+        icon: "Cpu"
+      },
+      { 
+        title: "Multi-Modal Capability", 
+        desc: "โครงสร้างที่ออกแบบมาให้รองรับการประมวลผลข้อมูลที่หลากหลาย ทั้งข้อความ ตาราง และไฟล์เอกสารเชิงเทคนิค",
+        icon: "Layers"
+      }
+    ],
+    comparisonRows: [
+      { label: "แหล่งข้อมูลอ้างอิง", general: "ข้อมูลสาธารณะ (Internet)", aetox: "ฐานข้อมูลเฉพาะขององค์กร", highlight: false },
+      { label: "ความน่าเชื่อถือ", general: "มีโอกาสเกิด Hallucination", aetox: "อ้างอิงจากเอกสารโดยตรง", highlight: false },
+      { label: "การรักษาความปลอดภัย", general: "ข้อมูลอาจถูกนำไปใช้เทรนโมเดล", aetox: "เก็บข้อมูลในระบบปิด/Private", highlight: true },
+      { label: "ความสดใหม่ของข้อมูล", general: "จำกัดตามรอบการเทรน (Static)", aetox: "อัปเดตได้แบบ Real-time", highlight: false },
+      { label: "การตรวจสอบแหล่งที่มา", general: "ไม่ระบุที่มาของคำตอบ", aetox: "ระบุพิกัดเอกสารอ้างอิงชัดเจน", highlight: false },
+      { label: "ประสิทธิภาพประมวลผล", general: "ประมวลผลแบบทั่วไป", aetox: "GPU-Accelerated Search", highlight: true }
+    ],
+    pipeline: {
+      title: "Knowledge Pipeline",
+      subtitle: "ขยายฐานความรู้ได้ไร้ขีดจำกัด — ระบบพร้อมใช้ทันที",
+      description: "Admin สามารถเพิ่มหรืออัปเดตเอกสารได้ตลอดเวลา ระบบจะประมวลผลและนำเข้า Vector Database อัตโนมัติ โดยไม่ต้องทำการ Retrain โมเดล AI ข้อมูลใหม่จึงพร้อมใช้งานในเสี้ยววินาที",
+      steps: [
+        {
+          step: "ขั้นตอนที่ 1",
+          title: "นำเข้าข้อมูลมหาศาล (Massive Ingestion)",
+          desc: "รองรับเอกสารทุกประเภท (PDF, DOCX, SQL, JSON) ระบบสามารถประมวลผลข้อมูลนับหมื่นหน้าและเชื่อมต่อกับฐานข้อมูลเดิมของคุณได้โดยตรง",
+          tags: ['Enterprise PDF', 'Cloud Storage', 'SQL Database', 'API Connect'],
+          status: "ระบบพร้อมรับข้อมูล"
+        },
+        {
+          step: "ขั้นตอนที่ 2",
+          title: "วิเคราะห์และแบ่งส่วน (Semantic Chunking)",
+          desc: "ระบบตัดแบ่งข้อมูลออกเป็นส่วนย่อยอัจฉริยะ (Smart Chunking) พร้อมเทคนิครักษาบริบท (Context Preservation) เพื่อให้ AI เข้าใจเนื้อหาที่เกี่ยวเนื่องกันอย่างแม่นยำ",
+          config: { size: "512 tokens", overlap: "10% context", strategy: "semantic" }
+        },
+        {
+          step: "ขั้นตอนที่ 3",
+          title: "แปลงเป็นพิกัดความหมาย (Vector Embedding)",
+          desc: "ใช้โมเดลระดับโลกแปลงข้อความเป็นพิกัดทางคณิตศาสตร์ 1,536 มิติ ทำให้ระบบสามารถค้นหาคำตอบจาก 'ความหมาย' ไม่ใช่แค่ 'คำค้นหา'",
+          metrics: "1,536 dimensional vectors"
+        },
+        {
+          step: "ขั้นตอนที่ 4",
+          title: "ฐานข้อมูลเวกเตอร์ (Vector Indexing)",
+          desc: "จัดเก็บใน Vector DB ประสิทธิภาพสูง รองรับการค้นหาพร้อมกันนับพันคน (High Concurrency) โดยมีความหน่วงต่ำกว่า 200ms",
+          metrics: { latency: "<0.2s search", search: "Hybrid Search" }
+        }
+      ],
+      footerNote: "สถาปัตยกรรม Aetox RAG แยกส่วนการประมวลผลออกจากโมเดลหลักอย่างเด็ดขาด — ทำให้คุณสามารถเพิ่มหรือแก้ไขข้อมูลได้ทันทีโดยไม่ต้อง Retrain โมเดลใหม่ ช่วยลดต้นทุนมหาศาลและรักษาความสดใหม่ของข้อมูลได้ 24/7"
     }
   },
   cta: {
     hirePoints: [
-      'ระบบ AI ที่ปรับเปลี่ยนได้ตามข้อมูลใหม่ๆ(เรียนรู้ได้ตลอด)',
-      'องค์กรที่มีฐานข้อมูลเอกสารมหาศาล',
-      'ระบบ AI ตอบคำถามเฉพาะทางได้',
-      'ระบบที่ต้องการให้ AI เข้าใจบริบทของธุรกิจคุณได้ดีที่สุด',
+      'ธุรกิจที่ต้องการเปลี่ยนข้อมูลมหาศาลให้เป็นความรู้ที่ AI ตอบได้ทันที',
+      'องค์กรที่ต้องการระบบ AI Agent ที่แม่นยำ ใช้งานได้จริง และระบุที่มาได้',
+      'ทีมที่ต้องการลดภาระงานซ้ำซ้อนด้วย RAG และ Automation ระดับสูง'
     ],
     learnPoints: [
-      "Software Architect ที่ต้องการยกระดับทักษะการออกแบบ AI",
-      "นักพัฒนาที่ต้องการเข้าใจกลไก Agentic RAG ตั้งแต่ฐานราก",
-      "ทีมเทคนิคที่ต้องการสร้างระบบ AI ใช้งานเองภายในองค์กร"
+      "ผู้ที่สนใจเจาะลึกเทคโนโลยี RAG และ Agentic Framework",
+      "นักพัฒนาที่ต้องการสร้าง AI Solution ที่ใช้งานได้จริงในระดับ Enterprise",
+      "ผู้บริหารที่ต้องการวางกลยุทธ์ AI ที่คุ้มค่าต่อการลงทุน (ROI Focused)"
     ]
-  },
-  simulator: {
-    title: "RAG System",
-    subtitle: "ทดสอบการทำงานของระบบประมวลผลอัจฉริยะ",
-    description: "ลองสลับ Use Cases เพื่อดูว่าระบบ RAG ค้นหาข้อมูลจากฐานข้อมูลบริษัทมาตอบคำถามได้อย่างไร พร้อมเปรียบเทียบความคุ้มค่าที่เกิดขึ้นจริง",
-    useCases: {
-      hr: {
-        id: 'hr',
-        label: 'ฝ่ายปฏิบัติการ / HR',
-        manualMinutes: 15,
-        question: "เบิกงบจัดเลี้ยงลูกค้า ต้องใช้ฟอร์มไหน?",
-        answer: "ใช้ฟอร์ม EX-04 ครับ สำหรับยอดไม่เกิน 5,000 บาท หัวหน้าแผนกสามารถเซ็นอนุมัติได้เลยครับ",
-        citation: "คู่มือเบิกจ่าย_v2.pdf (หน้า 14)",
-        color: "text-blue-400",
-        bgAlert: "bg-blue-500/10 border-blue-500/20"
-      },
-      student: {
-        id: 'student',
-        label: 'ทะเบียนนักศึกษา',
-        manualMinutes: 25,
-        question: "ขอข้อมูลประวัติและตารางเรียนของ นักศึกษาชื่อ นายสมพงษ์ หน่อยครับ",
-        answer: "ข้อมูลของ นายสมพงษ์ (รหัสนักศึกษา: 66012345)\n• วัน/เดือน/ปีเกิด: 15 พฤษภาคม 2548\n• เวลาเกิด: 08:30 น.\n\n📚 ตารางเรียนวันนี้ (วันศุกร์):\n09:00 - 12:00 | CS101 วิทยาการคอมพิวเตอร์เบื้องต้น (ห้อง 401)\n13:00 - 15:00 | EN102 ภาษาอังกฤษเพื่อการสื่อสาร (ห้อง 205)",
-        citation: "Student_DB_2026 / Academic_Schedule.json",
-        color: "text-amber-400",
-        bgAlert: "bg-amber-500/10 border-amber-500/20"
-      },
-      librarian: {
-        id: 'librarian',
-        label: 'บรรณารักษ์ / ห้องสมุด',
-        manualMinutes: 40,
-        question: "กำลังหาหนังสือเกี่ยวกับการเขียน Prompt ภาษาไทย สำหรับคนเริ่มต้น มีแนะนำไหม และอยู่ชั้นไหน?",
-        answer: "แนะนำหนังสือ 'Mastering AI Prompt ฉบับภาษาไทย' โดย อ.สมชาย (ตีพิมพ์ปี 2568) ครับ เนื้อหาครอบคลุมตั้งแต่พื้นฐานถึงการประยุกต์ใช้ในงานจริง\n\n📍 พิกัด: โซนเทคโนโลยีและนวัตกรรม ชั้น 3 หมวด QA76.76 \n✅ สถานะปัจจุบัน: มีหนังสือว่างบนชั้น 2 เล่มครับ",
-        citation: "Library_Catalog_Index.csv / Book_Summary_DB",
-        color: "text-purple-400",
-        bgAlert: "bg-purple-500/10 border-purple-500/20"
-      },
-      legal: {
-        id: 'legal',
-        label: 'ฝ่ายกฎหมาย / บริหาร',
-        manualMinutes: 60,
-        question: "สัญญาลูกค้าตัวใหม่นี้ ขัดกับนโยบาย NDA หลักของเราไหม?",
-        answer: "พบความเสี่ยงครับ ข้อ 4.2 ระบุให้คู่ค้าเปิดเผยข้อมูลรายชื่อซัพพลายเออร์ได้ ซึ่งขัดกับนโยบาย NDA หลักข้อ 2.1 ของเราครับ",
-        citation: "Master_NDA_2025.pdf (หน้า 3)",
-        color: "text-rose-400",
-        bgAlert: "bg-rose-500/10 border-rose-500/20"
-      }
-    },
-    features: [
-      { 
-        title: "ตอบจากฐานข้อมูลองค์กร 100%", 
-        desc: "AI อ้างอิงเฉพาะข้อมูลของคุณ ลดปัญหาการมั่วข้อมูล (Hallucination)",
-        icon: "CheckCircle2"
-      },
-      { 
-        title: "เพิ่มข้อมูลได้ไม่จำกัด & เรียนรู้ทันที", 
-        desc: "อัปโหลดเอกสารใหม่เข้า Database AI จะพร้อมดึงไปตอบได้ตลอดเวลา",
-        icon: "RefreshCw"
-      },
-      { 
-        title: "ปลอดภัย ไม่กระทบโมเดลหลัก", 
-        desc: "แยกส่วนระหว่าง Knowledge Base และตัว LLM ทำให้ไม่ต้อง Retrain โมเดลใหม่",
-        icon: "ShieldCheck"
-      }
-    ],
-    pipeline: {
-      title: "Admin Knowledge Pipeline",
-      subtitle: "เพิ่มข้อมูลได้ตลอดเวลา — ระบบพร้อมใช้ทันที",
-      description: "Admin อัปโหลดเอกสารเมื่อใดก็ได้ ระบบจะประมวลผลและนำเข้า Vector DB (ฐานข้อมูลเวกเตอร์) โดยอัตโนมัติ โดยไม่ต้อง Retrain โมเดล AI แม้แต่ครั้งเดียว",
-      steps: [
-        {
-          step: "Step 1",
-          title: "Admin อัปโหลดเอกสาร",
-          desc: "รองรับไฟล์ทุกประเภท — PDF, DOCX, Excel, JSON, TXT, CSV หรือเชื่อมต่อฐานข้อมูลโดยตรง ไม่มีขีดจำกัดจำนวนไฟล์",
-          tags: ['PDF', 'DOCX', 'JSON', 'CSV', 'SQL DB'],
-          status: "พร้อมใช้ทันที"
-        },
-        {
-          step: "Step 2",
-          title: "Chunking — ตัดแบ่งข้อมูล",
-          desc: "ระบบจะแบ่งเอกสารออกเป็น Chunk (ชิ้นส่วน) ขนาด 512 Tokens พร้อม Overlap เพื่อรักษาบริบท ทำให้ค้นหาได้แม่นยำขึ้น",
-          config: { size: "512 tokens", overlap: "50 tokens", strategy: "semantic" }
-        },
-        {
-          step: "Step 3",
-          title: "Embedding — แปลงเป็น Vector",
-          desc: "แต่ละ Chunk จะถูกแปลงเป็น Embedding Vector ขนาด 1,536 มิติ เพื่อเก็บความหมายของข้อความไว้ในรูปตัวเลข",
-          metrics: "1,536 dim / chunk"
-        },
-        {
-          step: "Step 4",
-          title: "เข้าสู่ Vector DB — พร้อมใช้",
-          desc: "Vector ทั้งหมดถูกจัดเก็บในฐานข้อมูลเวกเตอร์ที่รองรับระดับ Millions of Documents ค้นหาได้ในเสี้ยววินาที",
-          metrics: { latency: "<200ms", search: "Cosine" }
-        }
-      ],
-      footerNote: "ระบบ RAG ทำงานบน Vector Database แยกออกจากโมเดล AI หลัก — การเพิ่มหรือแก้ไขเอกสารจึงไม่กระทบโมเดล และไม่ต้อง Retrain ใหม่ ข้อมูลใหม่พร้อมให้ AI ดึงไปตอบได้ทันทีหลัง Indexing เสร็จสมบูรณ์"
-    }
   },
   appliedIn: [
     { name: 'BookMind: AI Intelligent Library', link: 'https://github.com/Mike0165115321/BookMind.git' },
