@@ -333,7 +333,23 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap gap-6 pt-2">
+                <button 
+                  onClick={() => scrollToSection('cta-section')}
+                  className="px-10 py-5 rounded-full bg-cyber-blue text-black font-black text-xl hover:shadow-cyber-glow transition-all active:scale-95 flex items-center gap-4 group shadow-cyber-glow/20"
+                >
+                  {dict.hero.cta}
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                </button>
+                <button 
+                  onClick={() => scrollToSection('solution-design')}
+                  className="px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white font-black text-xl hover:bg-white/10 transition-all active:scale-95 flex items-center gap-4 group"
+                >
+                  ดูตัวอย่างระบบ
+                </button>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-10">
                 {[{ id: 'arch', title: 'Architecture', icon: Globe }, { id: 'perf', title: 'Performance', icon: Rocket }, { id: 'sec', title: 'Security', icon: Shield }].map((nav) => (
                   <button key={nav.id} onClick={() => scrollToSection(nav.id)} className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-cyber-blue/30 hover:bg-cyber-blue/5 transition-all text-left group">
                     <div className="p-2 rounded-lg bg-white/5 text-gray-500 group-hover:text-cyber-blue transition-colors"><nav.icon className="w-4 h-4" /></div>

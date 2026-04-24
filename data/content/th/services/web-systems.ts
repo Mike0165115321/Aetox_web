@@ -5,7 +5,8 @@ export const webSystemsContent = {
       white: "Enterprise",
       accent: "Web Systems"
     },
-    description: "ออกแบบและพัฒนา Web Systems ที่เป็นแกนหลักของธุรกิจคุณ รองรับการเติบโตตั้งแต่วันแรก พร้อมความเสถียร ความปลอดภัย และโครงสร้างที่เชื่อมต่อกับ AI และ Automation ได้ทันที"
+    description: "ออกแบบและพัฒนา Web Systems ที่เป็นแกนหลักของธุรกิจคุณ รองรับการเติบโตตั้งแต่วันแรก พร้อมความเสถียร ความปลอดภัย และโครงสร้างที่เชื่อมต่อกับ AI และ Automation ได้ทันที",
+    cta: "เริ่มออกแบบระบบ Web Systems"
   },
 
   showcase: [
