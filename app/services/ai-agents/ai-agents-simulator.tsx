@@ -13,8 +13,8 @@ import { FeaturesDashboard } from './components/simulator-components';
 const TIERS = [
   {
     id: 'personal',
-    label: 'ใช้งานในทีมขนาดเล็ก',
-    sub: '1-3 คน (~50 queries/วัน)',
+    label: 'ใช้ในทีมเล็ก',
+    sub: '1-3 คน',
     icon: User,
     color: 'text-sky-400',
     glow: 'shadow-sky-500/20',
@@ -24,8 +24,8 @@ const TIERS = [
   },
   {
     id: 'early',
-    label: 'ระดับเริ่มต้น (Early Launch)',
-    sub: 'Startup (~500 queries/วัน)',
+    label: 'เริ่มต้น',
+    sub: 'Startup',
     icon: Rocket,
     color: 'text-cyber-blue',
     glow: 'shadow-cyber-glow/20',
@@ -35,8 +35,8 @@ const TIERS = [
   },
   {
     id: 'growth',
-    label: 'ระดับขยายตัว (Growth)',
-    sub: 'SME / ธุรกิจโต (~3,000 queries/วัน)',
+    label: 'ขยายตัว',
+    sub: 'SME / ธุรกิจโต',
     icon: TrendingUp,
     color: 'text-emerald-400',
     glow: 'shadow-emerald-500/20',
@@ -46,8 +46,8 @@ const TIERS = [
   },
   {
     id: 'enterprise',
-    label: 'แพลตฟอร์มระดับองค์กร',
-    sub: 'Enterprise (~20,000 queries/วัน)',
+    label: 'ระดับองค์กร',
+    sub: 'Enterprise',
     icon: Building2,
     color: 'text-violet-400',
     glow: 'shadow-violet-500/20',
@@ -91,20 +91,19 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
   });
 
   return (
-    <div className="space-y-32">
+    <div className="space-y-24">
       {/* ─── ROI Calculator ─── */}
-      <div className="space-y-12">
+      <div className="space-y-8">
         {/* Header */}
-        <div className="space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-            {simulator.title.white}<br />
-            <span className="text-cyber-blue">{simulator.title.accent}</span>
+        <div className="space-y-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+            {simulator.title.white} <span className="text-cyber-blue">{simulator.title.accent}</span>
           </h2>
-          <p className="text-gray-500 max-w-2xl text-lg font-medium">{simulator.description}</p>
+          <p className="text-gray-500 max-w-xl text-base font-medium">{simulator.description}</p>
         </div>
 
         {/* ─── Tier Selector ─── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {TIERS.map((tier) => {
             const Icon = tier.icon;
             const active = tierId === tier.id;
@@ -112,20 +111,20 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
               <motion.button
                 key={tier.id}
                 onClick={() => setTierId(tier.id)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className={`relative flex flex-col items-start gap-3 p-6 rounded-[24px] border transition-all text-left ${
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                className={`relative flex items-center gap-4 p-4 rounded-2xl border transition-all text-left ${
                   active
-                    ? `${tier.bg} ${tier.border} shadow-lg ${tier.glow}`
-                    : 'bg-white/[0.03] border-white/5 hover:border-white/15'
+                    ? `${tier.bg} ${tier.border} shadow-md ${tier.glow}`
+                    : 'bg-white/[0.02] border-white/5 hover:border-white/10'
                 }`}
               >
-                <div className={`p-2.5 rounded-xl ${active ? tier.bg : 'bg-white/5'} ${active ? tier.color : 'text-gray-500'}`}>
-                  <Icon size={20} />
+                <div className={`p-2 rounded-xl ${active ? tier.bg : 'bg-white/5'} ${active ? tier.color : 'text-gray-500'}`}>
+                  <Icon size={18} />
                 </div>
                 <div>
-                  <p className={`text-[15px] font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{tier.label}</p>
-                  <p className={`text-[12px] font-medium mt-1 ${active ? tier.color : 'text-gray-600'}`}>{tier.sub}</p>
+                  <p className={`text-sm font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{tier.label}</p>
+                  <p className={`text-[11px] font-medium ${active ? tier.color : 'text-gray-600'}`}>{tier.sub}</p>
                 </div>
               </motion.button>
             );
@@ -133,41 +132,41 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
         </div>
 
         {/* ─── Main Grid ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Controls Panel */}
-          <div className="lg:col-span-4 glass-card p-8 rounded-[32px] border border-white/10 space-y-8 bg-black/40">
-            <div className="space-y-6">
+          <div className="lg:col-span-4 glass-card p-6 rounded-3xl border border-white/10 space-y-6 bg-black/40">
+            <div className="space-y-5">
               <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                <span className="text-sm font-bold text-gray-400 tracking-wide">ข้อมูลการดำเนินงานจริง</span>
-                <Plus size={14} className={activeTier.color + ' opacity-60'} />
+                <span className="text-xs font-bold text-gray-400 tracking-wide uppercase">ข้อมูลการดำเนินงาน</span>
+                <Plus size={12} className={activeTier.color + ' opacity-50'} />
               </div>
 
-              <SliderGroup label="Queries ที่ต้องจัดการ / วัน"     value={queriesPerDay}  onChange={setQueriesPerDay}  min={10}    max={50000} step={10}   unit="" />
-              <SliderGroup label="จำนวนพนักงานตอบคำถาม"       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit=" คน" />
-              <SliderGroup label="เงินเดือนพนักงานเฉลี่ย"            value={avgSalary}      onChange={setAvgSalary}      min={15000} max={150000} step={1000} unit=" ฿" />
-              <SliderGroup label="เวลาที่ใช้ต่อ 1 เคส (นาที)"       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit=" นาที" />
-              <SliderGroup label="มูลค่าทางธุรกิจต่อ 1 เคส"         value={valuePerCase}   onChange={setValuePerCase}   min={0}     max={10000} step={100}  unit=" ฿" />
+              <SliderGroup label="Queries / วัน"     value={queriesPerDay}  onChange={setQueriesPerDay}  min={10}    max={50000} step={10}   unit="" />
+              <SliderGroup label="จำนวนพนักงาน"       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit=" คน" />
+              <SliderGroup label="เงินเดือนเฉลี่ย"            value={avgSalary}      onChange={setAvgSalary}      min={15000} max={150000} step={1000} unit=" ฿" />
+              <SliderGroup label="เวลาต่อ 1 เคส"       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit=" นาที" />
+              <SliderGroup label="มูลค่าต่อ 1 เคส"         value={valuePerCase}   onChange={setValuePerCase}   min={0}     max={10000} step={100}  unit=" ฿" />
             </div>
             
-            <div className="pt-6 border-t border-white/5 space-y-6">
-              <div className={`flex items-center justify-between mb-4 ${activeTier.color}`}>
-                <span className="text-xs font-bold uppercase tracking-wider">งบประมาณระบบ AETOX</span>
-                <Zap size={14} />
+            <div className="pt-5 border-t border-white/5 space-y-5">
+              <div className={`flex items-center justify-between mb-2 ${activeTier.color}`}>
+                <span className="text-[10px] font-bold uppercase tracking-wider">งบประมาณระบบ AETOX</span>
+                <Zap size={12} />
               </div>
-              <SliderGroup label="ค่าติดตั้งระบบ (Setup Fee)" value={setupCost} onChange={setSetupCost} min={0} max={1000000} step={5000} unit=" ฿" isAccent />
+              <SliderGroup label="ค่าติดตั้งระบบ" value={setupCost} onChange={setSetupCost} min={0} max={1000000} step={5000} unit=" ฿" isAccent />
               <SliderGroup label="ค่าบริการรายเดือน" value={aiMonthlyFee} onChange={setAiMonthlyFee} min={5000} max={200000} step={5000} unit=" ฿" isAccent />
             </div>
           </div>
 
           {/* Results Panel */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
 
             {/* Card 1: AI vs Human */}
             <StatCard
-              label="ศักยภาพเมื่อเทียบกับทีม"
+              label="ศักยภาพเทียบกับทีม"
               value={`${calc.aiVsHumanMultiplier.toLocaleString()} เท่า`}
-              desc={`ทีม ${staffCount} คน รองรับได้ ~${Math.round(calc.humanCapacityDaily).toLocaleString()} เคส/วัน แต่ AI รองรับได้ทันที`}
-              icon={<Users size={20} />}
+              desc={`ทีม ${staffCount} คน รองรับได้ ~${Math.round(calc.humanCapacityDaily).toLocaleString()} เคส/วัน`}
+              icon={<Users size={18} />}
               color={activeTier.color}
               bg={activeTier.bg}
               border={activeTier.border}
@@ -175,10 +174,10 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
             {/* Card 2: Cost Saved */}
             <StatCard
-              label="ลดต้นทุนดำเนินงาน/เดือน"
+              label="ลดต้นทุน/เดือน"
               value={`฿${calc.monthlySaving.toLocaleString()}`}
-              desc={`เปลี่ยนต้นทุนแรงงาน ฿${calc.totalHumanCostMonthly.toLocaleString()} เป็นระบบอัตโนมัติที่เสถียรกว่า`}
-              icon={<BarChart3 size={20} />}
+              desc={`เปลี่ยนต้นทุนแรงงาน ฿${calc.totalHumanCostMonthly.toLocaleString()} เป็นระบบอัตโนมัติ`}
+              icon={<BarChart3 size={18} />}
               color="text-emerald-400"
               bg="bg-emerald-500/10"
               border="border-emerald-500/20"
@@ -187,49 +186,48 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
             {/* Card 3: Hours Recovered */}
             <StatCard
-              label="เวลาที่ทีมได้รับคืน/เดือน"
+              label="เวลาที่ได้รับคืน/เดือน"
               value={`${calc.hoursRecoveredMonthly.toLocaleString()} ชม.`}
-              desc={`เวลาที่ทีมสามารถนำไปทำงานเชิงกลยุทธ์อื่น แทนการตอบคำถามซ้ำๆ`}
-              icon={<Clock size={20} />}
+              desc={`เวลาที่ทีมสามารถนำไปทำงานเชิงกลยุทธ์อื่นได้`}
+              icon={<Clock size={18} />}
               color="text-violet-400"
               bg="bg-violet-500/10"
               border="border-violet-500/20"
             />
 
             {/* Hero card: Yearly Saving */}
-            <div className={`md:col-span-3 glass-card p-10 rounded-[32px] border ${activeTier.border} bg-gradient-to-br ${activeTier.bg.replace('bg-', 'from-').replace('/10', '/[0.04]')} to-transparent relative overflow-hidden`}>
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                <ShieldCheck size={120} className={activeTier.color} />
+            <div className={`md:col-span-3 glass-card p-8 rounded-3xl border ${activeTier.border} bg-gradient-to-br ${activeTier.bg.replace('bg-', 'from-').replace('/10', '/[0.03]')} to-transparent relative overflow-hidden`}>
+              <div className="absolute top-0 right-0 p-6 opacity-5">
+                <ShieldCheck size={100} className={activeTier.color} />
               </div>
               <div className="relative z-10">
-                <p className={`${activeTier.color} text-[15px] font-bold mb-4`}>ผลประโยชน์ที่ประหยัดได้ต่อปี (Annual Benefit)</p>
-                <div className="flex items-baseline gap-4 mb-2">
-                  <span className="text-6xl font-bold text-white tracking-tight">
+                <p className={`${activeTier.color} text-sm font-bold mb-3`}>ผลประโยชน์ที่ประหยัดได้ต่อปี</p>
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="text-5xl font-bold text-white tracking-tight">
                     {calc.totalYearlySaving.toLocaleString()}
                   </span>
-                  <span className={`text-2xl font-bold ${activeTier.color}`}>฿ / ปี</span>
+                  <span className={`text-xl font-bold ${activeTier.color}`}>฿ / ปี</span>
                 </div>
-                <p className="text-gray-400 font-medium text-base">คำนวณจากต้นทุนที่ลดได้รวมกับรายรับที่ระบบช่วยรักษาไว้ (Opportunity Loss Recovery)</p>
+                <p className="text-gray-500 font-medium text-sm">คำนวณจากต้นทุนที่ลดได้และรายรับที่ระบบช่วยรักษาไว้</p>
               </div>
               
-              <div className="mt-12 pt-10 border-t border-white/5 grid grid-cols-3 gap-8">
-                <div className="space-y-2">
-                  <span className="text-[13px] font-bold text-gray-500">ระยะเวลาคืนทุน</span>
-                  <div className="text-3xl font-bold text-white">
+              <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-3 gap-6">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold text-gray-500 uppercase">คืนทุนใน</span>
+                  <div className="text-2xl font-bold text-white">
                     {calc.breakEvenMonth > 0 ? `${calc.breakEvenMonth.toFixed(1)}` : 'ทันที'}
-                    <span className="text-[15px] text-gray-400 font-bold ml-1.5">{calc.breakEvenMonth > 0 ? 'เดือน' : ''}</span>
+                    <span className="text-xs text-gray-400 font-bold ml-1">{calc.breakEvenMonth > 0 ? 'เดือน' : ''}</span>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-[13px] font-bold text-gray-500">อัตราความคุ้มค่า (ROI)</span>
-                  <div className="text-3xl font-bold text-emerald-400">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold text-gray-500 uppercase">ROI ต่อปี</span>
+                  <div className="text-2xl font-bold text-emerald-400">
                     {Math.round(calc.roi).toLocaleString()}%
-                    <span className="text-[15px] text-gray-400 font-bold ml-1.5">ต่อปี</span>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-[13px] font-bold text-gray-500">สถานะระบบ</span>
-                  <div className="text-3xl font-bold text-white">24/7<span className="text-[15px] text-gray-400 font-bold ml-1.5">ทำงานต่อเนื่อง</span></div>
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold text-gray-500 uppercase">สถานะ</span>
+                  <div className="text-2xl font-bold text-white">24/7</div>
                 </div>
               </div>
             </div>
@@ -248,10 +246,10 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
 function SliderGroup({ label, value, onChange, min, max, step = 1, unit, isAccent = false }: any) {
   return (
-    <div className="space-y-3.5">
+    <div className="space-y-2.5">
       <div className="flex justify-between items-center">
-        <label className="text-[12px] font-bold text-gray-400 tracking-wide">{label}</label>
-        <span className={`text-[15px] font-bold ${isAccent ? 'text-cyber-blue' : 'text-white'}`}>
+        <label className="text-[11px] font-bold text-gray-400">{label}</label>
+        <span className={`text-sm font-bold ${isAccent ? 'text-cyber-blue' : 'text-white'}`}>
           {value.toLocaleString()}{unit}
         </span>
       </div>
@@ -266,14 +264,14 @@ function SliderGroup({ label, value, onChange, min, max, step = 1, unit, isAccen
 
 function StatCard({ label, value, desc, icon, color, bg, border, isPositive }: any) {
   return (
-    <div className={`glass-card p-8 rounded-[28px] border ${border} ${bg} relative group`}>
-      <div className="flex justify-between items-start mb-6">
-        <div className={`p-2.5 rounded-xl bg-white/5 ${color}`}>{icon}</div>
+    <div className={`glass-card p-6 rounded-2xl border ${border} ${bg} relative group`}>
+      <div className="flex justify-between items-start mb-4">
+        <div className={`p-2 rounded-xl bg-white/5 ${color}`}>{icon}</div>
       </div>
-      <div className="space-y-1.5">
-        <p className="text-[12px] font-bold text-gray-500 tracking-wide">{label}</p>
-        <div className={`text-3xl font-bold ${isPositive ? 'text-emerald-400' : 'text-white'}`}>{value}</div>
-        <p className="text-[13px] text-gray-400 font-medium leading-relaxed mt-2">{desc}</p>
+      <div className="space-y-1">
+        <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wide">{label}</p>
+        <div className={`text-2xl font-bold ${isPositive ? 'text-emerald-400' : 'text-white'}`}>{value}</div>
+        <p className="text-[11px] text-gray-400 font-medium leading-tight mt-1.5">{desc}</p>
       </div>
     </div>
   );

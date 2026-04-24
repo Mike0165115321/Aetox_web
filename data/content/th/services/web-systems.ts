@@ -1,8 +1,8 @@
 export const webSystemsContent = {
   hero: {
-    badge: "Foundation Layer",
+    badge: "Enterprise Web Systems",
     title: {
-      white: "Full-Stack",
+      white: "Enterprise",
       accent: "Web Systems"
     },
     description: "ออกแบบและพัฒนา Web Systems ที่เป็นแกนหลักของธุรกิจคุณ รองรับการเติบโตตั้งแต่วันแรก พร้อมความเสถียร ความปลอดภัย และโครงสร้างที่เชื่อมต่อกับ AI และ Automation ได้ทันที"
@@ -25,6 +25,11 @@ export const webSystemsContent = {
       desc: "ออกแบบ API และโครงสร้างข้อมูลให้รองรับการเชื่อมต่อกับ AI Agents และระบบอัตโนมัติได้ทันทีเมื่อธุรกิจคุณพร้อม"
     }
   ],
+
+  stats: {
+    scalable: "รองรับการสเกล 100%",
+    security: "ดูแลความปลอดภัย 24/7"
+  },
 
   pillars: {
     pillar1: {

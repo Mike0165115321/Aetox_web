@@ -106,10 +106,8 @@ export function useRoiCalculator(inputs: RoiInputs) {
       humanCostPerCase,
       humanCapturedRevenueDaily,
       humanCapturedRevenue,
-      aiCapturedRevenueDaily,
       aiCapturedRevenue,
       monthlySaving,
-      yearlySaving,
       totalRevenueGainMonthly,
       roi,
       aiCapacityMin,
@@ -120,5 +118,5 @@ export function useRoiCalculator(inputs: RoiInputs) {
       aiVsHumanMultiplier,
       hoursRecoveredMonthly,
     };
-  }, [queriesPerDay, avgSalary, staffCount, minutesPerCase, aiMonthlyFee, dropRate, valuePerCase]);
+  }, [queriesPerDay, avgSalary, staffCount, minutesPerCase, aiMonthlyFee, setupCost, dropRate, valuePerCase]);
 }
