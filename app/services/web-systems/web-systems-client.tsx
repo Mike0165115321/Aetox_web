@@ -8,9 +8,10 @@ import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 
 /* ─── Shared UI Components ────────────────────────────────────────── */
-function LayerBadge({ icon: Icon, label }: { icon: any; label: string }) {
+function LayerBadge({ icon: Icon, label, colorClass = "text-cyber-blue" }: { icon: any; label: string; colorClass?: string }) {
+  const bgClass = colorClass.includes('cyber-blue') ? 'bg-cyber-blue/10 border-cyber-blue/20' : 'bg-deep-blue/10 border-deep-blue/20';
   return (
-    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-cyber-blue/10 border-cyber-blue/20 text-cyber-blue text-sm font-bold tracking-widest uppercase">
+    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${bgClass} ${colorClass} text-sm font-bold tracking-widest uppercase`}>
       <Icon className="w-4 h-4" /> {label}
     </div>
   );
@@ -99,30 +100,56 @@ function WebShowcase({ steps }: { steps: any[] }) {
 
   return (
     <div className="space-y-6">
-      <div className="glass-card rounded-[32px] border border-white/10 overflow-hidden relative aspect-square lg:h-[500px]">
+      <div className="glass-card rounded-[32px] border border-white/10 overflow-hidden relative h-[520px] lg:h-[600px] flex flex-col">
         <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-10" />
         <AnimatePresence mode="wait">
-          <motion.div key={activeStep} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} transition={{ duration: 0.4 }} className="absolute inset-0 flex flex-col">
-            <div className="flex-1 bg-gradient-to-b from-transparent to-black/40">{visuals[activeStep]}</div>
-            <div className="p-8 bg-ultra-dark/90 backdrop-blur-xl border-t border-white/5 space-y-4">
-              <div><span className="text-cyber-blue text-[10px] font-black uppercase tracking-[0.2em]">{steps[activeStep].subtitle}</span><h3 className="text-2xl font-bold text-white mt-1">{steps[activeStep].title}</h3></div>
-              <p className="text-gray-400 text-sm leading-relaxed">{steps[activeStep].desc}</p>
+          <motion.div key={activeStep} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.02 }} transition={{ duration: 0.4 }} className="absolute inset-0 flex flex-col">
+            {/* Visual Area */}
+            <div className="flex-[1.2] bg-gradient-to-b from-transparent to-black/40 relative overflow-hidden min-h-0">
+              {visuals[activeStep]}
+            </div>
+            
+            {/* Text Content Area */}
+            <div className="p-8 lg:p-10 bg-ultra-dark/95 backdrop-blur-2xl border-t border-white/5 space-y-4 shrink-0">
+              <div className="space-y-1">
+                <span className="text-cyber-blue text-[10px] font-black uppercase tracking-[0.25em] opacity-80">{steps[activeStep].subtitle}</span>
+                <h3 className="text-2xl lg:text-3xl font-black text-white leading-tight">{steps[activeStep].title}</h3>
+              </div>
+              <p className="text-gray-400 text-sm lg:text-base leading-relaxed line-clamp-3">
+                {steps[activeStep].desc}
+              </p>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
-      <div className="relative flex items-center justify-center h-16 mt-4">
-        {/* Centered Dots with a slight left offset (ml-[-72px] to balance visual weight of arrows) */}
-        <div className="flex gap-2 ml-[-72px]">
+
+      {/* Navigation Layer */}
+      <div className="relative flex items-center justify-between h-16 mt-4">
+        {/* Indicators */}
+        <div className="flex gap-2.5">
           {steps.map((_, i) => (
-            <button key={i} onClick={() => setActiveStep(i)} className={`h-1.5 transition-all duration-500 rounded-full ${activeStep === i ? 'w-12 bg-cyber-blue shadow-cyber-glow' : 'w-4 bg-white/10 hover:bg-white/20'}`} />
+            <button 
+              key={i} 
+              onClick={() => setActiveStep(i)} 
+              className={`h-1.5 transition-all duration-500 rounded-full ${activeStep === i ? 'w-12 bg-cyber-blue shadow-cyber-glow' : 'w-4 bg-white/10 hover:bg-white/20'}`} 
+            />
           ))}
         </div>
         
-        {/* Navigation Arrows positioned absolutely to the right */}
-        <div className="absolute right-0 flex gap-3">
-          <button onClick={() => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length)} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 hover:border-cyber-blue/30 transition-all">←</button>
-          <button onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-cyber-blue/20 hover:border-cyber-blue/50 transition-all shadow-cyber-glow/10">→</button>
+        {/* Navigation Arrows */}
+        <div className="flex gap-3">
+          <button 
+            onClick={() => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length)} 
+            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 hover:border-cyber-blue/30 transition-all active:scale-90"
+          >
+            ←
+          </button>
+          <button 
+            onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} 
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-cyber-blue/20 hover:border-cyber-blue/50 transition-all shadow-deep-glow/10 active:scale-90"
+          >
+            →
+          </button>
         </div>
       </div>
     </div>
