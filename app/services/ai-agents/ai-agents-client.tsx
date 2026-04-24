@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, Zap, Database, Cpu, Link as LinkIcon, ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
+import AiAgentsSimulator from './ai-agents-simulator';
 
 /* ─── Shared UI Components ────────────────────────────────────────── */
 function LayerBadge({ icon: Icon, label, colorClass = "text-cyber-blue" }: { icon: any; label: string; colorClass?: string }) {
@@ -843,6 +844,18 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
 
             {/* Right: Interactive Showcase */}
             <div className="lg:w-1/2 w-full"><AiShowcase steps={dict.showcase} /></div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Divider ─── */}
+      <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
+
+      {/* ─── Layer 2: AI Strategic Simulator ─── */}
+      <section className="py-24 relative z-10 bg-black/20">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <AiAgentsSimulator dict={dict} />
           </div>
         </div>
       </section>

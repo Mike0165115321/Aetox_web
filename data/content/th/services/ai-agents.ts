@@ -77,6 +77,103 @@ export const aiAgentsContent = {
       "ทีมเทคนิคที่ต้องการสร้างระบบ AI ใช้งานเองภายในองค์กร"
     ]
   },
+  simulator: {
+    title: "จำลองการทำงาน Aetox Custom AI (RAG)",
+    subtitle: "Aetox Enterprise AI Engine",
+    description: "เชื่อมต่อข้อมูลภายในองค์กร (Internal Knowledge Base) เพื่อการค้นหาที่แม่นยำ พร้อมอ้างอิงเอกสารจริง",
+    useCases: {
+      hr: {
+        id: 'hr',
+        label: 'ฝ่ายปฏิบัติการ / HR',
+        manualMinutes: 15,
+        question: "เบิกงบจัดเลี้ยงลูกค้า ต้องใช้ฟอร์มไหน?",
+        answer: "ใช้ฟอร์ม EX-04 ครับ สำหรับยอดไม่เกิน 5,000 บาท หัวหน้าแผนกสามารถเซ็นอนุมัติได้เลยครับ",
+        citation: "คู่มือเบิกจ่าย_v2.pdf (หน้า 14)",
+        color: "text-blue-400",
+        bgAlert: "bg-blue-500/10 border-blue-500/20"
+      },
+      student: {
+        id: 'student',
+        label: 'ทะเบียนนักศึกษา',
+        manualMinutes: 25,
+        question: "ขอข้อมูลประวัติและตารางเรียนของ นักศึกษาชื่อ นายสมพงษ์ หน่อยครับ",
+        answer: "ข้อมูลของ นายสมพงษ์ (รหัสนักศึกษา: 66012345)\n• วัน/เดือน/ปีเกิด: 15 พฤษภาคม 2548\n• เวลาเกิด: 08:30 น.\n\n📚 ตารางเรียนวันนี้ (วันศุกร์):\n09:00 - 12:00 | CS101 วิทยาการคอมพิวเตอร์เบื้องต้น (ห้อง 401)\n13:00 - 15:00 | EN102 ภาษาอังกฤษเพื่อการสื่อสาร (ห้อง 205)",
+        citation: "Student_DB_2026 / Academic_Schedule.json",
+        color: "text-amber-400",
+        bgAlert: "bg-amber-500/10 border-amber-500/20"
+      },
+      librarian: {
+        id: 'librarian',
+        label: 'บรรณารักษ์ / ห้องสมุด',
+        manualMinutes: 40,
+        question: "กำลังหาหนังสือเกี่ยวกับการเขียน Prompt ภาษาไทย สำหรับคนเริ่มต้น มีแนะนำไหม และอยู่ชั้นไหน?",
+        answer: "แนะนำหนังสือ 'Mastering AI Prompt ฉบับภาษาไทย' โดย อ.สมชาย (ตีพิมพ์ปี 2568) ครับ เนื้อหาครอบคลุมตั้งแต่พื้นฐานถึงการประยุกต์ใช้ในงานจริง\n\n📍 พิกัด: โซนเทคโนโลยีและนวัตกรรม ชั้น 3 หมวด QA76.76 \n✅ สถานะปัจจุบัน: มีหนังสือว่างบนชั้น 2 เล่มครับ",
+        citation: "Library_Catalog_Index.csv / Book_Summary_DB",
+        color: "text-purple-400",
+        bgAlert: "bg-purple-500/10 border-purple-500/20"
+      },
+      legal: {
+        id: 'legal',
+        label: 'ฝ่ายกฎหมาย / บริหาร',
+        manualMinutes: 60,
+        question: "สัญญาลูกค้าตัวใหม่นี้ ขัดกับนโยบาย NDA หลักของเราไหม?",
+        answer: "พบความเสี่ยงครับ ข้อ 4.2 ระบุให้คู่ค้าเปิดเผยข้อมูลรายชื่อซัพพลายเออร์ได้ ซึ่งขัดกับนโยบาย NDA หลักข้อ 2.1 ของเราครับ",
+        citation: "Master_NDA_2025.pdf (หน้า 3)",
+        color: "text-rose-400",
+        bgAlert: "bg-rose-500/10 border-rose-500/20"
+      }
+    },
+    features: [
+      { 
+        title: "ตอบจากฐานข้อมูลองค์กร 100%", 
+        desc: "AI อ้างอิงเฉพาะข้อมูลของคุณ ลดปัญหาการมั่วข้อมูล (Hallucination)",
+        icon: "CheckCircle2"
+      },
+      { 
+        title: "เพิ่มข้อมูลได้ไม่จำกัด & เรียนรู้ทันที", 
+        desc: "อัปโหลดเอกสารใหม่เข้า Database AI จะพร้อมดึงไปตอบได้ตลอดเวลา",
+        icon: "RefreshCw"
+      },
+      { 
+        title: "ปลอดภัย ไม่กระทบโมเดลหลัก", 
+        desc: "แยกส่วนระหว่าง Knowledge Base และตัว LLM ทำให้ไม่ต้อง Retrain โมเดลใหม่",
+        icon: "ShieldCheck"
+      }
+    ],
+    pipeline: {
+      title: "Admin Knowledge Pipeline",
+      subtitle: "เพิ่มข้อมูลได้ตลอดเวลา — ระบบพร้อมใช้ทันที",
+      description: "Admin อัปโหลดเอกสารเมื่อใดก็ได้ ระบบจะประมวลผลและนำเข้า Vector DB (ฐานข้อมูลเวกเตอร์) โดยอัตโนมัติ โดยไม่ต้อง Retrain โมเดล AI แม้แต่ครั้งเดียว",
+      steps: [
+        {
+          step: "Step 1",
+          title: "Admin อัปโหลดเอกสาร",
+          desc: "รองรับไฟล์ทุกประเภท — PDF, DOCX, Excel, JSON, TXT, CSV หรือเชื่อมต่อฐานข้อมูลโดยตรง ไม่มีขีดจำกัดจำนวนไฟล์",
+          tags: ['PDF', 'DOCX', 'JSON', 'CSV', 'SQL DB'],
+          status: "พร้อมใช้ทันที"
+        },
+        {
+          step: "Step 2",
+          title: "Chunking — ตัดแบ่งข้อมูล",
+          desc: "ระบบจะแบ่งเอกสารออกเป็น Chunk (ชิ้นส่วน) ขนาด 512 Tokens พร้อม Overlap เพื่อรักษาบริบท ทำให้ค้นหาได้แม่นยำขึ้น",
+          config: { size: "512 tokens", overlap: "50 tokens", strategy: "semantic" }
+        },
+        {
+          step: "Step 3",
+          title: "Embedding — แปลงเป็น Vector",
+          desc: "แต่ละ Chunk จะถูกแปลงเป็น Embedding Vector ขนาด 1,536 มิติ เพื่อเก็บความหมายของข้อความไว้ในรูปตัวเลข",
+          metrics: "1,536 dim / chunk"
+        },
+        {
+          step: "Step 4",
+          title: "เข้าสู่ Vector DB — พร้อมใช้",
+          desc: "Vector ทั้งหมดถูกจัดเก็บในฐานข้อมูลเวกเตอร์ที่รองรับระดับ Millions of Documents ค้นหาได้ในเสี้ยววินาที",
+          metrics: { latency: "<200ms", search: "Cosine" }
+        }
+      ],
+      footerNote: "ระบบ RAG ทำงานบน Vector Database แยกออกจากโมเดล AI หลัก — การเพิ่มหรือแก้ไขเอกสารจึงไม่กระทบโมเดล และไม่ต้อง Retrain ใหม่ ข้อมูลใหม่พร้อมให้ AI ดึงไปตอบได้ทันทีหลัง Indexing เสร็จสมบูรณ์"
+    }
+  },
   appliedIn: [
     { name: 'BookMind: AI Intelligent Library', link: 'https://github.com/Mike0165115321/BookMind.git' },
     { name: 'AI Robot "น้องน่าน"', link: 'https://github.com/Mike0165115321/AI-Robot-Guide-.git' },
