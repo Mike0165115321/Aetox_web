@@ -1,7 +1,7 @@
 
 export const aiAgentsContent = {
   hero: {
-    badge: "Intelligence Layer",
+    badge: "เลเยอร์ปัญญาประดิษฐ์ (Intelligence Layer)",
     title: {
       white: "Agentic",
       accent: "AI & RAG Systems"
@@ -13,84 +13,84 @@ export const aiAgentsContent = {
   showcase: [
     {
       title: "Orchestrator: สมองส่วนกลาง",
-      subtitle: "Agentic Thinking Process",
+      subtitle: "กระบวนการคิดของเอเจนต์",
       desc: "ไม่ใช่แค่การสืบค้นข้อมูล แต่ระบบจะทำการ 'คิด' และแตกโจทย์ซับซ้อนเป็นแผนการทำงานย่อย เพื่อหาคำตอบที่ครอบคลุมที่สุด"
     },
     {
       title: "Hybrid Search: ค้นหาความหมาย",
-      subtitle: "Multi-Vector Retrieval",
+      subtitle: "การสืบค้นข้อมูลหลายมิติ",
       desc: "ผสานพลังระหว่าง Semantic Search (GPU-powered) และ Keyword Search เพื่อให้ได้ข้อมูลที่แม่นยำที่สุดจากฐานข้อมูลของคุณ"
     },
     {
       title: "Self-Correction: ตรวจสอบตัวเอง",
-      subtitle: "Confidence Threshold Loop",
+      subtitle: "ระบบตรวจสอบความถูกต้อง",
       desc: "ระบบมีกลไกตรวจสอบความถูกต้องของข้อมูลก่อนตอบ หากความมั่นใจต่ำเกินไป AI จะทำการสืบค้นใหม่โดยอัตโนมัติ"
     },
     {
       title: "Strategic Output: สังเคราะห์แผนงาน",
-      subtitle: "Context-Aware Generation",
+      subtitle: "การสร้างคำตอบตามบริบท",
       desc: "นำข้อมูลที่สืบค้นได้มาสังเคราะห์เป็นคำตอบหรือแผนงานเชิงกลยุทธ์ โดยระบุแหล่งที่มา (Citation) ได้อย่างแม่นยำ"
     },
     {
       title: "Real-time Stream: ไหลลื่น ไร้รอยต่อ",
-      subtitle: "SSE Streaming Interface",
+      subtitle: "อินเตอร์เฟซการแสดงผลแบบเรียลไทม์",
       desc: "แสดงผลลัพธ์แบบ Token-by-token ทันทีที่ AI เริ่มคิดเสร็จ ไม่ต้องรอให้เจนเสร็จทั้งหมด ประสบการณ์ใช้งานระดับพรีเมียม"
     }
   ],
 
   pillars: {
     pillar1: {
-      title: "1. Agentic Orchestrator",
+      title: "1. ระบบควบคุมเอเจนต์ (Agentic Orchestrator)",
       description: "ระบบควบคุมอัจฉริยะที่ทำหน้าที่เป็น 'หัวหน้าทีม' ในการรับโจทย์จากผู้ใช้ และวางแผนการสืบค้นข้อมูลอย่างเป็นระบบ",
       features: [
         {
-          title: "Query Decomposition",
+          title: "การแตกโจทย์ (Query Decomposition)",
           desc: "แตกปัญหาใหญ่เป็น Sub-queries หลายมิติ เพื่อการหาคำตอบที่ลึกและกว้างกว่า AI ทั่วไป"
         },
         {
-          title: "Reasoning Loop",
+          title: "วงจรการคิด (Reasoning Loop)",
           desc: "AI จะตรวจสอบข้อมูลที่หาได้ หากยังไม่เพียงพอจะวางแผนหาเพิ่มจนกว่าจะได้คำตอบที่สมบูรณ์"
         },
         {
-          title: "Tool Use Ready",
+          title: "พร้อมเชื่อมต่อระบบภายนอก",
           desc: "พร้อมเชื่อมต่อกับระบบภายนอก (API) เพื่อดึงข้อมูลสดใหม่หรือสั่งการระบบอื่น ๆ ได้ทันที"
         }
       ]
     },
 
     pillar2: {
-      title: "2. Hybrid Precision Retrieval",
+      title: "2. การสืบค้นข้อมูลความแม่นยำสูง (Hybrid Precision Retrieval)",
       description: "กระบวนการสืบค้นข้อมูลที่ทันสมัยที่สุด ผสานพลังของ GPU และอัลกอริทึมการค้นหาตามความหมาย",
       features: [
         {
-          title: "Semantic Vector Search",
+          title: "ค้นหาด้วยความหมาย (Semantic Search)",
           desc: "ค้นหาด้วย 'ความเข้าใจ' ไม่ใช่แค่คำเหมือน ทำให้ AI เข้าใจบริบทและเจตนาของผู้ใช้อย่างแท้จริง"
         },
         {
-          title: "Cross-Encoder Reranking",
+          title: "การจัดลำดับความสำคัญใหม่",
           desc: "ระบบจัดลำดับความสำคัญของข้อมูลใหม่ เพื่อเลือกเฉพาะส่วนที่เกี่ยวข้องที่สุดมาตอบ"
         },
         {
-          title: "Dense & Sparse Hybrid",
+          title: "ระบบสืบค้นแบบผสมผสาน",
           desc: "รวมจุดเด่นของการค้นหาแบบคำหลักและแบบความหมายเข้าด้วยกัน เพื่อความแม่นยำสูงสุด"
         }
       ]
     },
 
     pillar3: {
-      title: "3. Strategic Generation",
+      title: "3. การสังเคราะห์เชิงกลยุทธ์ (Strategic Generation)",
       description: "การสังเคราะห์คำตอบที่มีคุณภาพสูง ปลอดภัย และนำไปใช้งานเชิงธุรกิจได้จริง",
       features: [
         {
-          title: "Source Citations",
+          title: "การระบุแหล่งอ้างอิง",
           desc: "ระบุแหล่งที่มา หน้าเอกสาร และบรรทัดอ้างอิงอย่างชัดเจน ตรวจสอบย้อนกลับได้ 100%"
         },
         {
-          title: "Anti-Hallucination Guard",
+          title: "ระบบป้องกันข้อมูลบิดเบือน",
           desc: "มีกลไกตรวจสอบและจำกัดขอบเขตข้อมูล (Grounding) ป้องกัน AI มั่วคำตอบเอง"
         },
         {
-          title: "Professional Persona",
+          title: "ปรับแต่งโทนการตอบโต้",
           desc: "ปรับแต่งโทนการตอบให้เข้ากับแบรนด์หรือสไตล์ของผู้เชี่ยวชาญในธุรกิจของคุณ"
         }
       ]
@@ -99,80 +99,80 @@ export const aiAgentsContent = {
 
   simulator: {
     title: {
-      white: "ROI & Impact",
-      accent: "Simulator"
+      white: "จำลองผลตอบแทน",
+      accent: "และความคุ้มค่า"
     },
     description: "คำนวณความคุ้มค่าของการนำระบบ AI Agents ไปใช้ในธุรกิจของคุณ เมื่อเทียบกับการทำงานแบบเดิม",
     useCases: [
-      { id: 'hr', title: 'HR & Internal Policy', icon: 'hr' },
-      { id: 'student', title: 'Education & Library', icon: 'student' },
-      { id: 'librarian', title: 'Customer Support', icon: 'librarian' },
-      { id: 'legal', title: 'Legal & Compliance', icon: 'legal' }
+      { id: 'hr', title: 'ทรัพยากรบุคคลและนโยบาย', icon: 'hr' },
+      { id: 'student', title: 'การศึกษาและทะเบียน', icon: 'student' },
+      { id: 'librarian', title: 'ห้องสมุดและศูนย์ข้อมูล', icon: 'librarian' },
+      { id: 'legal', title: 'กฎหมายและข้อบังคับ', icon: 'legal' }
     ],
     features: [
       { 
-        title: "Grounding with Private Knowledge", 
-        desc: "ลดปัญหาการมั่วข้อมูล (Hallucination) โดยกำหนดให้ AI อ้างอิงคำตอบจากฐานข้อมูลภายในองค์กรที่ได้รับอนุญาตเท่านั้น",
+        title: "Fact-Based Retrieval", 
+        desc: "จำกัดขอบเขตการตอบคำถามให้อยู่ในฐานข้อมูลที่คุณอนุญาตเท่านั้น ลดความเสี่ยงในการให้ข้อมูลผิดพลาด (Hallucination) สู่ระดับต่ำสุด",
         icon: "CheckCircle2"
       },
       { 
-        title: "Dynamic Data Ingestion", 
-        desc: "รองรับการเพิ่มหรืออัปเดตเอกสารใหม่ได้ตลอดเวลา โดยระบบจะประมวลผลเข้าฐานข้อมูลเพื่อพร้อมใช้งานในทันที",
+        title: "Real-Time Knowledge Sync", 
+        desc: "เอกสารหรือข้อกำหนดใหม่ที่ถูกเพิ่มเข้ามา จะถูกนำไปประมวลผลให้พร้อมใช้งานทันที โดยไม่ต้องรอรอบการพัฒนาหรือปรับจูนโมเดลใหม่",
         icon: "RefreshCw"
       },
       { 
-        title: "Modular Infrastructure", 
-        desc: "สถาปัตยกรรมที่แยกส่วนระหว่างฐานความรู้และตัวโมเดล ช่วยให้รักษาความปลอดภัยของข้อมูลได้โดยไม่ต้องส่งไป Retrain ภายนอก",
+        title: "Isolated Data Environment", 
+        desc: "แยกส่วนฐานข้อมูลความลับออกจากโมเดลประมวลผลอย่างเด็ดขาด ป้องกันไม่ให้ข้อมูลองค์กรถูกนำไปฝึกฝน (Train) หรือหลุดรอดสู่ภายนอก",
         icon: "ShieldCheck"
       },
       { 
-        title: "Strategic Reasoning Engine", 
-        desc: "วิเคราะห์บริบทของคำถามและวางแผนการสืบค้นข้อมูลในหลายมิติ เพื่อให้ได้คำตอบที่มีความซับซ้อนเชิงธุรกิจ",
+        title: "Context-Aware Processing", 
+        desc: "ระบบถูกปรับแต่งให้เข้าใจคำศัพท์เฉพาะทางของธุรกิจ ทำให้สามารถค้นหาและดึงข้อมูลข้ามไฟล์มาสรุปผลได้อย่างตรงประเด็น ไม่ใช่แค่การหาคีย์เวิร์ด",
         icon: "Cpu"
       },
       { 
-        title: "Multi-Modal Capability", 
-        desc: "โครงสร้างที่ออกแบบมาให้รองรับการประมวลผลข้อมูลที่หลากหลาย ทั้งข้อความ ตาราง และไฟล์เอกสารเชิงเทคนิค",
+        title: "Enterprise Format Ready", 
+        desc: "รองรับการดึงข้อมูลจากไฟล์รูปแบบต่างๆ ไม่ว่าจะเป็นข้อความยาว ตารางข้อมูล สัญญาทางกฎหมาย หรือคู่มือเชิงเทคนิคที่จัดหน้าแบบเฉพาะเจาะจง",
         icon: "Layers"
       }
     ],
     comparisonRows: [
-      { label: "แหล่งข้อมูลอ้างอิง", general: "ข้อมูลสาธารณะ (Internet)", aetox: "ฐานข้อมูลเฉพาะขององค์กร", highlight: false },
-      { label: "ความน่าเชื่อถือ", general: "มีโอกาสเกิด Hallucination", aetox: "อ้างอิงจากเอกสารโดยตรง", highlight: false },
-      { label: "การรักษาความปลอดภัย", general: "ข้อมูลอาจถูกนำไปใช้เทรนโมเดล", aetox: "เก็บข้อมูลในระบบปิด/Private", highlight: true },
-      { label: "ความสดใหม่ของข้อมูล", general: "จำกัดตามรอบการเทรน (Static)", aetox: "อัปเดตได้แบบ Real-time", highlight: false },
-      { label: "การตรวจสอบแหล่งที่มา", general: "ไม่ระบุที่มาของคำตอบ", aetox: "ระบุพิกัดเอกสารอ้างอิงชัดเจน", highlight: false },
-      { label: "ประสิทธิภาพประมวลผล", general: "ประมวลผลแบบทั่วไป", aetox: "GPU-Accelerated Search", highlight: true }
+      { label: "แหล่งข้อมูลอ้างอิง", general: "ข้อมูลสาธารณะบนอินเทอร์เน็ต", aetox: "ฐานข้อมูลเฉพาะที่องค์กรอนุญาต", highlight: false },
+      { label: "ความน่าเชื่อถือ", general: "มีความเสี่ยงที่จะสร้างข้อมูลเท็จ (เดาสุ่ม)", aetox: "ตอบโดยอิงจากเนื้อหาที่มีอยู่จริงเท่านั้น", highlight: true },
+      { label: "การรักษาความปลอดภัย", general: "เสี่ยงถูกนำข้อมูลไปพัฒนาโมเดลสาธารณะ", aetox: "ระบบปิด (Private) ข้อมูลไม่ถูกนำไป Train ต่อ", highlight: false },
+      { label: "ความสดใหม่ของข้อมูล", general: "หยุดนิ่งตามรอบการอัปเดตของผู้ให้บริการ", aetox: "ข้อมูลสดใหม่ อัปเดตได้เองแบบ Real-time", highlight: true },
+      { label: "การตรวจสอบที่มา", general: "ไม่สามารถระบุแหล่งที่มาของคำตอบได้", aetox: "ชี้เป้าหน้าเอกสารและไฟล์อ้างอิงชัดเจน", highlight: false },
+      { label: "โครงสร้างระบบ", general: "ใช้งานทรัพยากรร่วมกับผู้ใช้อื่น (Shared)", aetox: "ทรัพยากรแยกเฉพาะเพื่อความเสถียร (Dedicated)", highlight: true }
     ],
     pipeline: {
-      title: "Knowledge Pipeline",
+      title: "ระบบนำเข้าความรู้อัจฉริยะ",
       subtitle: "ขยายฐานความรู้ได้ไร้ขีดจำกัด — ระบบพร้อมใช้ทันที",
       description: "Admin สามารถเพิ่มหรืออัปเดตเอกสารได้ตลอดเวลา ระบบจะประมวลผลและนำเข้า Vector Database อัตโนมัติ โดยไม่ต้องทำการ Retrain โมเดล AI ข้อมูลใหม่จึงพร้อมใช้งานในเสี้ยววินาที",
       steps: [
         {
           step: "ขั้นตอนที่ 1",
-          title: "นำเข้าข้อมูลมหาศาล (Massive Ingestion)",
+          title: "นำเข้าข้อมูลมหาศาล",
           desc: "รองรับเอกสารทุกประเภท (PDF, DOCX, SQL, JSON) ระบบสามารถประมวลผลข้อมูลนับหมื่นหน้าและเชื่อมต่อกับฐานข้อมูลเดิมของคุณได้โดยตรง",
-          tags: ['Enterprise PDF', 'Cloud Storage', 'SQL Database', 'API Connect'],
+          tags: ['Enterprise PDF', 'คลังข้อมูลคลาวด์', 'ฐานข้อมูล SQL', 'เชื่อมต่อ API'],
           status: "ระบบพร้อมรับข้อมูล"
         },
         {
           step: "ขั้นตอนที่ 2",
-          title: "วิเคราะห์และแบ่งส่วน (Semantic Chunking)",
+          title: "วิเคราะห์และแบ่งส่วนข้อมูล",
           desc: "ระบบตัดแบ่งข้อมูลออกเป็นส่วนย่อยอัจฉริยะ (Smart Chunking) พร้อมเทคนิครักษาบริบท (Context Preservation) เพื่อให้ AI เข้าใจเนื้อหาที่เกี่ยวเนื่องกันอย่างแม่นยำ",
           config: { size: "512 tokens", overlap: "10% context", strategy: "semantic" }
         },
         {
           step: "ขั้นตอนที่ 3",
-          title: "แปลงเป็นพิกัดความหมาย (Vector Embedding)",
+          title: "แปลงเป็นพิกัดความหมาย",
           desc: "ใช้โมเดลระดับโลกแปลงข้อความเป็นพิกัดทางคณิตศาสตร์ 1,536 มิติ ทำให้ระบบสามารถค้นหาคำตอบจาก 'ความหมาย' ไม่ใช่แค่ 'คำค้นหา'",
-          metrics: "1,536 dimensional vectors"
+          metrics: "พิกัดความหมาย 1,536 มิติ"
         },
         {
           step: "ขั้นตอนที่ 4",
-          title: "ฐานข้อมูลเวกเตอร์ (Vector Indexing)",
+          title: "จัดเก็บฐานข้อมูลเวกเตอร์",
           desc: "จัดเก็บใน Vector DB ประสิทธิภาพสูง รองรับการค้นหาพร้อมกันนับพันคน (High Concurrency) โดยมีความหน่วงต่ำกว่า 200ms",
-          metrics: { latency: "<0.2s search", search: "Hybrid Search" }
+          metrics: { latency: "ค้นหา < 0.2 วินาที", search: "Hybrid Search" }
         }
       ],
       footerNote: "สถาปัตยกรรม Aetox RAG แยกส่วนการประมวลผลออกจากโมเดลหลักอย่างเด็ดขาด — ทำให้คุณสามารถเพิ่มหรือแก้ไขข้อมูลได้ทันทีโดยไม่ต้อง Retrain โมเดลใหม่ ช่วยลดต้นทุนมหาศาลและรักษาความสดใหม่ของข้อมูลได้ 24/7"
@@ -191,9 +191,9 @@ export const aiAgentsContent = {
     ]
   },
   appliedIn: [
-    { name: 'BookMind: AI Intelligent Library', link: 'https://github.com/Mike0165115321/BookMind.git' },
-    { name: 'AI Robot "น้องน่าน"', link: 'https://github.com/Mike0165115321/AI-Robot-Guide-.git' },
-    { name: 'Legal Document Analyzer' }
+    { name: 'BookMind: ระบบห้องสมุดอัจฉริยะ', link: 'https://github.com/Mike0165115321/BookMind.git' },
+    { name: 'หุ่นยนต์ AI "น้องน่าน"', link: 'https://github.com/Mike0165115321/AI-Robot-Guide-.git' },
+    { name: 'ระบบวิเคราะห์เอกสารกฎหมายอัจฉริยะ' }
   ]
 };
 

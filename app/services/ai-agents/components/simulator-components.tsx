@@ -23,7 +23,7 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
             </div>
             <h3 className="text-2xl font-black text-white">เทคโนโลยี RAG ระดับองค์กร</h3>
           </div>
-          <p className="text-xs font-black text-gray-500 uppercase tracking-[0.3em]">Architecture & Capabilities</p>
+          <p className="text-sm font-black text-gray-500 uppercase tracking-[0.2em]">สถาปัตยกรรมและความสามารถระบบ</p>
         </div>
 
         <div className="space-y-6">
@@ -88,8 +88,8 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
             </table>
           </div>
         </div>
-        <p className="mt-6 flex items-center gap-2 text-[10px] text-gray-600 font-mono uppercase tracking-widest justify-end">
-          <Info size={12} className="text-cyber-blue" /> comparison based on enterprise benchmarks
+        <p className="mt-6 flex items-center gap-2 text-xs text-gray-500 font-mono uppercase tracking-widest justify-end">
+          <Info size={12} className="text-cyber-blue" /> ข้อมูลเปรียบเทียบอ้างอิงตามมาตรฐานระดับองค์กร
         </p>
       </div>
     </div>

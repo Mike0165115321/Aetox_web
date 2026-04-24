@@ -119,12 +119,13 @@ export function RagChatSimulator() {
         
         {/* ช่องแชท */}
         <div className="p-10 flex flex-col gap-10 flex-1 relative z-10">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout" initial={false}>
             <motion.div 
               key={useCase}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
               className="space-y-10"
             >
               {/* ข้อความจากผู้ใช้ */}

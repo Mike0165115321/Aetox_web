@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import { useRoiCalculator } from './hooks/use-roi-calculator';
 import { FeaturesDashboard, KnowledgePipeline } from './components/simulator-components';
-import { RagChatSimulator } from './components/rag-chat-simulator';
 
 export default function AiAgentsSimulator({ dict }: { dict: any }) {
   const simulator = dict.simulator;
@@ -93,7 +92,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
           <div className="lg:col-span-4 glass-card p-8 rounded-[32px] border border-white/10 space-y-8 bg-black/40">
             <div className="space-y-6">
                <div className="flex items-center justify-between">
-                 <span className="text-xs font-black text-gray-500 uppercase tracking-widest">Input Parameters</span>
+                 <span className="text-sm font-black text-gray-400 uppercase tracking-widest">ข้อมูลการคำนวณ</span>
                  <Plus size={14} className="text-cyber-blue opacity-50" />
                </div>
                
@@ -105,10 +104,10 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
             </div>
             <div className="pt-6 border-t border-white/5">
               <div className="flex items-center justify-between text-cyber-blue mb-4">
-                <span className="text-[10px] font-black uppercase tracking-widest italic">Aetox Service Fee</span>
+                <span className="text-xs font-black uppercase tracking-widest italic">ค่าบริการระบบ AETOX</span>
                 <Zap size={14} />
               </div>
-              <SliderGroup label="AI Monthly Fee" value={aiMonthlyFee} onChange={setAiMonthlyFee} min={5000} max={100000} step={5000} unit="฿" isAccent />
+              <SliderGroup label="ค่าธรรมเนียมรายเดือน" value={aiMonthlyFee} onChange={setAiMonthlyFee} min={5000} max={100000} step={5000} unit="฿" isAccent />
             </div>
           </div>
 
@@ -118,16 +117,16 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                label="งานค้างสะสม / วัน" 
                value={calculations.lostQueriesDaily.toFixed(0)} 
                unit="เคส" 
-               desc="เคสที่คนรับไม่ไหว" 
+               desc="ปริมาณงานที่คนรับไม่ไหว" 
                icon={<Target size={20} />} 
                isWarning={calculations.lostQueriesDaily > 0}
                tooltip="ปริมาณงานที่เกินขีดความสามารถของพนักงานต่อวัน"
             />
             <ResultCard 
-               label="รายรับจริง / วัน" 
+               label="รายรับที่สร้างได้ / วัน" 
                value={calculations.aiCapturedRevenueDaily.toLocaleString()} 
                unit="฿" 
-               desc="รับได้ตลอด 24/7" 
+               desc="ระบบทำงานได้ตลอด 24/7" 
                icon={<TrendingUp size={20} />} 
                isSuccess 
                tooltip="รายรับที่ระบบ AI สามารถสร้างให้ได้จากการจัดการเคสทั้งหมด"
@@ -136,24 +135,24 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
             <div className="md:col-span-2 glass-card p-10 rounded-[32px] border border-cyber-blue/20 bg-gradient-to-br from-cyber-blue/[0.03] to-transparent relative overflow-hidden flex flex-col justify-between">
                <div className="absolute top-0 right-0 p-8 opacity-10"><ShieldCheck size={120} className="text-cyber-blue" /></div>
                <div className="relative z-10">
-                 <p className="text-cyber-blue text-xs font-black uppercase tracking-[0.4em] mb-4">Potential Profitability</p>
+                 <p className="text-cyber-blue text-sm font-black uppercase tracking-[0.4em] mb-4">กำไรและต้นทุนที่ประหยัดได้</p>
                  <div className="flex items-baseline gap-4 mb-2">
                     <span className="text-6xl font-black text-white tracking-tighter">
                       {calculations.totalYearlySaving.toLocaleString()}
                     </span>
                     <span className="text-2xl font-bold text-cyber-blue italic">฿ / ปี</span>
                  </div>
-                 <p className="text-gray-500 font-medium">คาดการณ์กำไรส่วนเพิ่มและต้นทุนที่ประหยัดได้ต่อปี</p>
+                 <p className="text-gray-400 font-medium">คาดการณ์กำไรส่วนเพิ่มและต้นทุนที่ประหยัดได้จริงต่อปี</p>
                </div>
                
                <div className="mt-10 pt-8 border-t border-white/5 grid grid-cols-2 gap-8">
                   <div className="space-y-1">
-                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Payback Period</span>
-                    <div className="text-2xl font-black text-white italic">{calculations.breakEvenMonth.toFixed(1)} <span className="text-xs text-gray-500 not-italic uppercase">Months</span></div>
+                    <span className="text-xs font-black text-gray-500 uppercase tracking-widest">ระยะเวลาคืนทุน</span>
+                    <div className="text-2xl font-black text-white italic">{calculations.breakEvenMonth.toFixed(1)} <span className="text-sm text-gray-400 not-italic uppercase">เดือน</span></div>
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Efficiency Multiplier</span>
-                    <div className="text-2xl font-black text-emerald-400 italic">24/7 <span className="text-xs text-gray-500 not-italic uppercase">Coverage</span></div>
+                    <span className="text-xs font-black text-gray-500 uppercase tracking-widest">ประสิทธิภาพที่เพิ่มขึ้น</span>
+                    <div className="text-2xl font-black text-emerald-400 italic">24/7 <span className="text-sm text-gray-400 not-italic uppercase">ทำงานต่อเนื่อง</span></div>
                   </div>
                </div>
             </div>
@@ -161,8 +160,6 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
         </div>
       </div>
 
-      {/* ─── Layer 1.5: Interactive RAG Chat Simulator ─── */}
-      <RagChatSimulator />
 
       {/* ─── Layer 2: Strategic Comparison ─── */}
       <section id="retrieval">
