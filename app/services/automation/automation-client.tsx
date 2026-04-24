@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, CheckCircle2, ArrowLeft, Link as LinkIcon, Layers, Settings, Share2, MousePointer2, Rocket, Users, Clock, Database, TrendingUp, AlertTriangle, FileText } from 'lucide-react';
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
+import AutomationSimulator from './automation-simulator';
 
 /* ─── Shared UI Components ────────────────────────────────────────── */
 function LayerBadge({ icon: Icon, label, colorClass = "text-deep-blue" }: { icon: any; label: string; colorClass?: string }) {
@@ -854,8 +855,17 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
       {/* ─── Divider ─── */}
       <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
 
-      {/* ─── Layer 2: Technical Deep Dive ─── */}
-      <section className="py-24 relative z-10">
+      {/* ─── Layer 2: Automation Simulator ─── */}
+      <section className="py-24 relative z-10 bg-black/20">
+        <div className="container mx-auto">
+          <div className="max-w-5xl mx-auto">
+            <AutomationSimulator />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Layer 3: Technical Deep Dive ─── */}
+      <section className="py-24 relative z-10 border-t border-white/5">
         <div className="container mx-auto">
           <div className="space-y-40">
             

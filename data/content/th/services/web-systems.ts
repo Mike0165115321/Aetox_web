@@ -5,66 +5,99 @@ export const webSystemsContent = {
       white: "Full-Stack",
       accent: "Web Systems"
     },
-    description: "สร้างโครงสร้างพื้นฐานดิจิทัลที่มั่นคงและสวยงาม ด้วยเทคโนโลยี Modern Web ที่รองรับผู้ใช้งานจำนวนมากและพร้อมเชื่อมต่อกับ AI ในอนาคต"
+    description: "ออกแบบและพัฒนา Web Systems ที่เป็นแกนหลักของธุรกิจคุณ รองรับการเติบโตตั้งแต่วันแรก พร้อมความเสถียร ความปลอดภัย และโครงสร้างที่เชื่อมต่อกับ AI และ Automation ได้ทันที"
   },
+
   showcase: [
     {
       title: "Step 01: Modern Architecture",
-      subtitle: "โครงสร้างพื้นฐานระดับสากล",
-      desc: "ใช้ Stack ที่ดีที่สุด (Next.js + Tailwind + TypeScript) เพื่อความปลอดภัยสูงสุดและการขยายตัวที่ไม่มีขีดจำกัด"
+      subtitle: "โครงสร้างที่รองรับการเติบโต",
+      desc: "เลือกใช้เทคโนโลยีที่เหมาะสม (Next.js, TypeScript, Tailwind) เพื่อให้ระบบมีเสถียรภาพ ขยายต่อได้ และดูแลรักษาในระยะยาว"
     },
     {
-      title: "Step 02: Performance Excellence",
-      subtitle: "ความเร็วที่เหนือชั้น",
-      desc: "Lighthouse Score 95+ ในทุก Metric เพื่อประสบการณ์การใช้งานที่ลื่นไหลที่สุดและผลดีต่อ SEO ของคุณ"
+      title: "Step 02: Data Architecture",
+      subtitle: "โครงสร้างข้อมูลที่ไม่พังเมื่อธุรกิจโต",
+      desc: "ออกแบบระบบฐานข้อมูลให้รองรับข้อมูลจำนวนมาก จัดการได้เป็นระบบ และพร้อมใช้งานสำหรับ Analytics, Automation และ AI โดยไม่ต้องรื้อใหม่"
     },
     {
       title: "Step 03: AI Integration Ready",
-      subtitle: "เชื่อมต่อโลกอนาคต",
-      desc: "เตรียมความพร้อมของข้อมูลและโครงสร้างเว็บให้รองรับการทำงานร่วมกับ AI Agents และระบบอัตโนมัติได้อย่างสมบูรณ์"
+      subtitle: "พร้อมต่อยอดสู่ Automation",
+      desc: "ออกแบบ API และโครงสร้างข้อมูลให้รองรับการเชื่อมต่อกับ AI Agents และระบบอัตโนมัติได้ทันทีเมื่อธุรกิจคุณพร้อม"
     }
   ],
+
   pillars: {
     pillar1: {
-      title: "1. Next.js Excellence",
-      description: "โครงสร้างพื้นฐานระดับองค์กร สร้างด้วยเทคโนโลยีที่ทันสมัยที่สุดเพื่อรองรับผู้ใช้นับล้านและพร้อมสำหรับการขยายสเกลเสมอ",
+      title: "1. Scalable System Foundation",
+      description: "วางโครงสร้างระบบให้รองรับการเติบโตของธุรกิจตั้งแต่วันแรก ลดการเขียนใหม่ในอนาคต และรองรับการขยายฟีเจอร์ได้อย่างเป็นระบบ",
       features: [
-        { title: "App Router Architecture", desc: "ใช้โครงสร้างใหม่ล่าสุดของ Next.js เพื่อความเร็วและการจัดการ Data Fetching ที่มีประสิทธิภาพ" },
-        { title: "TypeScript Standards", desc: "เขียนโค้ดด้วย Type-safe 100% ลดข้อผิดพลาดและง่ายต่อการขยายระบบในระยะยาว" },
-        { title: "Cloud Native Ready", desc: "ระบบออกแบบให้พร้อม Deploy บน AWS, Vercel หรือ Google Cloud อย่างแนบเนียน" }
+        {
+          title: "Modern App Architecture",
+          desc: "ใช้โครงสร้างที่เหมาะสมกับระบบจริง เพื่อให้การจัดการข้อมูลและการพัฒนาในระยะยาวมีประสิทธิภาพ"
+        },
+        {
+          title: "Type-Safe Development",
+          desc: "ลดข้อผิดพลาดของระบบด้วยมาตรฐาน TypeScript ทำให้โค้ดมีความแม่นยำและขยายต่อได้ง่าย"
+        },
+        {
+          title: "Cloud Deployment Ready",
+          desc: "รองรับการ Deploy บน AWS, Vercel หรือ Cloud Platform อื่น ๆ ได้อย่างเสถียร"
+        }
       ]
     },
+
     pillar2: {
-      title: "2. High-Speed Performance",
-      description: "เพราะความเร็วคือโอกาส เราออกแบบทุกระบบให้มีคะแนนประสิทธิภาพทะลุขีดสุดเพื่อสร้างความประทับใจแรกให้ลูกค้าของคุณ",
+      title: "2. Scalable Data Architecture",
+      description: "วางโครงสร้างฐานข้อมูลให้รองรับการเติบโตของธุรกิจ ตั้งแต่หลักพันไปจนถึงหลักล้านรายการ โดยยังคงความเร็ว ความถูกต้อง และความยืดหยุ่นในการนำข้อมูลไปใช้",
       features: [
-        { title: "Lighthouse Mastery", desc: "ปรับแต่งทุกองค์ประกอบให้ได้คะแนน Performance 95+ เพื่อ SEO และ User Experience" },
-        { title: "Edge Computing", desc: "ใช้ระบบ Cache ระดับ Global เพื่อให้ผู้ใช้งานเข้าถึงเว็บได้รวดเร็วจากทุกมุมโลก" },
-        { title: "Asset Optimize", desc: "จัดการรูปภาพและสคริปต์อัตโนมัติ เพื่อการโหลดระดับเสี้ยววินาทีแบบไม่เสียคุณภาพ" }
+        {
+          title: "Structured Data Design",
+          desc: "ออกแบบ Schema อย่างเป็นระบบ ลดข้อมูลซ้ำซ้อน และทำให้การจัดการข้อมูลง่ายขึ้นในระยะยาว"
+        },
+        {
+          title: "Optimized Query Performance",
+          desc: "ออกแบบ Index และ Query ให้ดึงข้อมูลได้รวดเร็ว แม้ในระบบที่มีข้อมูลจำนวนมาก"
+        },
+        {
+          title: "Ready for Analytics & AI",
+          desc: "เตรียมโครงสร้างข้อมูลให้สามารถนำไปใช้กับ Dashboard, Automation และ AI ได้ทันที"
+        }
       ]
     },
+
     pillar3: {
-      title: "3. Enterprise Security",
-      description: "ปลอดภัยตั้งแต่ระดับสถาปัตยกรรม (Secure by Design) ปกป้องข้อมูลธุรกิจของคุณด้วยเทคโนโลยีความปลอดภัยระดับ B2B",
+      title: "3. Secure & Reliable by Design",
+      description: "ออกแบบระบบให้ปลอดภัยตั้งแต่ต้น ลดความเสี่ยงจากการโจมตีและการรั่วไหลของข้อมูล พร้อมรองรับการใช้งานในระดับองค์กร",
       features: [
-        { title: "Auth & Access Control", desc: "ระบบสมาชิกและความปลอดภัยระดับสูงจัดการด้วยมาตรฐาน JWT หรือ Provider ชั้นนำ" },
-        { title: "Data Encryption", desc: "ปกป้องข้อมูลสำคัญด้วยการเข้ารหัสทุกขั้นตอนตามมาตรฐานความปลอดภัย" },
-        { title: "Threat Protection", desc: "ป้องกันการโจมตีทางไซเบอร์ เช่น CSRF & XSS ด้วย Security Headers ที่เข้มงวด" }
+        {
+          title: "Authentication & Access Control",
+          desc: "จัดการสิทธิ์ผู้ใช้งานและความปลอดภัยด้วยมาตรฐานที่เหมาะสมกับระบบระดับองค์กร"
+        },
+        {
+          title: "Data Protection",
+          desc: "ปกป้องข้อมูลสำคัญด้วยการเข้ารหัสและแนวทางที่สอดคล้องกับมาตรฐานความปลอดภัย"
+        },
+        {
+          title: "Threat Mitigation",
+          desc: "ลดความเสี่ยงจากการโจมตี เช่น XSS และ CSRF ด้วยแนวทางด้าน Security ที่รัดกุม"
+        }
       ]
     }
   },
+
   cta: {
     hirePoints: [
-      'ธุรกิจที่ต้องการระบบที่ปรับแต่งได้ 100%',
-      'สตาร์ทอัพที่ต้องการระบบที่ขยายตัวได้จริง',
-      'องค์กรที่ซอฟต์แวร์สำเร็จรูปไม่ตอบโจทย์'
+      'ธุรกิจที่ระบบปัจจุบันเริ่มช้าและขยายต่อไม่ได้',
+      'องค์กรที่ต้องการควบคุมระบบเองแทนการพึ่ง SaaS',
+      'ทีมที่ต้องการวางรากฐานให้รองรับ AI และ Automation ในอนาคต'
     ],
     learnPoints: [
-      "นักพัฒนาที่ต้องการเรียนรู้ Next.js แบบลงลึก",
-      "ทีมที่ต้องการปรับปรุง Performance ของระบบเดิม",
-      "ผู้ที่สนใจเรื่อง Web Security Architecture"
+      "นักพัฒนาที่ต้องการเข้าใจการออกแบบระบบจริง",
+      "ทีมที่ต้องการยกระดับโครงสร้าง Web ให้รองรับการเติบโต",
+      "ผู้ที่สนใจด้าน System Architecture และ Security"
     ]
   },
+
   appliedIn: [
     { name: 'Aetox Core Platform', link: '#' },
     { name: 'Enterprise CRM Dashboard', link: '#' },
