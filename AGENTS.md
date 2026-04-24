@@ -29,6 +29,9 @@ Everything you build here must balance Technical Excellence with Business Conver
 - **Animations**: Framer Motion (Keep them subtle, smooth, and high-end).
 - **Type Safety**: TypeScript (`.tsx`) is the standard for all new components.
 - **Icons**: `lucide-react`. If an icon is missing, use an inline SVG.
+- **Modular Architecture**: Strictly enforce component separation (UI, Logic, Data) with a maximum of 300 lines per file to prevent monolithic code structures.
+- **No Unauthorized Dependencies**: Restrict imports exclusively to the approved stack (Tailwind, Framer Motion, Lucide) unless explicitly authorized by the Founder.
+- **Executive Thai Language**: Generated Thai copy must be concise, impactful, and match C-Level business communication standards, strictly avoiding any robotic or direct-translation phrasing.
 
 ## 4. Layout & Interaction Standards (Strict)
 - **Conversion-First Layout**: Always follow the 7-Step Funnel Flow (Hook → Pain → Trust → Engage → Money → Logic → Close).

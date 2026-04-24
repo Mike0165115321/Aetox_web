@@ -7,6 +7,7 @@ export interface RoiInputs {
   staffCount: number;
   minutesPerCase: number;
   aiMonthlyFee: number;
+  setupCost: number; // Added this
   dropRate: number;
   valuePerCase: number;
 }
@@ -18,6 +19,7 @@ export function useRoiCalculator(inputs: RoiInputs) {
     staffCount,
     minutesPerCase,
     aiMonthlyFee,
+    setupCost, // Added this
     dropRate,
     valuePerCase
   } = inputs;
@@ -58,13 +60,17 @@ export function useRoiCalculator(inputs: RoiInputs) {
     
     // Savings & ROI
     const monthlySaving = totalHumanCostMonthly - aiMonthlyFee;
-    const yearlySaving = monthlySaving * 12;
-    
     const totalRevenueGainMonthly = aiCapturedRevenue - humanCapturedRevenue;
-    const totalYearlySaving = (monthlySaving * 12) + (totalRevenueGainMonthly * 12);
+    const totalMonthlyBenefit = monthlySaving + totalRevenueGainMonthly;
     
-    const breakEvenMonth = aiMonthlyFee / (monthlySaving + totalRevenueGainMonthly);
-    const roi = (totalYearlySaving / (aiMonthlyFee * 12)) * 100;
+    const totalYearlySaving = totalMonthlyBenefit * 12;
+    
+    // Payback period = Initial Investment / Monthly Profit
+    const breakEvenMonth = totalMonthlyBenefit > 0 ? setupCost / totalMonthlyBenefit : 0;
+    
+    // ROI = (Yearly Net Profit / Total Cost for Year 1) * 100
+    const totalCostYear1 = (aiMonthlyFee * 12) + setupCost;
+    const roi = totalCostYear1 > 0 ? (totalYearlySaving / totalCostYear1) * 100 : 0;
 
     // Efficiency
     const aiCapacityMin = 10000; // Scalable
