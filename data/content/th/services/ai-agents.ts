@@ -104,10 +104,10 @@ export const aiAgentsContent = {
     },
     description: "คำนวณความคุ้มค่าของการนำระบบ AI Agents ไปใช้ในธุรกิจของคุณ เมื่อเทียบกับการทำงานแบบเดิม",
     useCases: [
-      { id: 'hr', title: 'ทรัพยากรบุคคลและนโยบาย', icon: 'hr' },
-      { id: 'student', title: 'การศึกษาและทะเบียน', icon: 'student' },
-      { id: 'librarian', title: 'ห้องสมุดและศูนย์ข้อมูล', icon: 'librarian' },
-      { id: 'legal', title: 'กฎหมายและข้อบังคับ', icon: 'legal' }
+      { id: 'personal',  title: 'ใช้เอง',                   sub: '~50 queries/วัน',    icon: 'personal' },
+      { id: 'early',     title: 'เริ่มเปิดให้ใช้',           sub: '~500 queries/วัน',   icon: 'early' },
+      { id: 'growth',    title: 'ขยายตลาด',                  sub: '~3,000 queries/วัน', icon: 'growth' },
+      { id: 'enterprise',title: 'แพลตฟอร์มขนาดใหญ่',         sub: '~20,000 queries/วัน',icon: 'enterprise' }
     ],
     features: [
       { 

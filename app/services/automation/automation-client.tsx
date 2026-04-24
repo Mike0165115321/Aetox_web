@@ -878,17 +878,22 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
         </div>
       </div>
 
-      {/* ─── Layer 1: Intro (Hero + Showcase) ─── */}
-      <section id="hero" className="pt-24 pb-20 relative z-10 scroll-mt-20">
+      {/* ─── Layer 1: Strategic Hero ─── */}
+      <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
         <div className="container mx-auto">
-          <Link href="/services" className="inline-flex items-center gap-2 text-gray-500 hover:text-deep-blue transition-colors mb-12 group">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> กลับสู่หน้าบริการ
+          <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-deep-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+            <span className="text-sm font-bold tracking-wide">กลับสู่หน้าบริการ</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
             {/* Left: Hero Content */}
-            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-7/12 space-y-8">
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-7/12 space-y-12">
               <div className="space-y-6">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-deep-blue uppercase tracking-[0.2em] animate-pulse">
+                  <div className="w-1.5 h-1.5 rounded-full bg-deep-blue shadow-deep-glow" />
+                  WORKFLOW AUTOMATION
+                </div>
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                   {dict.hero.title.white}<br />
                   <span className="text-deep-blue drop-shadow-deep-glow">{dict.hero.title.accent}</span>
@@ -901,15 +906,16 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap gap-6">
                 <button 
                   onClick={() => scrollToSection('cta-section')}
-                  className="px-8 py-4 rounded-full bg-deep-blue text-white font-black text-lg hover:shadow-deep-glow transition-all active:scale-95 flex items-center gap-3 group shadow-deep-glow/20"
+                  className="px-10 py-5 rounded-full bg-deep-blue text-white font-black text-xl hover:shadow-deep-glow transition-all active:scale-95 flex items-center gap-4 group shadow-deep-glow/30"
                 >
                   {dict.hero.cta}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                 </button>
                 <button 
                   onClick={() => scrollToSection('automation-simulator')}
-                  className="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-black text-lg hover:bg-white/10 transition-all active:scale-95 flex items-center gap-3 group"
+                  className="px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white font-black text-xl hover:bg-white/10 hover:border-deep-blue/40 transition-all active:scale-95 flex items-center gap-4 group backdrop-blur-xl"
                 >
+                  <TrendingUp className="w-6 h-6 text-deep-blue" />
                   คำนวณความคุ้มค่า
                 </button>
               </motion.div>

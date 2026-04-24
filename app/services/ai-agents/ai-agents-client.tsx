@@ -99,20 +99,21 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
         </div>
       </div>
 
-      {/* ─── Layer 1: Intro (Hero + Showcase) ─── */}
-      <section id="hero" className="pt-24 pb-20 relative z-10">
+      {/* ─── Layer 1: Strategic Hero ─── */}
+      <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
         <div className="container mx-auto">
-          <Link href="/services" className="inline-flex items-center gap-2 text-gray-500 hover:text-cyber-blue transition-colors mb-12 group">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> กลับสู่หน้าบริการ
+          <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+            <span className="text-sm font-bold tracking-wide">กลับสู่หน้าบริการ</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
             {/* Left: Hero Content */}
-            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-7/12 space-y-8">
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-7/12 space-y-12">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-black text-cyber-blue uppercase tracking-widest animate-pulse">
-                  <div className="w-2 h-2 rounded-full bg-cyber-blue shadow-cyber-glow" />
-                  {dict.hero.badge}
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-cyber-blue uppercase tracking-[0.2em] animate-pulse">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-cyber-glow" />
+                  AGENTIC AI & RAG SYSTEMS
                 </div>
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                   {dict.hero.title.white}<br />
@@ -123,7 +124,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                 </p>
               </div>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap gap-6">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap gap-6 pt-4">
                 <button 
                   onClick={() => scrollToSection('cta-section')}
                   className="px-8 py-4 rounded-full bg-cyber-blue text-black font-black text-lg hover:shadow-cyber-glow transition-all active:scale-95 flex items-center gap-3 group shadow-cyber-glow/20"
@@ -135,7 +136,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                   onClick={() => scrollToSection('chat-simulator')}
                   className="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-black text-lg hover:bg-white/10 transition-all active:scale-95 flex items-center gap-3 group"
                 >
-                  ลองทดสอบแชท
+                  ดูตัวอย่าง
                 </button>
               </motion.div>
             </motion.div>

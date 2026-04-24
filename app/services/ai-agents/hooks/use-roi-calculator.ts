@@ -77,6 +77,16 @@ export function useRoiCalculator(inputs: RoiInputs) {
       ai: (aiMonthlyFee * (i + 1))
     }));
 
+    // New metrics
+    const aiVsHumanMultiplier = humanCapacityDaily > 0
+      ? Math.round(queriesPerDay / humanCapacityDaily)
+      : queriesPerDay;
+
+    // Hours the team gets back = all query handling time AI absorbs
+    const hoursRecoveredMonthly = Math.round(
+      (queriesPerDay * workingDays * minutesPerCase) / 60
+    );
+
     return {
       humanCapacityDaily,
       humanCapacityMonthly,
@@ -101,6 +111,8 @@ export function useRoiCalculator(inputs: RoiInputs) {
       projection,
       totalYearlySaving,
       breakEvenMonth,
+      aiVsHumanMultiplier,
+      hoursRecoveredMonthly,
     };
   }, [queriesPerDay, avgSalary, staffCount, minutesPerCase, aiMonthlyFee, dropRate, valuePerCase]);
 }

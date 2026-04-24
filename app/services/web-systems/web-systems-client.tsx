@@ -178,18 +178,22 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
 
-      {/* ─── Layer 1: Intro (Hero + Showcase Together) ─── */}
-      <section className="pt-24 pb-20 relative z-10">
+      {/* ─── Layer 1: Strategic Hero ─── */}
+      <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
         <div className="container mx-auto">
-          <Link href="/services" className="inline-flex items-center gap-2 text-gray-500 hover:text-cyber-blue transition-colors mb-12 group">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Services
+          <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+            <span className="text-sm font-bold tracking-wide">กลับสู่หน้าบริการ</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
             {/* Left: Hero Content */}
-            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-1/2 space-y-8">
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-7/12 space-y-12">
               <div className="space-y-6">
-                <LayerBadge icon={Server} label={dict.hero.badge} />
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-cyber-blue uppercase tracking-[0.2em] animate-pulse">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-cyber-glow" />
+                  ENTERPRISE WEB SYSTEMS
+                </div>
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">{dict.hero.title.white}<br /><span className="text-cyber-blue drop-shadow-cyber-glow">{dict.hero.title.accent}</span></h1>
                 <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-cyber-blue/30 pl-6">{dict.hero.description}</p>
               </div>
@@ -206,7 +210,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
             </motion.div>
 
             {/* Right: Interactive Showcase */}
-            <div className="lg:w-1/2 w-full"><WebShowcase steps={dict.showcase} /></div>
+            <div className="lg:w-5/12 w-full"><WebShowcase steps={dict.showcase} /></div>
           </div>
         </div>
       </section>
