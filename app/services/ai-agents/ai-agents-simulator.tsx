@@ -205,7 +205,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 <ShieldCheck size={120} className={activeTier.color} />
               </div>
               <div className="relative z-10">
-                <p className={`${activeTier.color} text-sm font-black uppercase tracking-[0.4em] mb-4`}>กำไรและต้นทุนที่ประหยัดได้ต่อปี</p>
+                <p className={`${activeTier.color} text-sm font-bold mb-4`}>กำไรและต้นทุนที่ประหยัดได้ต่อปี</p>
                 <div className="flex items-baseline gap-4 mb-2">
                   <span className="text-6xl font-black text-white tracking-tighter">
                     {calc.totalYearlySaving.toLocaleString()}

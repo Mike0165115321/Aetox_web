@@ -2,20 +2,17 @@
 
 Welcome, Agent. You are assisting in the development of **Aetox.dev**, a high-end B2B landing page for a Software Engineering Architect & National AI Gold Medalist. 
 
-Everything you build here must adhere to the following **Identity, Design, and Technical Rules**.
+**[PRIME DIRECTIVE]**
+Everything you build here must balance Technical Excellence with Business Conversion. You are not just writing code; you are building a "Closing Engine".
 
 ---
 
 ## 1. Brand Identity & Tone
 - **Tone**: Corporate Premium, B2B, Strategic Technology Partner.
-- **The Founder**: Chayapol Promsavana (National AI Gold Medalist)
-- **Core Positioning**:
-  We solve business problems by engineering scalable systems.
-- **Value Proposition**:
-  We don’t just write code — we design systems that reduce manual work, increase speed, and enable real business growth.
-- **Technology Layer (Support, not headline)**:
-  AI + Automation + Scalable Architecture
-- **No Emojis**: Use professional language and SVG/Lucide icons only.
+- **The Founder**: Mike (Chayapol Promsavana) - National AI Gold Medalist.
+- **Core Positioning**: We solve business problems by engineering scalable AI and Automation systems.
+- **Value Proposition**: We don’t just write code — we design systems that reduce manual work, increase speed, and enable real business growth.
+- **No Emojis in UI**: Use professional language and SVG/Lucide icons only for the actual frontend interface.
 
 ## 2. Design System (Ultra Dark Cyberpunk)
 - **Background**: `#0A0F1C` (Tailwind: `bg-ultra-dark`)
@@ -31,22 +28,17 @@ Everything you build here must adhere to the following **Identity, Design, and T
 - **Styling**: Tailwind CSS (Configuration is in `tailwind.config.js`).
 - **Animations**: Framer Motion (Keep them subtle, smooth, and high-end).
 - **Type Safety**: TypeScript (`.tsx`) is the standard for all new components.
-- **Icons**: `lucide-react`. If an icon is missing (like brand logos), use an inline SVG.
+- **Icons**: `lucide-react`. If an icon is missing, use an inline SVG.
 
-## 4. Component Standards
-- All sections must be **Responsive** (Mobile-first).
-- Interactive elements must have clear **Hover States** using the Cyber-blue theme.
-- Forms must use the specific prompt: *"เล่างานที่น่าเบื่อที่สุดของคุณให้เราฟัง"*.
-
-## 5. Layout & Interaction Standards (Strict)
-- **Centered Navigation**: The Navbar menu must always be centered relative to the viewport (using `absolute left-1/2 -translate-x-1/2`), ensuring it remains perfectly centered regardless of the content length on the left (Logo) or right (Actions).
-- **Consistent Spacing**: All major sections and the Navbar container must use `container mx-auto` (without additional px-6) to ensure perfectly aligned horizontal edges based on the global padding defined in `tailwind.config.js`.
-- **Tactile Feedback**: All buttons and interactive cards must include an `active:scale-95` transition to provide a premium, tactile feel upon clicking.
-- **Z-Index Management**: Navbar must always have `z-[100]` to stay above all animations and 3D elements.
+## 4. Layout & Interaction Standards (Strict)
+- **Conversion-First Layout**: Always follow the 7-Step Funnel Flow (Hook → Pain → Trust → Engage → Money → Logic → Close).
+- **Centered Navigation**: The Navbar menu must always be centered relative to the viewport (`absolute left-1/2 -translate-x-1/2`).
+- **Consistent Spacing**: All major sections must use `container mx-auto` to ensure perfectly aligned horizontal edges.
+- **Tactile Feedback**: All buttons and interactive cards must include an `active:scale-95` transition.
+- **Z-Index Management**: Navbar must always have `z-[100]` to stay above all animations.
+- **Dynamic Engagement**: Calculators or sliders must update resulting monetary values in real-time.
 
 ---
 
 > [!IMPORTANT]
-> This file is the Source of Truth for the Aetox brand. Any changes to the UI must respect these constraints to maintain a "National Gold Medalist" level of quality.
-
-<!-- AI Context Marker: AETOX_CHARTER_V1 -->
+> This file is the Source of Truth for the Aetox brand's technical and visual foundation. Combine this with the Conversion Rules to maintain a "National Gold Medalist" level of quality.
