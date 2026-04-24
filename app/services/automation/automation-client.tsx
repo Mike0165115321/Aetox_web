@@ -830,7 +830,6 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
             {/* Left: Hero Content */}
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="lg:w-1/2 space-y-8">
               <div className="space-y-6">
-                <LayerBadge icon={Zap} label={dict.hero.badge} />
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">{dict.hero.title.white}<br /><span className="text-deep-blue drop-shadow-deep-glow text-4xl md:text-6xl">{dict.hero.title.accent}</span></h1>
                 <p className="text-gray-400 text-xl leading-relaxed border-l-2 border-deep-blue/30 pl-6">{dict.hero.description}</p>
               </div>
@@ -950,9 +949,6 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
               </div>
             </div>
 
-            <div className="mt-24">
-              <AppliedIn items={dict.appliedIn} label="Applied In" />
-            </div>
           </div>
         </div>
       </section>
