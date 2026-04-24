@@ -800,6 +800,7 @@ function AutomationShowcase({ steps }: { steps: any[] }) {
 
 export default function AutomationClient({ dict, navDict }: { dict: any, navDict: any }) {
   const [activeSection, setActiveSection] = useState('hero');
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
   const sections = [
     { id: 'hero', label: 'แนะนำระบบ', num: '01', icon: <Cpu size={16} /> },
@@ -834,7 +835,16 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -843,7 +853,7 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
 
-      {/* ─── Floating Cyber-Control Card ─── */}
+      {/* ─── Floating Cyber-Control Card (Executive Smooth Upgrade) ─── */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden xl:block">
         <div className="glass-card p-3 rounded-[32px] border border-white/10 backdrop-blur-3xl shadow-2xl bg-black/40 flex flex-col gap-2 relative group/nav">
           <div className="absolute -inset-1 bg-gradient-to-b from-deep-blue/20 to-transparent rounded-[34px] opacity-0 group-hover/nav:opacity-100 transition-opacity blur-lg pointer-events-none" />
@@ -852,27 +862,52 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
             <button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
+              onMouseEnter={() => setHoveredSection(section.id)}
+              onMouseLeave={() => setHoveredSection(null)}
               className="relative flex items-center group/item"
             >
-              {/* Tooltip Label */}
-              <div className="absolute right-14 opacity-0 group-hover/item:opacity-100 transition-all duration-300 translate-x-4 group-hover/item:translate-x-0 pointer-events-none">
-                <div className="glass-card px-4 py-2 rounded-xl border border-white/10 bg-black/80 shadow-2xl">
-                  <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest block mb-0.5">{section.num}</span>
-                  <span className="text-xs font-bold text-white whitespace-nowrap">{section.label}</span>
-                </div>
-              </div>
+              {/* Tooltip Label - Managed by React State for 100% stability */}
+              <AnimatePresence>
+                {hoveredSection === section.id && (
+                  <motion.div 
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-14 pointer-events-none"
+                  >
+                    <div className="glass-card px-4 py-2 rounded-xl border border-white/10 bg-black/90 shadow-2xl backdrop-blur-xl">
+                      <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest block mb-0.5">{section.num}</span>
+                      <span className="text-xs font-bold text-white whitespace-nowrap">{section.label}</span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-              {/* Icon Circle */}
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 border relative ${
-                activeSection === section.id 
-                  ? 'bg-deep-blue text-white border-deep-blue shadow-deep-glow scale-110' 
-                  : 'bg-white/5 text-gray-500 border-white/5 hover:bg-white/10 hover:text-white'
-              }`}>
+              {/* Unified Icon Container & Highlight (Executive Smooth) */}
+              <motion.div
+                animate={{
+                  backgroundColor: activeSection === section.id ? '#3B82F6' : 'rgba(255, 255, 255, 0.05)',
+                  color: activeSection === section.id ? '#FFFFFF' : '#9CA3AF',
+                  borderColor: activeSection === section.id ? '#3B82F6' : 'rgba(255, 255, 255, 0.05)',
+                  scale: activeSection === section.id ? 1.1 : 1
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="w-12 h-12 rounded-2xl flex items-center justify-center border relative"
+              >
                 {section.icon}
                 {activeSection === section.id && (
-                  <motion.div layoutId="nav-active" className="absolute -inset-2 border border-deep-blue/50 rounded-[20px] opacity-20" />
+                  <motion.div 
+                    layoutId="nav-active" 
+                    className="absolute -inset-2 border border-deep-blue/50 rounded-[20px] bg-deep-blue/5"
+                    transition={{
+                      type: "tween",
+                      ease: "easeInOut",
+                      duration: 0.5
+                    }}
+                  />
                 )}
-              </div>
+              </motion.div>
             </button>
           ))}
         </div>

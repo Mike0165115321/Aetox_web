@@ -12,17 +12,27 @@ export const webSystemsContent = {
     {
       title: "Step 01: Modern Architecture",
       subtitle: "โครงสร้างที่รองรับการเติบโต",
-      desc: "เลือกใช้เทคโนโลยีที่เหมาะสม (Next.js, TypeScript, Tailwind) เพื่อให้ระบบมีเสถียรภาพ ขยายต่อได้ และดูแลรักษาในระยะยาว"
+      desc: "เลือกใช้เทคโนโลยีระดับ Enterprise (Next.js, TypeScript, Tailwind) เพื่อให้ระบบมีเสถียรภาพ ขยายสเกลได้ทันที และดูแลรักษาในระยะยาวโดยไม่ต้องรื้อทิ้ง"
     },
     {
       title: "Step 02: Data Architecture",
       subtitle: "โครงสร้างข้อมูลที่ไม่พังเมื่อธุรกิจโต",
-      desc: "ออกแบบระบบฐานข้อมูลให้รองรับข้อมูลจำนวนมาก จัดการได้เป็นระบบ และพร้อมใช้งานสำหรับ Analytics, Automation และ AI โดยไม่ต้องรื้อใหม่"
+      desc: "ออกแบบ Schema ฐานข้อมูลให้รองรับ Transaction ปริมาณมหาศาล จัดการข้อมูลเป็นระบบ และพร้อมสกัดข้อมูลไปใช้ใน Analytics หรือ AI ได้อย่างมีประสิทธิภาพ"
     },
     {
-      title: "Step 03: AI Integration Ready",
+      title: "Step 03: Security & Compliance",
+      subtitle: "ระบบรักษาความปลอดภัยระดับองค์กร",
+      desc: "วางระบบ Authentication แบบ Role-Based Access Control พร้อมการเข้ารหัสข้อมูลที่รัดกุม ปกป้องข้อมูลธุรกิจจากภัยคุกคามและการรั่วไหล"
+    },
+    {
+      title: "Step 04: Performance Optimization",
+      subtitle: "รีดประสิทธิภาพสูงสุดทุกการประมวลผล",
+      desc: "ปรับแต่ง Server-Side Rendering (SSR) และ API Caching ให้ระบบตอบสนองในเสี้ยววินาที สร้างประสบการณ์ใช้งานที่รวดเร็วไร้รอยต่อ (Zero Latency)"
+    },
+    {
+      title: "Step 05: AI Integration Ready",
       subtitle: "พร้อมต่อยอดสู่ Automation",
-      desc: "ออกแบบ API และโครงสร้างข้อมูลให้รองรับการเชื่อมต่อกับ AI Agents และระบบอัตโนมัติได้ทันทีเมื่อธุรกิจคุณพร้อม"
+      desc: "ออกแบบ API Endpoint และ Data Pipeline ให้มีมาตรฐาน พร้อมสำหรับการเสียบปลั๊กเชื่อมต่อกับ AI Agents และ Workflow Automation ทันทีที่ธุรกิจคุณต้องการ"
     }
   ],
 
