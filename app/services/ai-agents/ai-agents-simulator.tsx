@@ -79,9 +79,9 @@ export default function AiAgentsSimulator({ dict }: AiAgentsSimulatorProps) {
         >
           <Zap className="w-3 h-3" /> {simulator.subtitle}
         </motion.div>
-        <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-          {simulator.title.split('Aetox')[0]}
-          <span className="text-cyber-blue drop-shadow-cyber-glow">Aetox AI (RAG)</span>
+        <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter flex flex-col items-center gap-2">
+          <span>RAG System</span>
+          <span className="text-2xl md:text-3xl text-cyber-blue tracking-normal font-bold">จากทาง Aetox AI</span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-base leading-relaxed">
           {simulator.description}
@@ -137,10 +137,10 @@ export default function AiAgentsSimulator({ dict }: AiAgentsSimulatorProps) {
                   <Search size={22} className="text-white" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-white tracking-tight">ระบบประมวลผลอัจฉริยะ Aetox</p>
+                  <p className="text-lg font-bold text-white tracking-tight">ระบบประมวลผลอัจฉริยะ Aetox RAG</p>
                   <p className="text-[11px] text-emerald-400 flex items-center tracking-widest font-black">
                     <motion.span animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }}>●</motion.span>
-                    <span className="ml-2 uppercase">ACTIVE INTELLIGENCE NODE</span>
+                    <span className="ml-2">ฐานข้อมูลเปิดใช้งานอยู่ (ACTIVE)</span>
                   </p>
                 </div>
               </div>
@@ -207,56 +207,142 @@ export default function AiAgentsSimulator({ dict }: AiAgentsSimulatorProps) {
 
           <div className="w-full h-px bg-white/5 my-4" />
 
-          {/* Strategic Impact Summary (Layer 2: The Value) */}
+          {/* Strategic Impact Summary (Layer 2: The Brutal Comparison) */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-cyber-blue/20 to-deep-blue/20 border border-cyber-blue/30 p-12 rounded-[2.5rem] shadow-cyber-glow/10 relative overflow-hidden group w-full"
+            className="w-full space-y-10"
           >
-            <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:rotate-12 transition-transform duration-500 text-cyber-blue">
-              <Zap size={120} />
-            </div>
-            <div className="relative z-10 space-y-10">
-              <div className="flex items-center gap-4 text-cyber-blue">
-                <div className="p-3 rounded-2xl bg-cyber-blue/10 border border-cyber-blue/20">
-                  <Scale size={24} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-2xl tracking-tight text-white">สรุปผลลัพธ์เชิงกลยุทธ์</h3>
-                  <p className="text-[11px] text-gray-500 font-black uppercase tracking-[0.2em] mt-1">BUSINESS VALUE & ROI</p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="space-y-4">
-                  <p className="text-xs text-gray-400 font-black uppercase tracking-[0.2em] opacity-60">ทรัพยากรเวลาที่ประหยัดได้</p>
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-7xl font-black text-white tracking-tighter">{Math.round(calculations.savedHours)}</span>
-                    <span className="text-lg text-cyber-blue font-black uppercase tracking-widest">ชั่วโมง / เดือน</span>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-3 text-cyber-blue">
+                  <div className="p-2.5 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20">
+                    <Scale size={24} />
                   </div>
-                  <p className="text-xs text-gray-500 font-medium">ลดภาระงานรูทีนเพื่อให้ทีมโฟกัสกับงานเชิงกลยุทธ์ได้มากขึ้น</p>
+                  <h3 className="font-bold text-3xl tracking-tight text-white">สรุปผลลัพธ์เชิงกลยุทธ์</h3>
                 </div>
-                
-                <div className="space-y-4">
-                  <p className="text-xs text-gray-400 font-black uppercase tracking-[0.2em] opacity-60">ประมาณการต้นทุนที่ประหยัดได้</p>
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-7xl font-black text-emerald-400 tracking-tighter">-{Math.round(calculations.savedMoney).toLocaleString()}</span>
-                    <span className="text-lg text-emerald-400/70 font-black uppercase tracking-widest">บาท / เดือน</span>
-                  </div>
-                  <p className="text-xs text-gray-500 font-medium">ลดค่าใช้จ่ายแฝงจากการค้นหาข้อมูลที่ล่าช้าและผิดพลาด</p>
-                </div>
-              </div>
-              
-              <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <p className="text-xs text-gray-500 leading-relaxed italic font-medium">
-                  * คำนวณจากปริมาณงาน {queriesPerDay} รายการ/วัน และค่าเฉลี่ยเงินเดือนทีมงาน {avgSalary.toLocaleString()} บาท
+                <p className="text-gray-400 font-medium text-lg leading-relaxed">
+                  เปรียบเทียบความคุ้มค่า: <span className="text-cyber-blue">เงิน + ความเร็ว + การรองรับ</span> ที่คุณวัดผลได้จริง
                 </p>
-                <div className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-[10px] text-gray-400 font-black uppercase tracking-widest">
-                  โมเดลคำนวณ ROI v1.2
-                </div>
+              </div>
+              <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-[11px] text-gray-400 font-black tracking-[0.2em] uppercase">
+                โมเดลธุรกิจฉบับปรับปรุง v2.0
               </div>
             </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Before: Human Only */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="bg-[#121826]/60 border border-white/5 p-10 rounded-[3rem] relative overflow-hidden group shadow-2xl"
+              >
+                <div className="absolute top-0 right-0 p-8 opacity-5 text-white group-hover:rotate-12 transition-transform duration-700">
+                  <Users size={120} />
+                </div>
+                <div className="relative z-10 space-y-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400">
+                      <Users size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white tracking-tight">ทีมงานพนักงาน (คน)</h4>
+                      <p className="text-xs text-gray-500 font-black uppercase tracking-widest">กระบวนการทำงานแบบดั้งเดิม</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="text-gray-400 font-medium">ความเร็วต่อคำถาม</span>
+                      <span className="text-white font-bold">3 - 10 นาที</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="text-gray-400 font-medium">กำลังการรองรับ (Capacity)</span>
+                      <span className="text-white font-bold">~250 เคส / วัน</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="text-gray-400 font-medium">เวลาทำงาน</span>
+                      <span className="text-white font-bold">8 ชม. (มีช่วง Peak ตอบไม่ทัน)</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4">
+                      <span className="text-gray-400 font-bold">ค่าแรงทีมงาน (5 คน)</span>
+                      <span className="text-rose-500 font-black text-2xl">75,000.-</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* After: Aetox RAG System */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="bg-gradient-to-br from-cyber-blue/20 to-deep-blue/20 border-2 border-cyber-blue/40 p-10 rounded-[3rem] relative overflow-hidden group shadow-cyber-glow/20"
+              >
+                <div className="absolute top-0 right-0 p-8 opacity-20 text-cyber-blue group-hover:rotate-12 transition-transform duration-700">
+                  <Zap size={140} />
+                </div>
+                <div className="relative z-10 space-y-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-cyber-blue/20 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue shadow-cyber-glow/10">
+                      <Cpu size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white tracking-tight">ระบบ Aetox RAG</h4>
+                      <p className="text-xs text-cyber-blue font-black uppercase tracking-widest">เทคโนโลยีอัจฉริยะยุคใหม่</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center py-4 border-b border-white/10">
+                      <span className="text-gray-300 font-medium">ความเร็วต่อคำถาม</span>
+                      <span className="text-cyber-blue font-black text-xl italic">3 - 10 วินาที</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-white/10">
+                      <span className="text-gray-300 font-medium">กำลังการรองรับ (Capacity)</span>
+                      <span className="text-emerald-400 font-black text-xl tracking-tighter">1,000+ เคส / วัน</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-white/10">
+                      <span className="text-gray-300 font-medium">เวลาทำงาน</span>
+                      <span className="text-emerald-400 font-black tracking-widest uppercase">24 ชม. ไร้รอยต่อ</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4">
+                      <span className="text-gray-300 font-bold">ค่าดูแลระบบ / API</span>
+                      <span className="text-cyber-blue font-black text-3xl">8,000.-</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Final Verdict Card */}
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              className="bg-emerald-500/10 border border-emerald-500/30 p-10 rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden group"
+            >
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-emerald-500/5 to-transparent pointer-events-none" />
+              
+              <div className="space-y-4 relative z-10 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-widest border border-emerald-500/20">
+                  <CheckCircle2 size={14} /> ผลลัพธ์เชิงธุรกิจที่วัดผลได้จริง
+                </div>
+                <h4 className="text-3xl font-bold text-white tracking-tight leading-tight">รองรับงานเพิ่มขึ้น <span className="text-emerald-400">4 เท่า</span> โดยลดต้นทุนลง <span className="text-emerald-400">90%</span></h4>
+                <p className="text-gray-400 text-base font-medium max-w-xl">
+                  ปลดล็อกข้อจำกัดของจำนวนพนักงาน ลูกค้าไม่ต้องรอนานอีกต่อไป และความแม่นยำสูงขึ้น 99% ด้วยระบบอ้างอิงเอกสารอัตโนมัติ
+                </p>
+              </div>
+
+              <div className="bg-black/40 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 text-center md:text-right min-w-[300px] shadow-2xl relative z-10">
+                <p className="text-gray-500 text-xs font-black uppercase tracking-widest mb-2">ประหยัดงบประมาณทันที</p>
+                <div className="flex items-baseline justify-center md:justify-end gap-3 text-emerald-400">
+                  <span className="text-6xl font-black tracking-tighter">67,000.-</span>
+                  <span className="text-lg font-bold tracking-tight opacity-70">บาท / เดือน</span>
+                </div>
+                <p className="text-[10px] text-gray-600 mt-4 font-mono uppercase tracking-widest leading-relaxed italic">
+                  * คำนวณจากส่วนต่างระหว่างค่าแรงทีมงาน 5 คน <br/> ชนกับค่าบริการ Aetox AI ขั้นพื้นฐาน
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
 
           <div className="w-full h-px bg-white/5 my-4" />
@@ -308,8 +394,8 @@ export default function AiAgentsSimulator({ dict }: AiAgentsSimulatorProps) {
                       <tr>
                         <th className="px-8 py-6 font-black uppercase tracking-widest w-[40%]">คุณสมบัติ</th>
                         <th className="px-8 py-6 font-black uppercase tracking-widest w-[30%] opacity-40">AI ทั่วไป</th>
-                        <th className="px-8 py-6 font-black uppercase tracking-widest text-cyber-blue w-[30%] flex items-center gap-2">
-                          <CheckCircle2 size={16} /> Aetox RAG
+                        <th className="px-8 py-6 font-black tracking-widest text-cyber-blue w-[30%] flex items-center gap-2">
+                          <CheckCircle2 size={16} /> <span className="font-black">AETOX RAG</span>
                         </th>
                       </tr>
                     </thead>

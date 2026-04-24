@@ -78,9 +78,9 @@ export const aiAgentsContent = {
     ]
   },
   simulator: {
-    title: "จำลองการทำงาน Aetox Custom AI (RAG)",
-    subtitle: "Aetox Enterprise AI Engine",
-    description: "เชื่อมต่อข้อมูลภายในองค์กร (Internal Knowledge Base) เพื่อการค้นหาที่แม่นยำ พร้อมอ้างอิงเอกสารจริง",
+    title: "RAG System",
+    subtitle: "ทดสอบการทำงานของระบบประมวลผลอัจฉริยะ",
+    description: "ลองสลับ Use Cases เพื่อดูว่าระบบ RAG ค้นหาข้อมูลจากฐานข้อมูลบริษัทมาตอบคำถามได้อย่างไร พร้อมเปรียบเทียบความคุ้มค่าที่เกิดขึ้นจริง",
     useCases: {
       hr: {
         id: 'hr',
