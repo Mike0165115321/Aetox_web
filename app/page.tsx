@@ -18,12 +18,12 @@ export default async function Home() {
 
   const homeSections: NavSection[] = [
     { id: 'hero', label: 'Hook (จุดเริ่มต้น)', num: '01', icon: <Sparkles size={18} /> },
-    { id: 'pain', label: 'Pain (ปัญหาที่เจอ)', num: '02', icon: <AlertTriangle size={18} />, offset: 60 },
+    { id: 'pain', label: 'Pain (ปัญหาที่เจอ)', num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
     { id: 'trust', label: 'Trust (ความเชื่อมั่น)', num: '03', icon: <Award size={18} />, offset: 60 },
     { id: 'services', label: 'Proof (ระบบของเรา)', num: '04', icon: <Layers size={18} />, offset: 80 },
-    { id: 'roi-calculator', label: 'Money (ความคุ้มค่า)', num: '05', icon: <Calculator size={18} />, offset: 100 },
+    { id: 'roi-calculator', label: 'Money (ความคุ้มค่า)', num: '05', icon: <Calculator size={18} />, offset: 10 },
     { id: 'security', label: 'Logic (ความปลอดภัย)', num: '06', icon: <ShieldCheck size={18} />, offset: 80 },
-    { id: 'about', label: 'Close (สรุปผล)', num: '07', icon: <MessageSquare size={18} />, offset: 0 },
+    { id: 'about', label: 'Close (สรุปผล)', num: '07', icon: <MessageSquare size={18} />, offset: 65 },
   ];
 
   const featuredProjects = [
