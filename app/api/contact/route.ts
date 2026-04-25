@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-// สร้าง Instance ของ Resend ด้วย API Key ที่ Founder ให้มา
-const resend = new Resend('re_QYztPYUu_32mZGKV7QAkHk8LndZP8ZsFN');
+// สร้าง Instance ของ Resend ด้วย API Key จาก Environment Variable
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
