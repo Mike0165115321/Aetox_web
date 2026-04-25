@@ -72,21 +72,10 @@ export default function ArchitectureBuilder() {
 
   const activeConfig = selectedSystem !== 'none' ? systemConfigs[selectedSystem] : null;
 
-  // ─── Mobile Guided Flow View ───
-  const MobileGuidedFlow = () => {
-    const questions = [
-      {
-        id: 'goal',
-        q: 'เป้าหมายหลักของระบบคุณคืออะไร?',
-        options: [
-          { label: 'ขายของ / บริการลูกค้า (B2C)', value: 'ecommerce' as SystemType },
-          { label: 'จัดการงานภายในองค์กร (B2B)', value: 'internal' as SystemType },
-          { label: 'วิเคราะห์ข้อมูล / ใช้ AI', value: 'data' as SystemType }
-        ]
-      }
-    ];
-
-    return (
+  // ─── Render Logic ───
+  return (
+    <div className="w-full">
+      {/* ─── Mobile View ─── */}
       <div className="md:hidden space-y-6">
         <AnimatePresence mode="wait">
           {selectedSystem === 'none' ? (
@@ -99,9 +88,13 @@ export default function ArchitectureBuilder() {
             >
               <div className="glass-card p-6 rounded-3xl border-white/10 bg-black/40">
                 <p className="text-cyber-blue font-black text-[10px] uppercase tracking-widest mb-4">Strategic Question</p>
-                <h3 className="text-xl font-bold text-white mb-8 leading-tight">{questions[0].q}</h3>
+                <h3 className="text-xl font-bold text-white mb-8 leading-tight">เป้าหมายหลักของระบบคุณคืออะไร?</h3>
                 <div className="space-y-3">
-                  {questions[0].options.map((opt) => (
+                  {[
+                    { label: 'ขายของ / บริการลูกค้า (B2C)', value: 'ecommerce' as SystemType },
+                    { label: 'จัดการงานภายในองค์กร (B2B)', value: 'internal' as SystemType },
+                    { label: 'วิเคราะห์ข้อมูล / ใช้ AI', value: 'data' as SystemType }
+                  ].map((opt) => (
                     <button
                       key={opt.value}
                       onClick={() => handleStartBuild(opt.value)}
@@ -121,30 +114,62 @@ export default function ArchitectureBuilder() {
               className="space-y-4"
             >
               {/* Strategic Result Badge */}
-              <div className="bg-cyber-blue/10 border border-cyber-blue/30 p-4 rounded-2xl flex items-center gap-3">
-                <ShieldCheck className="text-cyber-blue" size={24} />
-                <div>
-                  <p className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Recommended Architecture</p>
-                  <p className="text-white font-bold">{activeConfig?.title}</p>
+              <div className="bg-cyber-blue/10 border border-cyber-blue/30 p-4 rounded-2xl flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <ShieldCheck className="text-cyber-blue" size={24} />
+                  <div>
+                    <p className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Architecture</p>
+                    <p className="text-white font-bold">{activeConfig?.title}</p>
+                  </div>
                 </div>
+                {isBuilding && (
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+                    <Zap size={12} className="text-amber-400 animate-pulse" />
+                    <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Building</span>
+                  </div>
+                )}
               </div>
 
               {/* Stack Detail */}
               <div className="glass-card p-6 rounded-3xl border-white/10 bg-black/60 space-y-4">
-                <p className="text-gray-400 text-xs leading-relaxed font-medium mb-4 italic">"{activeConfig?.impact}"</p>
+                <AnimatePresence>
+                  {buildStep === 5 && (
+                    <motion.p 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="text-emerald-400 text-xs leading-relaxed font-bold mb-4"
+                    >
+                      "{activeConfig?.impact}"
+                    </motion.p>
+                  )}
+                </AnimatePresence>
                 
-                <div className="space-y-2">
-                  {activeConfig?.layers.map((layer, idx) => (
-                    <div key={idx} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
-                      <layer.icon size={16} className={layer.color} />
-                      <span className="text-[11px] font-bold text-gray-300">{layer.name}</span>
-                    </div>
-                  ))}
+                <div className="flex flex-col-reverse gap-2">
+                  {activeConfig?.layers.map((layer, idx) => {
+                    const isVisible = buildStep > idx;
+                    return (
+                      <motion.div 
+                        key={idx} 
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                        className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-500 ${
+                          isVisible ? `${layer.bg} ${layer.border}` : 'border-transparent opacity-0'
+                        }`}
+                      >
+                        <layer.icon size={16} className={layer.color} />
+                        <div className="flex-1">
+                          <span className="text-[11px] font-bold text-gray-300">{layer.name}</span>
+                        </div>
+                        <span className="text-[8px] text-gray-500 font-bold uppercase">Layer 0{idx + 1}</span>
+                      </motion.div>
+                    );
+                  })}
                 </div>
 
                 <button 
                   onClick={() => setSelectedSystem('none')}
-                  className="w-full mt-6 py-3 rounded-xl border border-white/10 text-[11px] font-black text-gray-500 uppercase tracking-widest"
+                  disabled={isBuilding}
+                  className="w-full mt-6 py-3 rounded-xl border border-white/10 text-[11px] font-black text-gray-500 uppercase tracking-widest disabled:opacity-30"
                 >
                   เริ่มการวิเคราะห์ใหม่
                 </button>
@@ -153,13 +178,6 @@ export default function ArchitectureBuilder() {
           )}
         </AnimatePresence>
       </div>
-    );
-  };
-
-  return (
-    <div className="w-full">
-      {/* ─── Mobile View ─── */}
-      <MobileGuidedFlow />
 
       {/* ─── Desktop View (Preserved) ─── */}
       <div className="hidden md:block w-full glass-card rounded-[24px] border border-white/10 shadow-2xl overflow-hidden bg-black/40">
