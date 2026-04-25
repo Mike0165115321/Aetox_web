@@ -73,7 +73,7 @@ export default function PainSection({ dict }: { dict: any }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-white mb-6 leading-[1.2]"
+            className="text-2xl md:text-5xl font-bold text-white mb-6 leading-[1.2]"
           >
             {dict.title}
           </motion.h2>
@@ -83,7 +83,7 @@ export default function PainSection({ dict }: { dict: any }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-400 text-lg md:text-xl leading-relaxed font-medium"
+            className="text-base md:text-xl leading-relaxed font-medium text-gray-400"
           >
             {dict.subtitle}
           </motion.p>

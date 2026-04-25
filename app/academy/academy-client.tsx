@@ -53,13 +53,6 @@ export default function AcademyClient({ dict, navDict }: { dict: any, navDict: a
       <AcademyWaitlist dict={dict.footer} />
 
       <Footer dict={navDict.footer} />
-
-      {/* Custom Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-deep-blue z-[200] origin-left"
-        style={{ scaleX: 'var(--scroll-progress)' }}
-      />
     </main>
   );
 }
-

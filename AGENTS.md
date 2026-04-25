@@ -1,47 +1,43 @@
-# AETOX.DEV Project Charter & AI Guidelines
+## [AGENT EXECUTION CONTROL]
 
-Welcome, Agent. You are assisting in the development of **Aetox.dev**, a high-end B2B landing page for a Software Engineering Architect & National AI Gold Medalist. 
+1. Scope Discipline
+The agent MUST NOT execute beyond the explicitly defined scope of the task.
+If the instruction is ambiguous, incomplete, or open to interpretation, the agent MUST pause and ask clarifying questions BEFORE proceeding.
 
-**[PRIME DIRECTIVE]**
-Everything you build here must balance Technical Excellence with Business Conversion. You are not just writing code; you are building a "Closing Engine".
+2. Clarification First
+The agent is strictly prohibited from making assumptions in unclear scenarios.
+No work should begin until sufficient clarity is achieved.
 
----
+3. Proposal Before Execution
+If the agent identifies a potentially better approach, optimization, or alternative solution:
+- The agent MUST present the proposal first
+- Clearly explain why it is superior (performance, UX, conversion, maintainability)
+- WAIT for explicit approval before executing
 
-## 1. Brand Identity & Tone
-- **Tone**: Corporate Premium, B2B, Strategic Technology Partner.
-- **The Founder**: Mike (Chayapol Promsavana) - National AI Gold Medalist.
-- **Core Positioning**: We solve business problems by engineering scalable AI and Automation systems.
-- **Value Proposition**: We don’t just write code — we design systems that reduce manual work, increase speed, and enable real business growth.
-- **No Emojis in UI**: Use professional language and SVG/Lucide icons only for the actual frontend interface.
+4. No Silent Optimization
+The agent MUST NOT modify, refactor, or “improve” any logic, UI, or structure without explicit instruction or approval.
 
-## 2. Design System (Ultra Dark Cyberpunk)
-- **Background**: `#0A0F1C` (Tailwind: `bg-ultra-dark`)
-- **Accent 1 (Cyan)**: `#06B6D4` (Tailwind: `text-cyber-blue`)
-- **Accent 2 (Blue)**: `#3B82F6` (Tailwind: `text-deep-blue`)
-- **Glassmorphism**: 
-  - Use the `.glass-card` utility class.
-  - Cards MUST have `backdrop-blur-2xl`, subtle white borders (`border-white/10`), and an inner reflection (`border-t-white/20`).
-- **Glow**: Use `shadow-cyber-glow` or `shadow-deep-glow` for hover interactions.
+5. Controlled Initiative
+The agent may suggest improvements, but MUST NOT act on them autonomously.
 
-## 3. Tech Stack Requirements
-- **Framework**: Next.js (App Router).
-- **Styling**: Tailwind CSS (Configuration is in `tailwind.config.js`).
-- **Animations**: Framer Motion (Keep them subtle, smooth, and high-end).
-- **Type Safety**: TypeScript (`.tsx`) is the standard for all new components.
-- **Icons**: `lucide-react`. If an icon is missing, use an inline SVG.
-- **Modular Architecture**: Strictly enforce component separation (UI, Logic, Data) with a maximum of 300 lines per file to prevent monolithic code structures.
-- **No Unauthorized Dependencies**: Restrict imports exclusively to the approved stack (Tailwind, Framer Motion, Lucide) unless explicitly authorized by the Founder.
-- **Executive Thai Language**: Generated Thai copy must be concise, impactful, and match C-Level business communication standards, strictly avoiding any robotic or direct-translation phrasing.
+6. Execution Mode
+Only after approval is given, the agent may proceed with precise and scoped execution — no deviation allowed.
+## 5. Agent Execution Control (Strict)
 
-## 4. Layout & Interaction Standards (Strict)
-- **Conversion-First Layout**: Always follow the 7-Step Funnel Flow (Hook → Pain → Trust → Engage → Money → Logic → Close).
-- **Centered Navigation**: The Navbar menu must always be centered relative to the viewport (`absolute left-1/2 -translate-x-1/2`).
-- **Consistent Spacing**: All major sections must use `container mx-auto` to ensure perfectly aligned horizontal edges.
-- **Tactile Feedback**: All buttons and interactive cards must include an `active:scale-95` transition.
-- **Z-Index Management**: Navbar must always have `z-[100]` to stay above all animations.
-- **Dynamic Engagement**: Calculators or sliders must update resulting monetary values in real-time.
+- Scope Control:
+The agent MUST NOT execute beyond the explicitly defined task scope.
 
----
+- Clarification Rule:
+If any instruction is ambiguous, incomplete, or open to interpretation, the agent MUST pause and ask for clarification BEFORE starting.
 
-> [!IMPORTANT]
-> This file is the Source of Truth for the Aetox brand's technical and visual foundation. Combine this with the Conversion Rules to maintain a "National Gold Medalist" level of quality.
+- Proposal Rule:
+If a better approach, optimization, or alternative solution is identified, the agent MUST present it clearly and WAIT for approval before execution.
+
+- No Assumptions:
+The agent MUST NOT make assumptions or fill gaps without confirmation.
+
+- No Silent Changes:
+The agent MUST NOT refactor, optimize, or alter any logic, UI, or structure unless explicitly instructed.
+
+- Execution Discipline:
+Once approved, execution must be precise and strictly within scope — no deviation.

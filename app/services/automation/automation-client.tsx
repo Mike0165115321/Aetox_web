@@ -14,7 +14,6 @@ import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { FeatureItem } from './components/shared-components';
 import { PriorityQueueVisual, ScalableBotsVisual, ObservabilityVisual } from './components/pillar-visuals';
 import AutomationShowcase from './components/automation-showcase';
-
 export default function AutomationClient({ dict, navDict }: { dict: any, navDict: any }) {
   const sections: NavSection[] = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },

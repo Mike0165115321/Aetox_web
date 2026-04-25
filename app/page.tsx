@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles, AlertTriangle, Award, Layers, Calculator, ShieldCheck, MessageSquare } from 'lucide-react';
 import { getDictionary } from '@/data/dictionaries';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
+import { bookmind, robotGuide, treesBot } from '@/data/content/th/projects/items';
 
 export default async function Home() {
   const dict = await getDictionary('th', 'home');
@@ -23,6 +24,33 @@ export default async function Home() {
     { id: 'roi-calculator', label: 'Money (ความคุ้มค่า)', num: '05', icon: <Calculator size={18} />, offset: 100 },
     { id: 'security', label: 'Logic (ความปลอดภัย)', num: '06', icon: <ShieldCheck size={18} />, offset: 80 },
     { id: 'about', label: 'Close (สรุปผล)', num: '07', icon: <MessageSquare size={18} />, offset: 0 },
+  ];
+
+  const featuredProjects = [
+    { 
+      id: bookmind.id, 
+      title: bookmind.title, 
+      description: bookmind.description, 
+      image: bookmind.image, 
+      slug: bookmind.slug, 
+      category: bookmind.category 
+    },
+    { 
+      id: robotGuide.id, 
+      title: robotGuide.title, 
+      description: robotGuide.description, 
+      image: robotGuide.image, 
+      slug: robotGuide.slug, 
+      category: robotGuide.category 
+    },
+    { 
+      id: treesBot.id, 
+      title: treesBot.title, 
+      description: treesBot.description, 
+      image: treesBot.image, 
+      slug: treesBot.slug, 
+      category: treesBot.category 
+    },
   ];
 
   return (
@@ -41,7 +69,7 @@ export default async function Home() {
       <PainSection dict={dict.pain} />
 
       {/* 3. Trust (Founder & Expertise) */}
-      <TrustSection dict={dict.trust} />
+      <TrustSection dict={dict.trust} projects={featuredProjects} />
 
       {/* 4. Proof (Services & Capabilities) */}
       <div id="services">

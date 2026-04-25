@@ -124,14 +124,25 @@ export default function AutomationShowcase({ steps }: { steps: any[] }) {
     ),
   ];
 
-
   return (
     <div className="space-y-6">
       <div className="glass-card rounded-[32px] border border-white/10 overflow-hidden relative h-[520px] lg:h-[600px] flex flex-col">
         <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-10" />
-        <AnimatePresence mode="wait">
-          <motion.div key={activeStep} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.02 }} transition={{ duration: 0.4 }} className="absolute inset-0 flex flex-col">
-            {/* Visual Area - reduced flex slightly to give text more room */}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div 
+            key={activeStep} 
+            initial={{ opacity: 0, x: 40, scale: 0.95 }} 
+            animate={{ opacity: 1, x: 0, scale: 1 }} 
+            exit={{ opacity: 0, x: -40, scale: 1.05 }} 
+            transition={{ 
+              type: "spring",
+              stiffness: 120,
+              damping: 20,
+              mass: 1
+            }} 
+            className="absolute inset-0 flex flex-col"
+          >
+            {/* Visual Area */}
             <div className="flex-[1.2] bg-gradient-to-b from-transparent to-black/40 relative overflow-hidden min-h-0">
               {visuals[activeStep]}
             </div>
@@ -139,12 +150,31 @@ export default function AutomationShowcase({ steps }: { steps: any[] }) {
             {/* Text Content Area */}
             <div className="p-8 lg:p-10 bg-ultra-dark/95 backdrop-blur-2xl border-t border-white/5 space-y-4 shrink-0">
               <div className="space-y-1">
-                <span className="text-deep-blue text-[10px] font-black uppercase tracking-[0.25em] opacity-80">{steps[activeStep].subtitle}</span>
-                <h3 className="text-2xl lg:text-3xl font-black text-white leading-tight">{steps[activeStep].title}</h3>
+                <motion.span 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 0.8, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-deep-blue text-[10px] font-black uppercase tracking-[0.25em]"
+                >
+                  {steps[activeStep].subtitle}
+                </motion.span>
+                <motion.h3 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl lg:text-3xl font-black text-white leading-tight"
+                >
+                  {steps[activeStep].title}
+                </motion.h3>
               </div>
-              <p className="text-gray-400 text-sm lg:text-base leading-relaxed line-clamp-3">
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-gray-400 text-sm lg:text-base leading-relaxed line-clamp-3"
+              >
                 {steps[activeStep].desc}
-              </p>
+              </motion.p>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -158,7 +188,7 @@ export default function AutomationShowcase({ steps }: { steps: any[] }) {
             <button 
               key={i} 
               onClick={() => setActiveStep(i)} 
-              className={`h-1.5 transition-all duration-500 rounded-full ${activeStep === i ? 'w-12 bg-deep-blue shadow-deep-glow' : 'w-4 bg-white/10 hover:bg-white/20'}`} 
+              className={`h-1.5 transition-all duration-500 rounded-full active:scale-90 ${activeStep === i ? 'w-12 bg-deep-blue shadow-deep-glow' : 'w-4 bg-white/10 hover:bg-white/20'}`} 
             />
           ))}
         </div>
@@ -167,19 +197,18 @@ export default function AutomationShowcase({ steps }: { steps: any[] }) {
         <div className="flex gap-3">
           <button 
             onClick={() => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length)} 
-            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 hover:border-deep-blue/30 transition-all active:scale-90"
+            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 hover:border-deep-blue/30 transition-all active:scale-75 hover:scale-105"
           >
             ←
           </button>
           <button 
             onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} 
-            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-deep-blue/20 hover:border-deep-blue/50 transition-all shadow-deep-glow/10 active:scale-90"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-deep-blue/20 hover:border-deep-blue/50 transition-all shadow-deep-glow/10 active:scale-75 hover:scale-105"
           >
             →
           </button>
         </div>
       </div>
-
     </div>
   );
 }

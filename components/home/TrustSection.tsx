@@ -1,10 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Award, Shield, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Award, Shield, CheckCircle2, ArrowRight, Layout } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ProjectSlider from './ProjectSlider';
 
-export default function TrustSection({ dict }: { dict: any }) {
+export default function TrustSection({ dict, projects }: { dict: any, projects: any[] }) {
   if (!dict) return null;
   const { founder, standards } = dict;
 
@@ -32,96 +33,116 @@ export default function TrustSection({ dict }: { dict: any }) {
                   <Award size={14} /> {founder.accolade}
                 </div>
 
-                <div className="space-y-6">
-                  <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
+                <div className="space-y-4 md:space-y-6">
+                  <h2 className="text-2xl md:text-4xl font-black text-white leading-tight text-balance">
                     {founder.name}
                   </h2>
-                  <p className="text-cyber-blue font-bold tracking-widest uppercase text-sm">
+                  <p className="text-cyber-blue font-bold tracking-[0.2em] uppercase text-[10px] md:text-sm">
                     {founder.title}
                   </p>
-                  <p className="text-gray-400 text-lg leading-relaxed font-medium">
+                  <p className="text-gray-400 text-sm md:text-lg leading-relaxed font-medium">
                     {founder.description}
                   </p>
                 </div>
 
-                <div className="mt-10 pt-10 border-t border-white/5 space-y-4">
+                <div className="mt-8 md:mt-10 pt-8 md:pt-10 border-t border-white/5 space-y-3 md:space-y-4">
                   {standards.map((std: string, i: number) => (
-                    <div key={i} className="flex items-center gap-3 text-white font-bold text-sm">
-                      <CheckCircle2 className="text-cyber-blue shrink-0" size={18} />
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 + i * 0.1, type: "spring" }}
+                      className="flex items-center gap-3 text-white font-bold text-xs md:text-sm"
+                    >
+                      <CheckCircle2 className="text-cyber-blue shrink-0" size={16} />
                       {std}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
-                <div className="mt-12">
-                  <Link href="/contact" className="inline-flex items-center gap-2 text-white font-black text-sm uppercase tracking-widest group">
-                    พูดคุยกับสถาปนิกโดยตรง <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                <div className="mt-8 md:mt-12">
+                  <Link href="/contact" className="inline-flex items-center gap-2 text-white font-black text-xs md:text-sm uppercase tracking-widest group">
+                    พูดคุยกับสถาปนิกโดยตรง <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}><ArrowRight size={14} /></motion.div>
                   </Link>
                 </div>
               </div>
 
-              {/* Decorative Medal Image */}
+              {/* Award Ceremony Photo Spot */}
               <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-10 -right-10 w-32 h-32 hidden md:block"
+                initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.5 }}
+                className="absolute -top-12 -right-12 w-48 h-48 hidden xl:block group"
               >
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-yellow-500/30 shadow-2xl">
-                   <Image 
-                    src="/images/home/medal.png" 
-                    alt="Gold Medal" 
-                    fill 
-                    sizes="128px"
-                    className="object-cover"
+                <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-yellow-500/30 shadow-2xl bg-black/60 backdrop-blur-xl flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-yellow-500/20 to-transparent pointer-events-none" />
+                  
+                  <Image 
+                    src="/images/home/architecture.jpg"
+                    alt="Award Ceremony"
+                    fill
+                    sizes="192px"
+                    className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                    onError={(e) => {
+                      (e.target as any).style.display = 'none';
+                    }}
                   />
+                  
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Award className="w-12 h-12 text-yellow-500/40 group-hover:scale-110 group-hover:text-yellow-500 transition-all relative z-10" />
+                  </motion.div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 bg-yellow-500 text-black text-[9px] font-black px-3 py-1 rounded-lg shadow-cyber-glow">
+                   GOLD MEDALIST
                 </div>
               </motion.div>
             </motion.div>
           </div>
 
-          {/* Right: Visual Proof / Architecture */}
+          {/* Right: Elite Projects Slider */}
           <div className="w-full lg:w-7/12">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative aspect-video rounded-[40px] overflow-hidden border border-white/10 group shadow-2xl"
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="space-y-6"
             >
-              <Image 
-                src="/images/home/architecture.png" 
-                alt="System Architecture" 
-                fill 
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-                className="object-cover group-hover:scale-110 transition-transform duration-1000"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              
-              <div className="absolute bottom-0 left-0 p-10 w-full">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <p className="text-cyber-blue font-black text-xs tracking-widest uppercase">System Showcase</p>
-                    <h3 className="text-xl font-bold text-white">Enterprise Scalable Architecture</h3>
-                  </div>
-                  <div className="flex gap-2">
-                    <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
-                    <div className="w-2 h-2 rounded-full bg-cyber-blue/50 animate-pulse delay-75" />
-                    <div className="w-2 h-2 rounded-full bg-cyber-blue/20 animate-pulse delay-150" />
-                  </div>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-3">
+                   <div className="w-2 h-2 rounded-full bg-cyber-blue shadow-cyber-glow animate-pulse" />
+                   <p className="text-white font-black text-xs uppercase tracking-[0.3em]">Elite Project Showcase</p>
                 </div>
+                <Link href="/authority" className="text-gray-500 hover:text-cyber-blue text-[10px] font-bold uppercase tracking-widest transition-colors">
+                  ดูผลงานทั้งหมด
+                </Link>
               </div>
+
+              <ProjectSlider projects={projects} />
             </motion.div>
 
-            <div className="grid grid-cols-2 gap-6 mt-6">
-              <div className="glass-card p-6 rounded-3xl border border-white/5 bg-white/5">
-                <Shield className="text-cyber-blue mb-4" size={24} />
-                <h4 className="text-white font-bold mb-2">Technical Excellence</h4>
-                <p className="text-gray-500 text-sm font-medium">ออกแบบตามมาตรฐานสูงสุดเพื่อความเสถียรในระดับวินาที</p>
-              </div>
-              <div className="glass-card p-6 rounded-3xl border border-white/5 bg-white/5">
-                <CheckCircle2 className="text-cyber-blue mb-4" size={24} />
-                <h4 className="text-white font-bold mb-2">Business Result</h4>
-                <p className="text-gray-500 text-sm font-medium">ทุกบรรทัดของโค้ดต้องตอบโจทย์ความคุ้มค่าทางธุรกิจ</p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              {[
+                { icon: Shield, title: 'Technical Excellence', desc: 'ออกแบบตามมาตรฐานสูงสุดเพื่อความเสถียรในระดับวินาที' },
+                { icon: CheckCircle2, title: 'Business Result', desc: 'ทุกบรรทัดของโค้ดต้องตอบโจทย์ความคุ้มค่าทางธุรกิจ' }
+              ].map((item, idx) => (
+                <motion.div 
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 + idx * 0.1, type: "spring" }}
+                  className="glass-card p-6 rounded-3xl border border-white/5 bg-white/5 hover:border-cyber-blue/30 transition-all group"
+                >
+                  <item.icon className="text-cyber-blue mb-4 group-hover:scale-110 transition-transform" size={24} />
+                  <h4 className="text-white font-bold mb-2 group-hover:text-cyber-blue transition-colors">{item.title}</h4>
+                  <p className="text-gray-500 text-sm font-medium">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
 

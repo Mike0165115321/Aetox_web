@@ -21,7 +21,7 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left: Category Navigation */}
+          {/* Left: Category Navigation (Always visible, stacks on mobile) */}
           <div className="lg:col-span-5 space-y-4">
             {categories.map((cat) => {
               const Icon = iconMap[cat.icon];
@@ -32,24 +32,25 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
                   className={`
-                    w-full p-8 rounded-3xl border text-left transition-all duration-500 relative overflow-hidden group
+                    w-full p-6 md:p-8 rounded-3xl border text-left transition-all duration-500 relative overflow-hidden group
+                    active:scale-[0.98]
                     ${isActive 
                       ? 'bg-deep-blue border-deep-blue shadow-deep-glow' 
                       : 'bg-white/5 border-white/10 hover:bg-white/10'}
                   `}
                 >
-                  <div className="flex items-center gap-6 relative z-10">
+                  <div className="flex items-center gap-4 md:gap-6 relative z-10">
                     <div className={`
-                      w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500
+                      w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center transition-all duration-500
                       ${isActive ? 'bg-white text-deep-blue' : 'bg-white/10 text-gray-400 group-hover:scale-110'}
                     `}>
-                      <Icon className="w-7 h-7" />
+                      <Icon className="w-6 h-6 md:w-7 md:h-7" />
                     </div>
                     <div className="flex-1">
-                      <p className={`text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${isActive ? 'text-white/70' : 'text-gray-500'}`}>
+                      <p className={`text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${isActive ? 'text-white/70' : 'text-gray-500'}`}>
                         {cat.subtitle}
                       </p>
-                      <h3 className={`text-xl font-bold ${isActive ? 'text-white' : 'text-gray-300'}`}>
+                      <h3 className={`text-lg md:text-xl font-bold ${isActive ? 'text-white' : 'text-gray-300'}`}>
                         {cat.title}
                       </h3>
                     </div>
@@ -67,7 +68,7 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
             })}
           </div>
 
-          {/* Right: Skill Details Display */}
+          {/* Right: Skill Details Display (Visible on all screens, stacks below navigation on mobile) */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               {categories.map((cat) => cat.id === activeCategory && (
@@ -76,32 +77,32 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="glass-card p-10 md:p-16 rounded-[40px] border-white/5 bg-black/40 relative min-h-[500px] flex flex-col"
+                  className="glass-card p-8 md:p-16 rounded-[32px] md:rounded-[40px] border-white/5 bg-black/40 relative min-h-[400px] md:min-h-[500px] flex flex-col"
                 >
-                  <div className="space-y-8 relative z-10 flex-1">
+                  <div className="space-y-6 md:space-y-8 relative z-10 flex-1">
                     <div className="space-y-4">
-                      <h4 className="text-3xl font-black text-white">{cat.title}</h4>
-                      <p className="text-xl text-gray-400 leading-relaxed max-w-lg font-medium italic">
+                      <h4 className="text-2xl md:text-3xl font-black text-white">{cat.title}</h4>
+                      <p className="text-base md:text-xl text-gray-400 leading-relaxed max-w-lg font-medium italic">
                         " {cat.description} "
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-4 pt-8">
+                    <div className="grid grid-cols-1 gap-3 md:gap-4 pt-4 md:pt-8">
                       {cat.skills.map((skill: any, idx: number) => (
                         <motion.div
                           key={idx}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.1 }}
-                          className="flex items-center justify-between p-6 rounded-2xl bg-white/5 border border-white/10 group hover:border-deep-blue/40 transition-colors"
+                          className="flex items-center justify-between p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 group hover:border-deep-blue/40 transition-colors"
                         >
-                          <div className="flex items-center gap-4">
-                            <div className="w-2 h-2 rounded-full bg-deep-blue shadow-deep-glow group-hover:scale-150 transition-transform" />
-                            <span className="text-white font-bold text-lg">{skill.name}</span>
+                          <div className="flex items-center gap-3 md:gap-4">
+                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-deep-blue shadow-deep-glow group-hover:scale-150 transition-transform" />
+                            <span className="text-white font-bold text-base md:text-lg">{skill.name}</span>
                           </div>
-                          <div className="px-4 py-1.5 rounded-full bg-deep-blue/10 border border-deep-blue/20 flex items-center gap-2">
-                            <Target className="w-3 h-3 text-deep-blue" />
-                            <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest">{skill.value}</span>
+                          <div className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-deep-blue/10 border border-deep-blue/20 flex items-center gap-2">
+                            <Target className="w-2.5 h-2.5 md:w-3 md:h-3 text-deep-blue" />
+                            <span className="text-[8px] md:text-[10px] font-black text-deep-blue uppercase tracking-widest">{skill.value}</span>
                           </div>
                         </motion.div>
                       ))}
@@ -109,10 +110,10 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
                   </div>
 
                   {/* Decorative Subtle Icon Background */}
-                  <div className="absolute bottom-10 right-10 opacity-[0.03] pointer-events-none">
+                  <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 opacity-[0.02] md:opacity-[0.03] pointer-events-none">
                     {(() => {
                       const Icon = iconMap[cat.icon];
-                      return <Icon className="w-64 h-64 text-white" />;
+                      return <Icon className="w-48 h-48 md:w-64 md:h-64 text-white" />;
                     })()}
                   </div>
                 </motion.div>

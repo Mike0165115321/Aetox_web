@@ -115,7 +115,8 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative">
+        {/* Desktop Horizontal Line */}
         <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent z-0" />
         
         {pipeline.steps.map((step: any, idx: number) => (
@@ -126,12 +127,17 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
             transition={{ delay: idx * 0.15 }}
             className="relative z-10 space-y-6 text-center group"
           >
-            <div className="w-24 h-24 rounded-3xl bg-ultra-dark border border-white/5 mx-auto flex items-center justify-center relative shadow-2xl group-hover:border-cyber-blue/40 transition-all group-hover:-translate-y-2 duration-500">
+            {/* Mobile Vertical Line */}
+            {idx < pipeline.steps.length - 1 && (
+              <div className="md:hidden absolute top-24 left-1/2 -translate-x-1/2 w-[1px] h-12 bg-gradient-to-b from-cyber-blue/30 to-transparent z-0" />
+            )}
+
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-ultra-dark border border-white/5 mx-auto flex items-center justify-center relative shadow-2xl group-hover:border-cyber-blue/40 transition-all group-hover:-translate-y-2 duration-500">
                <div className="absolute inset-0 bg-cyber-blue/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
                <div className="text-gray-500 group-hover:text-cyber-blue transition-colors group-hover:scale-110 duration-500">
                  {iconMap[idx]}
                </div>
-               <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-ultra-dark border border-white/10 flex items-center justify-center text-[10px] font-black text-gray-500 group-hover:text-white group-hover:border-cyber-blue transition-all">
+               <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 w-7 h-7 md:w-8 md:h-8 rounded-full bg-ultra-dark border border-white/10 flex items-center justify-center text-[10px] font-black text-gray-500 group-hover:text-white group-hover:border-cyber-blue transition-all">
                  0{idx + 1}
                </div>
             </div>

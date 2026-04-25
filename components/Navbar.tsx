@@ -21,14 +21,21 @@ export default function Navbar({ dict }: { dict?: any }) {
   const ctaLabel = dict?.cta || "ปรึกษาปัญหา";
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 20;
+      setIsScrolled(prev => {
+        if (prev !== scrolled) return scrolled;
+        return prev;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     const handleClickOutside = (event: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(event.target as Node)) {
         setIsLangOpen(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       window.removeEventListener('scroll', handleScroll);

@@ -11,6 +11,8 @@ export default async function AuthorityPage() {
   const navDict = await getDictionary('th', 'navigation');
   
   // Use the newly structured projects data
+  const content = projectsContent;
+  
   const authoritySections: NavSection[] = [
     { id: 'authority-hero', label: 'Overview', num: 'INT', icon: <Rocket size={18} /> },
     { id: 'project-showcase', label: 'Portfolio', num: '01', icon: <Award size={18} />, offset: 80 },

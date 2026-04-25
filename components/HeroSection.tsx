@@ -38,10 +38,10 @@ export default function HeroSection({ dict }: { dict: any }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[1.1]"
+          className="text-[clamp(2.5rem,10vw,4rem)] md:text-8xl font-black text-white tracking-tighter leading-[1.2] md:leading-[1.1] px-4"
         >
-          {content.headline.white} <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue via-deep-blue to-cyber-blue bg-[length:200%_auto] animate-gradient-x">
+          <span className="block mb-2 md:mb-0">{content.headline.white}</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue via-deep-blue to-cyber-blue bg-[length:200%_auto] animate-gradient-x py-2 block md:inline">
             {content.headline.accent}
           </span>
         </motion.h1>
@@ -50,7 +50,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-8 text-lg md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-medium"
+          className="mt-8 text-base md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-medium px-6"
         >
           {content.description}
         </motion.p>

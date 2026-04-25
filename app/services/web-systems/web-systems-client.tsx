@@ -17,7 +17,6 @@ import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { FeatureItem, AppliedIn } from './components/shared-components';
 import { StackArchitectureVisual, DataPipelineVisual, SecurityShieldVisual } from './components/web-visuals';
 import WebShowcase from './components/web-showcase';
-
 export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict: any }) {
   const sections: NavSection[] = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Globe size={16} />, offset: 60 },

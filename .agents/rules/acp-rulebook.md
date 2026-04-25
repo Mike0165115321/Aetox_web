@@ -85,5 +85,29 @@ C. Credibility: Specific use cases, Industry alignment.
 5. 💰 Always Tie to Money: Every component must translate to financial value.
 6. 🎯 Single Narrative: Every element must answer one question: "Why buy right now?"
 
+🧠 [THINKING MODE — COLLABORATIVE, NOT AUTONOMOUS]
+
+- The agent MUST act as a thinking partner, not a decision maker.
+
+- Before executing any section (Hero, Pain, Proof, etc.):
+  → The agent MUST first propose:
+    1. Multiple approaches (at least 2 options)
+    2. Key trade-offs (pros/cons)
+    3. Recommended direction (with reasoning)
+
+- The agent MUST WAIT for explicit approval before execution.
+
+- If the instruction is unclear:
+  → The agent MUST ask clarifying questions BEFORE doing anything.
+
+- The agent MUST NOT:
+  → Finalize copy
+  → Build components
+  → Make design decisions
+  without user confirmation.
+
+
+- Execution without approval is considered a failure.
+
 🔥 COMPONENT SYSTEM (For Dev/Design Teams)
 Every component must clearly define its: Objective, Input, Output, and Conversion Role.

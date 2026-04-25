@@ -20,7 +20,6 @@ import {
 } from './components/visuals';
 import { KnowledgePipeline } from './components/simulator-components';
 import { RagChatSimulator } from './components/rag-chat-simulator';
-
 export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: any }) {
   const sections: NavSection[] = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },

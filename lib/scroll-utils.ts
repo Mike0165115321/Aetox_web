@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 
 export const DEFAULT_NAVBAR_OFFSET = 120;
@@ -64,3 +65,47 @@ export const scrollToSection = (id: string, customOffset?: number) => {
     console.warn(`[ScrollSystem] Element with id "${id}" not found.`);
   }
 };
+
+/**
+ * Hook สำหรับคำนวณ % การเลื่อนหน้าจอ (0 to 1)
+ */
+export function useScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let requestRunning = false;
+
+    const updateScroll = () => {
+      if (requestRunning) return;
+      requestRunning = true;
+
+      window.requestAnimationFrame(() => {
+        const h = document.documentElement;
+        const b = document.body;
+        const st = 'scrollTop';
+        const sh = 'scrollHeight';
+        
+        const scrollHeight = h[sh] || b[sh];
+        const clientHeight = h.clientHeight;
+        const totalHeight = scrollHeight - clientHeight;
+        const currentScroll = h[st] || b[st];
+        
+        const percent = totalHeight > 0 ? Math.min(1, Math.max(0, currentScroll / totalHeight)) : 0;
+        
+        setProgress(prev => {
+          // Avoid tiny updates to prevent re-render loops and improve performance
+          if (Math.abs(prev - percent) < 0.001) return prev;
+          return percent;
+        });
+        
+        requestRunning = false;
+      });
+    };
+
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    updateScroll();
+    return () => window.removeEventListener("scroll", updateScroll);
+  }, []);
+
+  return progress;
+}
