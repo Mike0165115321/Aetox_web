@@ -61,7 +61,7 @@ export default function Navbar({ dict }: { dict?: any }) {
         {/* Left: Logo (Flex-1 เพื่อกันพื้นที่) */}
         <div className="flex-1 flex justify-start">
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <Image src="/images/1001.svg" alt="Aetox Logo" width={40} height={40} className="h-10 w-auto" />
+            <Image src="/images/logo.svg" alt="Aetox Logo" width={40} height={40} className="h-10 w-auto" priority />
             <span className="text-xl font-black tracking-tighter text-white">
               AETO<span className="text-cyber-blue drop-shadow-cyber-glow">X</span>
             </span>

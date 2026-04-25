@@ -25,11 +25,12 @@ export default function HeroSection({ dict }: { dict: any }) {
           className="mb-12 mt-12"
         >
           <Image 
-            src="/images/1001.svg" 
+            src="/images/logo.svg" 
             alt="Aetox Logo" 
             width={160}
             height={160}
             className="w-32 md:w-40 h-auto mx-auto drop-shadow-cyber-glow"
+            priority
           />
         </motion.div>
 
