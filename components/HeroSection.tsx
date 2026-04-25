@@ -61,16 +61,16 @@ export default function HeroSection({ dict }: { dict: any }) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-12 flex flex-col md:flex-row justify-center gap-6 w-full md:w-auto"
         >
-          <button 
-            onClick={() => scrollToSection('roi-calculator')}
+          <Link 
+            href="/services"
             className="group px-10 py-5 rounded-2xl bg-cyber-blue text-black font-black text-lg transition-all shadow-cyber-glow transform active:scale-95 flex items-center justify-center gap-3 hover:shadow-deep-glow"
           >
             {content.cta.primary}
             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-          </button>
+          </Link>
           <Link 
-            href="/contact" 
-            className="px-10 py-5 rounded-2xl border border-white/10 hover:border-cyber-blue/50 text-white font-black text-lg transition-all transform active:scale-95 bg-white/5 backdrop-blur-sm"
+            href="/authority" 
+            className="px-10 py-5 rounded-2xl border border-white/10 hover:border-cyber-blue/50 text-white font-black text-lg transition-all transform active:scale-95 bg-white/5 backdrop-blur-sm flex items-center justify-center"
           >
             {content.cta.secondary}
           </Link>

@@ -6,8 +6,8 @@ export const homeContent = {
     },
     description: "เราไม่ได้แค่เขียนโค้ด แต่เราออกแบบระบบที่อุดรอยรั่วของต้นทุนให้กลายเป็นเครื่องจักรทำเงิน — ด้วย AI Automation และโครงสร้างระดับ Enterprise",
     cta: {
-      primary: "คำนวณความคุ้มค่า (ROI)",
-      secondary: "นัดปรึกษาผู้เชี่ยวชาญ"
+      primary: "ดูบริการทั้งหมด",
+      secondary: "ดูผลงานระดับ Enterprise"
     }
   },
   pain: {
