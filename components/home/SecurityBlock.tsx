@@ -6,7 +6,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="security" className="py-24 relative overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_70%)]" />
       
@@ -63,13 +63,13 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-400 text-[15px] leading-relaxed font-medium">
+                <p className="text-gray-400 text-base leading-relaxed font-medium">
                   {feature.desc}
                 </p>
 
                 <div className="mt-8 pt-8 border-t border-white/5 opacity-50">
-                  <div className="flex items-center gap-2 text-[10px] font-black text-gray-500 uppercase tracking-widest">
-                    <Database size={12} /> มาตรฐานการจัดการข้อมูล 0{index + 1}
+                  <div className="flex items-center gap-2 text-xs font-black text-cyber-blue uppercase tracking-widest">
+                    <ShieldCheck size={12} /> Verified Enterprise Standard
                   </div>
                 </div>
               </motion.div>
@@ -86,15 +86,15 @@ export default function SecurityBlock({ dict }: { dict: any }) {
           className="mt-24 flex flex-wrap justify-center items-center gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-700"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-black text-[10px] text-white">SSL</div>
+            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-black text-xs text-white">SSL</div>
             <span className="font-bold text-white text-xs tracking-widest uppercase">Encryption</span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-black text-[10px] text-white">256</div>
+            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-black text-xs text-white">256</div>
             <span className="font-bold text-white text-xs tracking-widest uppercase">AES Standard</span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-black text-[10px] text-white">SOC</div>
+            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-black text-xs text-white">SOC</div>
             <span className="font-bold text-white text-xs tracking-widest uppercase">Compliant Ready</span>
           </div>
         </motion.div>

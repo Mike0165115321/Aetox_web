@@ -6,7 +6,7 @@ import { scrollToSection } from '@/lib/scroll-utils';
 
 export default function AcademyHero({ dict }: { dict: any }) {
   return (
-    <section className="relative pt-40 pb-32 overflow-hidden">
+    <section id="academy-hero" className="relative pt-40 pb-32 overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-deep-blue/5 rounded-full blur-[120px] pointer-events-none" />
       

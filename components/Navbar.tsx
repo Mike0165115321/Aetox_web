@@ -92,7 +92,7 @@ export default function Navbar({ dict }: { dict?: any }) {
               }`}
             >
               <Globe className={`w-4 h-4 transition-colors ${isLangOpen ? 'text-cyber-blue' : 'group-hover:text-cyber-blue'}`} />
-              <span className="text-[11px] font-black tracking-widest">{currentLang}</span>
+              <span className="text-xs font-black tracking-widest">{currentLang}</span>
               <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
             </button>
 
@@ -111,7 +111,7 @@ export default function Navbar({ dict }: { dict?: any }) {
                     <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-cyber-glow" />
                   </button>
                   
-                  <div className="px-4 py-3 text-[10px] font-black text-gray-600 uppercase tracking-widest mt-2 border-t border-white/5">
+                  <div className="px-4 py-3 text-xs font-black text-gray-600 uppercase tracking-widest mt-2 border-t border-white/5">
                     More languages coming
                   </div>
                 </div>

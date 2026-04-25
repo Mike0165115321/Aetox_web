@@ -54,7 +54,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="inline-flex items-center gap-2 text-cyber-blue font-bold text-[10px] tracking-[0.2em] uppercase mb-4"
+                className="inline-flex items-center gap-2 text-cyber-blue font-bold text-xs tracking-[0.2em] uppercase mb-4"
               >
                 <Calculator size={14} /> {dict.title}
               </motion.div>
@@ -70,7 +70,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
             <div className="space-y-8 glass-card p-8 rounded-[32px] border border-white/5 relative overflow-hidden">
               {/* Currency Switcher Integrated Inside Card */}
               <div className="flex justify-between items-center mb-4 pb-6 border-b border-white/5">
-                <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Calculator Settings</span>
+                <span className="text-xs font-black text-gray-500 uppercase tracking-[0.2em]">Calculator Settings</span>
                 <CurrencySwitcher />
               </div>
 
@@ -131,7 +131,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
               <div className="space-y-12 relative z-10">
                 {/* Annual Impact */}
                 <div>
-                  <p className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-2">{dict.results.annualImpact}</p>
+                  <p className="text-gray-400 text-base font-bold uppercase tracking-widest mb-2">{dict.results.annualImpact}</p>
                   <div className="flex items-end gap-3">
                     <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
                       {formatCurrency(results.annualImpact).replace('฿', '').replace('$', '')}
@@ -147,11 +147,11 @@ export default function ROIPreview({ dict }: { dict: any }) {
 
                 <div className="grid grid-cols-2 gap-6 pt-12 border-t border-white/5">
                   <div className="space-y-2">
-                    <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">{dict.results.monthlySavings}</p>
+                    <p className="text-gray-500 text-xs font-black uppercase tracking-[0.2em]">{dict.results.monthlySavings}</p>
                     <p className="text-2xl font-bold text-white">{formatCurrency(results.monthlyLoss)}</p>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">{dict.results.efficiencyBoost}</p>
+                    <p className="text-gray-500 text-xs font-black uppercase tracking-[0.2em]">{dict.results.efficiencyBoost}</p>
                     <p className="text-2xl font-bold text-cyber-blue">+{results.efficiencyBoost}%</p>
                   </div>
                 </div>
@@ -159,25 +159,18 @@ export default function ROIPreview({ dict }: { dict: any }) {
                 <div className="pt-6">
                   <button 
                     onClick={() => {
-                      const element = document.getElementById('about');
+                      const element = document.getElementById('contact');
                       if (element) {
-                        const offset = 120;
-                        const bodyRect = document.body.getBoundingClientRect().top;
-                        const elementRect = element.getBoundingClientRect().top;
-                        const elementPosition = elementRect - bodyRect;
-                        const offsetPosition = elementPosition - offset;
-
-                        window.scrollTo({
-                          top: offsetPosition,
-                          behavior: 'smooth'
-                        });
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = '/contact';
                       }
                     }}
                     className="w-full py-5 rounded-2xl bg-gradient-to-r from-cyber-blue to-deep-blue text-black font-black text-lg hover:shadow-cyber-glow transition-all active:scale-95 flex items-center justify-center gap-3"
                   >
-                    รับรายงานวิเคราะห์ความคุ้มค่าฟรี <ArrowRight size={20} />
+                    {dict.cta} <ArrowRight size={20} />
                   </button>
-                  <p className="text-center text-gray-500 text-xs mt-6 font-medium">
+                  <p className="text-center text-gray-500 text-sm mt-6 font-medium">
                     *ผลการคำนวณเบื้องต้นอ้างอิงจากมาตรฐานค่าเสียโอกาสเชิงปฏิบัติการ
                   </p>
                 </div>

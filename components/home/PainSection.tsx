@@ -54,7 +54,7 @@ export default function PainSection({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section className="py-24 relative overflow-hidden bg-black/20">
+    <section id="pain" className="py-24 relative overflow-hidden bg-black/20">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
       

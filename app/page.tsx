@@ -5,16 +5,30 @@ import Footer from '@/components/Footer';
 import PainSection from '@/components/home/PainSection';
 import ROIPreview from '@/components/home/ROIPreview';
 import SecurityBlock from '@/components/home/SecurityBlock';
+import TrustSection from '@/components/home/TrustSection';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, AlertTriangle, Award, Layers, Calculator, ShieldCheck, MessageSquare } from 'lucide-react';
 import { getDictionary } from '@/data/dictionaries';
+import FloatingNav, { NavSection } from '@/components/FloatingNav';
 
 export default async function Home() {
   const dict = await getDictionary('th', 'home');
   const navDict = await getDictionary('th', 'navigation');
 
+  const homeSections: NavSection[] = [
+    { id: 'hero', label: 'Hook (จุดเริ่มต้น)', num: '01', icon: <Sparkles size={18} /> },
+    { id: 'pain', label: 'Pain (ปัญหาที่เจอ)', num: '02', icon: <AlertTriangle size={18} />, offset: 60 },
+    { id: 'trust', label: 'Trust (ความเชื่อมั่น)', num: '03', icon: <Award size={18} />, offset: 60 },
+    { id: 'services', label: 'Proof (ระบบของเรา)', num: '04', icon: <Layers size={18} />, offset: 80 },
+    { id: 'roi-calculator', label: 'Money (ความคุ้มค่า)', num: '05', icon: <Calculator size={18} />, offset: 100 },
+    { id: 'security', label: 'Logic (ความปลอดภัย)', num: '06', icon: <ShieldCheck size={18} />, offset: 80 },
+    { id: 'about', label: 'Close (สรุปผล)', num: '07', icon: <MessageSquare size={18} />, offset: 0 },
+  ];
+
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative">
+      <FloatingNav sections={homeSections} />
+      
       {/* Global Cyber Grid Background */}
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-20" />
 
@@ -26,7 +40,10 @@ export default async function Home() {
       {/* 2. Pain (Loss Realization) */}
       <PainSection dict={dict.pain} />
 
-      {/* 3. Proof (Services & Capabilities) */}
+      {/* 3. Trust (Founder & Expertise) */}
+      <TrustSection dict={dict.trust} />
+
+      {/* 4. Proof (Services & Capabilities) */}
       <div id="services">
         <ServiceSection dict={dict.services} />
       </div>
@@ -49,7 +66,7 @@ export default async function Home() {
             <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.2]">
               {dict.about.headline.white}<span className="text-cyber-blue">{dict.about.headline.accent}</span>
             </h2>
-            <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto font-medium">
+            <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto font-medium whitespace-pre-line">
               {dict.about.description}
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
