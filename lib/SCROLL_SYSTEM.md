@@ -45,16 +45,18 @@ scrollToSection('ai-section', 145);
 ## 📊 บันทึกการจูน (Fine-tuning Logs)
 หน้านี้เก็บค่าที่ผ่านการทดสอบแล้วว่า "สมบูรณ์แบบ" ที่สุด:
 
-### Web Systems (`/services/web-systems`)
-- **Hero (`#hero`)**: `offset: 0`
+### Web Systems (`/services/web-systems`) - [FINAL BALANCE]
+- **Hero (`#hero`)**: `offset: 60`
 - **Solution Design (`#solution-design`)**: `offset: 0`
-- **ส่วนอื่นๆ**: `offset: 120` (Standard)
+- **Architecture/Perf/Sec**: `offset: 120`
+- **CTA Section (`#cta-section`)**: `offset: 60`
 
-### Automation (`/services/automation`)
+### Automation (`/services/automation`) - [FINAL BALANCE]
 - **Hero (`#hero`)**: `offset: 0`
-- **ส่วนอื่นๆ**: `offset: 120` (Standard)
+- **Simulator (`#automation-simulator`)**: `offset: 0`
+- **Pillars/CTA**: `offset: 120`
 
-### AI Agents (`/services/ai-agents`) - [USER TUNED: PERFECT]
+### AI Agents (`/services/ai-agents`) - [FINAL BALANCE]
 - **Hero (`#hero`)**: `offset: 0`
 - **Chat Simulator (`#chat-simulator`)**: `offset: -80`
 - **Technical Deep Dive (`#technical-deep-dive`)**: `offset: 120`
