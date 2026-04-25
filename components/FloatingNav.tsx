@@ -75,9 +75,9 @@ export default function FloatingNav({ sections, accentColor = '#06B6D4' }: Float
                   className="absolute -inset-2 border rounded-[20px]"
                   style={{ borderColor: `${accentColor}80`, backgroundColor: `${accentColor}0D` }}
                   transition={{
-                    type: "tween",
-                    ease: "easeInOut",
-                    duration: 0.5
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30
                   }}
                 />
               )}

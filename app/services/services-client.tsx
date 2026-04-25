@@ -31,9 +31,9 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
       
-      <section id="services-hero" className="py-24 relative z-10">
+      <section id="services-hero" className="pt-24 pb-12 relative z-10 scroll-mt-20">
         <div className="container mx-auto">
-          <div className="max-w-3xl mb-20">
+          <div className="max-w-3xl">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -51,8 +51,12 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
               {dict.hero.description}
             </motion.p>
           </div>
+        </div>
+      </section>
 
-          <div id="services-grid" className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section id="services-grid" className="pb-32 relative z-10 scroll-mt-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {dict.services.map((service: any, i: number) => {
               const Icon = iconMap[service.id];
               const colors = colorMap[service.id];
@@ -133,6 +137,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
           </div>
         </div>
       </section>
+
 
       <Footer dict={navDict.footer} />
     </main>
