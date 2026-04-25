@@ -69,9 +69,9 @@ export default function Navbar({ dict }: { dict?: any }) {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[999] transition-[background-color,padding,border-color,box-shadow] duration-500 ${
         isMobileMenuOpen 
-          ? 'bg-transparent' // Remove background when menu is open to avoid backdrop-filter conflicts
+          ? 'bg-transparent border-transparent shadow-none' 
           : isScrolled 
             ? 'bg-ultra-dark/80 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl' 
             : 'bg-transparent py-6'
@@ -174,17 +174,20 @@ export default function Navbar({ dict }: { dict?: any }) {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
           <motion.div 
+            key="mobile-menu-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             role="dialog"
             aria-modal="true"
-            className="fixed inset-0 z-[100] bg-[#030712]/95 backdrop-blur-2xl lg:hidden flex flex-col"
+            className="fixed inset-0 z-[1000] bg-[#030712] lg:hidden flex flex-col"
           >
+            {/* Backdrop Blur Layer - Separate to avoid bugs with background opacity */}
+            <div className="absolute inset-0 backdrop-blur-2xl bg-[#030712]/90 pointer-events-none" />
             {/* Subtle Cyber Grid Background */}
             <div 
               className="absolute inset-0 opacity-[0.03] pointer-events-none"
