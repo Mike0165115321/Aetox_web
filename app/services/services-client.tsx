@@ -30,7 +30,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight"
+              className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tighter"
             >
               {dict.hero.title.white} <br />
               <span className="text-cyber-blue drop-shadow-cyber-glow">{dict.hero.title.accent}</span>

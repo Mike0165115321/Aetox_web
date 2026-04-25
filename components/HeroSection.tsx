@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight, Zap } from 'lucide-react';
 export default function HeroSection({ dict }: { dict: any }) {
   const content = dict || {
     headline: { white: "Turn Problems Into", accent: "Efficient Systems." },
@@ -9,34 +10,35 @@ export default function HeroSection({ dict }: { dict: any }) {
     cta: { primary: "สำรวจระบบอัจฉริยะ", secondary: "เล่าปัญหาธุรกิจของคุณ" }
   };
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyber-blue/10 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center container mx-auto">
+        {/* Aetox Logo Center */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-6"
+          className="mb-12 mt-12"
         >
           <Image 
             src="/images/1001.svg" 
             alt="Aetox Logo" 
-            width={128}
-            height={128}
-            className="w-24 md:w-32 h-auto mx-auto drop-shadow-cyber-glow"
+            width={160}
+            height={160}
+            className="w-32 md:w-40 h-auto mx-auto drop-shadow-cyber-glow"
           />
         </motion.div>
-        
+
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-extrabold text-white tracking-tight"
+          className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[1.1]"
         >
           {content.headline.white} <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue to-deep-blue">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue via-deep-blue to-cyber-blue bg-[length:200%_auto] animate-gradient-x">
             {content.headline.accent}
           </span>
         </motion.h1>
@@ -45,7 +47,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed whitespace-pre-line"
+          className="mt-8 text-lg md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-medium"
         >
           {content.description}
         </motion.p>
@@ -54,20 +56,35 @@ export default function HeroSection({ dict }: { dict: any }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 flex flex-wrap justify-center gap-4"
+          className="mt-12 flex flex-col md:flex-row justify-center gap-6 w-full md:w-auto"
         >
-          <Link 
-            href="/services" 
-            className="px-8 py-3 rounded-full bg-cyber-blue hover:bg-cyber-blue/80 text-white font-bold transition-all shadow-cyber-glow transform active:scale-95"
+          <button 
+            onClick={() => {
+              const element = document.getElementById('roi-calculator');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="group px-10 py-5 rounded-2xl bg-cyber-blue text-black font-black text-lg transition-all shadow-cyber-glow transform active:scale-95 flex items-center justify-center gap-3 hover:shadow-deep-glow"
           >
             {content.cta.primary}
-          </Link>
+            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+          </button>
           <Link 
             href="/contact" 
-            className="px-8 py-3 rounded-full border border-white/10 hover:border-cyber-blue/50 text-gray-400 font-bold transition-all transform active:scale-95"
+            className="px-10 py-5 rounded-2xl border border-white/10 hover:border-cyber-blue/50 text-white font-black text-lg transition-all transform active:scale-95 bg-white/5 backdrop-blur-sm"
           >
             {content.cta.secondary}
           </Link>
+        </motion.div>
+
+        {/* Floating Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20"
+        >
+          <div className="w-[1px] h-12 bg-gradient-to-b from-cyber-blue to-transparent" />
         </motion.div>
       </div>
     </section>

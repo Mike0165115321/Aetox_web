@@ -6,7 +6,7 @@ export const academyContent = {
       accent: "สถาปนิกผู้ออกแบบระบบ"
     },
     suffix: "ระดับองค์กร (Enterprise) ใน 12 สัปดาห์",
-    description: "ก้าวข้ามขีดจำกัดของการเขียน Code แบบเดิมๆ สู่การเป็นสถาปนิกผู้ออกแบบระบบ AI & Automation ที่ขับเคลื่อนธุรกิจได้จริง ด้วย Blueprint จาก National AI Gold Medalist",
+    description: "ก้าวข้ามขีดจำกัดของการเขียน Code แบบเดิมๆ สู่การเป็นสถาปนิกผู้ออกแบบระบบ AI & Automation ที่ขับเคลื่อนธุรกิจได้จริง ด้วย Blueprint จากสถาปนิกผู้เชี่ยวชาญ",
     cta: "ลงชื่อจองสิทธิ์ล่วงหน้า"
   },
 
@@ -72,10 +72,9 @@ export const academyContent = {
 
   // NEW: Founder's Authority
   authority: {
-    title: "เรียนรู้จากแชมป์เหรียญทอง AI ระดับประเทศ",
-    description: "Mike (Chayapol Promsavana) สถาปนิกผู้อยู่เบื้องหลังระบบ AI ที่ได้รับรางวัลระดับประเทศ พร้อมถ่ายทอด DNA การคิดแบบสถาปนิกให้คุณ",
+    title: "เรียนรู้จากสถาปนิกผู้ออกแบบระบบ AI ระดับประเทศ",
+    description: "Mike (Chayapol Promsavana) สถาปนิกผู้อยู่เบื้องหลังระบบ AI และ Automation ระดับองค์กร พร้อมถ่ายทอด DNA การคิดแบบสถาปนิกให้คุณ",
     achievements: [
-      "แชมป์เหรียญทอง AI ระดับประเทศ",
       "สถาปนิกผู้ออกแบบระบบระดับองค์กร",
       "ผู้เชี่ยวชาญด้าน RAG & Automation Loops"
     ]

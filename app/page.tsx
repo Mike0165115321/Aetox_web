@@ -2,6 +2,9 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServiceSection from '@/components/ServiceSection';
 import Footer from '@/components/Footer';
+import PainSection from '@/components/home/PainSection';
+import ROIPreview from '@/components/home/ROIPreview';
+import SecurityBlock from '@/components/home/SecurityBlock';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { getDictionary } from '@/data/dictionaries';
@@ -12,34 +15,50 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative">
-      {/* Global Cyber Grid */}
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none" />
+      {/* Global Cyber Grid Background */}
+      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-20" />
 
       <Navbar dict={navDict.navbar} />
+      
+      {/* 1. Hook (Hero) */}
       <HeroSection dict={dict.hero} />
 
-      {/* Services Overview Section */}
+      {/* 2. Pain (Loss Realization) */}
+      <PainSection dict={dict.pain} />
+
+      {/* 3. Proof (Services & Capabilities) */}
       <div id="services">
         <ServiceSection dict={dict.services} />
       </div>
 
-      {/* About / Story Section */}
-      <section id="about" className="py-24 relative z-10 border-t border-white/5">
+      {/* 4 & 5. Engage & Money (ROI Calculator) */}
+      <section id="roi-calculator" className="scroll-mt-20">
+        <ROIPreview dict={dict.engagement} />
+      </section>
+
+      {/* 6. Logic (Security & Trust) */}
+      <SecurityBlock dict={dict.security} />
+
+      {/* 7. Close (Final CTA) */}
+      <section id="about" className="py-32 relative z-10 border-t border-white/5 bg-gradient-to-b from-transparent to-cyber-blue/5">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+          <div className="max-w-4xl mx-auto text-center space-y-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-[10px] font-black tracking-widest uppercase">
+              ขั้นตอนสุดท้ายก่อนการตัดสินใจ
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.2]">
               {dict.about.headline.white}<span className="text-cyber-blue">{dict.about.headline.accent}</span>
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-8 whitespace-pre-line">
+            <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto font-medium">
               {dict.about.description}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyber-blue/10 text-cyber-blue font-semibold hover:bg-cyber-blue hover:text-black transition-all border border-cyber-blue/20">
-                {dict.about.cta.services}
-                <ArrowRight className="w-4 h-4" />
+            <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-cyber-blue text-black font-black text-lg hover:shadow-cyber-glow transition-all border border-cyber-blue/20 active:scale-95">
+                เริ่มวางแผนระบบของคุณวันนี้
+                <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href="/authority" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 text-white font-semibold hover:bg-white/10 transition-all border border-white/10">
-                {dict.about.cta.authority}
+              <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-white/5 text-white font-black text-lg hover:bg-white/10 transition-all border border-white/10 active:scale-95">
+                ดูผลงานระดับ Enterprise
               </Link>
             </div>
           </div>

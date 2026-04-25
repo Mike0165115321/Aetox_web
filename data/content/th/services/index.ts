@@ -1,8 +1,8 @@
 export const servicesIndexContent = {
   hero: {
     title: {
-      white: "หยุดสูญเสียทรัพยากรไปกับงานที่",
-      accent: "สถาปัตยกรรมซอฟต์แวร์จัดการแทนได้"
+      white: "Strategic Solutions For",
+      accent: "Modern Business Problems."
     },
     description: "ลดต้นทุนแฝง เร่งความเร็วการทำงาน และเปลี่ยนระบบของคุณให้รองรับ AI และ Automation ได้ตั้งแต่วันนี้"
   },

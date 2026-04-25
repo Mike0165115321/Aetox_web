@@ -141,7 +141,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                   <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-cyber-glow" />
                   AGENTIC AI & RAG SYSTEMS
                 </div>
-                <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
+                <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.2]">
                   {dict.hero.title.white}<br />
                   <span className="text-cyber-blue drop-shadow-cyber-glow">{dict.hero.title.accent}</span>
                 </h1>

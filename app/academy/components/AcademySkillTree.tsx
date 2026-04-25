@@ -14,7 +14,7 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         <div className="text-center mb-20 space-y-4">
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">แผนผังความรู้สู่มือโปร</h2>
           <p className="text-gray-400 text-lg">สถาปัตยกรรม 3 ชั้นที่เปลี่ยนคุณให้เป็นสถาปนิกผู้กุมความได้เปรียบ</p>

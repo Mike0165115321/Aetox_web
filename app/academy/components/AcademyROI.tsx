@@ -5,7 +5,7 @@ import { AlertTriangle, TrendingUp, DollarSign, Clock } from 'lucide-react';
 export default function AcademyROI({ dict }: { dict: any }) {
   return (
     <section className="py-24 relative z-10">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-5xl font-black text-white">{dict.title}</h2>

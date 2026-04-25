@@ -7,8 +7,8 @@ export const authorityContent = {
     {
       id: 'nongnan',
       title: 'AI Robot "น้องน่าน"',
-      role: 'National Gold Medalist Project',
-      desc: 'หุ่นยนต์ปัญญาประดิษฐ์ระดับประเทศที่พิสูจน์ความสามารถด้านสถาปัตยกรรม AI ขั้นสูง',
+      role: 'Strategic AI Architecture',
+      desc: 'หุ่นยนต์ปัญญาประดิษฐ์ระดับสูงที่พิสูจน์ความสามารถด้านสถาปัตยกรรม AI ขั้นสูง',
       location: 'การแข่งขันระดับชาติ (National Level)',
       duration: '6 Months'
     },
