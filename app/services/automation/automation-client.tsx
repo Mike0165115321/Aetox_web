@@ -7,7 +7,8 @@ import { Zap, ArrowLeft, Layers, Database, TrendingUp, Rocket, Cpu, ArrowRight }
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import AutomationSimulator from './automation-simulator';
-import { scrollToSection, useActiveSection } from '@/lib/scroll-utils';
+import { scrollToSection } from '@/lib/scroll-utils';
+import FloatingNav, { NavSection } from '@/components/FloatingNav';
 
 // Extracted Components
 import { FeatureItem } from './components/shared-components';
@@ -15,7 +16,7 @@ import { PriorityQueueVisual, ScalableBotsVisual, ObservabilityVisual } from './
 import AutomationShowcase from './components/automation-showcase';
 
 export default function AutomationClient({ dict, navDict }: { dict: any, navDict: any }) {
-  const sections = [
+  const sections: NavSection[] = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
     { id: 'pillar-1', label: 'ระบบคิวอัจฉริยะ', num: '01', icon: <Layers size={16} />, offset: 120 },
     { id: 'pillar-2', label: 'บอทประมวลผล', num: '02', icon: <Zap size={16} />, offset: 120 },
@@ -24,73 +25,13 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
     { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <Rocket size={16} />, offset: 120 },
   ];
 
-  const activeSection = useActiveSection(sections);
-  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-
   // scrollToSection is handled by @/lib/scroll-utils
 
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-deep-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
-
-      {/* ─── Floating Cyber-Control Card (Executive Smooth Upgrade) ─── */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden xl:block">
-        <div className="glass-card p-3 rounded-[32px] border border-white/10 backdrop-blur-3xl shadow-2xl bg-black/40 flex flex-col gap-2 relative group/nav">
-          <div className="absolute -inset-1 bg-gradient-to-b from-deep-blue/20 to-transparent rounded-[34px] opacity-0 group-hover/nav:opacity-100 transition-opacity blur-lg pointer-events-none" />
-          
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => scrollToSection(section.id, (section as any).offset)}
-              onMouseEnter={() => setHoveredSection(section.id)}
-              onMouseLeave={() => setHoveredSection(null)}
-              className="relative flex items-center group/item"
-            >
-              <AnimatePresence>
-                {hoveredSection === section.id && (
-                  <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute right-14 pointer-events-none"
-                  >
-                    <div className="glass-card px-4 py-2 rounded-xl border border-white/10 bg-black/90 shadow-2xl backdrop-blur-xl">
-                      <span className="text-[10px] font-black text-deep-blue uppercase tracking-widest block mb-0.5">{section.num}</span>
-                      <span className="text-xs font-bold text-white whitespace-nowrap">{section.label}</span>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <motion.div
-                animate={{
-                  backgroundColor: activeSection === section.id ? '#3B82F6' : 'rgba(255, 255, 255, 0.05)',
-                  color: activeSection === section.id ? '#FFFFFF' : '#9CA3AF',
-                  borderColor: activeSection === section.id ? '#3B82F6' : 'rgba(255, 255, 255, 0.05)',
-                  scale: activeSection === section.id ? 1.1 : 1
-                }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-12 h-12 rounded-2xl flex items-center justify-center border relative"
-              >
-                {section.icon}
-                {activeSection === section.id && (
-                  <motion.div 
-                    layoutId="nav-active" 
-                    className="absolute -inset-2 border border-deep-blue/50 rounded-[20px] bg-deep-blue/5"
-                    transition={{
-                      type: "tween",
-                      ease: "easeInOut",
-                      duration: 0.5
-                    }}
-                  />
-                )}
-              </motion.div>
-            </button>
-          ))}
-        </div>
-      </div>
+      <FloatingNav sections={sections} accentColor="#3B82F6" />
 
       {/* ─── Layer 1: Strategic Hero ─── */}
       <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">

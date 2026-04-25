@@ -3,8 +3,9 @@ import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { Bot, Zap, Globe, ArrowRight, HelpCircle, CheckCircle2 } from 'lucide-react';
+import { Bot, Zap, Globe, ArrowRight, HelpCircle, CheckCircle2, Layout, Award } from 'lucide-react';
 import Link from 'next/link';
+import FloatingNav, { NavSection } from '@/components/FloatingNav';
 
 export default function ServicesClient({ dict, navDict }: { dict: any, navDict: any }) {
   const iconMap: any = {
@@ -19,12 +20,18 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
     'web-systems': { color: 'text-cyber-blue', bg: 'bg-cyber-blue/10', border: 'border-cyber-blue/20' }
   };
 
+  const servicesSections: NavSection[] = [
+    { id: 'services-hero', label: 'Solution Hub', num: 'INT', icon: <Layout size={18} /> },
+    { id: 'services-grid', label: 'Expert Services', num: '01', icon: <Award size={18} />, offset: 60 },
+  ];
+
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative pt-20">
+      <FloatingNav sections={servicesSections} />
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
       
-      <section className="py-24 relative z-10">
+      <section id="services-hero" className="py-24 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-3xl mb-20">
             <motion.h1 
@@ -45,7 +52,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div id="services-grid" className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {dict.services.map((service: any, i: number) => {
               const Icon = iconMap[service.id];
               const colors = colorMap[service.id];
