@@ -77,7 +77,7 @@ export default function Navbar({ dict }: { dict?: any }) {
             : 'bg-transparent py-6'
       }`}
     >
-      <div className="container mx-auto px-6 relative flex items-center z-[110]">
+      <div className="container mx-auto relative flex items-center z-[110]">
         
         {/* Left: Logo */}
         <div className="flex-1 flex justify-start">
