@@ -19,11 +19,15 @@ export const metadata = {
   description: "หยุดเผาเวลาไปกับงานซ้ำซ้อน เราสร้างระบบ AI อัตโนมัติเพื่อธุรกิจคุณ",
 };
 
+import { CurrencyProvider } from "@/context/CurrencyContext";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${ibmPlexThai.variable} ${inter.variable} font-sans`}>
       <body className="bg-ultra-dark text-foreground antialiased overflow-x-hidden min-h-screen">
-        {children}
+        <CurrencyProvider>
+          {children}
+        </CurrencyProvider>
       </body>
     </html>
   );

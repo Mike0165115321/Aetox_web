@@ -1,15 +1,35 @@
 'use client';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertTriangle, TrendingUp, DollarSign, Clock } from 'lucide-react';
+import { AlertTriangle, TrendingUp, DollarSign, Clock, Globe } from 'lucide-react';
+import { useCurrency } from '@/context/CurrencyContext';
+import CurrencySwitcher from '@/components/CurrencySwitcher';
 
 export default function AcademyROI({ dict }: { dict: any }) {
+  const { currency, formatCurrency, convert } = useCurrency();
+
+  // Helper to format cost strings from dictionary
+  const formatCost = (cost: string) => {
+    if (cost.includes('1,200,000')) {
+      const val = 1200000;
+      const converted = currency === 'USD' ? convert(val, 'THB', 'USD') : val;
+      return `${formatCurrency(converted)} ${currency === 'THB' ? '+ บาท / ปี' : '+ / Year'}`;
+    }
+    return cost;
+  };
+
   return (
     <section className="py-24 relative z-10">
       <div className="container mx-auto">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black text-white">{dict.title}</h2>
-            <p className="text-gray-400 text-lg">{dict.description}</p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div className="text-center md:text-left space-y-4">
+              <h2 className="text-3xl md:text-5xl font-black text-white">{dict.title}</h2>
+              <p className="text-gray-400 text-lg">{dict.description}</p>
+            </div>
+            <div className="flex justify-center pb-2">
+              <CurrencySwitcher />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -38,7 +58,7 @@ export default function AcademyROI({ dict }: { dict: any }) {
                   <div>
                     <h3 className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-2">{item.label}</h3>
                     <div className={`text-3xl md:text-4xl font-black ${item.isBad ? 'text-red-400' : 'text-emerald-400'}`}>
-                      {item.cost}
+                      {formatCost(item.cost)}
                     </div>
                   </div>
 

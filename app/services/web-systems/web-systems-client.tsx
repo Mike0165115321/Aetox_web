@@ -10,6 +10,7 @@ import {
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import ArchitectureBuilder from './components/architecture-builder';
+import { scrollToSection } from '@/lib/scroll-utils';
 
 // Extracted Components
 import { FeatureItem, AppliedIn } from './components/shared-components';
@@ -21,17 +22,17 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
   const sections = [
-    { id: 'hero', label: 'แนะนำระบบ', num: '01', icon: <Globe size={16} /> },
-    { id: 'solution-design', label: 'ออกแบบโซลูชัน', num: '02', icon: <Laptop size={16} /> },
-    { id: 'arch', label: 'สถาปัตยกรรม', num: '03', icon: <Server size={16} /> },
-    { id: 'perf', label: 'ประสิทธิภาพ', num: '04', icon: <Rocket size={16} /> },
-    { id: 'sec', label: 'ความปลอดภัย', num: '05', icon: <Shield size={16} /> },
-    { id: 'cta-section', label: 'ติดต่อเรา', num: '06', icon: <ArrowRight size={16} /> },
+    { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Globe size={16} />, offset: 0 },
+    { id: 'solution-design', label: 'ออกแบบโซลูชัน', num: 'SIM', icon: <Laptop size={16} />, offset: 0 },
+    { id: 'arch', label: 'สถาปัตยกรรม', num: '01', icon: <Server size={16} />, offset: 120 },
+    { id: 'perf', label: 'ประสิทธิภาพ', num: '02', icon: <Rocket size={16} />, offset: 120 },
+    { id: 'sec', label: 'ความปลอดภัย', num: '03', icon: <Shield size={16} />, offset: 120 },
+    { id: 'cta-section', label: 'ติดต่อเรา', num: 'END', icon: <ArrowRight size={16} />, offset: 120 },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 180; // Adjusted for 140 offset
       let currentSection = sections[0].id;
 
       for (const section of sections) {
@@ -50,21 +51,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  // scrollToSection is now handled by @/lib/scroll-utils
 
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
@@ -79,7 +66,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
           {sections.map((section) => (
             <button
               key={section.id}
-              onClick={() => scrollToSection(section.id)}
+              onClick={() => scrollToSection(section.id, section.offset)}
               onMouseEnter={() => setHoveredSection(section.id)}
               onMouseLeave={() => setHoveredSection(null)}
               className="relative flex items-center group/item"
@@ -174,8 +161,8 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
         </div>
       </section>
 
-      {/* ─── Layer 2: Solution Design ─── */}
-      <section id="solution-design" className="pt-12 pb-24 relative z-10 overflow-hidden scroll-mt-20 border-t border-white/5">
+      {/* Layer 2: Solution Design ─── */}
+      <section id="solution-design" className="pt-32 pb-32 relative z-10 overflow-hidden scroll-mt-32 border-t border-white/5">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-5/12 space-y-10">
@@ -199,7 +186,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
       </section>
 
       {/* Pillar 1: Strategic Architecture */}
-      <section id="arch" className="pt-12 pb-24 relative z-10 scroll-mt-32 border-t border-white/5">
+      <section id="arch" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-white/5">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-7/12 space-y-10">
@@ -228,7 +215,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
       </section>
 
       {/* Pillar 2: High Performance Core */}
-      <section id="perf" className="pt-12 pb-24 relative z-10 scroll-mt-32 border-t border-white/5 bg-white/[0.01]">
+      <section id="perf" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-white/5 bg-white/[0.01]">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row-reverse gap-16 items-center">
             <div className="lg:w-7/12 space-y-10">
@@ -257,7 +244,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
       </section>
 
       {/* Pillar 3: Enterprise Security */}
-      <section id="sec" className="pt-12 pb-24 relative z-10 scroll-mt-32 border-t border-white/5">
+      <section id="sec" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-white/5">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-7/12 space-y-10">

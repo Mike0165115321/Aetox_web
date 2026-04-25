@@ -1,9 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator, TrendingUp, DollarSign, Wallet, ArrowRight, Zap } from 'lucide-react';
+import { Calculator, TrendingUp, DollarSign, Wallet, ArrowRight, Zap, Globe } from 'lucide-react';
+import { useCurrency } from '@/context/CurrencyContext';
+import CurrencySwitcher from '@/components/CurrencySwitcher';
 
 export default function ROIPreview({ dict }: { dict: any }) {
+  const { currency, formatCurrency, exchangeRate } = useCurrency();
   const [staffCount, setStaffCount] = useState<number>(10);
   const [avgSalary, setAvgSalary] = useState<number>(35000);
   const [hoursSpent, setHoursSpent] = useState<number>(3);
@@ -13,6 +16,15 @@ export default function ROIPreview({ dict }: { dict: any }) {
     annualImpact: 0,
     efficiencyBoost: 0
   });
+
+  // Sync salary when currency changes to keep it realistic
+  useEffect(() => {
+    if (currency === 'USD' && avgSalary > 5000) {
+      setAvgSalary(Math.round(avgSalary / exchangeRate / 100) * 100);
+    } else if (currency === 'THB' && avgSalary < 5000) {
+      setAvgSalary(Math.round(avgSalary * exchangeRate / 1000) * 1000);
+    }
+  }, [currency]);
 
   useEffect(() => {
     // Logic: (Hours Spent / 8 hours per day) * Avg Salary * Staff Count
@@ -27,14 +39,6 @@ export default function ROIPreview({ dict }: { dict: any }) {
       efficiencyBoost: boost
     });
   }, [staffCount, avgSalary, hoursSpent]);
-
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('th-TH', {
-      style: 'currency',
-      currency: 'THB',
-      maximumFractionDigits: 0
-    }).format(value);
-  };
 
   if (!dict) return null;
 
@@ -58,12 +62,18 @@ export default function ROIPreview({ dict }: { dict: any }) {
                 Stop the Leaks, <br />
                 <span className="text-cyber-blue">Turn Costs Into Revenue.</span>
               </h2>
-              <p className="text-gray-400 text-lg font-medium leading-relaxed">
+              <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-xl">
                 {dict.description}
               </p>
             </div>
 
-            <div className="space-y-8 glass-card p-8 rounded-[32px] border border-white/5">
+            <div className="space-y-8 glass-card p-8 rounded-[32px] border border-white/5 relative overflow-hidden">
+              {/* Currency Switcher Integrated Inside Card */}
+              <div className="flex justify-between items-center mb-4 pb-6 border-b border-white/5">
+                <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Calculator Settings</span>
+                <CurrencySwitcher />
+              </div>
+
               {/* Staff Count Slider */}
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -84,7 +94,11 @@ export default function ROIPreview({ dict }: { dict: any }) {
                   <span className="text-cyber-blue font-black text-xl">{formatCurrency(avgSalary)}</span>
                 </div>
                 <input 
-                  type="range" min="15000" max="150000" step="5000" value={avgSalary}
+                  type="range" 
+                  min={currency === 'THB' ? 15000 : 500} 
+                  max={currency === 'THB' ? 300000 : 10000} 
+                  step={currency === 'THB' ? 5000 : 100} 
+                  value={avgSalary}
                   onChange={(e) => setAvgSalary(parseInt(e.target.value))}
                   className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-cyber-blue"
                 />
@@ -120,9 +134,11 @@ export default function ROIPreview({ dict }: { dict: any }) {
                   <p className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-2">{dict.results.annualImpact}</p>
                   <div className="flex items-end gap-3">
                     <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
-                      {formatCurrency(results.annualImpact).replace('฿', '')}
+                      {formatCurrency(results.annualImpact).replace('฿', '').replace('$', '')}
                     </span>
-                    <span className="text-cyber-blue font-bold text-xl mb-2">บาท / ปี</span>
+                    <span className="text-cyber-blue font-bold text-xl mb-2">
+                      {currency === 'THB' ? 'บาท / ปี' : 'USD / Year'}
+                    </span>
                   </div>
                   <p className="text-red-400 font-bold mt-4 flex items-center gap-2 text-sm">
                     <Zap size={14} className="fill-red-400" /> นี่คือมูลค่าที่ธุรกิจของคุณสูญเสียไปในแต่ละปี
@@ -145,7 +161,16 @@ export default function ROIPreview({ dict }: { dict: any }) {
                     onClick={() => {
                       const element = document.getElementById('about');
                       if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
+                        const offset = 120;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = element.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth'
+                        });
                       }
                     }}
                     className="w-full py-5 rounded-2xl bg-gradient-to-r from-cyber-blue to-deep-blue text-black font-black text-lg hover:shadow-cyber-glow transition-all active:scale-95 flex items-center justify-center gap-3"

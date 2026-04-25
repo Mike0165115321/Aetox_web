@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { AlertTriangle, Clock, TrendingDown, ArrowRight } from 'lucide-react';
+import { scrollToSection } from '@/lib/scroll-utils';
 
 interface PainItemProps {
   id: string;
@@ -112,12 +113,7 @@ export default function PainSection({ dict }: { dict: any }) {
             </div>
             <div className="shrink-0">
               <button 
-                onClick={() => {
-                  const element = document.getElementById('roi-calculator');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+                onClick={() => scrollToSection('roi-calculator')}
                 className="px-8 py-4 rounded-2xl bg-cyber-blue text-black font-black text-sm hover:shadow-cyber-glow transition-all active:scale-95 flex items-center gap-3"
               >
                 คำนวณมูลค่าความเสียหาย <ArrowRight size={18} />

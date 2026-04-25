@@ -7,6 +7,7 @@ import { Cpu, Database, Zap, ArrowLeft, ArrowRight, Search, TrendingUp } from 'l
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import AiAgentsSimulator from './ai-agents-simulator';
+import { scrollToSection } from '@/lib/scroll-utils';
 
 // Import refactored components
 import { 
@@ -24,17 +25,17 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
   const sections = [
-    { id: 'hero', label: 'แนะนำระบบ', num: '01', icon: <Cpu size={16} /> },
-    { id: 'chat-simulator', label: 'ทดลองแชท RAG', num: '02', icon: <Search size={16} /> },
-    { id: 'technical-deep-dive', label: 'เจาะลึกเทคโนโลยี', num: '03', icon: <Database size={16} /> },
-    { id: 'pipeline-section', label: 'วงจรข้อมูล', num: '04', icon: <Zap size={16} /> },
-    { id: 'roi-simulator', label: 'จำลองความคุ้มค่า', num: '05', icon: <TrendingUp size={16} /> },
-    { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: '06', icon: <ArrowRight size={16} /> },
+    { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
+    { id: 'chat-simulator', label: 'ทดลองแชท RAG', num: 'SIM', icon: <Search size={16} />, offset: -80 },
+    { id: 'technical-deep-dive', label: 'เจาะลึกเทคโนโลยี', num: '01', icon: <Database size={16} />, offset: 120 },
+    { id: 'pipeline-section', label: 'วงจรข้อมูล', num: '02', icon: <Zap size={16} />, offset: 60 },
+    { id: 'roi-simulator', label: 'จำลองความคุ้มค่า', num: '03', icon: <TrendingUp size={16} />, offset: 0 },
+    { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <ArrowRight size={16} />, offset: 40 },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 350;
+      const scrollPosition = window.scrollY + 150;
       let currentSection = sections[0].id;
 
       for (const section of sections) {
@@ -53,12 +54,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // scrollToSection logic is now handled by @/lib/scroll-utils
 
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
@@ -73,7 +69,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
           {sections.map((section) => (
             <button
               key={section.id}
-              onClick={() => scrollToSection(section.id)}
+              onClick={() => scrollToSection(section.id, (section as any).offset)}
               onMouseEnter={() => setHoveredSection(section.id)}
               onMouseLeave={() => setHoveredSection(null)}
               className="relative flex items-center group/item"
@@ -126,7 +122,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
       </div>
 
       {/* ─── Layer 1: Strategic Hero ─── */}
-      <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
+      <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-32">
         <div className="container mx-auto">
           <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
@@ -178,7 +174,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
       <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
 
       {/* ─── Layer 1.5: Interactive RAG Experience ─── */}
-      <section id="chat-simulator" className="py-24 relative z-10 scroll-mt-20">
+      <section id="chat-simulator" className="py-32 relative z-10 scroll-mt-32">
         <div className="container mx-auto">
           <RagChatSimulator />
         </div>
@@ -187,7 +183,7 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
       <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
 
       {/* ─── Layer 3: Technical Deep Dive ─── */}
-      <section id="technical-deep-dive" className="py-24 relative z-10 scroll-mt-20">
+      <section id="technical-deep-dive" className="py-32 relative z-10 scroll-mt-32">
         <div className="container mx-auto">
           <div className="space-y-40">
             
@@ -216,8 +212,8 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
               </div>
             </div>
 
-            {/* Pillar 2: Hybrid Retrieval */}
-            <div id="retrieval" className="flex flex-col lg:flex-row-reverse gap-20 items-center scroll-mt-32">
+      {/* Pillar 2: Hybrid Retrieval */}
+      <div id="retrieval" className="flex flex-col lg:flex-row-reverse gap-20 items-center scroll-mt-32 pt-12">
               <div className="lg:w-7/12 space-y-12">
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -270,14 +266,14 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
       </section>
 
       {/* ─── Layer 4: Final Pipeline ─── */}
-      <section id="pipeline-section" className="py-24 border-t border-white/5 scroll-mt-20 relative z-10 bg-black/20">
+      <section id="pipeline-section" className="py-32 border-t border-white/5 scroll-mt-32 relative z-10 bg-black/20">
         <div className="container mx-auto">
           <KnowledgePipeline pipeline={dict.simulator.pipeline} />
         </div>
       </section>
 
       {/* ─── Layer 5: ROI Simulator (Business Value) ─── */}
-      <section id="roi-simulator" className="py-24 border-t border-white/5 bg-white/[0.01] scroll-mt-20 relative z-10">
+      <section id="roi-simulator" className="py-32 border-t border-white/5 bg-white/[0.01] scroll-mt-32 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <AiAgentsSimulator dict={dict} />

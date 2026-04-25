@@ -107,17 +107,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
                              </p>
                           </div>
 
-                          <div className="bg-white/[0.02] border border-white/5 p-6 rounded-2xl">
-                             <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">เหมาะสำหรับ:</p>
-                             <ul className="space-y-3">
-                                {service.suitable.map((item: string, idx: number) => (
-                                  <li key={idx} className="text-white/90 text-sm font-bold flex items-start gap-3 group/item">
-                                    <CheckCircle2 className={`w-5 h-5 mt-0.5 ${colors.color} opacity-70 group-hover/item:opacity-100 transition-opacity flex-shrink-0`} />
-                                    <span className="leading-relaxed">{item}</span>
-                                  </li>
-                                ))}
-                             </ul>
-                          </div>
+                          {/* Suitable For list removed for cleaner index layout - preserved in sub-pages */}
                         </div>
                         
                         <div className="mt-10">

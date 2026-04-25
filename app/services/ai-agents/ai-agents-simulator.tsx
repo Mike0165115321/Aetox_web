@@ -6,6 +6,8 @@ import {
   ShieldCheck, Zap, Info, Plus, Clock,
   Users, BarChart3, Target
 } from 'lucide-react';
+import { useCurrency } from '@/context/CurrencyContext';
+import CurrencySwitcher from '@/components/CurrencySwitcher';
 import { useRoiCalculator } from './hooks/use-roi-calculator';
 import { FeaturesDashboard } from './components/simulator-components';
 
@@ -58,6 +60,7 @@ const TIERS = [
 ];
 
 export default function AiAgentsSimulator({ dict }: { dict: any }) {
+  const { currency, formatCurrency, convert, exchangeRate } = useCurrency();
   const simulator = dict.simulator;
   const [tierId, setTierId] = useState('early');
   
@@ -77,18 +80,43 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
   useEffect(() => {
     const p = activeTier.preset;
     setQueriesPerDay(p.queriesPerDay);
-    setAvgSalary(p.avgSalary);
     setStaffCount(p.staffCount);
     setMinutesPerCase(p.minutesPerCase);
-    setValuePerCase(p.valuePerCase);
-    setAiMonthlyFee(p.aiMonthlyFee);
-    setSetupCost(p.setupCost);
-  }, [tierId]);
+    
+    // Handle currency conversion for presets
+    if (currency === 'USD') {
+      setAvgSalary(Math.round(p.avgSalary / exchangeRate / 100) * 100);
+      setValuePerCase(Math.round(p.valuePerCase / exchangeRate / 5) * 5);
+      setAiMonthlyFee(Math.round(p.aiMonthlyFee / exchangeRate / 50) * 50);
+      setSetupCost(Math.round(p.setupCost / exchangeRate / 100) * 100);
+    } else {
+      setAvgSalary(p.avgSalary);
+      setValuePerCase(p.valuePerCase);
+      setAiMonthlyFee(p.aiMonthlyFee);
+      setSetupCost(p.setupCost);
+    }
+  }, [tierId, currency]);
 
   const calc = useRoiCalculator({
     useCase: tierId, queriesPerDay, avgSalary, staffCount,
     minutesPerCase, aiMonthlyFee, setupCost, dropRate, valuePerCase,
   });
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 20; // Very high alignment for aggressive scroll
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className="space-y-24">
@@ -135,6 +163,11 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Controls Panel */}
           <div className="lg:col-span-4 glass-card p-6 rounded-3xl border border-white/10 space-y-6 bg-black/40">
+            <div className="flex justify-between items-center pb-4 border-b border-white/5">
+              <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Currency</span>
+              <CurrencySwitcher />
+            </div>
+            
             <div className="space-y-5">
               <div className="flex items-center justify-between pb-2 border-b border-white/5">
                 <span className="text-xs font-bold text-gray-400 tracking-wide uppercase">ข้อมูลการดำเนินงาน</span>
@@ -143,9 +176,27 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
               <SliderGroup label="Queries / วัน"     value={queriesPerDay}  onChange={setQueriesPerDay}  min={10}    max={50000} step={10}   unit="" />
               <SliderGroup label="จำนวนพนักงาน"       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit=" คน" />
-              <SliderGroup label="เงินเดือนเฉลี่ย"            value={avgSalary}      onChange={setAvgSalary}      min={15000} max={150000} step={1000} unit=" ฿" />
+              <SliderGroup 
+                label="เงินเดือนเฉลี่ย" 
+                value={avgSalary} 
+                onChange={setAvgSalary} 
+                min={currency === 'THB' ? 15000 : 500} 
+                max={currency === 'THB' ? 200000 : 6000} 
+                step={currency === 'THB' ? 1000 : 50} 
+                unit="" 
+                displayValue={formatCurrency(avgSalary)}
+              />
               <SliderGroup label="เวลาต่อ 1 เคส"       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit=" นาที" />
-              <SliderGroup label="มูลค่าต่อ 1 เคส"         value={valuePerCase}   onChange={setValuePerCase}   min={0}     max={10000} step={100}  unit=" ฿" />
+              <SliderGroup 
+                label="มูลค่าต่อ 1 เคส" 
+                value={valuePerCase} 
+                onChange={setValuePerCase} 
+                min={0} 
+                max={currency === 'THB' ? 10000 : 300} 
+                step={currency === 'THB' ? 100 : 5} 
+                unit="" 
+                displayValue={formatCurrency(valuePerCase)}
+              />
             </div>
             
             <div className="pt-5 border-t border-white/5 space-y-5">
@@ -153,8 +204,28 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 <span className="text-[10px] font-bold uppercase tracking-wider">งบประมาณระบบ AETOX</span>
                 <Zap size={12} />
               </div>
-              <SliderGroup label="ค่าติดตั้งระบบ" value={setupCost} onChange={setSetupCost} min={0} max={1000000} step={5000} unit=" ฿" isAccent />
-              <SliderGroup label="ค่าบริการรายเดือน" value={aiMonthlyFee} onChange={setAiMonthlyFee} min={5000} max={200000} step={5000} unit=" ฿" isAccent />
+              <SliderGroup 
+                label="ค่าติดตั้งระบบ" 
+                value={setupCost} 
+                onChange={setSetupCost} 
+                min={0} 
+                max={currency === 'THB' ? 1000000 : 30000} 
+                step={currency === 'THB' ? 5000 : 200} 
+                unit="" 
+                displayValue={formatCurrency(setupCost)}
+                isAccent 
+              />
+              <SliderGroup 
+                label="ค่าบริการรายเดือน" 
+                value={aiMonthlyFee} 
+                onChange={setAiMonthlyFee} 
+                min={currency === 'THB' ? 5000 : 100} 
+                max={currency === 'THB' ? 200000 : 6000} 
+                step={currency === 'THB' ? 5000 : 100} 
+                unit="" 
+                displayValue={formatCurrency(aiMonthlyFee)}
+                isAccent 
+              />
             </div>
           </div>
 
@@ -175,8 +246,8 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
             {/* Card 2: Cost Saved */}
             <StatCard
               label="ลดต้นทุน/เดือน"
-              value={`฿${calc.monthlySaving.toLocaleString()}`}
-              desc={`เปลี่ยนต้นทุนแรงงาน ฿${calc.totalHumanCostMonthly.toLocaleString()} เป็นระบบอัตโนมัติ`}
+              value={formatCurrency(calc.monthlySaving)}
+              desc={`เปลี่ยนต้นทุนแรงงาน ${formatCurrency(calc.totalHumanCostMonthly)} เป็นระบบอัตโนมัติ`}
               icon={<BarChart3 size={18} />}
               color="text-emerald-400"
               bg="bg-emerald-500/10"
@@ -204,9 +275,11 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 <p className={`${activeTier.color} text-sm font-bold mb-3`}>ผลประโยชน์ที่ประหยัดได้ต่อปี</p>
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="text-5xl font-bold text-white tracking-tight">
-                    {calc.totalYearlySaving.toLocaleString()}
+                    {formatCurrency(calc.totalYearlySaving).replace('฿', '').replace('$', '')}
                   </span>
-                  <span className={`text-xl font-bold ${activeTier.color}`}>฿ / ปี</span>
+                  <span className={`text-xl font-bold ${activeTier.color}`}>
+                    {currency === 'THB' ? '฿ / ปี' : 'USD / Year'}
+                  </span>
                 </div>
                 <p className="text-gray-500 font-medium text-sm">คำนวณจากต้นทุนที่ลดได้และรายรับที่ระบบช่วยรักษาไว้</p>
               </div>
@@ -244,13 +317,13 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
 /* ─── Sub-components ────────────────────────────────────────────── */
 
-function SliderGroup({ label, value, onChange, min, max, step = 1, unit, isAccent = false }: any) {
+function SliderGroup({ label, value, onChange, min, max, step = 1, unit, displayValue, isAccent = false }: any) {
   return (
     <div className="space-y-2.5">
       <div className="flex justify-between items-center">
         <label className="text-[11px] font-bold text-gray-400">{label}</label>
         <span className={`text-sm font-bold ${isAccent ? 'text-cyber-blue' : 'text-white'}`}>
-          {value.toLocaleString()}{unit}
+          {displayValue || value.toLocaleString() + unit}
         </span>
       </div>
       <input

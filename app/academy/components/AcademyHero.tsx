@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Rocket, ShieldCheck, GraduationCap, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { scrollToSection } from '@/lib/scroll-utils';
 
 export default function AcademyHero({ dict }: { dict: any }) {
   return (
@@ -55,7 +56,7 @@ export default function AcademyHero({ dict }: { dict: any }) {
 
           <div className="flex flex-wrap justify-center gap-5 pt-6">
             <button 
-              onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => scrollToSection('waitlist-form')}
               className="px-8 py-4 rounded-full bg-deep-blue text-white font-black text-lg hover:shadow-deep-glow transition-all active:scale-95 flex items-center gap-3 group shadow-deep-glow/20"
             >
               {dict.cta}
