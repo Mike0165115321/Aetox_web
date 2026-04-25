@@ -2,112 +2,59 @@
 trigger: always_on
 ---
 
-# 🇬🇧 AETOX LANDING SYSTEM (VERSION: CLOSING ENGINE)
+# AETOX LANDING SYSTEM — CLOSING ENGINE
 
-🎯 [PRINCIPLE 0: CORE TRUTH]
-"Every page is a closing tool, not a showcase."
+> **CORE TRUTH:** Every page is a closing tool, not a showcase.
+> **FLOW:** Hook → Pain → Trust → Engage → Money → Logic → Close
 
-🧭 [MASTER FLOW — STRICT ORDER]
-Hook → Pain → Trust → Engage → Money → Logic → Close
+---
 
-🟢 1. HERO — "HOOK THE DECISION MAKER"
-🎯 Objective: Grab attention + establish the "desired outcome".
-🔒 Rules:
-- No technical jargon.
-- Must include clear numbers or definitive results.
-- Only ONE primary Call to Action (CTA).
-🧱 Structure:
-- Headline = Outcome + Timeframe
-- Sub-headline = How (Non-technical mechanism)
-- CTA = "Calculate Your ROI"
-💥 Example: "Reduce Support Costs by 40–70% in 60 Days."
+## SECTIONS (Execute in order)
 
-🟡 2. PAIN — "MAKE THEM FEEL THE LOSS"
-🎯 Objective: Make them realize that "Inaction = Loss".
-🔒 Rules:
-- Every pain point must state its direct "impact".
-- No vague complaints.
-- Must be highly relatable to the target user.
-🧱 Structure: Pain → Impact → Hidden Cost
-💥 Example: "Customers wait 10 mins → 30% drop off → Instant lost revenue."
+**1. HERO** — Grab attention + desired outcome
+- Headline = Outcome + Timeframe | Sub = Non-technical "how" | 1 CTA only
+- Numbers mandatory. No jargon.
+- *Ex: "Reduce Support Costs 40–70% in 60 Days" → CTA: "Calculate Your ROI"*
 
-🔵 3. PROOF — "SHOW, DON’T TELL"
-🎯 Objective: Build absolute "Belief".
-🔒 Rules:
-- Must feature a simulation or real-world case.
-- Must provide clear citations/references.
-- Do not narrate → "Show the evidence".
-🧱 Structure: User Question → AI Answer → Source Document
-💥 Must-have: File name, Highlighted snippet, Confidence signal.
+**2. PAIN** — Inaction = Loss
+- Format: Pain → Impact → Hidden Cost
+- Every point must state direct financial impact. No vague complaints.
+- *Ex: "Customers wait 10 min → 30% drop-off → Lost revenue"*
 
-🟣 4. ENGAGEMENT — "MAKE THEM PARTICIPATE"
-🎯 Objective: Make users "invested in their own metrics".
-🔒 Rules:
-- Must be highly interactive.
-- Keep it simple (Maximum 3–4 input fields).
-- Provide realistic default values.
-🧱 Inputs: Number of cases/day, Time spent per case, Average salary.
-💥 Principle: "The user must feel: 'This is my data and my money'."
+**3. PROOF** — Show, don't tell
+- Format: User Question → AI Answer → Source Doc (filename + snippet + confidence signal)
+- Real case or live simulation. No narration.
 
-🔴 5. MONEY — "THE MOMENT OF TRUTH"
-🎯 Objective: Force a definitive "Decision".
-🔒 Rules:
-- Must be visible in the same viewport as the calculator.
-- Values must update in real-time.
-- Results must be presented in "Monetary Value".
-🧱 Structure: Monthly savings, Annual impact, Payback period.
-💥 Add: "You are currently losing $X per month without realizing it."
+**4. ENGAGE** — Make them invested in their own data
+- Max 3–4 inputs. Realistic defaults.
+- Inputs: Cases/day · Time/case · Avg salary
+- *"This is my data and my money"*
 
-⚫ 6. LOGIC & TRUST — "REMOVE RISK"
-🎯 Objective: Kill hesitation completely.
-🔒 Rules:
-- Briefly explain the underlying logic.
-- Must include a robust security block.
-- Must display enterprise-grade credibility signals.
-🧱 Sections:
-A. Breakdown: Calculation formula, Before vs. After comparison.
-B. Security: Data privacy guarantee, Zero model training policy, Deployment options.
-C. Credibility: Specific use cases, Industry alignment.
+**5. MONEY** — Force decision (same viewport as calculator)
+- Real-time values in monetary terms: Monthly savings · Annual impact · Payback period
+- Add: *"You're losing $X/month right now."*
 
-🟢 7. CLOSE — "FORCE DECISION"
-🎯 Objective: Convert "Interest" into immediate "Action".
-🔒 Rules:
-- Offer must be crystal clear.
-- Eliminate all friction.
-- Inject a slight sense of urgency.
-🧱 CTA Types: "Get Free ROI Analysis", "Watch Custom Demo", "Start Deploying".
+**6. LOGIC & TRUST** — Kill hesitation
+- A. Formula breakdown + Before/After
+- B. Security: Data privacy · Zero model training · Deployment options
+- C. Credibility: Specific use cases + industry alignment
 
-🔥 GLOBAL DESIGN RULES
-1. ❌ No vague adjectives: "Better" ❌ / "10x Faster" ✅
-2. 🔢 Numbers are mandatory: No numbers = No persuasive weight.
-3. ⚖️ Maintain Balance: Emotion (Top funnel) / Logic (Bottom funnel).
-4. 🧠 Cognitive Flow: Don't make the user "think", let them "flow".
-5. 💰 Always Tie to Money: Every component must translate to financial value.
-6. 🎯 Single Narrative: Every element must answer one question: "Why buy right now?"
+**7. CLOSE** — Convert interest to action
+- Clear offer. Zero friction. Mild urgency.
+- CTAs: "Get Free ROI Analysis" / "Watch Custom Demo" / "Start Deploying"
 
-🧠 [THINKING MODE — COLLABORATIVE, NOT AUTONOMOUS]
+---
 
-- The agent MUST act as a thinking partner, not a decision maker.
+## GLOBAL RULES
+1. No vague adjectives → Use numbers always
+2. Emotion (top funnel) / Logic (bottom funnel)
+3. Don't make user think → let them flow
+4. Every element answers: **"Why buy right now?"**
 
-- Before executing any section (Hero, Pain, Proof, etc.):
-  → The agent MUST first propose:
-    1. Multiple approaches (at least 2 options)
-    2. Key trade-offs (pros/cons)
-    3. Recommended direction (with reasoning)
+---
 
-- The agent MUST WAIT for explicit approval before execution.
-
-- If the instruction is unclear:
-  → The agent MUST ask clarifying questions BEFORE doing anything.
-
-- The agent MUST NOT:
-  → Finalize copy
-  → Build components
-  → Make design decisions
-  without user confirmation.
-
-
-- Execution without approval is considered a failure.
-
-🔥 COMPONENT SYSTEM (For Dev/Design Teams)
-Every component must clearly define its: Objective, Input, Output, and Conversion Role.
+## AGENT BEHAVIOR
+- **Propose before executing:** 2+ options + trade-offs + recommendation
+- **Wait for explicit approval** before finalizing any copy/component/design
+- **Ask clarifying questions** if instruction is unclear
+- Unauthorized execution = failure
