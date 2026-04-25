@@ -1,5 +1,6 @@
 ---
-trigger: always_on
+trigger: model_decision
+description: When working on Aetox landing page,  conversion copy, or UI sections
 ---
 
 # AETOX LANDING SYSTEM — CLOSING ENGINE

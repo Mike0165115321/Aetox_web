@@ -1,4 +1,6 @@
-## AGENT EXECUTION CONTROL
+---
+trigger: always_on
+---
 
 - **Scope:** Execute only within explicitly defined task scope
 - **Clarify first:** If instruction is ambiguous → pause and ask before starting
