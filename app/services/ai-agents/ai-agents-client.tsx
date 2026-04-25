@@ -7,7 +7,7 @@ import { Cpu, Database, Zap, ArrowLeft, ArrowRight, Search, TrendingUp } from 'l
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import AiAgentsSimulator from './ai-agents-simulator';
-import { scrollToSection } from '@/lib/scroll-utils';
+import { scrollToSection, useActiveSection } from '@/lib/scroll-utils';
 
 // Import refactored components
 import { 
@@ -21,9 +21,6 @@ import { KnowledgePipeline } from './components/simulator-components';
 import { RagChatSimulator } from './components/rag-chat-simulator';
 
 export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: any }) {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-
   const sections = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
     { id: 'chat-simulator', label: 'ทดลองแชท RAG', num: 'SIM', icon: <Search size={16} />, offset: -80 },
@@ -33,26 +30,8 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
     { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <ArrowRight size={16} />, offset: 40 },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 150;
-      let currentSection = sections[0].id;
-
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            currentSection = section.id;
-            break; // Stop at the first matching section to prevent flickering
-          }
-        }
-      }
-      setActiveSection(currentSection);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const activeSection = useActiveSection(sections);
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
   // scrollToSection logic is now handled by @/lib/scroll-utils
 

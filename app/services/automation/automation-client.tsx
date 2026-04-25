@@ -7,7 +7,7 @@ import { Zap, ArrowLeft, Layers, Database, TrendingUp, Rocket, Cpu, ArrowRight }
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import AutomationSimulator from './automation-simulator';
-import { scrollToSection } from '@/lib/scroll-utils';
+import { scrollToSection, useActiveSection } from '@/lib/scroll-utils';
 
 // Extracted Components
 import { FeatureItem } from './components/shared-components';
@@ -15,38 +15,17 @@ import { PriorityQueueVisual, ScalableBotsVisual, ObservabilityVisual } from './
 import AutomationShowcase from './components/automation-showcase';
 
 export default function AutomationClient({ dict, navDict }: { dict: any, navDict: any }) {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-
   const sections = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
     { id: 'pillar-1', label: 'ระบบคิวอัจฉริยะ', num: '01', icon: <Layers size={16} />, offset: 120 },
     { id: 'pillar-2', label: 'บอทประมวลผล', num: '02', icon: <Zap size={16} />, offset: 120 },
     { id: 'pillar-3', label: 'ระบบตรวจสอบ', num: '03', icon: <Database size={16} />, offset: 120 },
-    { id: 'automation-simulator', label: 'จำลองความคุ้มค่า', num: 'SIM', icon: <TrendingUp size={16} />, offset: 120 },
+    { id: 'automation-simulator', label: 'จำลองความคุ้มค่า', num: 'SIM', icon: <TrendingUp size={16} />, offset: 0 },
     { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <Rocket size={16} />, offset: 120 },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 150;
-      let currentSection = sections[0].id;
-
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            currentSection = section.id;
-            break;
-          }
-        }
-      }
-      setActiveSection(currentSection);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const activeSection = useActiveSection(sections);
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
   // scrollToSection is handled by @/lib/scroll-utils
 

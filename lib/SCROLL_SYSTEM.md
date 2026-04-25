@@ -22,7 +22,15 @@ import { scrollToSection } from '@/lib/scroll-utils';
 </button>
 ```
 
-### 2. การปรับแต่งเฉพาะจุด (Specific Overrides)
+### 2. การตรวจจับตำแหน่ง (Highlight Detection)
+ใช้ Hook `useActiveSection` เพื่อคุมไฟ Sidebar ให้สว่างตามตำแหน่งหน้าจอ
+```typescript
+import { useActiveSection } from '@/lib/scroll-utils';
+
+const activeSection = useActiveSection(sections);
+```
+
+### 3. การปรับแต่งเฉพาะจุด (Specific Overrides)
 หากบาง Section มีขนาดหรือตำแหน่งพิเศษที่ทำให้ค่า 120px ดูไม่สวย สามารถระบุเลข Offset เองได้
 ```typescript
 // เลื่อนไปที่ id='ai-section' โดยเว้นระยะจากด้านบน 145px
