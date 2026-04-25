@@ -26,14 +26,30 @@ export default function BookingForm({ dict }: { dict?: any }) {
   const hero = content.hero || { title: "", subtitle: "" };
   const success = content.success || { title: "", message: "" };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error('Failed to send message');
+
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1500);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('ขออภัย เกิดข้อผิดพลาดในการส่งข้อความ กรุณาลองใหม่อีกครั้ง');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -101,20 +117,20 @@ export default function BookingForm({ dict }: { dict?: any }) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-3">
                       <label className="text-[15px] font-semibold text-gray-300 ml-1">{identity.name.label}</label>
-                      <input type="text" required placeholder={identity.name.placeholder} className="form-input-cyber" />
+                      <input name="name" type="text" required placeholder={identity.name.placeholder} className="form-input-cyber" />
                     </div>
                     <div className="space-y-3">
                       <label className="text-[15px] font-semibold text-gray-300 ml-1">{identity.email.label}</label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-                        <input type="email" required placeholder={identity.email.placeholder} className="form-input-cyber pl-12" />
+                        <input name="email" type="email" required placeholder={identity.email.placeholder} className="form-input-cyber pl-12" />
                       </div>
                     </div>
                     <div className="md:col-span-2 space-y-3">
                       <label className="text-[15px] font-semibold text-gray-300 ml-1">{identity.company.label}</label>
                       <div className="relative">
                         <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-                        <input type="text" placeholder={identity.company.placeholder} className="form-input-cyber pl-12" />
+                        <input name="company" type="text" placeholder={identity.company.placeholder} className="form-input-cyber pl-12" />
                       </div>
                     </div>
                   </div>
@@ -132,7 +148,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="space-y-3">
                       <label className="text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] flex items-end pb-1">{identity.preferredMethod.label}</label>
-                      <select className="form-select-cyber">
+                      <select name="preferredMethod" className="form-select-cyber">
                         {identity.preferredMethod.options?.map((opt: string) => (
                           <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
                         ))}
@@ -140,11 +156,11 @@ export default function BookingForm({ dict }: { dict?: any }) {
                     </div>
                     <div className="space-y-3">
                       <label className="text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] flex items-end pb-1">{identity.contactDetail.label}</label>
-                      <input type="text" required placeholder={identity.contactDetail.placeholder} className="form-input-cyber" />
+                      <input name="contactDetail" type="text" required placeholder={identity.contactDetail.placeholder} className="form-input-cyber" />
                     </div>
                     <div className="space-y-3">
                       <label className="text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] flex items-end pb-1">{identity.contactTime.label}</label>
-                      <select className="form-select-cyber">
+                      <select name="contactTime" className="form-select-cyber">
                         {identity.contactTime.options?.map((opt: string) => (
                           <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
                         ))}
@@ -167,7 +183,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                       <label className="flex items-center gap-2 text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
                         <Target className="w-3 h-3 flex-shrink-0 mb-1" /> {category.label}
                       </label>
-                      <select className="form-select-cyber">
+                      <select name="category" className="form-select-cyber">
                         {category.options?.map((opt: string) => (
                           <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
                         ))}
@@ -177,7 +193,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                       <label className="flex items-center gap-2 text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
                         <Wallet className="w-3 h-3 flex-shrink-0 mb-1" /> {budget.label}
                       </label>
-                      <select className="form-select-cyber">
+                      <select name="budget" className="form-select-cyber">
                         {budget.options?.map((opt: string) => (
                           <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
                         ))}
@@ -187,7 +203,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                       <label className="flex items-center gap-2 text-[15px] font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
                         <Clock className="w-3 h-3 flex-shrink-0 mb-1" /> {timeline.label}
                       </label>
-                      <select className="form-select-cyber">
+                      <select name="timeline" className="form-select-cyber">
                         {timeline.options?.map((opt: string) => (
                           <option key={opt} value={opt} className="bg-ultra-dark">{opt}</option>
                         ))}
@@ -197,7 +213,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
 
                   <div className="space-y-3 pt-4">
                     <label className="text-[15px] font-semibold text-gray-300 ml-1">{challenge.label}</label>
-                    <textarea rows={5} required placeholder={challenge.placeholder} className="form-textarea-cyber" />
+                    <textarea name="challenge" rows={5} required placeholder={challenge.placeholder} className="form-textarea-cyber" />
                   </div>
                 </div>
 
