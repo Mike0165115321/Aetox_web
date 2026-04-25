@@ -133,13 +133,13 @@ export default function ServiceBottomCTA({
                 </div>
               </div>
 
-              <button 
-                onClick={() => alert('ยังไม่มีบทเรียนที่พร้อมใช้งาน')}
-                className="mt-10 flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-deep-blue group-hover:text-white transition-all font-bold w-full"
+              <Link 
+                href="/academy"
+                className="mt-10 flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-deep-blue group-hover:text-white transition-all font-bold"
               >
                 {content.learn.label}
                 <ArrowRight className="w-5 h-5" />
-              </button>
+              </Link>
             </div>
             {/* Hover Glow Background */}
             <div className="absolute -inset-1 bg-deep-blue/20 rounded-[36px] blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" />

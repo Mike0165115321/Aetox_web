@@ -14,6 +14,7 @@ export default function Navbar({ dict }: { dict?: any }) {
     { label: "หน้าแรก", href: "/" },
     { label: "บริการ", href: "/services" },
     { label: "ผลงาน", href: "/authority" },
+    { label: "เรียนรู้กับเรา", href: "/academy" },
     { label: "ติดต่อ", href: "/contact" }
   ];
   const ctaLabel = dict?.cta || "ปรึกษาปัญหา";

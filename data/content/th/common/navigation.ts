@@ -4,6 +4,7 @@ export const navigationContent = {
       { label: "หน้าแรก", href: "/" },
       { label: "บริการ", href: "/services" },
       { label: "ผลงาน", href: "/authority" },
+      { label: "เรียนรู้กับเรา", href: "/academy" },
       { label: "ติดต่อ", href: "/contact" }
     ],
     cta: "ปรึกษาปัญหา"
