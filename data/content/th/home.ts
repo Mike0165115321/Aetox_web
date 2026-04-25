@@ -4,7 +4,7 @@ export const homeContent = {
       white: "Turn Problems Into",
       accent: "Scalable Profit Systems."
     },
-    description: "เราไม่ได้แค่เขียนโค้ด แต่เราออกแบบระบบที่อุดรอยรั่วของต้นทุนให้กลายเป็นเครื่องจักรทำเงิน — ด้วย AI Automation และโครงสร้างระดับ Enterprise",
+    description: "เราออกแบบระบบ AI Automation ระดับองค์กร เพื่อแก้ปัญหาต้นทุนและเพิ่มประสิทธิภาพอย่างเป็นระบบ",
     cta: {
       primary: "ดูบริการทั้งหมด",
       secondary: "ดูผลงานระดับ Enterprise"
@@ -36,7 +36,7 @@ export const homeContent = {
   },
   trust: {
     founder: {
-      name: "ชยพล พรหมสะวะนา (Mike)",
+      name: "ชยพล พรมสะวะนา (Mike)",
       title: "Founder & System Architect",
       accolade: "National AI Gold Medalist",
       description: "สถาปนิกผู้ออกแบบระบบที่เชื่อใน 'Technical Excellence' และ 'Business Result' เราไม่ได้สร้างแค่ซอฟต์แวร์ แต่เราออกแบบอาวุธทางเทคโนโลยีที่ช่วยอุดรอยรั่วและสร้างการเติบโตแบบทวีคูณให้องค์กรของคุณ"
