@@ -200,7 +200,7 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
       {pipeline.footerNote && (
         <div className="mt-16 max-w-4xl mx-auto p-6 rounded-2xl border border-white/5 bg-white/[0.02] text-center">
           <p className="text-sm text-gray-500 leading-relaxed italic">
-            "{pipeline.footerNote}"
+            {"\""}{pipeline.footerNote}{"\""}
           </p>
         </div>
       )}

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   User, Rocket, TrendingUp, Building2,
@@ -76,15 +76,18 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
   const [valuePerCase, setValuePerCase]     = useState(activeTier.preset.valuePerCase);
   const [dropRate]                          = useState(20);
 
-  // Sync presets on tier change
-  useEffect(() => {
+  // Sync presets on tier change or currency change during render phase
+  const [prevTierId, setPrevTierId] = useState(tierId);
+  const [prevCurrency, setPrevCurrency] = useState(currency);
+
+  if (prevTierId !== tierId) {
+    setPrevTierId(tierId);
     const p = activeTier.preset;
     setQueriesPerDay(p.queriesPerDay);
     setStaffCount(p.staffCount);
     setMinutesPerCase(p.minutesPerCase);
     
-    // Handle currency conversion for presets
-    if (currency === 'USD') {
+    if (currency === 'USD' && exchangeRate) {
       setAvgSalary(Math.round(p.avgSalary / exchangeRate / 100) * 100);
       setValuePerCase(Math.round(p.valuePerCase / exchangeRate / 5) * 5);
       setAiMonthlyFee(Math.round(p.aiMonthlyFee / exchangeRate / 50) * 50);
@@ -95,7 +98,20 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
       setAiMonthlyFee(p.aiMonthlyFee);
       setSetupCost(p.setupCost);
     }
-  }, [tierId, currency]);
+  } else if (prevCurrency !== currency && exchangeRate) {
+    setPrevCurrency(currency);
+    if (currency === 'USD') {
+      setAvgSalary(prev => Math.round(prev / exchangeRate / 100) * 100);
+      setValuePerCase(prev => Math.round(prev / exchangeRate / 5) * 5);
+      setAiMonthlyFee(prev => Math.round(prev / exchangeRate / 50) * 50);
+      setSetupCost(prev => Math.round(prev / exchangeRate / 100) * 100);
+    } else {
+      setAvgSalary(prev => Math.round(prev * exchangeRate / 100) * 100);
+      setValuePerCase(prev => Math.round(prev * exchangeRate / 100) * 100);
+      setAiMonthlyFee(prev => Math.round(prev * exchangeRate / 1000) * 1000);
+      setSetupCost(prev => Math.round(prev * exchangeRate / 1000) * 1000);
+    }
+  }
 
   const calc = useRoiCalculator({
     useCase: tierId, queriesPerDay, avgSalary, staffCount,

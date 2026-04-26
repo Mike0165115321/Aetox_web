@@ -1,53 +1,12 @@
 'use client';
-import React, { useState, useMemo, useEffect } from 'react';
-import { Zap, Layers, ServerCrash, RotateCcw, TrendingUp, Tag, Globe, ArrowRight, Calendar, Info, HelpCircle, BarChart3, Clock, Wallet, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { RotateCcw, TrendingUp, Zap, BarChart3, Clock, Wallet } from 'lucide-react';
 import { useCurrency } from '@/context/CurrencyContext';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
 
-type Complexity = 'light' | 'medium' | 'heavy';
-type Timeframe = 6 | 12 | 36;
-
-const workloadConfig = {
-  light: {
-    label: 'งานระดับพื้นฐาน',
-    sublabel: 'คีย์ข้อมูล / จัดการเอกสารทั่วไป',
-    humanSeconds: 60,
-    botSeconds: 6,
-    defaultVolume: 1000,
-    defaultStaff: 2,
-    defaultHourlyRate: 100,
-    defaultUnitCost: 5,
-    defaultBotPrice: 10000,
-    defaultMaint: 1000,
-    icon: 'zap'
-  },
-  medium: {
-    label: 'งานระดับกลาง',
-    sublabel: 'ตรวจสอบ / ดึงข้อมูลจากหลายแหล่ง',
-    humanSeconds: 180,
-    botSeconds: 25,
-    defaultVolume: 10000,
-    defaultStaff: 6,
-    defaultHourlyRate: 120,
-    defaultUnitCost: 25,
-    defaultBotPrice: 35000,
-    defaultMaint: 2500,
-    icon: 'layers'
-  },
-  heavy: {
-    label: 'งานระดับซับซ้อน',
-    sublabel: 'เชื่อมต่อหลายระบบ / งานเชิงตรรกะ',
-    humanSeconds: 420,
-    botSeconds: 45,
-    defaultVolume: 50000,
-    defaultStaff: 15,
-    defaultHourlyRate: 150,
-    defaultUnitCost: 100,
-    defaultBotPrice: 75000,
-    defaultMaint: 5000,
-    icon: 'server'
-  },
-} as const;
+// Import extracted logic and components
+import { useAutomationRoi, workloadConfig, type Complexity, type Timeframe } from './hooks/use-automation-roi';
+import { KpiCard, SliderGroup, SimulatorIcon } from './components/simulator-ui';
 
 const theme = {
   primary: 'text-[#06B6D4]',
@@ -59,14 +18,8 @@ const theme = {
   botBg: 'bg-emerald-500/10'
 };
 
-function Icon({ name, size = 18 }: { name: string; size?: number }) {
-  if (name === 'zap') return <Zap size={size} />;
-  if (name === 'layers') return <Layers size={size} />;
-  return <ServerCrash size={size} />;
-}
-
 export default function AutomationSimulator() {
-  const { currency, exchangeRate, formatCurrency } = useCurrency();
+  const { currency, exchangeRate } = useCurrency();
   const [complexity, setComplexity] = useState<Complexity>('medium');
   const [timeframe, setTimeframe] = useState<Timeframe>(6);
 
@@ -77,20 +30,35 @@ export default function AutomationSimulator() {
   const [botPrice, setBotPrice] = useState(35000);
   const [maintCost, setMaintCost] = useState(1200);
 
-  // Sync values when currency changes to keep them realistic
-  useEffect(() => {
-    if (currency === 'USD' && hourlyRate > 100) {
-      setHourlyRate(Math.round(hourlyRate / exchangeRate));
-      setUnitCostManual(Math.round(unitCostManual / exchangeRate));
-      setBotPrice(Math.round(botPrice / exchangeRate / 100) * 100);
-      setMaintCost(Math.round(maintCost / exchangeRate / 10) * 10);
-    } else if (currency === 'THB' && hourlyRate < 50) {
-      setHourlyRate(Math.round(hourlyRate * exchangeRate));
-      setUnitCostManual(Math.round(unitCostManual * exchangeRate));
-      setBotPrice(Math.round(botPrice * exchangeRate / 1000) * 1000);
-      setMaintCost(Math.round(maintCost * exchangeRate / 100) * 100);
+  // Use the extracted logic hook
+  const calc = useAutomationRoi({
+    volume,
+    hourlyRate,
+    unitCostManual,
+    botPrice,
+    maintCost,
+    complexity,
+    timeframe,
+    currency,
+    exchangeRate
+  });
+
+  // Sync values when currency changes during render phase to avoid cascading renders
+  const [prevCurrency, setPrevCurrency] = useState(currency);
+  if (prevCurrency !== currency && exchangeRate) {
+    setPrevCurrency(currency);
+    if (currency === 'USD') {
+      setHourlyRate(prev => Math.round(prev / exchangeRate));
+      setUnitCostManual(prev => Math.round(prev / exchangeRate));
+      setBotPrice(prev => Math.round(prev / exchangeRate / 100) * 100);
+      setMaintCost(prev => Math.round(prev / exchangeRate / 10) * 10);
+    } else {
+      setHourlyRate(prev => Math.round(prev * exchangeRate));
+      setUnitCostManual(prev => Math.round(prev * exchangeRate));
+      setBotPrice(prev => Math.round(prev * exchangeRate / 1000) * 1000);
+      setMaintCost(prev => Math.round(prev * exchangeRate / 100) * 100);
     }
-  }, [currency]);
+  }
 
   const updateComplexity = (lvl: Complexity) => {
     const cfg = workloadConfig[lvl];
@@ -111,128 +79,26 @@ export default function AutomationSimulator() {
     }
   };
 
-  const c = workloadConfig[complexity];
-
-  const calc = useMemo(() => {
-    const manualHours = (volume * c.humanSeconds) / 3600;
-    const botHours = (volume * c.botSeconds) / 3600;
-    const savedHours = manualHours - botHours;
-    const speedX = Math.round(manualHours / Math.max(botHours, 0.001));
-    const efficiency = ((savedHours / manualHours) * 100).toFixed(1);
-
-    const errRate = 0.05;
-    const errValuePerPoint = complexity === 'light' ? 50 : complexity === 'medium' ? 150 : 350;
-    const errValueConverted = currency === 'USD' ? errValuePerPoint / exchangeRate : errValuePerPoint;
-    const errBefore = Math.floor(volume * errRate);
-    const errCostBefore = errBefore * errValueConverted;
-
-    const laborBefore = manualHours * hourlyRate;
-    const overheadBefore = volume * unitCostManual;
-    const totalBefore = laborBefore + errCostBefore + overheadBefore;
-
-    const laborAfter = botHours * (hourlyRate * 0.1);
-    const totalAfter = maintCost + laborAfter;
-
-    const monthlySaving = totalBefore - totalAfter;
-    const annualSaving = monthlySaving * 12;
-    const paybackMonths = monthlySaving > 0 ? botPrice / monthlySaving : 999;
-    const roi = monthlySaving > 0 ? ((annualSaving - botPrice) / botPrice * 100).toFixed(0) : '0';
-
-    const costPerUnitBefore = totalBefore / Math.max(volume, 1);
-    const costPerUnitAfter = totalAfter / Math.max(volume, 1);
-
-    const projection = Array.from({ length: timeframe }, (_, i) => {
-      const month = i + 1;
-      const cumSaving = monthlySaving * month;
-
-      let label = "";
-      if (timeframe === 6) label = `เดือนที่ ${month}`;
-      else if (timeframe === 12) {
-        if (month === 1) label = "เดือนแรก";
-        else if (month % 3 === 0) label = `เดือนที่ ${month}`;
-      }
-      else {
-        if (month === 1) label = "ปีที่ 1";
-        else if (month === 13) label = "ปีที่ 2";
-        else if (month === 25) label = "ปีที่ 3";
-        else if (month % 12 === 0) label = `ด. ${month}`;
-      }
-
-      return {
-        month,
-        label,
-        cumSaving,
-        breakEven: cumSaving >= botPrice,
-      };
-    });
-
-    const maxProjectionValue = projection[projection.length - 1].cumSaving;
-    const botBarPct = Math.min(Math.max((botHours / Math.max(manualHours, 0.001)) * 100, 1), 99);
-
-    const totalPeriodSavings = monthlySaving * timeframe;
-    const netProfitAfterInvestment = totalPeriodSavings - botPrice;
-    const totalHoursSavedLongTerm = savedHours * timeframe;
-    const costReductionPct = ((costPerUnitBefore - costPerUnitAfter) / costPerUnitBefore * 100).toFixed(0);
-
-    return {
-      manualHours, botHours, savedHours, speedX, efficiency, errBefore, errCostBefore, overheadBefore,
-      laborBefore, totalBefore, laborAfter, totalAfter,
-      monthlySaving, annualSaving, paybackMonths, roi, projection, botBarPct,
-      costPerUnitBefore, costPerUnitAfter, maxProjectionValue,
-      totalPeriodSavings, netProfitAfterInvestment, totalHoursSavedLongTerm, costReductionPct
-    };
-  }, [volume, staffCount, hourlyRate, unitCostManual, botPrice, maintCost, complexity, timeframe, currency]);
-
   const formatMoney = (value: number, showLabel = true, short = true) => {
     const symbol = currency === 'USD' ? '$' : '฿';
-
     let result = '';
     if (value >= 1000000 && short) {
       result = `${symbol}${(value / 1000000).toFixed(2)}M`;
     } else if (value >= 1000 && short) {
       result = `${symbol}${(value / 1000).toFixed(1)}K`;
     } else {
-      result = `${symbol}${value.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+      result = `${symbol}${Math.round(value).toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
     }
-
     return showLabel ? `${result}` : result;
   };
 
   const fmt = (n: number) => n.toLocaleString('th-TH', { maximumFractionDigits: 0 });
-
-  function KpiCard({ label, valInCurrency, detail, accent = false, color = 'text-white' }: { label: string; valInCurrency: number; detail: string; accent?: boolean; color?: string }) {
-    const [showInfo, setShowInfo] = useState(false);
-
-    return (
-      <div className={`p-5 sm:p-6 rounded-2xl border transition-all duration-500 min-h-[140px] flex flex-col justify-between relative group ${accent ? 'bg-emerald-500/5 border-emerald-500/20 shadow-[0_0_30px_rgba(52,185,129,0.05)]' : 'bg-white/[0.03] border-white/10 hover:border-white/20'}`}>
-        <div className="absolute top-4 right-4 z-20">
-          <div className="relative group/tooltip">
-            <button onMouseEnter={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} onClick={() => setShowInfo(!showInfo)} className="p-1 -m-1 focus:outline-none">
-              <HelpCircle size={16} className={`${showInfo ? 'text-emerald-400' : 'text-gray-600'} hover:text-emerald-400 cursor-help transition-colors`} />
-            </button>
-            <div className={`absolute right-0 top-7 w-64 p-4 bg-[#1A1F2E] border border-white/10 rounded-xl shadow-2xl transition-all duration-300 z-50 text-[11px] leading-relaxed text-gray-300 font-medium ${showInfo ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-              {detail}
-              <div className="absolute -top-1 right-1.5 w-2 h-2 bg-[#1A1F2E] rotate-45 border-t border-l border-white/10" />
-            </div>
-          </div>
-        </div>
-        <div>
-          <p className="text-[11px] text-gray-500 font-bold mb-3 tracking-wide">{label}</p>
-          <div className="space-y-2">
-            <p className={`text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none ${color}`}>{formatMoney(valInCurrency, false)}</p>
-            <p className={`text-[14px] font-bold ${color} opacity-70 tracking-wide`}>หน่วย: {currency === 'THB' ? 'บาท (THB)' : 'USD'}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="w-full max-w-6xl mx-auto space-y-8 pb-20">
 
       {/* PART 1: SIMULATOR & PARAMETERS */}
       <div className="bg-[#0A0F1C] text-white rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
-        {/* HEADER */}
         <div className="px-6 sm:px-8 py-6 border-b border-white/5 bg-white/[0.02]">
           <div className="text-center md:text-left">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-none mb-1 text-white">
@@ -252,18 +118,20 @@ export default function AutomationSimulator() {
                 <button onClick={() => updateComplexity('medium')} className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"><RotateCcw size={14} /></button>
               </div>
             </div>
+            
             <section className="space-y-5">
               <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">เลือกประเภทงาน</h3>
               <div className="flex flex-col gap-3">
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
+                  const cfg = workloadConfig[lvl];
                   return (
                     <button key={lvl} onClick={() => updateComplexity(lvl)}
                       className={`flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all duration-300 border text-left active:scale-95 ${active ? 'bg-white/10 text-white border-[#06B6D4]/40 shadow-[0_0_20px_rgba(6,182,212,0.05)]' : 'text-gray-400 border-transparent bg-white/[0.01]'}`}>
-                      <span className={active ? 'text-[#06B6D4]' : ''}><Icon name={workloadConfig[lvl].icon} size={20} /></span>
+                      <span className={active ? 'text-[#06B6D4]' : ''}><SimulatorIcon name={cfg.icon} size={20} /></span>
                       <div className="flex-1">
-                        <p className="font-bold mb-0.5">{workloadConfig[lvl].label}</p>
-                        <p className="text-[10px] opacity-50 font-medium uppercase">{workloadConfig[lvl].sublabel}</p>
+                        <p className="font-bold mb-0.5">{cfg.label}</p>
+                        <p className="text-[10px] opacity-50 font-medium uppercase">{cfg.sublabel}</p>
                       </div>
                     </button>
                   );
@@ -274,22 +142,12 @@ export default function AutomationSimulator() {
             <section className="space-y-6">
               <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">ปรับตั้งค่าพารามิเตอร์</h3>
               <div className="grid grid-cols-1 gap-7">
-                {[
-                  { label: 'จำนวนงาน / เดือน', min: 100, max: 100000, step: 100, val: volume, set: setVolume, accent: 'accent-[#06B6D4]', fmt: (v: number) => `${v.toLocaleString()}` },
-                  { label: 'พนักงาน (คน)', min: 1, max: 30, step: 1, val: staffCount, set: setStaffCount, accent: 'accent-indigo-400', fmt: (v: number) => `${v}` },
-                  { label: 'ค่าจ้าง/ชม.', min: 50, max: 500, step: 10, val: hourlyRate, set: setHourlyRate, accent: 'accent-rose-400', fmt: (v: number) => formatMoney(v) },
-                  { label: 'ต้นทุนแฝง/งาน', min: 0, max: 500, step: 5, val: unitCostManual, set: setUnitCostManual, accent: 'accent-amber-400', fmt: (v: number) => formatMoney(v) },
-                  { label: 'ลงทุนบอท (Capex)', min: 7500, max: 120000, step: 500, val: botPrice, set: setBotPrice, accent: 'accent-[#06B6D4]', fmt: (v: number) => formatMoney(v) },
-                  { label: 'บำรุงรักษา (Opex)', min: 500, max: 15000, step: 100, val: maintCost, set: setMaintCost, accent: 'accent-amber-400', fmt: (v: number) => formatMoney(v) },
-                ].map((s) => (
-                  <div key={s.label} className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <label className="text-[11px] text-gray-500 uppercase tracking-widest font-bold">{s.label}</label>
-                      <span className="text-sm font-bold text-white tabular-nums">{s.fmt(s.val)}</span>
-                    </div>
-                    <input type="range" min={s.min} max={s.max} step={s.step} value={s.val} onChange={(e) => s.set(Number(e.target.value))} className={`w-full h-1.5 rounded-full cursor-pointer bg-white/10 ${s.accent}`} />
-                  </div>
-                ))}
+                <SliderGroup label="จำนวนงาน / เดือน" min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-[#06B6D4]" displayValue={volume.toLocaleString()} />
+                <SliderGroup label="พนักงาน (คน)" min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
+                <SliderGroup label="ค่าจ้าง/ชม." min={50} max={500} step={10} value={hourlyRate} onChange={setHourlyRate} accent="accent-rose-400" displayValue={formatMoney(hourlyRate)} />
+                <SliderGroup label="ต้นทุนแฝง/งาน" min={0} max={500} step={5} value={unitCostManual} onChange={setUnitCostManual} accent="accent-amber-400" displayValue={formatMoney(unitCostManual)} />
+                <SliderGroup label="ลงทุนบอท (Capex)" min={7500} max={120000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-[#06B6D4]" displayValue={formatMoney(botPrice)} />
+                <SliderGroup label="บำรุงรักษา (Opex)" min={500} max={15000} step={100} value={maintCost} onChange={setMaintCost} accent="accent-amber-400" displayValue={formatMoney(maintCost)} />
               </div>
             </section>
           </div>
@@ -297,9 +155,11 @@ export default function AutomationSimulator() {
           {/* MAIN KPIs AREA */}
           <div className="lg:w-[65%] p-6 sm:p-8 space-y-8 bg-black/5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <KpiCard label="ประหยัดได้ / เดือน" valInCurrency={calc.monthlySaving} accent color="text-emerald-400" detail="ยอดเงินประหยัดรายเดือนสุทธิหลังจากหักลบค่าใช้จ่ายระบบแล้ว" />
+              <KpiCard label="ประหยัดได้ / เดือน" valInCurrency={calc.monthlySaving} accent color="text-emerald-400" detail="ยอดเงินประหยัดรายเดือนสุทธิหลังจากหักลบค่าใช้จ่ายระบบแล้ว" currency={currency} formatMoney={formatMoney} />
               <div className="p-6 rounded-2xl border bg-white/[0.03] border-white/10 min-h-[140px] flex flex-col justify-between relative group">
-                <div className="absolute top-4 right-4 z-20"><HelpCircle size={16} className="text-gray-600 hover:text-emerald-400 cursor-help" /></div>
+                <div className="absolute top-4 right-4 z-20">
+                  <SimulatorIcon name="help" size={16} />
+                </div>
                 <div>
                   <p className="text-[11px] text-gray-500 font-bold mb-3 tracking-wide">ระยะเวลาคืนทุน</p>
                   <div className="space-y-2">

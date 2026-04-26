@@ -60,14 +60,14 @@ export function PriorityQueueVisual() {
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border ${
                       task.priority === 'URGENT' ? 'bg-red-500/10 border-red-500/30' :
                       task.priority === 'HIGH'   ? 'bg-amber-400/10 border-amber-400/30' :
-                      task.priority === 'NORMAL' ? 'bg-deep-blue/10 border-deep-blue/30' :
+                      task.priority === 'NORMAL' ? 'bg-aetox-accent/10 border-aetox-accent/30' :
                       'bg-white/[0.03] border-white/5'
                     }`}
                   >
                     <div className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shrink-0 ${
                       task.priority === 'URGENT' ? 'text-red-400 bg-red-500/10 border-red-500/30' :
                       task.priority === 'HIGH'   ? 'text-amber-400 bg-amber-400/10 border-amber-400/30' :
-                      task.priority === 'NORMAL' ? 'text-deep-blue bg-deep-blue/10 border-deep-blue/30' :
+                      task.priority === 'NORMAL' ? 'text-aetox-accent bg-aetox-accent/10 border-aetox-accent/30' :
                       'text-gray-500 bg-white/5 border-white/10'
                     }`}>{task.priority}</div>
                     <div className="flex-1 min-w-0">
@@ -100,14 +100,19 @@ export function PriorityQueueVisual() {
                     </div>
                     <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden mx-2">
                       <motion.div
-                        animate={item.status === 'retrying' ? { width: ['0%', '70%', '30%', '90%'] } : { width: '100%' }}
-                        transition={{ duration: 3, repeat: item.status === 'retrying' ? Infinity : 0, ease: 'easeInOut', delay: i * 0.3 }}
+                        animate={item.status === 'retrying' ? { width: ['5%', '100%'] } : { width: '100%' }}
+                        transition={{ 
+                          duration: 2.5, 
+                          repeat: item.status === 'retrying' ? Infinity : 0, 
+                          ease: "linear",
+                          delay: i * 0.4 
+                        }}
                         className={`h-full rounded-full ${item.status === 'success' ? 'bg-green-500' : 'bg-amber-400'}`}
                       />
                     </div>
                     <motion.div
-                      animate={item.status === 'retrying' ? { opacity: [0.5, 1, 0.5] } : {}}
-                      transition={{ duration: 1, repeat: Infinity }}
+                      animate={item.status === 'retrying' ? { opacity: [0.6, 1, 0.6] } : {}}
+                      transition={{ duration: 1.5, repeat: Infinity }}
                       className={`text-[7px] font-black px-1.5 py-0.5 rounded-full uppercase shrink-0 ${
                         item.status === 'success'
                           ? 'text-green-400 bg-green-500/10 border border-green-500/30'
@@ -118,8 +123,13 @@ export function PriorityQueueVisual() {
                     </motion.div>
                   </motion.div>
                 ))}
-                <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-deep-blue/5 border border-deep-blue/20 text-[8px] font-black text-deep-blue uppercase tracking-widest">
-                  <Zap className="w-3 h-3" /> ไม่ต้องใช้คนตรวจสอบ — ระบบจัดการเอง
+                <motion.div 
+                  initial={{ opacity: 0, y: 6 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  transition={{ delay: 0.8 }} 
+                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/[0.02] border border-white/10 text-[8px] font-black text-gray-400 uppercase tracking-widest hover:border-white/20 transition-colors"
+                >
+                  <Zap className="w-3 h-3 text-amber-400" /> ไม่ต้องใช้คนตรวจสอบ — ระบบจัดการเอง
                 </motion.div>
               </motion.div>
             )}
@@ -137,8 +147,8 @@ export function PriorityQueueVisual() {
                     { label: 'Processing', value: '12', sub: 'active', accent: false },
                     { label: 'ETA', value: '4.2m', sub: 'remain', accent: false },
                   ].map((m, i) => (
-                    <motion.div key={m.label} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: i * 0.1 }} className={`p-3 rounded-xl border text-center ${m.accent ? 'bg-deep-blue/10 border-deep-blue/30' : 'bg-white/[0.03] border-white/5'}`}>
-                      <div className={`text-[18px] font-black leading-none ${m.accent ? 'text-deep-blue' : 'text-white'}`}>
+                    <motion.div key={m.label} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: i * 0.1 }} className={`p-3 rounded-xl border text-center ${m.accent ? 'bg-aetox-accent/10 border-aetox-accent/30' : 'bg-white/[0.03] border-white/5'}`}>
+                      <div className={`text-[18px] font-black leading-none ${m.accent ? 'text-aetox-accent' : 'text-white'}`}>
                         <motion.span animate={m.accent ? { opacity: [0.7, 1, 0.7] } : {}} transition={{ duration: 1.5, repeat: Infinity }}>{m.value}</motion.span>
                       </div>
                       <div className="text-[7px] text-gray-500 uppercase tracking-widest mt-1">{m.label}</div>
@@ -155,7 +165,7 @@ export function PriorityQueueVisual() {
                         initial={{ height: 0 }}
                         animate={{ height: `${h}%` }}
                         transition={{ delay: i * 0.06, duration: 0.5 }}
-                        className="flex-1 bg-deep-blue/50 rounded-sm"
+                        className="flex-1 bg-aetox-accent/40 rounded-sm"
                         style={{ minHeight: '3px' }}
                       />
                     ))}
@@ -169,10 +179,10 @@ export function PriorityQueueVisual() {
                       <motion.div
                         animate={{ width: [`${[85, 55, 30][i]}%`, `${[95, 65, 40][i]}%`, `${[85, 55, 30][i]}%`] }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }}
-                        className={`h-full rounded-full ${i === 0 ? 'bg-red-500' : i === 1 ? 'bg-amber-400' : 'bg-deep-blue'}`}
+                        className={`h-full rounded-full ${i === 0 ? 'bg-red-500' : i === 1 ? 'bg-amber-400' : 'bg-aetox-accent'}`}
                       />
                     </div>
-                    <div className={`text-[8px] font-black w-8 text-right ${i === 0 ? 'text-red-400' : i === 1 ? 'text-amber-400' : 'text-deep-blue'}`}>{[85, 55, 30][i]}%</div>
+                    <div className={`text-[8px] font-black w-8 text-right ${i === 0 ? 'text-red-400' : i === 1 ? 'text-amber-400' : 'text-aetox-accent'}`}>{[85, 55, 30][i]}%</div>
                   </div>
                 ))}
               </motion.div>
@@ -559,7 +569,7 @@ export function ObservabilityVisual() {
             </motion.div>
           </AnimatePresence>
           <div className="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-            <motion.div key={`ob-${phase}`} initial={{ width: '0%' }} animate={{ width: '100%' }} transition={{ duration: 5, ease: 'linear' }} className="h-full bg-deep-blue shadow-deep-glow" />
+            <motion.div key={`ob-${phase}`} initial={{ width: '0%' }} animate={{ width: '100%' }} transition={{ duration: 5, ease: 'linear' }} className="h-full bg-aetox-accent shadow-[0_0_10px_rgba(10,132,255,0.5)]" />
           </div>
         </div>
       </div>
