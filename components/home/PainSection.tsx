@@ -55,10 +55,7 @@ export default function PainSection({ dict }: { dict: any }) {
 
   return (
     <section id="pain" className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      {/* Subtle Blueprint Background */}
-      <div className="absolute inset-0 bg-aetox-blueprint bg-[length:60px_60px] opacity-[0.05] pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container relative z-10">
         <div className="max-w-4xl mb-24">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -74,7 +71,7 @@ export default function PainSection({ dict }: { dict: any }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-6xl font-black text-aetox-text-main mb-8 leading-[1.1] tracking-tighter uppercase"
+            className="text-fluid-h2 font-black text-aetox-text-main uppercase"
           >
             {dict.title}
           </motion.h2>
@@ -84,7 +81,7 @@ export default function PainSection({ dict }: { dict: any }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-aetox-text-soft text-sm md:text-xl font-bold uppercase tracking-widest leading-relaxed max-w-2xl"
+            className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest max-w-2xl"
           >
             {dict.subtitle}
           </motion.p>

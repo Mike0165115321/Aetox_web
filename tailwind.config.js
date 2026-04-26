@@ -5,16 +5,29 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    // 1. GLOBAL SCREENS — ล็อก Ultrawide ไม่ให้พัง
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1280px", // Lock max-width at 1280px (Apple/Linear standard)
+    },
+    
+    // 2. CONTAINER — ควบคุม Margins ป้องกันเนื้อหาชิดขอบจอ
     container: {
       center: true,
       padding: {
-        DEFAULT: "2rem",
-        sm: "4rem",
-        lg: "6rem",
-        xl: "8rem",
+        DEFAULT: "1.5rem", // Mobile spacing
+        sm: "2.5rem",      // Tablet
+        md: "4rem",        // Laptop
+        lg: "6rem",        // Desktop
+        xl: "8rem",        // Ultrawide (safeguard)
       },
     },
+    
     extend: {
+      // 3. COLOR SYSTEM — Pure Black & iOS Blue
       colors: {
         // ─── Backgrounds ───────────────────────────────────────────
         "aetox-bg":        "#000000",  // Pure Black — authority & depth
@@ -32,45 +45,39 @@ module.exports = {
         "aetox-accent-hover": "#0071E3", // Apple button hover
       },
 
+      // 4. FLUID TYPOGRAPHY — สเกลตัวอักษรอัตโนมัติ ไม่ต้องทำ Breakpoint ซ้อน
+      fontSize: {
+        "fluid-h1": ["clamp(2.25rem, 5vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "fluid-h2": ["clamp(1.75rem, 4vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
+        "fluid-h3": ["clamp(1.25rem, 2.5vw, 2rem)", { lineHeight: "1.2" }],
+        "fluid-p":  ["clamp(1rem, 1.5vw, 1.125rem)", { lineHeight: "1.6" }], // Fixed: 16px min on mobile
+      },
+
+      // 5. EFFECTS & ANIMATIONS
       backgroundImage: {
-        // Aetox signature grid — felt more than seen (blueprint feel)
         "aetox-blueprint":
           "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), " +
           "linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
       },
-
       boxShadow: {
-        // Elevation — no glow except CTA
         "aetox-card": "0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.7)",
-        // CTA glow — single use only
         "aetox-glow": "0 0 0 1px rgba(10,132,255,0.25), 0 8px 24px rgba(10,132,255,0.12)",
       },
-
       animation: {
-        // Breathe — slow, subtle, purposeful (logo / hero element only)
         "aetox-breathe": "aetox-breathe 4s ease-in-out infinite",
       },
-
       keyframes: {
         "aetox-breathe": {
-          "0%, 100%": {
-            opacity: "1",
-            transform: "scale(1)",
-          },
-          "50%": {
-            opacity: "0.6",
-            transform: "scale(0.97)",
-          },
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.6", transform: "scale(0.97)" },
         },
       },
-
+      
+      // 6. CORE TYPOGRAPHY
       fontFamily: {
-        // Thai-first, EN second — both premium and legible
         sans: ["var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
       },
-
       letterSpacing: {
-        // Used for badge/label text
         widest: "0.15em",
       },
     },
@@ -80,12 +87,14 @@ module.exports = {
 
 /*
  ┌─────────────────────────────────────────────┐
- │         AETOX USAGE RULES (mandatory)       │
+ │       AETOX USAGE RULES (mandatory)         │
  ├─────────────────────────────────────────────┤
- │ bg-aetox-blueprint  → Hero section ONLY     │
- │ shadow-aetox-glow   → CTA button ONLY       │
- │ text-aetox-accent   → 1-2 words max         │
- │ animate-aetox-breathe → Logo / hero ONLY    │
- │ Everything else     → No glow, no animate   │
+ │ 1. Layout: MUST wrap all sections in        │
+ │    `<div className="container">`            │
+ │ 2. Text: MUST use `text-fluid-h1`,          │
+ │    `text-fluid-p` (No hardcoded text-sm/lg) │
+ │ 3. bg-aetox-blueprint → Hero section ONLY   │
+ │ 4. shadow-aetox-glow  → CTA button ONLY     │
+ │ 5. animate-aetox-breathe → Logo / hero ONLY │
  └─────────────────────────────────────────────┘
 */

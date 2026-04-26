@@ -59,7 +59,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
 
   return (
     <section className="py-32 relative bg-aetox-bg border-t border-aetox-border">
-      <div className="container mx-auto px-6">
+      <div className="container">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           
           {/* Left: Input Controls */}
@@ -72,11 +72,11 @@ export default function ROIPreview({ dict }: { dict: any }) {
               <div className="inline-flex items-center gap-2 text-aetox-accent font-black text-[10px] tracking-[0.2em] uppercase mb-6">
                 <Calculator size={14} /> {dict.title}
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-aetox-text-main mb-8 leading-[1.1] tracking-tighter">
+              <h2 className="text-fluid-h2 font-black text-aetox-text-main leading-tight tracking-tighter">
                 Stop the Leaks, <br />
                 <span className="text-aetox-accent">Turn Costs Into Revenue.</span>
               </h2>
-              <p className="text-aetox-text-soft text-sm md:text-lg font-medium leading-relaxed max-w-xl">
+              <p className="text-fluid-p text-aetox-text-soft font-medium leading-relaxed max-w-xl">
                 {dict.description}
               </p>
             </motion.div>
@@ -154,7 +154,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
                 <div>
                   <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-[0.3em] mb-6">{dict.results.annualImpact}</p>
                   <div className="flex items-baseline gap-4 flex-wrap">
-                    <NumberCounter value={results.annualImpact} className="text-5xl md:text-8xl font-black text-aetox-text-main tracking-tighter" />
+                    <NumberCounter value={results.annualImpact} className="text-fluid-h1 font-black text-aetox-text-main" />
                     <span className="text-aetox-accent font-black text-lg md:text-2xl uppercase tracking-widest">{currency === 'THB' ? 'บาท / ปี' : 'USD / Yr'}</span>
                   </div>
                   <motion.p animate={{ x: [0, 5, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-red-500/80 font-black mt-10 flex items-center gap-2 text-[10px] uppercase tracking-widest">
@@ -165,13 +165,13 @@ export default function ROIPreview({ dict }: { dict: any }) {
                 <div className="grid grid-cols-2 gap-10 pt-16 border-t border-aetox-border">
                   <div className="space-y-3">
                     <p className="text-aetox-text-muted text-[9px] font-black uppercase tracking-[0.2em]">{dict.results.monthlySavings}</p>
-                    <div className="text-2xl md:text-4xl font-black text-aetox-text-main">
+                    <div className="text-fluid-h3 font-black text-aetox-text-main">
                       <NumberCounter value={results.monthlyLoss} prefix={currency === 'THB' ? '฿' : '$'} />
                     </div>
                   </div>
                   <div className="space-y-3">
                     <p className="text-aetox-text-muted text-[9px] font-black uppercase tracking-[0.2em]">{dict.results.efficiencyBoost}</p>
-                    <div className="text-2xl md:text-4xl font-black text-aetox-accent">
+                    <div className="text-fluid-h3 font-black text-aetox-accent">
                       <NumberCounter value={results.efficiencyBoost} suffix="%" />
                     </div>
                   </div>

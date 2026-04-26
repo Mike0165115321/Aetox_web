@@ -32,12 +32,12 @@ export default function ArchitectureComparison() {
 
   return (
     <section className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      <div className="container mx-auto px-6">
+      <div className="container">
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-black text-aetox-text-main mb-6 uppercase tracking-tighter">
+          <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
             Architectural <span className="text-aetox-accent">Superiority</span>
           </h2>
-          <p className="text-aetox-text-soft text-sm md:text-lg max-w-2xl mx-auto uppercase tracking-widest font-bold">
+          <p className="text-fluid-p text-aetox-text-soft uppercase tracking-widest font-bold max-w-2xl mx-auto">
             ทำไมระบบระดับ Enterprise ถึงต้องการสถาปัตยกรรมที่เหนือกว่าโค้ดทั่วไป
           </p>
         </div>

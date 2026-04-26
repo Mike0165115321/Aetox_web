@@ -78,15 +78,15 @@ export default async function Home() {
 
       {/* 9. Final Close */}
       <section id="about" className="py-32 relative z-10 border-t border-aetox-border bg-gradient-to-b from-transparent to-aetox-accent/5">
-        <div className="container mx-auto px-6">
+        <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aetox-surface border border-aetox-border text-aetox-text-muted text-[8px] font-black tracking-widest uppercase">
               Decision Point
             </div>
-            <h2 className="text-4xl md:text-7xl font-black text-aetox-text-main leading-[1.1] tracking-tighter">
+            <h2 className="text-fluid-h1 font-black text-aetox-text-main">
               {dict.about.headline.white}<span className="text-aetox-accent">{dict.about.headline.accent}</span>
             </h2>
-            <p className="text-aetox-text-soft text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium whitespace-pre-line">
+            <p className="text-fluid-p text-aetox-text-soft mx-auto font-medium whitespace-pre-line">
               {dict.about.description}
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">

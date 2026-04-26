@@ -12,13 +12,13 @@ export default function SystemSimulation() {
   ];
 
   return (
-    <section className="py-32 relative bg-aetox-bg overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
+      <div className="container">
         <div className="max-w-4xl mx-auto text-center mb-24">
-          <h2 className="text-3xl md:text-5xl font-black text-aetox-text-main mb-6 uppercase tracking-tighter">
+          <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
             System <span className="text-aetox-accent">Simulation</span>
           </h2>
-          <p className="text-aetox-text-soft text-sm md:text-lg uppercase tracking-widest font-bold">
+          <p className="text-fluid-p text-aetox-text-soft uppercase tracking-widest font-bold">
             สถาปัตยกรรมที่เปลี่ยนข้อมูลมหาศาล ให้กลายเป็นการตัดสินใจที่แม่นยำ
           </p>
         </div>

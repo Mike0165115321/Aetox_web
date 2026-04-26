@@ -7,10 +7,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
 
   return (
     <section id="security" className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-aetox-blueprint bg-[length:40px_40px] opacity-[0.05] pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-24">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -21,11 +18,11 @@ export default function SecurityBlock({ dict }: { dict: any }) {
             <ShieldCheck size={14} className="shadow-aetox-glow" /> {dict.title}
           </motion.div>
           
-          <h2 className="text-3xl md:text-5xl font-black text-aetox-text-main mb-8 leading-[1.1] tracking-tighter uppercase">
+          <h2 className="text-fluid-h1 font-black text-aetox-text-main uppercase">
             Industrial <span className="text-aetox-accent">Logic Protection</span>
           </h2>
           
-          <p className="text-aetox-text-soft text-sm md:text-lg font-bold uppercase tracking-widest leading-relaxed max-w-2xl mx-auto">
+          <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest leading-relaxed max-w-2xl mx-auto">
             {dict.description}
           </p>
         </div>

@@ -18,7 +18,7 @@ export default function ServiceSection({ dict }: { dict?: any }) {
 
   return (
     <section className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      <div className="container mx-auto px-6">
+      <div className="container">
         <div className="max-w-4xl mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -29,8 +29,8 @@ export default function ServiceSection({ dict }: { dict?: any }) {
             <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent" />
             Strategic Capabilities
           </motion.div>
-          <h2 className="text-3xl md:text-5xl font-black text-aetox-text-main mb-6 leading-[1.1] tracking-tighter uppercase">{content.title}</h2>
-          <p className="text-aetox-text-soft text-sm md:text-lg max-w-2xl font-bold uppercase tracking-widest leading-relaxed">
+          <h2 className="text-fluid-h1 font-black text-aetox-text-main uppercase">{content.title}</h2>
+          <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest">
             {content.description}
           </p>
         </div>

@@ -23,7 +23,7 @@ export default function ServiceCard({ id, title, description, features, relatedP
       <h3 className="text-xl font-black text-aetox-text-main mb-4 uppercase tracking-tight group-hover:text-aetox-accent transition-colors">
         {title}
       </h3>
-      <p className="text-aetox-text-soft leading-relaxed text-sm mb-8 font-medium">
+      <p className="text-fluid-p text-aetox-text-soft mb-8 font-medium">
         {description}
       </p>
 

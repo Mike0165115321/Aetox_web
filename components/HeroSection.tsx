@@ -19,7 +19,7 @@ export default function HeroSection({ dict }: { dict: any }) {
       {/* Strategic Ambient Light — No more generic glow */}
       <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-aetox-accent/5 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="relative z-10 flex flex-col items-center justify-center text-center container mx-auto px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center container">
         {/* Aetox Logo — Prestigious & Purposeful */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -41,7 +41,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-[clamp(2rem,8vw,4.5rem)] md:text-[5.5rem] font-black text-aetox-text-main tracking-tighter leading-[1.1] md:leading-[1.05]"
+          className="text-fluid-h1 font-black text-aetox-text-main"
         >
           <span className="block mb-2">{content.headline.white}</span>
           <span className="text-aetox-accent">
@@ -53,7 +53,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 text-sm md:text-xl text-aetox-text-soft max-w-2xl leading-relaxed font-medium"
+          className="mt-10 text-fluid-p text-aetox-text-soft max-w-2xl font-medium"
         >
           {content.description}
         </motion.p>

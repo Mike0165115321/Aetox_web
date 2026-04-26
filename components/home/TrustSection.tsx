@@ -14,7 +14,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
       {/* Background Accent */}
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-aetox-accent/5 rounded-full blur-[120px] pointer-events-none translate-x-1/2 translate-y-1/2" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container relative z-10">
         <div className="flex flex-col lg:flex-row gap-20 items-stretch">
           
           {/* Left: Founder Profile (The Architect) */}
@@ -33,13 +33,13 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                 </div>
 
                 <div className="space-y-6 flex-1">
-                  <h2 className="text-3xl md:text-5xl font-black text-aetox-text-main leading-tight tracking-tighter">
+                  <h2 className="text-fluid-h2 font-black text-aetox-text-main">
                     {founder.name}
                   </h2>
                   <p className="text-aetox-accent font-black tracking-[0.3em] uppercase text-[10px] md:text-xs">
                     {founder.title}
                   </p>
-                  <p className="text-aetox-text-soft text-sm md:text-lg leading-relaxed font-medium">
+                  <p className="text-fluid-p text-aetox-text-soft font-medium">
                     {founder.description}
                   </p>
                 </div>
