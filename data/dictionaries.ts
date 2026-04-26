@@ -9,6 +9,7 @@ const dictionaries = {
     contact: () => import('./content/th/contact').then((module) => module.default),
     academy: () => import('./content/th/academy').then((module) => module.default),
     navigation: () => import('./content/th/common/navigation').then((module) => module.default),
+    cta: () => import('./content/th/common/cta').then((module) => module.default),
   },
   // English placeholders for future use
   en: {
@@ -21,7 +22,9 @@ const dictionaries = {
     contact: () => import('./content/th/contact').then((module) => module.default),
     academy: () => import('./content/th/academy').then((module) => module.default),
     navigation: () => import('./content/th/common/navigation').then((module) => module.default),
+    cta: () => import('./content/th/common/cta').then((module) => module.default),
   }
+
 };
 
 export const getDictionary = async (lang: 'th' | 'en', page: keyof typeof dictionaries['th']): Promise<any> => {

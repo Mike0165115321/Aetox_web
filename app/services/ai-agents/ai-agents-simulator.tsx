@@ -118,21 +118,11 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
     minutesPerCase, aiMonthlyFee, setupCost, dropRate, valuePerCase,
   });
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 20; // Very high alignment for aggressive scroll
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+  function replaceParams(text: string, params: any) {
+    if (!text) return "";
+    return text.replace(/{{(\w+)}}/g, (_, key) => params[key] || "");
+  }
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <div className="space-y-24">
@@ -151,6 +141,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
           {TIERS.map((tier) => {
             const Icon = tier.icon;
             const active = tierId === tier.id;
+            const dictTierItem = simulator.tiers.find((t: any) => t.id === tier.id);
             return (
               <motion.button
                 key={tier.id}
@@ -167,13 +158,14 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                   <Icon size={18} />
                 </div>
                 <div>
-                  <p className={`text-sm font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{tier.label}</p>
-                  <p className={`text-[11px] font-medium ${active ? tier.color : 'text-gray-600'}`}>{tier.sub}</p>
+                  <p className={`text-sm font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{dictTierItem?.label || tier.label}</p>
+                  <p className={`text-[11px] font-medium ${active ? tier.color : 'text-gray-600'}`}>{dictTierItem?.sub || tier.sub}</p>
                 </div>
               </motion.button>
             );
           })}
         </div>
+
 
         {/* ─── Main Grid ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -186,14 +178,14 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
             
             <div className="space-y-5">
               <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                <span className="text-xs font-bold text-gray-400 tracking-wide uppercase">ข้อมูลการดำเนินงาน</span>
+                <span className="text-xs font-bold text-gray-400 tracking-wide uppercase">{simulator.labels.info}</span>
                 <Plus size={12} className={activeTier.color + ' opacity-50'} />
               </div>
 
-              <SliderGroup label="Queries / วัน"     value={queriesPerDay}  onChange={setQueriesPerDay}  min={10}    max={50000} step={10}   unit="" />
-              <SliderGroup label="จำนวนพนักงาน"       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit=" คน" />
+              <SliderGroup label={simulator.labels.queries}     value={queriesPerDay}  onChange={setQueriesPerDay}  min={10}    max={50000} step={10}   unit="" />
+              <SliderGroup label={simulator.labels.staff}       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit=" คน" />
               <SliderGroup 
-                label="เงินเดือนเฉลี่ย" 
+                label={simulator.labels.salary} 
                 value={avgSalary} 
                 onChange={setAvgSalary} 
                 min={currency === 'THB' ? 15000 : 500} 
@@ -202,9 +194,9 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 unit="" 
                 displayValue={formatCurrency(avgSalary)}
               />
-              <SliderGroup label="เวลาต่อ 1 เคส"       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit=" นาที" />
+              <SliderGroup label={simulator.labels.time}       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit=" นาที" />
               <SliderGroup 
-                label="มูลค่าต่อ 1 เคส" 
+                label={simulator.labels.value} 
                 value={valuePerCase} 
                 onChange={setValuePerCase} 
                 min={0} 
@@ -214,14 +206,15 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 displayValue={formatCurrency(valuePerCase)}
               />
             </div>
+
             
             <div className="pt-5 border-t border-white/5 space-y-5">
               <div className={`flex items-center justify-between mb-2 ${activeTier.color}`}>
-                <span className="text-[10px] font-bold uppercase tracking-wider">งบประมาณระบบ AETOX</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider">{simulator.labels.aetoxBudget}</span>
                 <Zap size={12} />
               </div>
               <SliderGroup 
-                label="ค่าติดตั้งระบบ" 
+                label={simulator.labels.setup} 
                 value={setupCost} 
                 onChange={setSetupCost} 
                 min={0} 
@@ -232,7 +225,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 isAccent 
               />
               <SliderGroup 
-                label="ค่าบริการรายเดือน" 
+                label={simulator.labels.monthly} 
                 value={aiMonthlyFee} 
                 onChange={setAiMonthlyFee} 
                 min={currency === 'THB' ? 5000 : 100} 
@@ -243,6 +236,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 isAccent 
               />
             </div>
+
           </div>
 
           {/* Results Panel */}
@@ -250,9 +244,9 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
             {/* Card 1: AI vs Human */}
             <StatCard
-              label="ศักยภาพเทียบกับทีม"
+              label={simulator.labels.capacity}
               value={`${calc.aiVsHumanMultiplier.toLocaleString()} เท่า`}
-              desc={`ทีม ${staffCount} คน รองรับได้ ~${Math.round(calc.humanCapacityDaily).toLocaleString()} เคส/วัน`}
+              desc={replaceParams(simulator.labels.capacityDesc, { staffCount, humanCapacity: Math.round(calc.humanCapacityDaily).toLocaleString() })}
               icon={<Users size={18} />}
               color={activeTier.color}
               bg={activeTier.bg}
@@ -261,9 +255,9 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
             {/* Card 2: Cost Saved */}
             <StatCard
-              label="ลดต้นทุน/เดือน"
+              label={simulator.labels.monthlySaving}
               value={formatCurrency(calc.monthlySaving)}
-              desc={`เปลี่ยนต้นทุนแรงงาน ${formatCurrency(calc.totalHumanCostMonthly)} เป็นระบบอัตโนมัติ`}
+              desc={replaceParams(simulator.labels.monthlySavingDesc, { humanCost: formatCurrency(calc.totalHumanCostMonthly) })}
               icon={<BarChart3 size={18} />}
               color="text-emerald-400"
               bg="bg-emerald-500/10"
@@ -273,14 +267,15 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
 
             {/* Card 3: Hours Recovered */}
             <StatCard
-              label="เวลาที่ได้รับคืน/เดือน"
+              label={simulator.labels.hoursRecovered}
               value={`${calc.hoursRecoveredMonthly.toLocaleString()} ชม.`}
-              desc={`เวลาที่ทีมสามารถนำไปทำงานเชิงกลยุทธ์อื่นได้`}
+              desc={simulator.labels.hoursRecoveredDesc}
               icon={<Clock size={18} />}
               color="text-violet-400"
               bg="bg-violet-500/10"
               border="border-violet-500/20"
             />
+
 
             {/* Hero card: Yearly Saving */}
             <div className={`md:col-span-3 glass-card p-8 rounded-3xl border ${activeTier.border} bg-gradient-to-br ${activeTier.bg.replace('bg-', 'from-').replace('/10', '/[0.03]')} to-transparent relative overflow-hidden`}>
@@ -288,7 +283,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 <ShieldCheck size={100} className={activeTier.color} />
               </div>
               <div className="relative z-10">
-                <p className={`${activeTier.color} text-sm font-bold mb-3`}>ผลประโยชน์ที่ประหยัดได้ต่อปี</p>
+                <p className={`${activeTier.color} text-sm font-bold mb-3`}>{simulator.labels.yearlySaving}</p>
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="text-5xl font-bold text-white tracking-tight">
                     {formatCurrency(calc.totalYearlySaving).replace('฿', '').replace('$', '')}
@@ -297,17 +292,19 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                     {currency === 'THB' ? '฿ / ปี' : 'USD / Year'}
                   </span>
                 </div>
-                <p className="text-gray-500 font-medium text-sm">คำนวณจากต้นทุนที่ลดได้และรายรับที่ระบบช่วยรักษาไว้</p>
+                <p className="text-gray-500 font-medium text-sm">{simulator.labels.yearlySavingDesc}</p>
               </div>
+
               
               <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-3 gap-6">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase">คืนทุนใน</span>
+                  <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.breakEvenLabel}</span>
                   <div className="text-2xl font-bold text-white">
                     {calc.breakEvenMonth > 0 ? `${calc.breakEvenMonth.toFixed(1)}` : 'ทันที'}
                     <span className="text-xs text-gray-400 font-bold ml-1">{calc.breakEvenMonth > 0 ? 'เดือน' : ''}</span>
                   </div>
                 </div>
+
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold text-gray-500 uppercase">ROI ต่อปี</span>
                   <div className="text-2xl font-bold text-emerald-400">

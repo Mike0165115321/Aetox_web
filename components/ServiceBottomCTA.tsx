@@ -27,7 +27,27 @@ export default function ServiceBottomCTA({
   hirePath = "/contact",
   dict
 }: CTAProps) {
-  const content = dict || {
+  const replaceServiceName = (text: string) => {
+    if (!text) return "";
+    return text.replace(/{{serviceName}}/g, serviceName);
+  };
+
+  const content = dict ? {
+    title: dict.title,
+    subtitle: dict.subtitle,
+    hire: {
+      title: replaceServiceName(dict.hire.title),
+      desc: replaceServiceName(dict.hire.desc),
+      label: dict.hire.label,
+      suitLabel: dict.hire.suitLabel
+    },
+    learn: {
+      title: replaceServiceName(dict.learn.title),
+      desc: replaceServiceName(dict.learn.desc),
+      label: dict.learn.label,
+      suitLabel: dict.learn.suitLabel
+    }
+  } : {
     title: { white: "พร้อมวางรากฐาน", accent: "อัจฉริยะ", suffix: "ให้ธุรกิจคุณหรือยัง?" },
     subtitle: "เลือกก้าวต่อไปที่เหมาะกับเป้าหมายของคุณ",
     hire: {
@@ -43,6 +63,7 @@ export default function ServiceBottomCTA({
       suitLabel: "เหมาะสำหรับผู้ที่"
     }
   };
+
 
   return (
     <section id="cta-section" className="py-24 relative overflow-hidden scroll-mt-32">
@@ -76,7 +97,7 @@ export default function ServiceBottomCTA({
                   </p>
                   {hirePoints.length > 0 && (
                     <div className="pt-4 space-y-3">
-                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{content.hire.suitLabel}</p>
+                      <p className="text-[10px] font-bold text-gray-500">{content.hire.suitLabel}</p>
                       <ul className="space-y-2">
                         {hirePoints.map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
@@ -119,7 +140,7 @@ export default function ServiceBottomCTA({
                   </p>
                   {learnPoints.length > 0 && (
                     <div className="pt-4 space-y-3">
-                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{content.learn.suitLabel}</p>
+                      <p className="text-[10px] font-bold text-gray-500">{content.learn.suitLabel}</p>
                       <ul className="space-y-2">
                         {learnPoints.map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">

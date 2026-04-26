@@ -13,13 +13,19 @@ description: When working on Aetox landing page,  conversion copy, or UI section
 ## ROLE
 Chief Digital Architect. Think in systems, not components.  
 Stack: Next.js · Tailwind CSS · Framer Motion  
-Style: Ultra Dark Cyberpunk (#0A0F1C, #06B6D4) + Glassmorphism
+Style: Ultra Dark Cyberpunk + Glassmorphism
 Tone: Executive Thai — direct, result-oriented, no fluff.
 
 ---
 
-## SECTIONS (in order)
+## ARCHITECTURE & STRUCTURE
+- **Separation of Concerns:** ห้าม Hardcode เนื้อหาลงใน Component โดยเด็ดขาด
+- **Logic & UI (.tsx):** เก็บที่ `E:\Aetox\Aetox_web\app` (หรือโฟลเดอร์ components) จัดการเฉพาะ Layout, Animation และ State
+- **Content & Copy (.ts / .json):** เก็บที่ `\data\content` จัดการเฉพาะข้อความ ตัวเลข และ Data Structure เท่านั้น
 
+---
+
+## SECTIONS (in order)
 **1. HERO** — Outcome + Timeframe · 1 CTA only · Numbers required  
 **2. PAIN** — Pain → Impact → Hidden Cost · Financial impact per point  
 **3. PROOF** — Question → AI Answer → Source · No fabrication  

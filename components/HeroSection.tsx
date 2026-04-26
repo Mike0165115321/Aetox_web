@@ -7,10 +7,12 @@ import { scrollToSection } from '@/lib/scroll-utils';
 
 export default function HeroSection({ dict }: { dict: any }) {
   const content = dict || {
-    headline: { white: "Inefficiency is a Choice.", accent: "Precision is Our Standard." },
+    headline: { white: "ความไร้ประสิทธิภาพคือสิ่งที่คุณเลือกหยุดได้", accent: "ความแม่นยำคือมาตรฐานของเรา" },
     description: "อุดรอยรั่วทางธุรกิจและเปลี่ยนต้นทุนที่สูญเสีย ให้กลายเป็นระบบกำไรอัตโนมัติด้วยสถาปัตยกรรม AI ระดับ Enterprise",
-    cta: { primary: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)", secondary: "ดูสถาปัตยกรรมระบบ" }
+    cta: { primary: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)", secondary: "ดูสถาปัตยกรรมระบบ" },
+    scrollLabel: "เลื่อนเพื่อวิเคราะห์"
   };
+
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden border-b border-aetox-border">
       {/* Background Architectural Elements - Simplified and Sharpened */}
@@ -94,7 +96,8 @@ export default function HeroSection({ dict }: { dict: any }) {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30 z-30"
         >
-          <span className="text-[8px] font-black uppercase tracking-[0.4em] text-aetox-text-soft">Scroll to Analyze</span>
+          <span className="text-[8px] font-black uppercase tracking-[0.4em] text-aetox-text-soft">{content.scrollLabel}</span>
+
           <div className="w-[1px] h-10 bg-gradient-to-b from-aetox-accent to-transparent" />
         </motion.div>
       </div>

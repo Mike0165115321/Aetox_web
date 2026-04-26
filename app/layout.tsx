@@ -25,8 +25,8 @@ import { GlobalBackground } from "@/components/layout/GlobalBackground";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="th" className={`${ibmPlexThai.variable} ${inter.variable} font-sans`}>
-      <body className="bg-aetox-bg text-aetox-text-main antialiased overflow-x-hidden min-h-screen">
+    <html lang="th" className={`${ibmPlexThai.variable} ${inter.variable}`}>
+      <body className="bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen">
         <GlobalBackground />
         <ScrollProvider>
           <CurrencyProvider>

@@ -59,7 +59,7 @@ export function StackArchitectureVisual() {
                   initial={{ rotateX: 60, rotateZ: -35 }}
                   animate={{ y: [-70, -60, -70] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0 }}
-                  className="absolute w-[220px] h-[140px] bg-white/[0.03] border-t border-l border-white/20 border-b border-r border-white/5 rounded-[32px] backdrop-blur-2xl flex items-center justify-center shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] z-30"
+                  className="absolute w-[220px] h-[140px] bg-white/[0.03] border-t border-l border-t-white/20 border-l-white/20 border-b border-r border-b-white/5 border-r-white/5 rounded-[32px] backdrop-blur-2xl flex items-center justify-center shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] z-30"
                 >
                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent rounded-[32px]" />
                    <Layout className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />

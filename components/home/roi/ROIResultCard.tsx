@@ -29,25 +29,25 @@ export const ROIResultCard = ({ results, currency, dict }: ROIResultCardProps) =
 
       <div className="space-y-16 relative z-10">
         <div>
-          <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-[0.3em] mb-6">{dict.results.annualImpact}</p>
+          <p className="text-aetox-text-muted text-[10px] font-bold mb-6">{dict.results.annualImpact}</p>
           <div className="flex items-baseline gap-4 flex-wrap">
             <NumberCounter value={results.annualImpact} className="text-fluid-h1 font-black text-aetox-text-main" />
-            <span className="text-aetox-accent font-black text-lg md:text-2xl uppercase tracking-widest">{currency === 'THB' ? 'บาท / ปี' : 'USD / Yr'}</span>
+            <span className="text-aetox-accent font-bold text-lg md:text-2xl">{currency === 'THB' ? 'บาท / ปี' : 'USD / Yr'}</span>
           </div>
-          <motion.p animate={{ x: [0, 5, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-red-500/80 font-black mt-10 flex items-center gap-2 text-[10px] uppercase tracking-widest">
-            <Zap size={14} className="fill-red-500 shrink-0" /> นี่คือมูลค่าที่ธุรกิจของคุณสูญเสียไปในแต่ละปี
+          <motion.p animate={{ x: [0, 5, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-red-500/80 font-bold mt-10 flex items-center gap-2 text-[10px]">
+            <Zap size={14} className="fill-red-500 shrink-0" /> {dict.results.lossWarning}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-2 gap-10 pt-16 border-t border-aetox-border">
           <div className="space-y-3">
-            <p className="text-aetox-text-muted text-[9px] font-black uppercase tracking-[0.2em]">{dict.results.monthlySavings}</p>
+            <p className="text-aetox-text-muted text-[9px] font-bold">{dict.results.monthlySavings}</p>
             <div className="text-fluid-h3 font-black text-aetox-text-main">
               <NumberCounter value={results.monthlyLoss} prefix={currency === 'THB' ? '฿' : '$'} />
             </div>
           </div>
           <div className="space-y-3">
-            <p className="text-aetox-text-muted text-[9px] font-black uppercase tracking-[0.2em]">{dict.results.efficiencyBoost}</p>
+            <p className="text-aetox-text-muted text-[9px] font-bold">{dict.results.efficiencyBoost}</p>
             <div className="text-fluid-h3 font-black text-aetox-accent">
               <NumberCounter value={results.efficiencyBoost} suffix="%" />
             </div>
@@ -55,11 +55,11 @@ export const ROIResultCard = ({ results, currency, dict }: ROIResultCardProps) =
         </div>
 
         <div className="pt-10">
-          <button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="w-full py-6 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95 flex items-center justify-center gap-3 group">
+          <button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="w-full py-6 rounded-2xl bg-aetox-accent text-white font-black text-xs hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95 flex items-center justify-center gap-3 group">
             {dict.cta} <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
           </button>
-          <p className="text-center text-aetox-text-muted text-[8px] font-black uppercase tracking-[0.4em] mt-10">
-            *Strategic operational impact analysis
+          <p className="text-center text-aetox-text-muted text-[8px] font-black mt-10">
+            {dict.results.footerNote}
           </p>
         </div>
       </div>

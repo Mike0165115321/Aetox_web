@@ -1,9 +1,9 @@
 export const webSystemsContent = {
   hero: {
-    badge: "Enterprise Web Systems",
+    badge: "ระบบเว็บระดับองค์กร",
     title: {
-      white: "Enterprise",
-      accent: "Web Systems"
+      white: "สถาปัตยกรรมเว็บ",
+      accent: "ระดับ Enterprise"
     },
     description: "ออกแบบและพัฒนา Web Systems ที่เป็นแกนหลักของธุรกิจคุณ รองรับการเติบโตตั้งแต่วันแรก พร้อมความเสถียร ความปลอดภัย และโครงสร้างที่เชื่อมต่อกับ AI และ Automation ได้ทันที",
     cta: "เริ่มออกแบบระบบ Web Systems"
@@ -11,27 +11,27 @@ export const webSystemsContent = {
 
   showcase: [
     {
-      title: "Step 01: Modern Architecture",
+      title: "ขั้นตอนที่ 01: สถาปัตยกรรมสมัยใหม่",
       subtitle: "โครงสร้างที่รองรับการเติบโต",
       desc: "เลือกใช้เทคโนโลยีระดับ Enterprise (Next.js, TypeScript, Tailwind) เพื่อให้ระบบมีเสถียรภาพ ขยายสเกลได้ทันที และดูแลรักษาในระยะยาวโดยไม่ต้องรื้อทิ้ง"
     },
     {
-      title: "Step 02: Data Architecture",
+      title: "ขั้นตอนที่ 02: สถาปัตยกรรมข้อมูล",
       subtitle: "โครงสร้างข้อมูลที่ไม่พังเมื่อธุรกิจโต",
       desc: "ออกแบบ Schema ฐานข้อมูลให้รองรับ Transaction ปริมาณมหาศาล จัดการข้อมูลเป็นระบบ และพร้อมสกัดข้อมูลไปใช้ใน Analytics หรือ AI ได้อย่างมีประสิทธิภาพ"
     },
     {
-      title: "Step 03: Security & Compliance",
+      title: "ขั้นตอนที่ 03: ความปลอดภัยและมาตรฐาน",
       subtitle: "ระบบรักษาความปลอดภัยระดับองค์กร",
       desc: "วางระบบ Authentication แบบ Role-Based Access Control พร้อมการเข้ารหัสข้อมูลที่รัดกุม ปกป้องข้อมูลธุรกิจจากภัยคุกคามและการรั่วไหล"
     },
     {
-      title: "Step 04: Performance Optimization",
+      title: "ขั้นตอนที่ 04: การเพิ่มประสิทธิภาพ",
       subtitle: "รีดประสิทธิภาพสูงสุดทุกการประมวลผล",
       desc: "ปรับแต่ง Server-Side Rendering (SSR) และ API Caching ให้ระบบตอบสนองในเสี้ยววินาที สร้างประสบการณ์ใช้งานที่รวดเร็วไร้รอยต่อ (Zero Latency)"
     },
     {
-      title: "Step 05: AI Integration Ready",
+      title: "ขั้นตอนที่ 05: รองรับการเชื่อมต่อ AI",
       subtitle: "พร้อมต่อยอดสู่ Automation",
       desc: "ออกแบบ API Endpoint และ Data Pipeline ให้มีมาตรฐาน พร้อมสำหรับการเสียบปลั๊กเชื่อมต่อกับ AI Agents และ Workflow Automation ทันทีที่ธุรกิจคุณต้องการ"
     }
@@ -44,62 +44,116 @@ export const webSystemsContent = {
 
   pillars: {
     pillar1: {
-      title: "1. Scalable System Foundation",
+      title: "1. รากฐานระบบที่ขยายตัวได้",
       description: "วางโครงสร้างระบบให้รองรับการเติบโตของธุรกิจตั้งแต่วันแรก ลดการเขียนใหม่ในอนาคต และรองรับการขยายฟีเจอร์ได้อย่างเป็นระบบ",
       features: [
         {
-          title: "Modern App Architecture",
+          title: "สถาปัตยกรรมแอปสมัยใหม่",
           desc: "ใช้โครงสร้างที่เหมาะสมกับระบบจริง เพื่อให้การจัดการข้อมูลและการพัฒนาในระยะยาวมีประสิทธิภาพ"
         },
         {
-          title: "Type-Safe Development",
+          title: "การพัฒนาที่แม่นยำด้วย Type-Safe",
           desc: "ลดข้อผิดพลาดของระบบด้วยมาตรฐาน TypeScript ทำให้โค้ดมีความแม่นยำและขยายต่อได้ง่าย"
         },
         {
-          title: "Cloud Deployment Ready",
+          title: "พร้อมสำหรับการติดตั้งบนคลาวด์",
           desc: "รองรับการ Deploy บน AWS, Vercel หรือ Cloud Platform อื่น ๆ ได้อย่างเสถียร"
         }
       ]
     },
 
     pillar2: {
-      title: "2. Scalable Data Architecture",
+      title: "2. สถาปัตยกรรมข้อมูลที่ยืดหยุ่น",
       description: "วางโครงสร้างฐานข้อมูลให้รองรับการเติบโตของธุรกิจ ตั้งแต่หลักพันไปจนถึงหลักล้านรายการ โดยยังคงความเร็ว ความถูกต้อง และความยืดหยุ่นในการนำข้อมูลไปใช้",
       features: [
         {
-          title: "Structured Data Design",
+          title: "การออกแบบข้อมูลอย่างเป็นระบบ",
           desc: "ออกแบบ Schema อย่างเป็นระบบ ลดข้อมูลซ้ำซ้อน และทำให้การจัดการข้อมูลง่ายขึ้นในระยะยาว"
         },
         {
-          title: "Optimized Query Performance",
+          title: "ประสิทธิภาพการดึงข้อมูลสูงสุด",
           desc: "ออกแบบ Index และ Query ให้ดึงข้อมูลได้รวดเร็ว แม้ในระบบที่มีข้อมูลจำนวนมาก"
         },
         {
-          title: "Ready for Analytics & AI",
+          title: "พร้อมสำหรับการวิเคราะห์และ AI",
           desc: "เตรียมโครงสร้างข้อมูลให้สามารถนำไปใช้กับ Dashboard, Automation และ AI ได้ทันที"
         }
       ]
     },
 
     pillar3: {
-      title: "3. Secure & Reliable by Design",
+      title: "3. ปลอดภัยและเชื่อถือได้ตั้งแต่การออกแบบ",
       description: "ออกแบบระบบให้ปลอดภัยตั้งแต่ต้น ลดความเสี่ยงจากการโจมตีและการรั่วไหลของข้อมูล พร้อมรองรับการใช้งานในระดับองค์กร",
       features: [
         {
-          title: "Authentication & Access Control",
+          title: "การจัดการสิทธิ์และความปลอดภัย",
           desc: "จัดการสิทธิ์ผู้ใช้งานและความปลอดภัยด้วยมาตรฐานที่เหมาะสมกับระบบระดับองค์กร"
         },
         {
-          title: "Data Protection",
+          title: "การปกป้องข้อมูลสำคัญ",
           desc: "ปกป้องข้อมูลสำคัญด้วยการเข้ารหัสและแนวทางที่สอดคล้องกับมาตรฐานความปลอดภัย"
         },
         {
-          title: "Threat Mitigation",
+          title: "การลดความเสี่ยงจากภัยคุกคาม",
           desc: "ลดความเสี่ยงจากการโจมตี เช่น XSS และ CSRF ด้วยแนวทางด้าน Security ที่รัดกุม"
         }
       ]
     }
   },
+
+  simulation: {
+    title: "จำลองการออกแบบระบบ",
+    status: {
+      building: "กำลังสร้างระบบ...",
+      ready: "ระบบพร้อมใช้งาน",
+      waiting: "รอการเลือกประเภทธุรกิจ"
+    },
+    question: "เป้าหมายหลักของระบบคุณคืออะไร?",
+    businessTypes: [
+      { id: 'ecommerce', label: 'ขายของ / บริการลูกค้า (B2C)' },
+      { id: 'internal', label: 'จัดการงานภายในองค์กร (B2B)' },
+      { id: 'data', label: 'วิเคราะห์ข้อมูล / ใช้ AI' }
+    ],
+    configs: {
+      ecommerce: {
+        title: 'แพลตฟอร์ม E-Commerce / B2C',
+        scale: 'รองรับปริมาณทราฟฟิกสูง',
+        impact: 'รองรับผู้ใช้งานหลักแสนพร้อมกัน ไม่ล่ม ไม่หน่วง ป้องกันการเสียโอกาสสร้างยอดขาย 100%',
+        layers: [
+          { name: 'Scalable PostgreSQL', desc: 'ฐานข้อมูลรองรับธุรกรรมจำนวนมากแบบ ACID มั่นใจทุกยอดขาย' },
+          { name: 'High-Traffic API Layer', desc: 'โหลดบาลานซ์และจัดการ Request หลักแสนด้วย Node.js/Go' },
+          { name: 'Next.js 14 Storefront', desc: 'หน้าเว็บโหลดไวระดับ Edge Network (SEO Optimized)' },
+          { name: 'Inventory & Rec-AI', desc: 'AI แนะนำสินค้าและคุมสต็อกกันของขาดแบบ Real-time' }
+        ]
+      },
+      internal: {
+        title: 'ระบบจัดการงานภายในองค์กร',
+        scale: 'ความปลอดภัยระดับ Enterprise',
+        impact: 'ลดระยะเวลาและข้อผิดพลาดในการทำงาน Manual 80% ประหยัดต้นทุนแรงงานแฝงรายเดือนมหาศาล',
+        layers: [
+          { name: 'Secure Relational DB', desc: 'ฐานข้อมูลเก็บความลับองค์กรระดับสูงสุด เข้ารหัส 2 ชั้น' },
+          { name: 'Role-Based API Core', desc: 'ระบบจัดการสิทธิ์ผู้ใช้งาน (RBAC) อย่างรัดกุมระดับธนาคาร' },
+          { name: 'Admin Dashboard', desc: 'UI/UX สำหรับใช้งานในองค์กร เร็วและเข้าใจง่าย ลดเวลาเทรนงาน' },
+          { name: 'Workflow Automator', desc: 'AI ช่วยอนุมัติเอกสารและคีย์ข้อมูลแทนมนุษย์ ลดงานซ้ำซ้อน' }
+        ]
+      },
+      data: {
+        title: 'แพลตฟอร์มวิเคราะห์ข้อมูลและ AI',
+        scale: 'พร้อมขับเคลื่อนด้วยข้อมูล',
+        impact: 'เปลี่ยนข้อมูลนิ่งๆ ในบริษัทให้เป็น "ผู้เชี่ยวชาญ AI" ที่ช่วยผู้บริหารตัดสินใจได้รวดเร็วและแม่นยำ',
+        layers: [
+          { name: 'Vector DB + Warehouse', desc: 'ฐานข้อมูลความรู้สำหรับให้ AI ดึงไปใช้งานประมวลผล' },
+          { name: 'Real-time Pipeline', desc: 'ท่อส่งข้อมูลแบบ Real-time ไม่ดีเลย์ รองรับ Big Data' },
+          { name: 'Analytics Portal', desc: 'แดชบอร์ดดูข้อมูลสรุปผลสำหรับผู้บริหาร ตัดสินใจได้ทันที' },
+          { name: 'Aetox RAG Engine', desc: 'สมองกลถาม-ตอบ อ้างอิงข้อมูลบริษัทแม่นยำ 100%' }
+        ]
+      }
+    },
+    resetLabel: "เริ่มการวิเคราะห์ใหม่",
+    impactLabel: "ผลลัพธ์ทางธุรกิจ",
+    suitableFor: "ที่เหมาะกับธุรกิจคุณ"
+  },
+
 
   cta: {
     hirePoints: [
@@ -115,10 +169,11 @@ export const webSystemsContent = {
   },
 
   appliedIn: [
-    { name: 'Aetox Core Platform', link: '#' },
-    { name: 'Enterprise CRM Dashboard', link: '#' },
-    { name: 'AI Agent Management Portal', link: '#' }
+    { name: 'แพลตฟอร์ม Aetox Core', link: '#' },
+    { name: 'ระบบ CRM สำหรับองค์กร', link: '#' },
+    { name: 'พอร์ทัลจัดการ AI Agent', link: '#' }
   ]
+
 };
 
 export default webSystemsContent;

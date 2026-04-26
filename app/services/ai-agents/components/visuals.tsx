@@ -7,7 +7,7 @@ import ServiceVisualCard from '@/components/ServiceVisualCard';
 /* ─── Shared UI Components ────────────────────────────────────────── */
 export function LayerBadge({ icon: Icon, label, colorClass = "text-cyber-blue" }: { icon: any; label: string; colorClass?: string }) {
   return (
-    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-blue/20 bg-cyber-blue/10 ${colorClass} text-[10px] font-black tracking-widest uppercase`}>
+    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-blue/20 bg-cyber-blue/10 ${colorClass} text-[10px] font-bold`}>
       <Icon className="w-3.5 h-3.5" /> {label}
     </div>
   );
@@ -28,7 +28,7 @@ export function FeatureItem({ title, desc }: { title: string; desc: string }) {
 export function AppliedIn({ items, label }: { items: { name: string; link?: string }[], label: string }) {
   return (
     <div className="pt-6 border-t border-white/5">
-      <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">{label}</p>
+      <p className="text-xs text-gray-500 mb-4">{label}</p>
       <div className="flex flex-wrap gap-3">
         {items.map((item) => (
           <a 
@@ -53,17 +53,18 @@ export function OrchestratorVisual() {
   }, []);
 
   const phaseData = [
-    { title: 'Query Decomposition', tag: 'STAGE 01', desc: 'วิเคราะห์คำถามที่ซับซ้อน แตกเป็นงานย่อย (Sub-queries)' },
-    { title: 'Parallel Execution', tag: 'STAGE 02', desc: 'รัน Agent หลายตัวพร้อมกันเพื่อประมวลผลคนละส่วน' },
-    { title: 'Consolidated Synthesis', tag: 'STAGE 03', desc: 'รวบรวมคำตอบจากทุกแหล่ง สรุปเป็นรายงานที่สมบูรณ์' },
+    { title: 'การย่อยคำถาม (Decomposition)', tag: 'ขั้นตอนที่ 01', desc: 'วิเคราะห์คำถามที่ซับซ้อน แตกเป็นงานย่อย (Sub-queries)' },
+    { title: 'การประมวลผลขนาน (Parallel)', tag: 'ขั้นตอนที่ 02', desc: 'รัน Agent หลายตัวพร้อมกันเพื่อประมวลผลคนละส่วน' },
+    { title: 'การสังเคราะห์ผลลัพธ์ (Synthesis)', tag: 'ขั้นตอนที่ 03', desc: 'รวบรวมคำตอบจากทุกแหล่ง สรุปเป็นรายงานที่สมบูรณ์' },
   ];
+
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Agentic Orchestration</span>
+          <span className="text-[10px] font-bold text-cyber-blue uppercase">Agentic Orchestration</span>
         </div>
         <div className="text-[9px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
@@ -72,10 +73,11 @@ export function OrchestratorVisual() {
           {phase === 0 && (
             <motion.div key="decomp" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} className="w-full space-y-3">
               <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-[8px] font-black text-gray-500 uppercase mb-1">Complex Query</div>
+                <div className="text-[8px] font-bold text-gray-500 mb-1">คำถามที่ซับซ้อน (Complex Query)</div>
                 <div className="text-[11px] text-white">วิเคราะห์ความเสี่ยงธุรกิจพลังงาน 2026...</div>
               </div>
-              <div className="flex justify-center"><div className="px-2 py-0.5 rounded-full bg-cyber-blue/10 border border-cyber-blue/30 text-[8px] font-black text-cyber-blue uppercase">Decompose ↓</div></div>
+              <div className="flex justify-center"><div className="px-2 py-0.5 rounded-full bg-cyber-blue/10 border border-cyber-blue/30 text-[8px] font-bold text-cyber-blue">แยกงานย่อย ↓</div></div>
+
               <div className="grid grid-cols-2 gap-2">
                 {['แนวโน้มตลาด', 'งบการเงิน'].map((q, i) => (
                   <div key={i} className="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-[9px] text-gray-400 truncate text-center">{q}</div>
@@ -102,7 +104,8 @@ export function OrchestratorVisual() {
                 {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center"><FileText className="w-4 h-4 text-gray-500" /></div>)}
               </div>
               <div className="p-4 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 shadow-cyber-glow">
-                <div className="text-[9px] font-black text-cyber-blue uppercase mb-1.5">Consolidated Report</div>
+                <div className="text-[9px] font-black text-cyber-blue uppercase mb-1.5">รายงานสรุปผล (Consolidated Report)</div>
+
                 <div className="space-y-1">
                   {[1,2].map(i => <div key={i} className="h-1 bg-cyber-blue/30 rounded-full" style={{ width: `${100-i*20}%` }} />)}
                 </div>
@@ -136,10 +139,11 @@ export function HybridRetrievalVisual() {
   }, []);
 
   const phaseData = [
-    { title: "HyDE Embedding", tag: "PHASE 01", desc: "จินตนาการคำตอบล่วงหน้าเป็น Vector Target" },
-    { title: "Hybrid Search", tag: "PHASE 02", desc: "Semantic GPU + Keyword ทำงานคู่ขนาน" },
-    { title: "Adaptive Reranking", tag: "PHASE 03", desc: "Cross-Encoder ตัดสิน — Skip ถ้า Score สูงพอ" },
+    { title: "HyDE Embedding", tag: "ขั้นตอนที่ 01", desc: "จินตนาการคำตอบล่วงหน้าเป็น Vector Target" },
+    { title: "Hybrid Search", tag: "ขั้นตอนที่ 02", desc: "Semantic GPU + Keyword ทำงานคู่ขนาน" },
+    { title: "Adaptive Reranking", tag: "ขั้นตอนที่ 03", desc: "Cross-Encoder ตัดสิน — ข้ามขั้นตอนถ้าคะแนนสูงพอ" },
   ];
+
 
   return (
     <div className="flex flex-col h-full">
@@ -155,16 +159,17 @@ export function HybridRetrievalVisual() {
           {phase === 0 && (
             <motion.div key="hyde" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col items-center gap-4">
               <div className="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
-                <div className="text-[8px] font-black text-gray-500 uppercase w-12 shrink-0">Query</div>
+                <div className="text-[8px] font-black text-gray-500 uppercase w-12 shrink-0">คำถาม (Query)</div>
                 <div className="flex-1 h-1.5 bg-white/10 rounded-full" />
               </div>
               <div className="flex flex-col items-center gap-0.5">
                 <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-cyber-blue/40 text-sm">↓</motion.div>
-                <span className="text-[8px] font-black text-cyber-blue uppercase bg-cyber-blue/10 border border-cyber-blue/20 px-2 py-0.5 rounded-full">AI Imagines Answer</span>
+                <span className="text-[8px] font-black text-cyber-blue uppercase bg-cyber-blue/10 border border-cyber-blue/20 px-2 py-0.5 rounded-full">AI จำลองคำตอบล่วงหน้า</span>
                 <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="text-cyber-blue/40 text-sm">↓</motion.div>
               </div>
               <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="w-full px-4 py-2 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 shadow-cyber-glow/10">
-                <div className="text-[8px] font-black text-cyber-blue uppercase mb-1.5">Hypothetical Vector</div>
+                <div className="text-[8px] font-black text-cyber-blue uppercase mb-1.5">เวกเตอร์สมมติ (Hypothetical Vector)</div>
+
                 <div className="flex gap-1">
                   {[60, 85, 45, 90, 70, 55, 80, 40].map((h, i) => (
                     <motion.div key={i} animate={{ scaleY: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }} className="flex-1 bg-cyber-blue/50 rounded-sm" style={{ height: `${h * 0.15}px`, minHeight: '4px' }} />
@@ -214,8 +219,9 @@ export function HybridRetrievalVisual() {
               ))}
               <div className="mt-2 flex items-center justify-center gap-2 px-3 py-1 rounded-xl bg-cyber-blue/5 border border-cyber-blue/20">
                 <Zap className="w-2.5 h-2.5 text-cyber-blue" />
-                <span className="text-[8px] font-black text-white">Threshold: 0.7+ → Skip Rerank</span>
+                <span className="text-[8px] font-black text-white">เกณฑ์การตัดสิน: 0.7+ → ข้ามขั้นตอนจัดลำดับ</span>
               </div>
+
             </motion.div>
           )}
         </AnimatePresence>
@@ -245,10 +251,11 @@ export function SelfCorrectionVisual() {
   }, []);
 
   const phaseData = [
-    { title: "Confidence Check", tag: "STEP 01", desc: "AI ตรวจสอบความมั่นใจของคำตอบ (Confidence Score)" },
-    { title: "Verification Loop", tag: "STEP 02", desc: "หาก Score ต่ำเกินไป ระบบจะสืบค้นใหม่โดยอัตโนมัติ" },
-    { title: "Self-Optimization", tag: "STEP 03", desc: "ปรับจูนพารามิเตอร์การค้นหาให้แม่นยำขึ้นในรอบถัดไป" },
+    { title: "Confidence Check", tag: "ขั้นตอนที่ 01", desc: "AI ตรวจสอบความมั่นใจของคำตอบ (Confidence Score)" },
+    { title: "Verification Loop", tag: "ขั้นตอนที่ 02", desc: "หากความแม่นยำต่ำเกินไป ระบบจะสืบค้นใหม่โดยอัตโนมัติ" },
+    { title: "Self-Optimization", tag: "ขั้นตอนที่ 03", desc: "ปรับจูนพารามิเตอร์การค้นหาให้แม่นยำขึ้นในรอบถัดไป" },
   ];
+
 
   return (
     <div className="flex flex-col h-full">
@@ -270,10 +277,11 @@ export function SelfCorrectionVisual() {
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-lg font-black text-red-500">42%</span>
-                  <span className="text-[6px] font-black text-gray-500 uppercase">Confidence</span>
+                  <span className="text-[6px] font-black text-gray-500 uppercase">ความมั่นใจ</span>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[8px] font-black text-red-500 uppercase tracking-widest animate-pulse">Low Confidence Detected</div>
+              <div className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[8px] font-black text-red-500 uppercase tracking-widest animate-pulse">ตรวจพบความแม่นยำต่ำ</div>
+
             </motion.div>
           )}
           {phase === 1 && (
@@ -298,10 +306,11 @@ export function SelfCorrectionVisual() {
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-lg font-black text-green-500">96%</span>
-                  <span className="text-[6px] font-black text-gray-500 uppercase">Confidence</span>
+                  <span className="text-[6px] font-black text-gray-500 uppercase">ความมั่นใจ</span>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[8px] font-black text-green-500 uppercase tracking-widest">Optimized & Validated</div>
+              <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[8px] font-black text-green-500 uppercase tracking-widest">ตรวจสอบและปรับปรุงแล้ว</div>
+
             </motion.div>
           )}
         </AnimatePresence>
@@ -331,10 +340,11 @@ export function StrategicOutputVisual() {
   }, []);
 
   const phaseData = [
-    { title: 'Adaptive Role-Playing', tag: 'PHASE 01', desc: 'AI สวมบทบาทผู้เชี่ยวชาญตามโจทย์ที่ได้รับ' },
-    { title: 'Cross-Concept Synthesis', tag: 'PHASE 02', desc: 'วิเคราะห์จุดเหมือน-ต่าง ข้ามฐานข้อมูลขนาดใหญ่' },
-    { title: 'Inference Consolidation', tag: 'PHASE 03', desc: 'สังเคราะห์ข้อมูลเป็นคำตอบเชิงกลยุทธ์ที่แม่นยำ' },
+    { title: 'Adaptive Role-Playing', tag: 'ขั้นตอนที่ 01', desc: 'AI สวมบทบาทผู้เชี่ยวชาญตามโจทย์ที่ได้รับ' },
+    { title: 'Cross-Concept Synthesis', tag: 'ขั้นตอนที่ 02', desc: 'วิเคราะห์จุดเหมือน-ต่าง ข้ามฐานข้อมูลขนาดใหญ่' },
+    { title: 'Inference Consolidation', tag: 'ขั้นตอนที่ 03', desc: 'สังเคราะห์ข้อมูลเป็นคำตอบเชิงกลยุทธ์ที่แม่นยำ' },
   ];
+
 
   return (
     <div className="flex flex-col h-full">
@@ -368,9 +378,10 @@ export function StrategicOutputVisual() {
           )}
           {phase === 2 && (
             <motion.div key="output" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-[9px] text-gray-400">
-              <span className="text-cyber-blue">RECOMMENDATION:</span> Accelerate Q2 expansion due to competitor liquidity drop...
+              <span className="text-cyber-blue">ข้อเสนอแนะ:</span> เร่งการขยายตัวในไตรมาสที่ 2 เนื่องจากสภาพคล่องของคู่แข่งลดลง...
             </motion.div>
           )}
+
         </AnimatePresence>
       </div>
       <div className="mt-4 p-4 h-[90px] rounded-2xl bg-white/[0.02] border border-white/5 relative overflow-hidden flex flex-col justify-center">
@@ -423,13 +434,14 @@ export function RealTimeStreamVisual() {
       </div>
       <div className="mt-4 p-4 h-[90px] flex items-center justify-between px-2 bg-white/[0.02] border border-white/5 rounded-2xl">
         <div className="flex gap-4">
-          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">Latency</div><div className="text-[10px] font-mono text-white">42ms</div></div>
-          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">Throughput</div><div className="text-[10px] font-mono text-white">124 t/s</div></div>
+          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">ความหน่วง (Latency)</div><div className="text-[10px] font-mono text-white">42ms</div></div>
+          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">ปริมาณงาน (Throughput)</div><div className="text-[10px] font-mono text-white">124 t/s</div></div>
         </div>
         <div className="flex items-center gap-2 text-[8px] font-black text-emerald-500 uppercase tracking-widest">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-emerald-glow animate-pulse" />
-          Synchronized
+          เชื่อมต่อแล้ว (Synchronized)
         </div>
+
       </div>
     </div>
   );

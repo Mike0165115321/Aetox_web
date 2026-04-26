@@ -21,17 +21,18 @@ import {
 } from './components/visuals';
 import { KnowledgePipeline } from './components/simulator-components';
 import { RagChatSimulator } from './components/rag-chat-simulator';
-export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: any }) {
+export default function AiAgentsClient({ dict, navDict, ctaDict }: { dict: any, navDict: any, ctaDict: any }) {
   const sections: NavSection[] = [
-    { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
-    { id: 'chat-simulator', label: 'ทดลองแชท RAG', num: 'SIM', icon: <Search size={16} />, offset: -80 },
-    { id: 'orchestrator', label: 'Orchestration', num: '01', icon: <Layers size={16} />, offset: 120 },
-    { id: 'retrieval', label: 'Hybrid Retrieval', num: '02', icon: <Database size={16} />, offset: 120 },
-    { id: 'generation', label: 'Strategic Output', num: '03', icon: <Zap size={16} />, offset: 120 },
-    { id: 'pipeline-section', label: 'วงจรข้อมูล', num: '04', icon: <TrendingUp size={16} />, offset: 60 },
-    { id: 'roi-simulator', label: 'จำลองความคุ้มค่า', num: '05', icon: <TrendingUp size={16} />, offset: 0 },
-    { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <ArrowRight size={16} />, offset: 40 },
+    { id: 'hero', label: dict.navigation?.hero || 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
+    { id: 'chat-simulator', label: dict.navigation?.simulator || 'ทดลองแชท RAG', num: 'SIM', icon: <Search size={16} />, offset: -80 },
+    { id: 'orchestrator', label: dict.navigation?.orchestrator || 'Orchestration', num: '01', icon: <Layers size={16} />, offset: 120 },
+    { id: 'retrieval', label: dict.navigation?.retrieval || 'Hybrid Retrieval', num: '02', icon: <Database size={16} />, offset: 120 },
+    { id: 'generation', label: dict.navigation?.generation || 'Strategic Output', num: '03', icon: <Zap size={16} />, offset: 120 },
+    { id: 'pipeline-section', label: dict.navigation?.pipeline || 'วงจรข้อมูล', num: '04', icon: <TrendingUp size={16} />, offset: 60 },
+    { id: 'roi-simulator', label: dict.navigation?.roi || 'จำลองความคุ้มค่า', num: '05', icon: <TrendingUp size={16} />, offset: 0 },
+    { id: 'cta-section', label: dict.navigation?.cta || 'เริ่มต้นใช้งาน', num: 'END', icon: <ArrowRight size={16} />, offset: 40 },
   ];
+
 
   // scrollToSection logic is now handled by @/lib/scroll-utils
 
@@ -46,8 +47,9 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
         <div className="container mx-auto">
           <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-wide">กลับสู่หน้าบริการ</span>
+            <span className="text-sm font-bold tracking-wide">{dict.hero?.backLabel || 'กลับสู่หน้าบริการ'}</span>
           </Link>
+
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
             {/* Left: Hero Content */}
@@ -78,8 +80,9 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                   onClick={() => scrollToSection('chat-simulator')}
                   className="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-black text-lg hover:bg-white/10 transition-all active:scale-95 flex items-center gap-3 group"
                 >
-                  ดูตัวอย่าง
+                  {dict.hero?.demoLabel || 'ดูตัวอย่าง'}
                 </button>
+
               </motion.div>
             </motion.div>
 
@@ -211,10 +214,10 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
         <ServiceBottomCTA 
           serviceId="ai-agents"
           serviceName="AI Agents"
-          hirePoints={dict.cta.hirePoints}
-          learnPoints={dict.cta.learnPoints}
+          dict={ctaDict.bottom}
         />
       </section>
+
       
       <Footer dict={navDict.footer} />
     </main>

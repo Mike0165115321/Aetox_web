@@ -10,45 +10,30 @@ import {
 // ประเภทของระบบที่รองรับ
 type SystemType = 'none' | 'ecommerce' | 'internal' | 'data';
 
-export default function ArchitectureBuilder() {
+export default function ArchitectureBuilder({ dict }: { dict: any }) {
   const [selectedSystem, setSelectedSystem] = useState<SystemType>('none');
   const [buildStep, setBuildStep] = useState<number>(0);
   const [isBuilding, setIsBuilding] = useState<boolean>(false);
 
-  // ฐานข้อมูล Configuration สำหรับแต่ละประเภทธุรกิจ
-  const systemConfigs = {
-    ecommerce: {
-      title: 'E-Commerce / B2C Platform',
-      scale: 'High-Traffic Scale',
-      layers: [
-        { id: 'db', name: 'Scalable PostgreSQL', desc: 'ฐานข้อมูลรองรับธุรกรรมจำนวนมากแบบ ACID มั่นใจทุกยอดขาย', icon: Database, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/30' },
-        { id: 'api', name: 'High-Traffic API Layer', desc: 'โหลดบาลานซ์และจัดการ Request หลักแสนด้วย Node.js/Go', icon: Server, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/30' },
-        { id: 'front', name: 'Next.js 14 Storefront', desc: 'หน้าเว็บโหลดไวระดับ Edge Network (SEO Optimized)', icon: Layout, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/30' },
-        { id: 'ai', name: 'Inventory & Rec-AI', desc: 'AI แนะนำสินค้าและคุมสต็อกกันของขาดแบบ Real-time', icon: BrainCircuit, color: 'text-cyber-blue', bg: 'bg-cyber-blue/10', border: 'border-cyber-blue/30' }
-      ],
-      impact: 'รองรับผู้ใช้งานหลักแสนพร้อมกัน ไม่ล่ม ไม่หน่วง ป้องกันการเสียโอกาสสร้างยอดขาย (Revenue Loss) 100%'
-    },
-    internal: {
-      title: 'Internal Operations Dashboard',
-      scale: 'Enterprise Security',
-      layers: [
-        { id: 'db', name: 'Secure Relational DB', desc: 'ฐานข้อมูลเก็บความลับองค์กรระดับสูงสุด เข้ารหัส 2 ชั้น', icon: Database, color: 'text-slate-400', bg: 'bg-slate-500/10', border: 'border-slate-500/30' },
-        { id: 'api', name: 'Role-Based API Core', desc: 'ระบบจัดการสิทธิ์ผู้ใช้งาน (RBAC) อย่างรัดกุมระดับธนาคาร', icon: ShieldCheck, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/30' },
-        { id: 'front', name: 'Admin Dashboard', desc: 'UI/UX สำหรับใช้งานในองค์กร เร็วและเข้าใจง่าย ลดเวลาเทรนงาน', icon: Layout, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/30' },
-        { id: 'ai', name: 'Workflow Automator', desc: 'AI ช่วยอนุมัติเอกสารและคีย์ข้อมูลแทนมนุษย์ ลดงานซ้ำซ้อน', icon: Cpu, color: 'text-cyber-blue', bg: 'bg-cyber-blue/10', border: 'border-cyber-blue/30' }
-      ],
-      impact: 'ลดระยะเวลาและข้อผิดพลาดในการทำงาน Manual 80% ประหยัดต้นทุนแรงงานแฝงรายเดือนมหาศาล'
-    },
-    data: {
-      title: 'Data & AI Platform',
-      scale: 'Data-Driven Ready',
-      layers: [
-        { id: 'db', name: 'Vector DB + Warehouse', desc: 'ฐานข้อมูลความรู้สำหรับให้ AI ดึงไปใช้งานประมวลผล', icon: Database, color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/30' },
-        { id: 'api', name: 'Real-time Pipeline', desc: 'ท่อส่งข้อมูลแบบ Real-time ไม่ดีเลย์ รองรับ Big Data', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/30' },
-        { id: 'front', name: 'Analytics Portal', desc: 'แดชบอร์ดดูข้อมูลสรุปผลสำหรับผู้บริหาร ตัดสินใจได้ทันที', icon: Layout, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/30' },
-        { id: 'ai', name: 'Aetox RAG Engine', desc: 'สมองกลถาม-ตอบ อ้างอิงข้อมูลบริษัทแม่นยำ 100%', icon: BrainCircuit, color: 'text-cyber-blue', bg: 'bg-cyber-blue/10', border: 'border-cyber-blue/30' }
-      ],
-      impact: 'เปลี่ยนข้อมูลนิ่งๆ ในบริษัทให้เป็น "ผู้เชี่ยวชาญ AI" ที่ช่วย C-Level ตัดสินใจได้รวดเร็วและแม่นยำ'
+  // Icon mapping for layers
+  const getIcon = (layerName: string) => {
+    const name = layerName.toLowerCase();
+    if (name.includes('db') || name.includes('database') || name.includes('postgresql')) return Database;
+    if (name.includes('api') || name.includes('core')) return Server;
+    if (name.includes('front') || name.includes('dashboard') || name.includes('storefront') || name.includes('portal')) return Layout;
+    if (name.includes('ai') || name.includes('rag') || name.includes('brain')) return BrainCircuit;
+    if (name.includes('security') || name.includes('secure')) return ShieldCheck;
+    if (name.includes('workflow') || name.includes('automator')) return Cpu;
+    if (name.includes('pipeline') || name.includes('real-time')) return Activity;
+    return Server;
+  };
+
+  const getColors = (id: string) => {
+    switch (id) {
+      case 'ecommerce': return { color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/30' };
+      case 'internal': return { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/30' };
+      case 'data': return { color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/30' };
+      default: return { color: 'text-gray-400', bg: 'bg-gray-500/10', border: 'border-gray-500/30' };
     }
   };
 
@@ -58,8 +43,8 @@ export default function ArchitectureBuilder() {
         setBuildStep(prev => prev + 1);
       }, 500);
       return () => clearTimeout(timer);
-    } else if (buildStep === 5) {
-      setIsBuilding(false);
+    } else if (isBuilding && buildStep === 5) {
+      setTimeout(() => setIsBuilding(false), 0);
     }
   }, [isBuilding, buildStep]);
 
@@ -70,7 +55,7 @@ export default function ArchitectureBuilder() {
     setIsBuilding(true);
   };
 
-  const activeConfig = selectedSystem !== 'none' ? systemConfigs[selectedSystem] : null;
+  const activeConfig = selectedSystem !== 'none' ? dict.configs[selectedSystem] : null;
 
   // ─── Render Logic ───
   return (
@@ -88,16 +73,12 @@ export default function ArchitectureBuilder() {
             >
               <div className="glass-card p-6 rounded-3xl border-white/10 bg-black/40">
                 <p className="text-cyber-blue font-black text-[10px] uppercase tracking-widest mb-4">Strategic Question</p>
-                <h3 className="text-xl font-bold text-white mb-8 leading-tight">เป้าหมายหลักของระบบคุณคืออะไร?</h3>
+                <h3 className="text-xl font-bold text-white mb-8 leading-tight">{dict.question}</h3>
                 <div className="space-y-3">
-                  {[
-                    { label: 'ขายของ / บริการลูกค้า (B2C)', value: 'ecommerce' as SystemType },
-                    { label: 'จัดการงานภายในองค์กร (B2B)', value: 'internal' as SystemType },
-                    { label: 'วิเคราะห์ข้อมูล / ใช้ AI', value: 'data' as SystemType }
-                  ].map((opt) => (
+                  {dict.businessTypes.map((opt: any) => (
                     <button
-                      key={opt.value}
-                      onClick={() => handleStartBuild(opt.value)}
+                      key={opt.id}
+                      onClick={() => handleStartBuild(opt.id)}
                       className="w-full p-5 rounded-2xl border border-white/5 bg-white/5 text-left text-sm font-bold text-gray-300 hover:border-cyber-blue hover:bg-cyber-blue/10 transition-all active:scale-[0.98]"
                     >
                       {opt.label}
@@ -125,7 +106,7 @@ export default function ArchitectureBuilder() {
                 {isBuilding && (
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
                     <Zap size={12} className="text-amber-400 animate-pulse" />
-                    <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Building</span>
+                    <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">{dict.status.building.split('...')[0]}</span>
                   </div>
                 )}
               </div>
@@ -139,24 +120,26 @@ export default function ArchitectureBuilder() {
                       animate={{ opacity: 1, height: 'auto' }}
                       className="text-emerald-400 text-xs leading-relaxed font-bold mb-4"
                     >
-                      "{activeConfig?.impact}"
+                      {`"${activeConfig?.impact}"`}
                     </motion.p>
                   )}
                 </AnimatePresence>
                 
                 <div className="flex flex-col-reverse gap-2">
-                  {activeConfig?.layers.map((layer, idx) => {
+                  {activeConfig?.layers.map((layer: any, idx: number) => {
                     const isVisible = buildStep > idx;
+                    const Icon = getIcon(layer.name);
+                    const colors = getColors(selectedSystem);
                     return (
                       <motion.div 
                         key={idx} 
                         initial={{ opacity: 0, x: -10 }}
                         animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                         className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-500 ${
-                          isVisible ? `${layer.bg} ${layer.border}` : 'border-transparent opacity-0'
+                          isVisible ? `${colors.bg} ${colors.border}` : 'border-transparent opacity-0'
                         }`}
                       >
-                        <layer.icon size={16} className={layer.color} />
+                        <Icon size={16} className={colors.color} />
                         <div className="flex-1">
                           <span className="text-[11px] font-bold text-gray-300">{layer.name}</span>
                         </div>
@@ -171,7 +154,7 @@ export default function ArchitectureBuilder() {
                   disabled={isBuilding}
                   className="w-full mt-6 py-3 rounded-xl border border-white/10 text-[11px] font-black text-gray-500 uppercase tracking-widest disabled:opacity-30"
                 >
-                  เริ่มการวิเคราะห์ใหม่
+                  {dict.resetLabel}
                 </button>
               </div>
             </motion.div>
@@ -188,7 +171,7 @@ export default function ArchitectureBuilder() {
             <div className="p-2 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20">
               <Cpu className="text-cyber-blue" size={20} />
             </div>
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">จำลองการออกแบบระบบ (Simulation)</h2>
+            <h2 className="text-sm font-bold text-white uppercase tracking-wider">{dict.title}</h2>
           </div>
           
           <div className="flex gap-6 text-[10px] font-bold">
@@ -199,7 +182,7 @@ export default function ArchitectureBuilder() {
             <div className="flex flex-col gap-1">
               <span className="text-gray-500 uppercase tracking-widest">STATUS</span>
               <span className={`${isBuilding ? 'text-amber-400 animate-pulse' : (buildStep === 5 ? 'text-emerald-400' : 'text-gray-500')} flex items-center gap-1`}>
-                {isBuilding ? 'BUILDING...' : (buildStep === 5 ? <><CheckCircle2 size={12}/> READY</> : 'WAITING')}
+                {isBuilding ? dict.status.building.toUpperCase() : (buildStep === 5 ? <><CheckCircle2 size={12}/> {dict.status.ready.toUpperCase()}</> : dict.status.waiting.toUpperCase())}
               </span>
             </div>
           </div>
@@ -215,8 +198,8 @@ export default function ArchitectureBuilder() {
                 <Terminal size={28} className="text-gray-500" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white">เริ่มต้นการออกแบบระบบของคุณ</h3>
-                <p className="text-sm text-gray-500 max-w-xs font-medium leading-relaxed">เลือกประเภทธุรกิจด้านล่างเพื่อดูโครงสร้างสถาปัตยกรรมระดับ Enterprise</p>
+                <h3 className="text-lg font-bold text-white">{dict.title}</h3>
+                <p className="text-sm text-gray-500 max-w-xs font-medium leading-relaxed">{dict.question}</p>
               </div>
             </div>
           )}
@@ -231,7 +214,7 @@ export default function ArchitectureBuilder() {
                   className="bg-emerald-500/10 border border-emerald-500/20 p-4 md:p-5 rounded-2xl shadow-emerald-500/5 backdrop-blur-xl"
                 >
                   <h4 className="text-[10px] font-bold text-emerald-400 mb-2 uppercase tracking-[0.2em] flex items-center gap-2">
-                    <CheckCircle2 size={12} /> ผลลัพธ์ทางธุรกิจ (Impact)
+                    <CheckCircle2 size={12} /> {dict.impactLabel} (Impact)
                   </h4>
                   <p className="text-sm md:text-[15px] font-bold text-white leading-relaxed">
                     {activeConfig.impact}
@@ -245,11 +228,13 @@ export default function ArchitectureBuilder() {
           <div className="flex-1 flex flex-col justify-end">
             {activeConfig && (
               <div className="flex flex-col-reverse gap-3 relative z-10 w-full max-w-xl mx-auto">
-                {activeConfig.layers.map((layer, index) => {
+                {activeConfig.layers.map((layer: any, index: number) => {
                   const isVisible = buildStep > index;
+                  const Icon = getIcon(layer.name);
+                  const colors = getColors(selectedSystem);
                   return (
                     <motion.div 
-                      key={layer.id}
+                      key={index}
                       initial={{ opacity: 0, y: 20 }}
                       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       className="relative"
@@ -259,14 +244,14 @@ export default function ArchitectureBuilder() {
                       )}
                       
                       <div className={`flex items-center gap-4 p-4 rounded-xl border backdrop-blur-md transition-all duration-500 ${
-                        isVisible ? `${layer.bg} ${layer.border} shadow-lg` : 'border-transparent'
+                        isVisible ? `${colors.bg} ${colors.border} shadow-lg` : 'border-transparent'
                       }`}>
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border bg-ultra-dark ${layer.border}`}>
-                          <layer.icon className={layer.color} size={20} />
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border bg-ultra-dark ${colors.border}`}>
+                          <Icon className={colors.color} size={20} />
                         </div>
                         <div className="flex-1">
                           <div className="flex justify-between items-center mb-0.5">
-                            <h4 className={`text-sm font-bold ${layer.color}`}>{layer.name}</h4>
+                            <h4 className={`text-sm font-bold ${colors.color}`}>{layer.name}</h4>
                             <span className="text-[9px] text-gray-500 font-bold uppercase tracking-wider">Layer 0{index + 1}</span>
                           </div>
                           <p className="text-[11px] text-gray-400 font-medium leading-tight">{layer.desc}</p>
@@ -292,9 +277,9 @@ export default function ArchitectureBuilder() {
                 className="w-full appearance-none bg-black/40 border border-white/10 text-white text-sm font-bold rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-cyber-blue disabled:opacity-50 cursor-pointer transition-all"
               >
                 <option value="none" className="bg-[#0A0F1C] text-white">-- เลือกประเภทธุรกิจ --</option>
-                <option value="ecommerce" className="bg-[#0A0F1C] text-white">1. B2C / E-Commerce Platform</option>
-                <option value="internal" className="bg-[#0A0F1C] text-white">2. Internal Business Ops (B2B)</option>
-                <option value="data" className="bg-[#0A0F1C] text-white">3. AI & Data Analytics Engine</option>
+                {dict.businessTypes.map((opt: any) => (
+                  <option key={opt.id} value={opt.id} className="bg-[#0A0F1C] text-white">{opt.label}</option>
+                ))}
               </select>
               <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
             </div>
@@ -308,12 +293,13 @@ export default function ArchitectureBuilder() {
             {isBuilding ? (
               <>
                 <Zap size={16} className="animate-pulse" />
-                BUILDING...
+                {dict.status.building.toUpperCase()}
               </>
-            ) : 'เริ่มใหม่'}
+            ) : dict.resetLabel}
           </button>
         </div>
       </div>
     </div>
   );
 }
+

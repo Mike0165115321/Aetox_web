@@ -14,14 +14,14 @@ import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { FeatureItem } from './components/shared-components';
 import { PriorityQueueVisual, ScalableBotsVisual, ObservabilityVisual } from './components/pillar-visuals';
 import AutomationShowcase from './components/automation-showcase';
-export default function AutomationClient({ dict, navDict }: { dict: any, navDict: any }) {
+export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any, navDict: any, ctaDict: any }) {
   const sections: NavSection[] = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
-    { id: 'pillar-1', label: 'ระบบคิวอัจฉริยะ', num: '01', icon: <Layers size={16} />, offset: 120 },
-    { id: 'pillar-2', label: 'บอทประมวลผล', num: '02', icon: <Zap size={16} />, offset: 120 },
-    { id: 'pillar-3', label: 'ระบบตรวจสอบ', num: '03', icon: <Database size={16} />, offset: 120 },
-    { id: 'automation-simulator', label: 'จำลองความคุ้มค่า', num: 'SIM', icon: <TrendingUp size={16} />, offset: 0 },
-    { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <Rocket size={16} />, offset: 120 },
+    { id: 'pillar-1', label: dict.pillars.pillar1.title.split(' (')[0], num: '01', icon: <Layers size={16} />, offset: 120 },
+    { id: 'pillar-2', label: dict.pillars.pillar2.title.split(' (')[0], num: '02', icon: <Zap size={16} />, offset: 120 },
+    { id: 'pillar-3', label: dict.pillars.pillar3.title.split(' (')[0], num: '03', icon: <Database size={16} />, offset: 120 },
+    { id: 'automation-simulator', label: dict.roi.title, num: 'SIM', icon: <TrendingUp size={16} />, offset: 0 },
+    { id: 'cta-section', label: ctaDict.bottom.label || 'เริ่มต้นใช้งาน', num: 'END', icon: <Rocket size={16} />, offset: 120 },
   ];
 
   // scrollToSection is handled by @/lib/scroll-utils
@@ -69,7 +69,7 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
                   className="px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white font-black text-xl hover:bg-white/10 hover:border-deep-blue/40 transition-all active:scale-95 flex items-center gap-4 group backdrop-blur-xl"
                 >
                   <TrendingUp className="w-6 h-6 text-deep-blue" />
-                  คำนวณความคุ้มค่า
+                  {dict.roi.title.split('ของ')[0]}
                 </button>
               </motion.div>
             </motion.div>
@@ -174,18 +174,21 @@ export default function AutomationClient({ dict, navDict }: { dict: any, navDict
       <section id="automation-simulator" className="py-32 border-t border-white/5 bg-white/[0.01] scroll-mt-32 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
-            <AutomationSimulator />
+            <AutomationSimulator dict={dict.roi} />
           </div>
         </div>
       </section>
 
       {/* Strategic CTA Section */}
-      <ServiceBottomCTA 
-        serviceId="automation" 
-        serviceName="Workflow Automation" 
-        hirePoints={dict.cta.hirePoints}
-        learnPoints={dict.cta.learnPoints}
-      />
+      <section id="cta-section" className="scroll-mt-32">
+        <ServiceBottomCTA 
+          serviceId="automation" 
+          serviceName="Workflow Automation" 
+          dict={ctaDict.bottom}
+        />
+      </section>
+
+
 
       <Footer dict={navDict.footer} />
     </main>

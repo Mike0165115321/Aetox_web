@@ -28,20 +28,20 @@ export const ROIInputSection = ({
     className="space-y-10 glass-card p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20"
   >
     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-8 border-b border-aetox-border">
-      <span className="text-[10px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">Calculator Parameters</span>
+      <span className="text-[10px] font-bold text-aetox-text-muted">{dict.inputs.parametersLabel}</span>
       <CurrencySwitcher />
     </div>
 
     <div className="space-y-4">
-      <p className="text-[9px] font-black text-aetox-accent uppercase tracking-widest">Business Model Presets</p>
+      <p className="text-[9px] font-bold text-aetox-accent">{dict.inputs.presetsLabel}</p>
       <div className="grid grid-cols-3 gap-3">
         {['startup', 'sme', 'enterprise'].map((id) => (
           <button
             key={id}
             onClick={() => applyPreset(id as any)}
-            className="py-3 rounded-xl border border-aetox-border bg-aetox-bg text-[10px] font-black text-aetox-text-soft hover:border-aetox-accent hover:text-aetox-text-main hover:bg-aetox-accent/10 transition-all uppercase tracking-widest"
+            className="py-3 rounded-xl border border-aetox-border bg-aetox-bg text-[10px] font-bold text-aetox-text-soft hover:border-aetox-accent hover:text-aetox-text-main hover:bg-aetox-accent/10 transition-all"
           >
-            {id}
+            {dict.inputs.presets[id as keyof typeof dict.inputs.presets]}
           </button>
         ))}
       </div>
@@ -50,24 +50,24 @@ export const ROIInputSection = ({
     <div className="space-y-8">
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <label className="text-[10px] font-black text-aetox-text-soft uppercase tracking-[0.2em]">{dict.inputs.staffCount}</label>
-          <span className="text-aetox-text-main font-black text-xl">{staffCount} คน</span>
+          <label className="text-[10px] font-bold text-aetox-text-soft">{dict.inputs.staffCount}</label>
+          <span className="text-aetox-text-main font-bold text-xl">{staffCount} คน</span>
         </div>
         <input type="range" min="1" max="100" value={staffCount} onChange={(e) => setStaffCount(parseInt(e.target.value))} className="w-full h-1.5 bg-aetox-surface rounded-lg appearance-none cursor-pointer accent-aetox-accent" />
       </div>
 
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <label className="text-[10px] font-black text-aetox-text-soft uppercase tracking-[0.2em]">{dict.inputs.avgSalary}</label>
-          <span className="text-aetox-text-main font-black text-xl">{formatCurrency(avgSalary)}</span>
+          <label className="text-[10px] font-bold text-aetox-text-soft">{dict.inputs.avgSalary}</label>
+          <span className="text-aetox-text-main font-bold text-xl">{formatCurrency(avgSalary)}</span>
         </div>
         <input type="range" min={currency === 'THB' ? 15000 : 500} max={currency === 'THB' ? 300000 : 10000} step={currency === 'THB' ? 5000 : 100} value={avgSalary} onChange={(e) => setAvgSalary(parseInt(e.target.value))} className="w-full h-1.5 bg-aetox-surface rounded-lg appearance-none cursor-pointer accent-aetox-accent" />
       </div>
 
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <label className="text-[10px] font-black text-aetox-text-soft uppercase tracking-[0.2em]">{dict.inputs.hoursSpent}</label>
-          <span className="text-aetox-text-main font-black text-xl">{hoursSpent} ชม. / วัน</span>
+          <label className="text-[10px] font-bold text-aetox-text-soft">{dict.inputs.hoursSpent}</label>
+          <span className="text-aetox-text-main font-bold text-xl">{hoursSpent} ชม. / วัน</span>
         </div>
         <input type="range" min="1" max="8" step="0.5" value={hoursSpent} onChange={(e) => setHoursSpent(parseFloat(e.target.value))} className="w-full h-1.5 bg-aetox-surface rounded-lg appearance-none cursor-pointer accent-aetox-accent" />
       </div>

@@ -34,8 +34,8 @@ export default function ROIPreview({ dict }: { dict: any }) {
                 <Calculator size={14} /> {dict.title}
               </div>
               <h2 className="text-fluid-h2 font-black text-aetox-text-main leading-tight tracking-tighter">
-                Stop the Leaks, <br />
-                <span className="text-aetox-accent">Turn Costs Into Revenue.</span>
+                {dict.roiHeadline.white} <br />
+                <span className="text-aetox-accent">{dict.roiHeadline.accent}</span>
               </h2>
               <p className="text-fluid-p text-aetox-text-soft font-medium leading-relaxed max-w-xl">
                 {dict.description}

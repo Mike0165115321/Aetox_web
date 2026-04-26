@@ -18,7 +18,7 @@ const theme = {
   botBg: 'bg-emerald-500/10'
 };
 
-export default function AutomationSimulator() {
+export default function AutomationSimulator({ dict }: { dict: any }) {
   const { currency, exchangeRate } = useCurrency();
   const [complexity, setComplexity] = useState<Complexity>('medium');
   const [timeframe, setTimeframe] = useState<Timeframe>(6);
@@ -102,7 +102,7 @@ export default function AutomationSimulator() {
         <div className="px-6 sm:px-8 py-6 border-b border-white/5 bg-white/[0.02]">
           <div className="text-center md:text-left">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-none mb-1 text-white">
-              จำลองจุดคืนทุน — <span className="text-[#06B6D4]">Automation Simulator</span>
+              {dict.title.split(' — ')[0]} — <span className="text-[#06B6D4]">Automation Simulator</span>
             </h2>
             <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold opacity-70">วิเคราะห์ต้นทุนและพารามิเตอร์ระบบ</p>
           </div>
@@ -125,13 +125,14 @@ export default function AutomationSimulator() {
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
                   const cfg = workloadConfig[lvl];
+                  const dictLevel = dict.levels.find((l: any) => l.id === lvl);
                   return (
                     <button key={lvl} onClick={() => updateComplexity(lvl)}
                       className={`flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all duration-300 border text-left active:scale-95 ${active ? 'bg-white/10 text-white border-[#06B6D4]/40 shadow-[0_0_20px_rgba(6,182,212,0.05)]' : 'text-gray-400 border-transparent bg-white/[0.01]'}`}>
                       <span className={active ? 'text-[#06B6D4]' : ''}><SimulatorIcon name={cfg.icon} size={20} /></span>
                       <div className="flex-1">
-                        <p className="font-bold mb-0.5">{cfg.label}</p>
-                        <p className="text-[10px] opacity-50 font-medium uppercase">{cfg.sublabel}</p>
+                        <p className="font-bold mb-0.5">{dictLevel?.label || cfg.label}</p>
+                        <p className="text-[10px] opacity-50 font-medium uppercase">{dictLevel?.sublabel || cfg.sublabel}</p>
                       </div>
                     </button>
                   );
@@ -216,11 +217,11 @@ export default function AutomationSimulator() {
         <div className="bg-[#0D1321]/80 p-8 sm:p-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
             <div>
-              <p className="text-lg sm:text-xl font-bold text-white flex items-center gap-3 mb-1"><TrendingUp size={24} className="text-[#06B6D4]" /> การคาดการณ์กำไรสะสม (ROI Projection)</p>
+              <p className="text-lg sm:text-xl font-bold text-white flex items-center gap-3 mb-1"><TrendingUp size={24} className="text-[#06B6D4]" /> {dict.title}</p>
               <p className="text-[10px] text-gray-500 ml-9 uppercase tracking-widest font-bold">พยากรณ์ผลตอบแทนสะสมในระยะเวลา {timeframe} เดือน</p>
             </div>
             <div className="bg-black/40 p-1.5 rounded-2xl border border-white/10 flex items-center gap-1 w-full sm:w-auto shadow-inner">
-              {[{ val: 6, label: '6 เดือน' }, { val: 12, label: '1 ปี' }, { val: 36, label: '3 ปี' }].map((t) => (
+              {[{ val: 6, label: dict.timeframes.m6 }, { val: 12, label: dict.timeframes.y1 }, { val: 36, label: dict.timeframes.y3 }].map((t) => (
                 <button key={t.val} onClick={() => setTimeframe(t.val as Timeframe)} className={`flex-1 sm:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all ${timeframe === t.val ? 'bg-[#06B6D4] text-white shadow-lg' : 'text-gray-500 hover:text-gray-300'}`}>{t.label}</button>
               ))}
             </div>
@@ -248,17 +249,25 @@ export default function AutomationSimulator() {
                   {calc.projection.map((p) => {
                     const pct = Math.min((p.cumSaving / Math.max(calc.maxProjectionValue, 1)) * 100, 100);
                     const isBreakEvenPoint = p.breakEven && (p.month === 1 || !calc.projection.find(prev => prev.month < p.month && prev.breakEven));
+                    
+                    // Map labels from dict
+                    let label = p.label;
+                    if (label === 'ปีที่ 1') label = dict.labels.year1;
+                    if (label === 'ปีที่ 2') label = dict.labels.year2;
+                    if (label === 'ปีที่ 3') label = dict.labels.year3;
+                    if (label && label.startsWith('เดือน')) label = `${dict.labels.month} ${label.split(' ')[1]}`;
+
                     return (
                       <div key={p.month} className="flex flex-col items-center h-full justify-end group relative z-10">
                         <div className="absolute -top-12 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
                           <div className="bg-white text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-2xl">{formatMoney(p.cumSaving, true, false)}</div>
                         </div>
-                        {p.label && <div className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold mb-3 whitespace-nowrap transition-all border ${p.label.includes('ปี') ? 'bg-white/10 text-white border-white/20' : 'bg-white/5 text-gray-500 border-white/10'}`}>{p.label}</div>}
+                        {label && <div className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold mb-3 whitespace-nowrap transition-all border ${label.includes('ปี') ? 'bg-white/10 text-white border-white/20' : 'bg-white/5 text-gray-500 border-white/10'}`}>{label}</div>}
                         <div className="w-full bg-white/[0.02] rounded-t-2xl overflow-hidden transition-all duration-500 border border-white/5 hover:border-white/20 relative" style={{ height: `${Math.max(pct, 4)}%` }}>
                           <div className="w-full h-full rounded-t-2xl transition-all duration-1000" style={{ background: p.breakEven ? theme.botGrad : '#374151', boxShadow: p.breakEven ? theme.botGlow : 'none' }} />
                         </div>
                         <div className="mt-4 min-h-[40px] flex flex-col items-center">
-                          {isBreakEvenPoint && <div className="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20 shadow-sm animate-bounce">🚀 คืนทุน</div>}
+                          {isBreakEvenPoint && <div className="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20 shadow-sm animate-bounce">🚀 {dict.labels.breakEven}</div>}
                         </div>
                       </div>
                     );
@@ -311,3 +320,4 @@ export default function AutomationSimulator() {
     </div>
   );
 }
+

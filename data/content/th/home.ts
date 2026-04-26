@@ -1,15 +1,17 @@
 export const homeContent = {
   hero: {
     headline: {
-      white: "Inefficiency is a Choice.",
-      accent: "Precision is Our Standard."
+      white: "ความไร้ประสิทธิภาพคือสิ่งที่คุณเลือกหยุดได้",
+      accent: "ความแม่นยำคือมาตรฐานของเรา"
     },
     description: "อุดรอยรั่วทางธุรกิจและเปลี่ยนต้นทุนที่สูญเสีย ให้กลายเป็นระบบกำไรอัตโนมัติด้วยสถาปัตยกรรม AI ระดับ Enterprise",
     cta: {
       primary: "ดูบริการของเรา",
       secondary: "ปรึกษาเรา"
-    }
+    },
+    scrollLabel: "เลื่อนเพื่อวิเคราะห์"
   },
+
   pain: {
     title: "มูลค่าของความนิ่งเฉย",
     subtitle: "การนิ่งเฉยต่อระบบเดิมที่ไร้ประสิทธิภาพ กำลังกัดกินกำไรของคุณโดยไม่รู้ตัว",
@@ -37,9 +39,9 @@ export const homeContent = {
   trust: {
     founder: {
       name: "ชยพล พรมสะวะนา",
-      title: "Founder & System Architect",
-      accolade: "National AI Gold Medalist",
-      description: "System Architect ผู้เชี่ยวชาญด้าน AI และ Automation มุ่งเน้นการออกแบบระบบที่แก้ปัญหาจริง และสร้างผลลัพธ์ให้ธุรกิจ"
+      title: "ผู้ก่อตั้งและสถาปนิกวางระบบ",
+      accolade: "เหรียญทอง AI ระดับชาติ",
+      description: "สถาปนิกผู้ออกแบบระบบผู้เชี่ยวชาญด้าน AI และ Automation มุ่งเน้นการออกแบบระบบที่แก้ปัญหาจริง และสร้างผลลัพธ์ให้ธุรกิจ"
     },
     standards: [
       "ระบบรองรับการขยายตัวระดับ Enterprise",
@@ -50,15 +52,28 @@ export const homeContent = {
   engagement: {
     title: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)",
     description: "รู้ไหมว่ากำไรคุณหายไปตรงไหน? ลองคำนวณเพื่อจำลองผลลัพธ์ที่เปลี่ยน ‘ต้นทุนที่รั่ว’ ให้กลายเป็น ‘รายได้ที่ไหลเข้า’ ด้วยระบบอัตโนมัติของ Aetox",
+    roiHeadline: {
+      white: "อุดรอยรั่วทางธุรกิจ",
+      accent: "เปลี่ยนต้นทุนให้เป็นกำไร"
+    },
     inputs: {
       staffCount: "จำนวนพนักงาน (คนที่ทำงานซ้ำซ้อน)",
       avgSalary: "เงินเดือนเฉลี่ย (บาท)",
-      hoursSpent: "ชั่วโมงที่เสียไปกับงาน Manual / วัน"
+      hoursSpent: "ชั่วโมงที่เสียไปกับงาน Manual / วัน",
+      parametersLabel: "พารามิเตอร์การคำนวณ",
+      presetsLabel: "รูปแบบธุรกิจตัวอย่าง",
+      presets: {
+        startup: "เริ่มต้น (Startup)",
+        sme: "ธุรกิจโต (SME)",
+        enterprise: "องค์กร (Enterprise)"
+      }
     },
     results: {
       monthlySavings: "เงินที่ประหยัดได้ต่อเดือน",
       annualImpact: "กำไรที่เพิ่มขึ้นรายปี (Annual Savings)",
-      efficiencyBoost: "ประสิทธิภาพที่เพิ่มขึ้น (%)"
+      efficiencyBoost: "ประสิทธิภาพที่เพิ่มขึ้น (%)",
+      lossWarning: "นี่คือมูลค่าที่ธุรกิจของคุณสูญเสียไปในแต่ละปี",
+      footerNote: "*ข้อมูลอ้างอิงจากการวิเคราะห์ผลกระทบเชิงกลยุทธ์"
     },
     cta: "รับรายงานวิเคราะห์ ROI ฟรีและขอใบเสนอราคา"
   },
@@ -67,40 +82,40 @@ export const homeContent = {
     description: "ความปลอดภัยของข้อมูลคือหัวใจสำคัญของระบบระดับ Enterprise เพื่อความมั่นใจสูงสุดในการใช้งาน",
     features: [
       {
-        title: "Zero-Model Training",
-        desc: "ข้อมูลส่วนตัวและข้อมูลธุรกิจของคุณจะไม่ถูกนำไปใช้ฝึกฝน AI ของที่อื่นโดยเด็ดขาด 100% Data Sovereignty"
+        title: "การันตีความเป็นส่วนตัว 100%",
+        desc: "ข้อมูลส่วนตัวและข้อมูลธุรกิจของคุณจะไม่ถูกนำไปใช้ฝึกฝน AI ของที่อื่นโดยเด็ดขาด (Zero-Model Training)"
       },
       {
-        title: "Enterprise-Grade Encryption",
+        title: "การเข้ารหัสระดับ Enterprise",
         desc: "มาตรฐานการรักษาความปลอดภัยระดับองค์กร ด้วยการเข้ารหัสข้อมูลทุกชุดที่ไหลผ่านระบบ (AES-256)"
       },
       {
-        title: "Private Deployment Options",
+        title: "ทางเลือกการติดตั้งแบบส่วนตัว",
         desc: "เลือกติดตั้งระบบใน Private Cloud หรือ On-premise ขององค์กรเพื่อควบคุมความปลอดภัยได้เองทั้งหมด"
       }
     ]
   },
   services: {
-    title: "Strategic Business Solutions",
-    description: "We design 3 core architectural pillars to eliminate inefficiency and drive scalable growth.",
+    title: "โซลูชันธุรกิจเชิงกลยุทธ์",
+    description: "เราออกแบบ 3 เสาหลักทางสถาปัตยกรรมเพื่อกำจัดความไร้ประสิทธิภาพและขับเคลื่อนการเติบโตที่ยั่งยืน",
     items: [
       {
         id: 'ai-agents',
-        title: 'AI Agent Architecture',
+        title: 'สถาปัตยกรรม AI Agent',
         description: 'สมองกล RAG ที่ลดเวลาการหาข้อมูลและตัดสินใจของทีมบริหาร',
         features: ['ลดเวลาหาข้อมูลเอกสาร 90%', 'วิเคราะห์แนวโน้มธุรกิจ Real-time', 'ความแม่นยำ 100% ด้วยการอ้างอิงแหล่งที่มา'],
         relatedProjects: ['โครงการวิเคราะห์เอกสารกฎหมาย A', 'ระบบถามตอบพนักงานบริษัท B'],
       },
       {
         id: 'automation',
-        title: 'Workflow Automation',
+        title: 'ระบบ Workflow Automation',
         description: 'ท่อส่งข้อมูลอัตโนมัติที่ทำให้พนักงานมีเวลาไปทำสิ่งที่สร้างเงินจริงๆ',
         features: ['ลด Human Error ในกระบวนการทำงาน', 'ทำงานแทนพนักงานได้ตลอด 24/7', 'เชื่อมต่อทุกระบบเข้าหากันอย่างไร้รอยต่อ'],
         relatedProjects: ['ระบบออกบิลอัตโนมัติ องค์กร C', 'Data Pipeline ประมวลผลยอดขาย'],
       },
       {
         id: 'web-systems',
-        title: 'Enterprise Web Systems',
+        title: 'ระบบเว็บระดับ Enterprise',
         description: 'ฐานทัพดิจิทัลที่รองรับการขยายตัว (Scalable) และความปลอดภัยสูงสุด',
         features: ['รองรับผู้ใช้งานหลักแสนได้พร้อมกัน', 'Dashboard แสดงผลกำไร Real-time', 'โครงสร้างเว็บระดับ Edge Network'],
         relatedProjects: ['แพลตฟอร์มบริหารจัดการทรัพยากร D', 'ระบบ CRM ภายในสำหรับเซลล์'],
@@ -112,51 +127,51 @@ export const homeContent = {
       white: "เราไม่ได้สร้างแค่โค้ด",
       accent: " แต่เราสร้างความได้เปรียบ"
     },
-    description: "Aetox.dev ก่อตั้งโดย ชยพล พรหมสะวะนา (National AI Gold Medalist) เพื่อเปลี่ยนปัญหาธุรกิจให้กลายเป็นระบบอัจฉริยะที่วัดผลได้จริง\n\nเราไม่ได้หยุดแค่การเขียนโค้ด แต่เราออกแบบสถาปัตยกรรมที่ผสาน AI และ Automation เพื่อลดงานซ้ำซ้อน และสร้างการเติบโตที่ยั่งยืนให้กับองค์กรของคุณอย่างแท้จริง",
+    description: "Aetox.dev ก่อตั้งโดย ชยพล พรหมสะวะนา (เหรียญทอง AI ระดับชาติ) เพื่อเปลี่ยนปัญหาธุรกิจให้กลายเป็นระบบอัจฉริยะที่วัดผลได้จริง\n\nเราไม่ได้หยุดแค่การเขียนโค้ด แต่เราออกแบบสถาปัตยกรรมที่ผสาน AI และ Automation เพื่อลดงานซ้ำซ้อน และสร้างการเติบโตที่ยั่งยืนให้กับองค์กรของคุณอย่างแท้จริง",
     consultLabel: "ปรึกษาสถาปนิกผู้ออกแบบระบบ"
   },
   simulation: {
-    title: "System",
-    titleAccent: "Simulation",
+    title: "การจำลอง",
+    titleAccent: "การทำงานของระบบ",
     subtitle: "สถาปัตยกรรมที่เปลี่ยนข้อมูลมหาศาล ให้กลายเป็นการตัดสินใจที่แม่นยำ",
     steps: [
-      { id: 1, label: 'Enterprise Data Store', color: 'text-aetox-text-soft' },
-      { id: 2, label: 'RAG Retrieval Engine', color: 'text-aetox-accent' },
-      { id: 3, label: 'Neural Logic Processing', color: 'text-aetox-accent' },
-      { id: 4, label: 'Security Gateway', color: 'text-aetox-text-soft' },
-      { id: 5, label: 'Decision Output', color: 'text-aetox-accent' }
+      { id: 1, label: 'คลังข้อมูลองค์กร', color: 'text-aetox-text-soft' },
+      { id: 2, label: 'ระบบสืบค้น RAG', color: 'text-aetox-accent' },
+      { id: 3, label: 'การประมวลผลตรรกะ AI', color: 'text-aetox-accent' },
+      { id: 4, label: 'เกตเวย์ความปลอดภัย', color: 'text-aetox-text-soft' },
+      { id: 5, label: 'ผลลัพธ์การตัดสินใจ', color: 'text-aetox-accent' }
     ],
-    caseLabel: "Live Case Logic",
+    caseLabel: "ตรรกะการทำงานจริง",
     caseDescription: "ประมวลผลเอกสารสัญญา 10,000 ฉบับ เพื่อหาความเสี่ยงทางกฎหมายภายใน 3.2 วินาที ด้วยความแม่นยำ 99.9%"
   },
   comparison: {
-    title: "Architectural",
-    titleAccent: "Superiority",
+    title: "ความเหนือกว่า",
+    titleAccent: "ทางสถาปัตยกรรม",
     subtitle: "ทำไมระบบระดับ Enterprise ถึงต้องการสถาปัตยกรรมที่เหนือกว่าโค้ดทั่วไป",
-    headers: ["หัวข้อ / ความสามารถ", "Aetox Solution", "โค้ดทั่วไป (Generic)"],
+    headers: ["หัวข้อ / ความสามารถ", "โซลูชันจาก Aetox", "โค้ดทั่วไป (Generic)"],
     swipeLabel: "เลื่อนเพื่อเปรียบเทียบ",
     footer: "*อ้างอิงข้อมูลจากการตรวจสอบประสิทธิภาพระบบเปรียบเทียบปี 2024",
     items: [
       {
-        feature: "System Foundation",
-        aetox: "Enterprise AI Architecture (RAG-Optimized)",
-        generic: "Standard Web Application Code",
+        feature: "รากฐานของระบบ",
+        aetox: "สถาปัตยกรรม Enterprise AI (รองรับ RAG)",
+        generic: "โค้ดแอปพลิเคชันเว็บมาตรฐาน",
         type: "cpu"
       },
       {
-        feature: "Logic Accuracy",
+        feature: "ความแม่นยำของตรรกะ",
         aetox: "ความแม่นยำทางตรรกะ 99.9%",
         generic: "ตรรกะเงื่อนไขทั่วไป (เสี่ยงต่อความผิดพลาด)",
         type: "activity"
       },
       {
-        feature: "Security Standard",
-        aetox: "Zero-Model Training (ความเป็นส่วนตัว 100%)",
+        feature: "มาตรฐานความปลอดภัย",
+        aetox: "ข้อมูลเป็นส่วนตัว 100% (Zero-Model Training)",
         generic: "พึ่งพา API สาธารณะ (เสี่ยงต่อข้อมูลรั่วไหล)",
         type: "shield"
       },
       {
-        feature: "Business ROI",
+        feature: "ความคุ้มค่า (ROI)",
         aetox: "การันตีลดต้นทุน 40-70%",
         generic: "ผลลัพธ์ไม่แน่นอน / แปรปรวนสูง",
         type: "zap"

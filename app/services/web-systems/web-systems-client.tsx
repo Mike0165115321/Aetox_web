@@ -17,14 +17,14 @@ import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { FeatureItem, AppliedIn } from './components/shared-components';
 import { StackArchitectureVisual, DataPipelineVisual, SecurityShieldVisual } from './components/web-visuals';
 import WebShowcase from './components/web-showcase';
-export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict: any }) {
+export default function WebSystemsClient({ dict, navDict, ctaDict }: { dict: any, navDict: any, ctaDict: any }) {
   const sections: NavSection[] = [
-    { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Globe size={16} />, offset: 60 },
-    { id: 'solution-design', label: 'ออกแบบโซลูชัน', num: 'SIM', icon: <Laptop size={16} />, offset: 0 },
-    { id: 'arch', label: 'สถาปัตยกรรม', num: '01', icon: <Server size={16} />, offset: 120 },
-    { id: 'perf', label: 'ประสิทธิภาพ', num: '02', icon: <Rocket size={16} />, offset: 120 },
-    { id: 'sec', label: 'ความปลอดภัย', num: '03', icon: <Shield size={16} />, offset: 120 },
-    { id: 'cta-section', label: 'ติดต่อเรา', num: 'END', icon: <ArrowRight size={16} />, offset: 60 },
+    { id: 'hero', label: dict.hero.badge, num: 'INT', icon: <Globe size={16} />, offset: 60 },
+    { id: 'solution-design', label: dict.simulation.title, num: 'SIM', icon: <Laptop size={16} />, offset: 0 },
+    { id: 'arch', label: dict.pillars.pillar1.title, num: '01', icon: <Server size={16} />, offset: 120 },
+    { id: 'perf', label: dict.pillars.pillar2.title, num: '02', icon: <Rocket size={16} />, offset: 120 },
+    { id: 'sec', label: dict.pillars.pillar3.title, num: '03', icon: <Shield size={16} />, offset: 120 },
+    { id: 'cta-section', label: ctaDict.bottom.label || 'ติดต่อเรา', num: 'END', icon: <ArrowRight size={16} />, offset: 60 },
   ];
 
   // scrollToSection is now handled by @/lib/scroll-utils
@@ -90,15 +90,16 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
                   <MousePointer2 size={14} className="animate-pulse" /> Interactive Designer
                 </div>
                 <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight">
-                  ออกแบบ <span className="text-cyber-blue drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]">Architecture</span><br />ที่เหมาะกับธุรกิจคุณ
+                  {dict.simulation.title.split(' ')[0]} <span className="text-cyber-blue drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]">{dict.simulation.title.split(' ')[1] || 'Architecture'}</span><br />{dict.simulation.suitableFor}
                 </h2>
+
                 <p className="text-gray-400 text-xl font-medium leading-relaxed max-w-xl">
-                  ลองเลือกประเภทธุรกิจของคุณเพื่อจำลองการวางโครงสร้างระบบระดับ Enterprise ที่เราออกแบบให้
+                  {dict.simulation.question}
                 </p>
               </div>
             </div>
             <div className="lg:w-7/12 w-full">
-              <ArchitectureBuilder />
+              <ArchitectureBuilder dict={dict.simulation} />
             </div>
           </div>
         </div>
@@ -194,7 +195,7 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
       {/* Applied In Section */}
       <section className="py-20 border-t border-white/5 relative z-10">
         <div className="container mx-auto">
-          <AppliedIn items={dict.appliedIn} label="Applied In" />
+          <AppliedIn items={dict.appliedIn} label="ใช้งานจริงใน" />
         </div>
       </section>
 
@@ -203,12 +204,13 @@ export default function WebSystemsClient({ dict, navDict }: { dict: any, navDict
         <ServiceBottomCTA 
           serviceId="web-systems" 
           serviceName="Web Systems" 
-          hirePoints={dict.cta.hirePoints}
-          learnPoints={dict.cta.learnPoints}
+          dict={ctaDict.bottom}
         />
       </section>
+
 
       <Footer dict={navDict.footer} />
     </main>
   );
 }
+
