@@ -63,7 +63,7 @@ export default function ServiceCard({ id, title, description, features, relatedP
       className="h-full"
     >
       {id ? (
-        <Link href={`/services/${id}`} className="glass-card group flex flex-col p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20 relative overflow-hidden h-full block transition-all duration-500 hover:bg-aetox-surface/40 hover:-translate-y-2">
+        <Link href={`/services/${id}`} className="glass-card group flex flex-col p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20 relative overflow-hidden h-full transition-all duration-500 hover:bg-aetox-surface/40 hover:-translate-y-2">
           {CardContent}
         </Link>
       ) : (
