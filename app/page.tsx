@@ -10,7 +10,7 @@ import TrustSection from '@/components/home/TrustSection';
 import ArchitectureComparison from '@/components/home/ArchitectureComparison';
 import SystemSimulation from '@/components/home/SystemSimulation';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, AlertTriangle, Award, Layers, Calculator, ShieldCheck, MessageSquare } from 'lucide-react';
+import { Sparkles, AlertTriangle, Award, Layers, Calculator, ShieldCheck, MessageSquare, Shield, LayoutGrid, TrendingUp, Cpu } from 'lucide-react';
 import { getDictionary } from '@/data/dictionaries';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { bookmind, robotGuide, treesBot } from '@/data/content/th/projects/items';
@@ -20,13 +20,15 @@ export default async function Home() {
   const navDict = await getDictionary('th', 'navigation');
 
   const homeSections: NavSection[] = [
-    { id: 'hero', label: 'Command', num: '01', icon: <Sparkles size={18} /> },
-    { id: 'pain', label: 'Pain', num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
-    { id: 'comparison', label: 'Superiority', num: '03', icon: <Award size={18} />, offset: 60 },
-    { id: 'simulation', label: 'Proof', num: '04', icon: <Layers size={18} />, offset: 80 },
-    { id: 'roi-calculator', label: 'Decision', num: '05', icon: <Calculator size={18} />, offset: 10 },
-    { id: 'security', label: 'Logic', num: '06', icon: <ShieldCheck size={18} />, offset: 80 },
-    { id: 'about', label: 'Contact', num: '07', icon: <MessageSquare size={18} />, offset: 65 },
+    { id: 'hero', label: 'วิสัยทัศน์', num: '01', icon: <Sparkles size={18} /> },
+    { id: 'pain', label: 'ปัญหาที่พบ', num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
+    { id: 'comparison', label: 'สถาปัตยกรรม', num: '03', icon: <Layers size={18} />, offset: 60 },
+    { id: 'simulation', label: 'การจำลอง', num: '04', icon: <Cpu size={18} />, offset: 80 },
+    { id: 'trust', label: 'ความเชื่อมั่น', num: '05', icon: <Award size={18} />, offset: 70 },
+    { id: 'services', label: 'โซลูชัน', num: '06', icon: <LayoutGrid size={18} />, offset: 70 },
+    { id: 'roi-calculator', label: 'ความคุ้มค่า', num: '07', icon: <TrendingUp size={18} />, offset: 10 },
+    { id: 'security', label: 'ความปลอดภัย', num: '08', icon: <ShieldCheck size={18} />, offset: 80 },
+    { id: 'about', label: 'ติดต่อเรา', num: '09', icon: <MessageSquare size={18} />, offset: 65 },
   ];
 
   const featuredProjects = [
@@ -59,9 +61,7 @@ export default async function Home() {
         <ServiceSection dict={dict.services} />
 
         {/* 7. Decision (ROI Calculator) */}
-        <section id="roi-calculator" className="scroll-mt-20">
-          <ROIPreview dict={dict.engagement} />
-        </section>
+        <ROIPreview dict={dict.engagement} />
 
         {/* 8. Logic (Security) */}
         <SecurityBlock dict={dict.security} />

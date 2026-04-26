@@ -7,23 +7,12 @@ export default function FinalCTA({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden bg-aetox-atmosphere border-t border-aetox-border">
-      {/* Background Architectural Elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <motion.div 
-          animate={{ y: [0, -30, 0], rotate: [0, 10, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-0 -left-10 text-aetox-accent/5"
-        >
-          <MessageSquare size={400} strokeWidth={0.2} />
-        </motion.div>
-        <motion.div 
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-0 -right-20 text-aetox-accent/5"
-        >
-          <Sparkles size={500} strokeWidth={0.2} />
-        </motion.div>
+    <section id="about" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+      {/* Optimized Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <div className="absolute top-0 -left-10 text-aetox-accent/[0.03]">
+          <MessageSquare size={400} strokeWidth={1} />
+        </div>
       </div>
 
       <div className="container relative z-10">

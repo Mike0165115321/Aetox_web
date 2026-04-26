@@ -6,7 +6,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="security" className="py-32 relative overflow-hidden border-t border-aetox-border">
+    <section id="security" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       {/* Optimized Minimal Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
         <div className="absolute -top-40 -right-20 text-aetox-accent/[0.03]">

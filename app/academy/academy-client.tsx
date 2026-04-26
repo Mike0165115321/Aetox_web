@@ -22,10 +22,8 @@ export default function AcademyClient({ dict, navDict }: { dict: any, navDict: a
   ];
 
   return (
-    <main className="min-h-screen bg-ultra-dark selection:bg-deep-blue/30 selection:text-white relative overflow-x-hidden">
+    <main className="min-h-screen selection:bg-deep-blue/30 selection:text-white relative overflow-x-hidden">
       <FloatingNav sections={academySections} accentColor="#3B82F6" />
-      {/* Global Background Elements */}
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-20" />
       
       <Navbar dict={navDict.navbar} />
 

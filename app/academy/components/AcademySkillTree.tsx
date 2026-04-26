@@ -13,7 +13,7 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
 
   return (
-    <section id="skill-tree" className="py-24 relative overflow-hidden">
+    <section id="skill-tree" className="py-24 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto">
         <div className="text-center mb-20 space-y-4">
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">แผนผังความรู้สู่มือโปร</h2>
@@ -83,7 +83,7 @@ export default function AcademySkillTree({ categories }: { categories: any[] }) 
                     <div className="space-y-4">
                       <h4 className="text-2xl md:text-3xl font-black text-white">{cat.title}</h4>
                       <p className="text-base md:text-xl text-gray-400 leading-relaxed max-w-lg font-medium italic">
-                        " {cat.description} "
+                        &quot; {cat.description} &quot;
                       </p>
                     </div>
 

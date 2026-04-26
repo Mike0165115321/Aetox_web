@@ -27,7 +27,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
   const success = content.success || { title: "", message: "" };
 
   return (
-    <section className="py-24 relative overflow-hidden" id="contact-form">
+    <section className="py-24 relative overflow-hidden scroll-mt-20" id="contact-form">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Header */}

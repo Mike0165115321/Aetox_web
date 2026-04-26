@@ -4,7 +4,7 @@ import { Award, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function MikeAuthority({ dict }: { dict: any }) {
   return (
-    <section id="mike-authority" className="py-24 relative overflow-hidden bg-white/[0.01]">
+    <section id="mike-authority" className="py-24 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-20 max-w-6xl mx-auto">
           {/* Visual: Achievement Badge */}

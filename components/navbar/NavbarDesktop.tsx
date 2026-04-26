@@ -17,28 +17,28 @@ export default function NavbarDesktop({
     <div className="container mx-auto relative flex items-center z-[110]">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start">
-        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+        <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity group">
           <Image 
             src="/images/logo.svg" 
             alt="Aetox Logo" 
-            width={40} 
-            height={40} 
-            className="h-9 w-auto animate-aetox-breathe" 
+            width={48} 
+            height={48} 
+            className="h-10 w-auto animate-aetox-breathe" 
             priority 
           />
-          <span className="text-xl font-black tracking-tighter text-aetox-text-main">
+          <span className="text-2xl font-black tracking-tighter text-aetox-text-main">
             AETO<span className="text-aetox-accent">X</span>
           </span>
         </Link>
       </div>
 
       {/* Center: Menu */}
-      <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
+      <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
         {menuItems.map((item: any) => (
           <Link 
             key={item.href} 
             href={item.href} 
-            className="text-[10px] font-black text-aetox-text-soft hover:text-aetox-text-main transition-all uppercase tracking-[0.2em]"
+            className="text-[13px] font-black text-aetox-text-soft hover:text-aetox-text-main hover:scale-105 transition-all uppercase tracking-[0.2em]"
           >
             {item.label}
           </Link>
@@ -51,13 +51,13 @@ export default function NavbarDesktop({
         <div className="relative hidden md:block" ref={langRef}>
           <button 
             onClick={() => setIsLangOpen(!isLangOpen)}
-            className={`flex items-center gap-2 px-3 py-2 rounded-xl transition-all duration-300 group ${
+            className={`flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-300 group ${
               isLangOpen ? 'text-aetox-text-main' : 'text-aetox-text-soft hover:text-aetox-text-main'
             }`}
           >
-            <Globe className={`w-3.5 h-3.5 transition-colors ${isLangOpen ? 'text-aetox-accent' : 'group-hover:text-aetox-accent'}`} />
-            <span className="text-[10px] font-black tracking-widest">{currentLang}</span>
-            <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
+            <Globe className={`w-4 h-4 transition-colors ${isLangOpen ? 'text-aetox-accent' : 'group-hover:text-aetox-accent'}`} />
+            <span className="text-xs font-black tracking-widest">{currentLang}</span>
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
           </button>
 
           <AnimatePresence>
@@ -88,7 +88,7 @@ export default function NavbarDesktop({
         {/* CTA */}
         <Link 
           href="/contact" 
-          className="hidden md:block px-6 py-2.5 rounded-xl bg-aetox-accent text-white text-xs font-black hover:bg-aetox-accent-hover transition-all shadow-aetox-glow transform active:scale-95 uppercase tracking-widest"
+          className="hidden md:block px-8 py-3 rounded-xl bg-aetox-accent text-white text-sm font-black hover:bg-aetox-accent-hover transition-all shadow-aetox-glow transform active:scale-95 uppercase tracking-widest"
         >
           {ctaLabel}
         </Link>

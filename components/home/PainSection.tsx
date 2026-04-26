@@ -54,7 +54,7 @@ export default function PainSection({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="pain" className="py-32 relative overflow-hidden">
+    <section id="pain" className="py-32 relative overflow-hidden scroll-mt-20">
       {/* Optimized Minimal Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
         <div className="absolute -top-10 -left-20 text-aetox-accent/[0.03]">

@@ -62,82 +62,81 @@ export default function ProjectSlider({ projects }: { projects: ProjectSlide[] }
         </motion.div>
       </AnimatePresence>
 
-      {/* Content Overlay */}
-      <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-end">
-        <div className="max-w-xl space-y-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            key={`meta-${projects[current].id}`}
-            className="flex items-center gap-3"
-          >
-            <span className="px-3 py-1 rounded-full bg-cyber-blue/10 border border-cyber-blue/20 text-[10px] font-black text-cyber-blue uppercase tracking-widest">
+      {/* Content Overlay - Organized for No Overlap */}
+      <div className="absolute inset-0 p-8 md:p-14 flex flex-col justify-end">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+        
+        <motion.div 
+          key={projects[current].id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative max-w-2xl z-10"
+        >
+          {/* Metadata Tag - Clearly Separated */}
+          <div className="flex items-center gap-3 mb-6">
+            <span className="px-3 py-1.5 rounded-lg bg-aetox-accent/20 border border-aetox-accent/30 text-[9px] font-black text-aetox-accent uppercase tracking-[0.2em] backdrop-blur-md">
               {projects[current].category}
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" />
-          </motion.div>
+            <div className="w-1 h-1 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
+          </div>
 
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            key={`title-${projects[current].id}`}
-            className="text-2xl md:text-3xl font-black text-white"
-          >
-            {projects[current].title}
-          </motion.h3>
+          <div className="space-y-4">
+            <h3 className="text-xl md:text-4xl font-black text-aetox-text-main leading-[1.1] tracking-tight">
+              {projects[current].title}
+            </h3>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            key={`desc-${projects[current].id}`}
-            className="text-gray-400 text-xs md:text-base leading-relaxed line-clamp-3 md:line-clamp-2"
-          >
-            {projects[current].description}
-          </motion.p>
+            <p className="text-aetox-text-soft text-sm md:text-base font-medium leading-relaxed max-w-lg opacity-80 line-clamp-2">
+              {projects[current].description}
+            </p>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            key={`cta-${projects[current].id}`}
-            className="pt-4"
-          >
-            <Link 
-              href={`/authority/${projects[current].category}/${projects[current].slug}`}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-white text-black font-black text-xs uppercase tracking-widest hover:bg-cyber-blue hover:text-white transition-all active:scale-95"
-            >
-              ดูรายละเอียด <ArrowRight size={14} />
-            </Link>
-          </motion.div>
-        </div>
+            <div className="pt-6 flex items-center gap-6">
+              <Link 
+                href={`/authority/${projects[current].category}/${projects[current].slug}`}
+                className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all active:scale-95"
+              >
+                <span className="relative z-10">ดูรายละเอียด</span>
+                <ArrowRight size={14} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-aetox-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+              </Link>
+
+              {/* Mini Counter */}
+              <div className="hidden md:flex items-center gap-2">
+                <span className="text-aetox-accent font-black text-xs">{(current + 1).toString().padStart(2, '0')}</span>
+                <div className="w-8 h-[1px] bg-aetox-border" />
+                <span className="text-aetox-text-muted font-black text-xs">{projects.length.toString().padStart(2, '0')}</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 flex gap-2 md:gap-3 z-20">
+      {/* Navigation Controls - Relocated for Balance */}
+      <div className="absolute bottom-8 right-8 flex gap-3 z-30">
         <button 
           onClick={prev}
-          className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black transition-all active:scale-90"
+          className="w-12 h-12 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent hover:border-aetox-accent transition-all active:scale-90 group"
         >
-          <ArrowLeft size={18} />
+          <ArrowLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
         </button>
         <button 
           onClick={next}
-          className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black transition-all active:scale-90"
+          className="w-12 h-12 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent hover:border-aetox-accent transition-all active:scale-90 group"
         >
-          <ArrowRight size={18} />
+          <ArrowRight size={20} className="group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>
 
-      {/* Progress Dots */}
-      <div className="absolute top-8 right-8 flex gap-2">
-        {projects.map((_, i) => (
-          <div 
-            key={i}
-            className={`h-1 rounded-full transition-all duration-500 ${i === current ? 'w-8 bg-cyber-blue shadow-cyber-glow' : 'w-2 bg-white/20'}`}
-          />
-        ))}
+      {/* Progress Bar - Top Aligned */}
+      <div className="absolute top-0 left-0 w-full p-8 md:p-14 z-20 pointer-events-none">
+        <div className="flex gap-2 justify-end">
+          {projects.map((_, i) => (
+            <div 
+              key={i}
+              className={`h-1 transition-all duration-700 rounded-full ${i === current ? 'w-12 bg-aetox-accent shadow-aetox-glow' : 'w-4 bg-white/10'}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -36,10 +36,10 @@ export const homeContent = {
   },
   trust: {
     founder: {
-      name: "ชยพล พรมสะวะนา (Mike)",
+      name: "ชยพล พรมสะวะนา",
       title: "Founder & System Architect",
       accolade: "National AI Gold Medalist",
-      description: "สถาปนิกผู้ออกแบบระบบที่เชื่อใน 'Technical Excellence' และ 'Business Result' เราไม่ได้สร้างแค่ซอฟต์แวร์ แต่เราออกแบบอาวุธทางเทคโนโลยีที่ช่วยอุดรอยรั่วและสร้างการเติบโตแบบทวีคูณให้องค์กรของคุณ"
+      description: "System Architect ผู้เชี่ยวชาญด้าน AI และ Automation มุ่งเน้นการออกแบบระบบที่แก้ปัญหาจริง และสร้างผลลัพธ์ให้ธุรกิจ"
     },
     standards: [
       "ระบบรองรับการขยายตัวระดับ Enterprise",

@@ -45,7 +45,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
   };
 
   return (
-    <section id="waitlist-form" className="py-32 relative overflow-hidden">
+    <section id="waitlist-form" className="py-32 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto relative z-10">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16 space-y-4">

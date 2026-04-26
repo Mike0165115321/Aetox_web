@@ -19,20 +19,16 @@ export default async function AuthorityPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative">
+    <main className="min-h-screen selection:bg-cyber-blue/30 selection:text-white relative">
       <FloatingNav sections={authoritySections} />
-      {/* Global Background Elements */}
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-50" />
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyber-blue/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-deep-blue/5 rounded-full blur-[120px] pointer-events-none" />
 
       <Navbar dict={navDict.navbar} />
       
       {/* Modular Sections */}
-      <div id="authority-hero">
+      <div id="authority-hero" className="scroll-mt-20">
         <AuthorityHero content={content} />
       </div>
-      <div id="project-showcase">
+      <div id="project-showcase" className="scroll-mt-20">
         <ProjectShowcase content={content} />
       </div>
       

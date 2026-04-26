@@ -8,12 +8,12 @@ import { motion } from 'framer-motion';
 
 export default function ContactClient({ dict, navDict, contactSections }: { dict: any, navDict: any, contactSections: NavSection[] }) {
   return (
-    <main className="min-h-screen bg-aetox-bg selection:bg-aetox-accent/30 selection:text-white relative pt-20">
+    <main className="min-h-screen selection:bg-aetox-accent/30 selection:text-white relative pt-20">
       <FloatingNav sections={contactSections} />
       <Navbar dict={navDict.navbar} />
       
       {/* 1. Direct Contact */}
-      <section id="direct-contact" className="py-24 relative z-10 bg-aetox-atmosphere overflow-hidden">
+      <section id="direct-contact" className="py-24 relative z-10 overflow-hidden scroll-mt-20">
         {/* Background Architectural Elements */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <motion.div 
@@ -69,7 +69,7 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
       <BookingForm dict={dict} />
 
       {/* 3. Next Steps / Roadmap */}
-      <section id="roadmap" className="py-32 border-t border-aetox-border bg-aetox-atmosphere overflow-hidden">
+      <section id="roadmap" className="py-32 border-t border-aetox-border overflow-hidden scroll-mt-20">
         {/* Background Architectural Elements */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <motion.div 

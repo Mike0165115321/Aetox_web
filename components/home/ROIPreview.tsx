@@ -11,7 +11,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section className="py-32 relative overflow-hidden border-t border-aetox-border">
+    <section id="roi-calculator" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       {/* Optimized Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-aetox-accent/5 to-transparent" />
