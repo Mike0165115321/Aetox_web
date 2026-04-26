@@ -12,8 +12,26 @@ export default function SystemSimulation() {
   ];
 
   return (
-    <section className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      <div className="container">
+    <section className="py-32 relative bg-aetox-atmosphere overflow-hidden border-t border-aetox-border">
+      {/* Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-40 -left-40 text-aetox-accent/5"
+        >
+          <Cpu size={600} strokeWidth={0.2} />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, 40, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 -right-20 text-aetox-accent/5"
+        >
+          <Server size={400} strokeWidth={0.2} />
+        </motion.div>
+      </div>
+
+      <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-24">
           <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
             System <span className="text-aetox-accent">Simulation</span>

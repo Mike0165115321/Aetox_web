@@ -30,7 +30,7 @@ module.exports = {
       // 3. COLOR SYSTEM — Pure Black & iOS Blue
       colors: {
         // ─── Backgrounds ───────────────────────────────────────────
-        "aetox-bg":        "#000000",  // Pure Black — authority & depth
+        "aetox-bg":        "#050505",  // Softer Off-Black — depth focus
         "aetox-surface":   "#111111",  // Elevated surface (cards)
         "aetox-surface-2": "#1A1A1A",  // Second layer (nested cards)
         "aetox-border":    "#2A2A2A",  // Sharp 1px industrial border

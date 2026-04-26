@@ -55,6 +55,49 @@
     background: #0A84FF;
   }
 
+  /* Signature Aetox Atmosphere — Stronger Blue Ambient Glow */
+  .bg-aetox-atmosphere {
+    position: relative;
+    background-color: #050505;
+    overflow: hidden;
+  }
+
+  .bg-aetox-atmosphere::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(
+      circle at center,
+      rgba(10, 132, 255, 0.12) 0%,
+      rgba(10, 132, 255, 0.05) 40%,
+      transparent 70%
+    );
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-aetox-atmosphere::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(
+      circle at center,
+      rgba(10, 132, 255, 0.08) 0%,
+      rgba(10, 132, 255, 0.03) 40%,
+      transparent 70%
+    );
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   /* For Firefox */
   * {
     scrollbar-width: thin;
