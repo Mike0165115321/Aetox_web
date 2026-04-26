@@ -17,14 +17,23 @@ export const EXCHANGE_RATE = 35; // 1 USD = 35 THB
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const [currency, setCurrencyState] = useState<Currency>('THB');
+  const [mounted, setMounted] = useState(false);
 
-  // Load from localStorage on mount
   useEffect(() => {
-    const saved = localStorage.getItem('aetox-currency') as Currency;
-    if (saved && (saved === 'THB' || saved === 'USD')) {
-      setCurrencyState(saved);
-    }
+    // Force to next tick to avoid synchronous setState warning/error
+    const timer = setTimeout(() => {
+      setMounted(true);
+      const saved = localStorage.getItem('aetox-currency');
+      if (saved === 'THB' || saved === 'USD') {
+        setCurrencyState(saved as Currency);
+      }
+    }, 0);
+    
+    return () => clearTimeout(timer);
   }, []);
+
+  // Prevent hydration mismatch by returning null or a loading state until mounted
+  // Or just ensure the rendered output is consistent.
 
   const setCurrency = (newCurrency: Currency) => {
     setCurrencyState(newCurrency);

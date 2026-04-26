@@ -14,7 +14,7 @@ interface ServiceVisualCardProps {
 export default function ServiceVisualCard({ 
   children, 
   className = "", 
-  minHeight = "min-h-[550px]" 
+  minHeight = "min-h-[450px]" 
 }: ServiceVisualCardProps) {
   return (
     <div className={`glass-card p-5 lg:p-6 rounded-[32px] border border-white/10 relative flex flex-col shadow-2xl bg-black/40 ${minHeight} ${className}`}>

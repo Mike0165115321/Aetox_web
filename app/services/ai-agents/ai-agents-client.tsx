@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, Database, Zap, ArrowLeft, ArrowRight, Search, TrendingUp } from 'lucide-react';
+import { Cpu, Database, Zap, ArrowLeft, ArrowRight, Search, TrendingUp, Layers } from 'lucide-react';
 import ServiceVisualCard from '@/components/ServiceVisualCard';
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
@@ -25,9 +25,11 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
   const sections: NavSection[] = [
     { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
     { id: 'chat-simulator', label: 'ทดลองแชท RAG', num: 'SIM', icon: <Search size={16} />, offset: -80 },
-    { id: 'technical-deep-dive', label: 'เจาะลึกเทคโนโลยี', num: '01', icon: <Database size={16} />, offset: 120 },
-    { id: 'pipeline-section', label: 'วงจรข้อมูล', num: '02', icon: <Zap size={16} />, offset: 60 },
-    { id: 'roi-simulator', label: 'จำลองความคุ้มค่า', num: '03', icon: <TrendingUp size={16} />, offset: 0 },
+    { id: 'orchestrator', label: 'Orchestration', num: '01', icon: <Layers size={16} />, offset: 120 },
+    { id: 'retrieval', label: 'Hybrid Retrieval', num: '02', icon: <Database size={16} />, offset: 120 },
+    { id: 'generation', label: 'Strategic Output', num: '03', icon: <Zap size={16} />, offset: 120 },
+    { id: 'pipeline-section', label: 'วงจรข้อมูล', num: '04', icon: <TrendingUp size={16} />, offset: 60 },
+    { id: 'roi-simulator', label: 'จำลองความคุ้มค่า', num: '05', icon: <TrendingUp size={16} />, offset: 0 },
     { id: 'cta-section', label: 'เริ่มต้นใช้งาน', num: 'END', icon: <ArrowRight size={16} />, offset: 40 },
   ];
 

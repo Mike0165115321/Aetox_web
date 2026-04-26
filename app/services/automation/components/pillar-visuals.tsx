@@ -37,7 +37,7 @@ export function PriorityQueueVisual() {
         <div className="text-[10px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center relative">
+      <div className="flex-1 flex items-center justify-center relative h-[220px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
             <motion.div key="vip" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full h-full flex flex-col justify-center gap-3">
@@ -116,7 +116,7 @@ export function PriorityQueueVisual() {
       </div>
 
       {/* Bottom Explanation Panel */}
-      <div className="mt-4 p-4 rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group">
+      <div className="mt-4 p-4 h-[90px] rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group flex flex-col justify-center">
         <div className="absolute top-0 left-0 w-1 h-full bg-deep-blue opacity-30 group-hover:opacity-100 transition-opacity" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1.5">
@@ -159,7 +159,7 @@ export function ScalableBotsVisual() {
         <div className="text-[10px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center relative">
+      <div className="flex-1 flex items-center justify-center relative h-[220px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
             <motion.div key="parallel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full h-full flex flex-col justify-center gap-3">
@@ -275,7 +275,7 @@ export function ScalableBotsVisual() {
       </div>
 
       {/* Bottom Explanation Panel */}
-      <div className="mt-4 p-4 rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group">
+      <div className="mt-4 p-4 h-[90px] rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group flex flex-col justify-center">
         <div className="absolute top-0 left-0 w-1 h-full bg-deep-blue opacity-30 group-hover:opacity-100 transition-opacity" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1.5">
@@ -326,7 +326,7 @@ export function ObservabilityVisual() {
         <div className="text-[10px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center relative">
+      <div className="flex-1 flex items-center justify-center relative h-[220px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
             <motion.div key="logs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full h-full flex flex-col justify-center gap-2">
@@ -401,7 +401,7 @@ export function ObservabilityVisual() {
       </div>
 
       {/* Bottom Explanation Panel */}
-      <div className="mt-4 p-4 rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group">
+      <div className="mt-4 p-4 h-[90px] rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group flex flex-col justify-center">
         <div className="absolute top-0 left-0 w-1 h-full bg-deep-blue opacity-30 group-hover:opacity-100 transition-opacity" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1.5">

@@ -45,7 +45,7 @@ export default function FloatingNav({ sections, accentColor = '#06B6D4' }: Float
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-14 pointer-events-none"
+                  className="absolute right-14 top-1/2 -translate-y-1/2 pointer-events-none"
                 >
                   <div className="glass-card px-4 py-2 rounded-xl border border-white/10 bg-black/90 shadow-2xl backdrop-blur-xl">
                     <span className="text-xs font-black uppercase tracking-widest block mb-0.5" style={{ color: accentColor }}>{section.num}</span>
