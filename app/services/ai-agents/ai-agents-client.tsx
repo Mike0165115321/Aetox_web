@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu, Database, Zap, ArrowLeft, ArrowRight, Search, TrendingUp } from 'lucide-react';
+import ServiceVisualCard from '@/components/ServiceVisualCard';
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import AiAgentsSimulator from './ai-agents-simulator';
@@ -125,7 +126,9 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                 </div>
               </div>
               <div className="lg:w-5/12 w-full">
-                <OrchestratorVisual />
+                <ServiceVisualCard minHeight="h-auto">
+                  <OrchestratorVisual />
+                </ServiceVisualCard>
               </div>
             </div>
 
@@ -150,7 +153,9 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                 </div>
               </div>
               <div className="lg:w-5/12 w-full">
-                <HybridRetrievalVisual />
+                <ServiceVisualCard minHeight="h-auto">
+                  <HybridRetrievalVisual />
+                </ServiceVisualCard>
               </div>
             </div>
 
@@ -175,7 +180,9 @@ export default function AiAgentsClient({ dict, navDict }: { dict: any, navDict: 
                 </div>
               </div>
               <div className="lg:w-5/12 w-full">
-                <StrategicOutputVisual />
+                <ServiceVisualCard minHeight="h-auto">
+                  <StrategicOutputVisual />
+                </ServiceVisualCard>
               </div>
             </div>
           </div>
