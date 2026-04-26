@@ -11,20 +11,20 @@ export default function BookingForm({ dict }: { dict?: any }) {
   const form = content.form || {};
   
   const identity = form.identity || {
-    name: { label: "ชื่อ - นามสกุล", placeholder: "" },
-    company: { label: "บริษัท", placeholder: "" },
-    email: { label: "อีเมล", placeholder: "" },
-    preferredMethod: { label: "ช่องทางที่สะดวก", options: [] },
-    contactDetail: { label: "ข้อมูลติดต่อ", placeholder: "" },
-    contactTime: { label: "ช่วงเวลาที่สะดวก", options: [] }
+    name: { label: "", placeholder: "" },
+    company: { label: "", placeholder: "" },
+    email: { label: "", placeholder: "" },
+    preferredMethod: { label: "", options: [] },
+    contactDetail: { label: "", placeholder: "" },
+    contactTime: { label: "", options: [] }
   };
 
-  const category = form.category || { label: "เป้าหมาย", options: [] };
-  const budget = form.budget || { label: "งบประมาณ", options: [] };
-  const timeline = form.timeline || { label: "กรอบเวลา", options: [] };
-  const challenge = form.challenge || { label: "ปัญหา", placeholder: "" };
+  const category = form.category || { label: "", options: [] };
+  const budget = form.budget || { label: "", options: [] };
+  const timeline = form.timeline || { label: "", options: [] };
+  const challenge = form.challenge || { label: "", placeholder: "" };
   const hero = content.hero || { title: "", subtitle: "" };
-  const success = content.success || { title: "", message: "" };
+  const success = content.success || { title: "", message: "", close: "" };
 
   return (
     <section className="py-24 relative overflow-hidden scroll-mt-20" id="contact-form">
@@ -68,7 +68,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                   onClick={() => setSubmitted(false)}
                   className="mt-10 text-cyber-blue hover:text-white transition-colors font-bold text-sm uppercase tracking-widest"
                 >
-                  ส่งข้อความอื่นเพิ่ม
+                  {success.close}
                 </button>
               </motion.div>
             ) : (

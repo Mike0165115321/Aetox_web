@@ -12,7 +12,7 @@ export default function AuthorityHero({ content }: { content: any }) {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-blue/10 border border-cyber-blue/20 mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
-            <span className="text-xs font-bold text-cyber-blue uppercase tracking-widest">System Architect Portfolio</span>
+            <span className="text-xs font-bold text-cyber-blue uppercase tracking-widest">{content.hero.badge}</span>
           </motion.div>
           
           <motion.h1 

@@ -111,27 +111,27 @@ export const aiAgentsContent = {
     ],
     features: [
       { 
-        title: "Fact-Based Retrieval", 
+        title: "การสืบค้นข้อมูลตามจริง (Fact-Based Retrieval)", 
         desc: "จำกัดขอบเขตการตอบคำถามให้อยู่ในฐานข้อมูลที่คุณอนุญาตเท่านั้น ลดความเสี่ยงในการให้ข้อมูลผิดพลาด (Hallucination) สู่ระดับต่ำสุด",
         icon: "CheckCircle2"
       },
       { 
-        title: "Real-Time Knowledge Sync", 
+        title: "อัปเดตความรู้แบบเรียลไทม์ (Real-Time Knowledge Sync)", 
         desc: "เอกสารหรือข้อกำหนดใหม่ที่ถูกเพิ่มเข้ามา จะถูกนำไปประมวลผลให้พร้อมใช้งานทันที โดยไม่ต้องรอรอบการพัฒนาหรือปรับจูนโมเดลใหม่",
         icon: "RefreshCw"
       },
       { 
-        title: "Isolated Data Environment", 
+        title: "สภาพแวดล้อมข้อมูลแยกส่วน (Isolated Data Environment)", 
         desc: "แยกส่วนฐานข้อมูลความลับออกจากโมเดลประมวลผลอย่างเด็ดขาด ป้องกันไม่ให้ข้อมูลองค์กรถูกนำไปฝึกฝน (Train) หรือหลุดรอดสู่ภายนอก",
         icon: "ShieldCheck"
       },
       { 
-        title: "Context-Aware Processing", 
+        title: "การประมวลผลตามบริบท (Context-Aware Processing)", 
         desc: "ระบบถูกปรับแต่งให้เข้าใจคำศัพท์เฉพาะทางของธุรกิจ ทำให้สามารถค้นหาและดึงข้อมูลข้ามไฟล์มาสรุปผลได้อย่างตรงประเด็น ไม่ใช่แค่การหาคีย์เวิร์ด",
         icon: "Cpu"
       },
       { 
-        title: "Enterprise Format Ready", 
+        title: "รองรับไฟล์ระดับองค์กร (Enterprise Format Ready)", 
         desc: "รองรับการดึงข้อมูลจากไฟล์รูปแบบต่างๆ ไม่ว่าจะเป็นข้อความยาว ตารางข้อมูล สัญญาทางกฎหมาย หรือคู่มือเชิงเทคนิคที่จัดหน้าแบบเฉพาะเจาะจง",
         icon: "Layers"
       }

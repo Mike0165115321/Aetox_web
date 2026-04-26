@@ -38,7 +38,7 @@ export default function AcademyClient({ dict, navDict }: { dict: any, navDict: a
       </div>
 
       {/* Layer 3: Engagement & Logic (Skill Tree) */}
-      <AcademySkillTree categories={dict.categories} />
+      <AcademySkillTree dict={dict.skillTree} categories={dict.categories} />
 
       <div className="container mx-auto">
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

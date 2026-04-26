@@ -32,7 +32,7 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
                 <Mail className="text-aetox-accent" size={24} />
               </div>
               <div className="min-w-0">
-                <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-widest mb-1">Email Support</p>
+                <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-widest mb-1">{dict.directContact.email}</p>
                 <p className="text-aetox-text-main font-bold text-sm md:text-lg truncate">phrmsawanachyphl@gmail.com</p>
               </div>
             </div>
@@ -41,7 +41,7 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
                 <Phone className="text-aetox-accent" size={24} />
               </div>
               <div className="min-w-0">
-                <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-widest mb-1">Direct Call</p>
+                <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-widest mb-1">{dict.directContact.phone}</p>
                 <p className="text-aetox-text-main font-bold text-lg">0968013963</p>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
                 </svg>
               </div>
               <div className="min-w-0">
-                <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-widest mb-1">GitHub Portfolio</p>
+                <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-widest mb-1">{dict.directContact.github}</p>
                 <p className="text-aetox-text-main font-bold text-lg truncate">Mike0165115321</p>
               </div>
             </a>
@@ -84,8 +84,8 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-16">
             <div className="space-y-4">
-              <h2 className="text-fluid-h2 font-black text-aetox-text-main">What Happens Next?</h2>
-              <p className="text-fluid-p text-aetox-text-soft font-medium">ขั้นตอนหลังจากการส่งข้อมูล เพื่อให้คุณเห็นภาพการทำงานของเรา</p>
+              <h2 className="text-fluid-h2 font-black text-aetox-text-main">{dict.roadmap.title}</h2>
+              <p className="text-fluid-p text-aetox-text-soft font-medium">{dict.roadmap.subtitle}</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 relative">
@@ -98,11 +98,7 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
                 className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-aetox-accent/30 to-transparent -translate-y-1/2 origin-left" 
               />
               
-              {[
-                { n: 1, t: 'Analysis', d: 'เราจะวิเคราะห์ปัญหาที่คุณส่งมาภายใน 24 ชม. เพื่อหาจุดที่ควรปรับปรุง' },
-                { n: 2, t: 'Strategy Call', d: 'นัดพูดคุยลงรายละเอียดเพื่อวางแผนระบบที่ตอบโจทย์ธุรกิจคุณที่สุด' },
-                { n: 3, t: 'Proposal', d: 'รับข้อเสนอแผนงานและงบประมาณที่ชัดเจน พร้อมเริ่มดำเนินงาน' }
-              ].map((item, idx) => (
+              {dict.roadmap.steps.map((item: any, idx: number) => (
                 <motion.div 
                   key={item.n} 
                   initial={{ opacity: 0, y: 30 }}
@@ -143,7 +139,7 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
             <div className="pt-12">
                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-aetox-surface/50 border border-aetox-border text-aetox-text-soft">
                  <ShieldCheck className="text-aetox-accent" size={20} />
-                 <span className="text-xs md:text-sm font-bold tracking-wide">Data Privacy Guaranteed — ข้อมูลของคุณจะถูกเก็บเป็นความลับสูงสุด</span>
+                 <span className="text-xs md:text-sm font-bold tracking-wide">{dict.roadmap.privacyNote}</span>
                </div>
             </div>
           </div>

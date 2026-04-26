@@ -12,14 +12,14 @@ export const navigationContent = {
   footer: {
     founder: {
       name: "ชยพล พรมสะวะนา (Chayaopol Promsavana)",
-      title: "Founder & System Architect",
-      location: "Based in Nan, Northern Thailand. Operating Worldwide."
+      title: "Founder & System Architect | เจ้าของเหรียญทอง AI ระดับประเทศ",
+      location: "สำนักงานใหญ่ จ.น่าน (Base in Nan) — ให้บริการทั่วโลก"
     },
     sections: {
-      contact: "Contact",
-      social: "Social"
+      contact: "ข้อมูลการติดต่อ",
+      social: "โซเชียลมีเดีย"
     },
-    rights: "© 2024 Aetox.dev. Engineered by Chayapol Promsavana"
+    rights: "ลิขสิทธิ์ถูกต้องตามกฎหมาย ออกแบบและพัฒนาโดย ชยพล พรมสะวะนา"
   }
 };
 

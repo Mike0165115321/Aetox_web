@@ -1,8 +1,8 @@
 export const projectCategories = [
-  { id: 'all', label: 'All Systems', icon: 'Layout' },
-  { id: 'intelligence', label: 'Intelligence (AI/RAG)', icon: 'Brain' },
-  { id: 'execution', label: 'Execution (Automation)', icon: 'Zap' },
-  { id: 'foundation', label: 'Foundation (Web/Data)', icon: 'Database' }
+  { id: 'all', label: 'ระบบทั้งหมด', icon: 'Layout' },
+  { id: 'intelligence', label: 'Intelligence (ระบบอัจฉริยะ AI)', icon: 'Brain' },
+  { id: 'execution', label: 'Execution (ระบบอัตโนมัติ)', icon: 'Zap' },
+  { id: 'foundation', label: 'Foundation (โครงสร้างเว็บและข้อมูล)', icon: 'Database' }
 ];
 
 export type ProjectCategory = 'intelligence' | 'execution' | 'foundation';

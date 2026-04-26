@@ -6,8 +6,8 @@ export const homeContent = {
     },
     description: "อุดรอยรั่วทางธุรกิจและเปลี่ยนต้นทุนที่สูญเสีย ให้กลายเป็นระบบกำไรอัตโนมัติด้วยสถาปัตยกรรม AI ระดับ Enterprise",
     cta: {
-      primary: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)",
-      secondary: "ดูสถาปัตยกรรมระบบ"
+      primary: "ดูบริการของเรา",
+      secondary: "ปรึกษาเรา"
     }
   },
   pain: {
@@ -113,6 +113,55 @@ export const homeContent = {
       accent: " แต่เราสร้างความได้เปรียบ"
     },
     description: "Aetox.dev ก่อตั้งโดย ชยพล พรหมสะวะนา (National AI Gold Medalist) เพื่อเปลี่ยนปัญหาธุรกิจให้กลายเป็นระบบอัจฉริยะที่วัดผลได้จริง\n\nเราไม่ได้หยุดแค่การเขียนโค้ด แต่เราออกแบบสถาปัตยกรรมที่ผสาน AI และ Automation เพื่อลดงานซ้ำซ้อน และสร้างการเติบโตที่ยั่งยืนให้กับองค์กรของคุณอย่างแท้จริง",
+    consultLabel: "ปรึกษาสถาปนิกผู้ออกแบบระบบ"
+  },
+  simulation: {
+    title: "System",
+    titleAccent: "Simulation",
+    subtitle: "สถาปัตยกรรมที่เปลี่ยนข้อมูลมหาศาล ให้กลายเป็นการตัดสินใจที่แม่นยำ",
+    steps: [
+      { id: 1, label: 'Enterprise Data Store', color: 'text-aetox-text-soft' },
+      { id: 2, label: 'RAG Retrieval Engine', color: 'text-aetox-accent' },
+      { id: 3, label: 'Neural Logic Processing', color: 'text-aetox-accent' },
+      { id: 4, label: 'Security Gateway', color: 'text-aetox-text-soft' },
+      { id: 5, label: 'Decision Output', color: 'text-aetox-accent' }
+    ],
+    caseLabel: "Live Case Logic",
+    caseDescription: "ประมวลผลเอกสารสัญญา 10,000 ฉบับ เพื่อหาความเสี่ยงทางกฎหมายภายใน 3.2 วินาที ด้วยความแม่นยำ 99.9%"
+  },
+  comparison: {
+    title: "Architectural",
+    titleAccent: "Superiority",
+    subtitle: "ทำไมระบบระดับ Enterprise ถึงต้องการสถาปัตยกรรมที่เหนือกว่าโค้ดทั่วไป",
+    headers: ["หัวข้อ / ความสามารถ", "Aetox Solution", "โค้ดทั่วไป (Generic)"],
+    swipeLabel: "เลื่อนเพื่อเปรียบเทียบ",
+    footer: "*อ้างอิงข้อมูลจากการตรวจสอบประสิทธิภาพระบบเปรียบเทียบปี 2024",
+    items: [
+      {
+        feature: "System Foundation",
+        aetox: "Enterprise AI Architecture (RAG-Optimized)",
+        generic: "Standard Web Application Code",
+        type: "cpu"
+      },
+      {
+        feature: "Logic Accuracy",
+        aetox: "ความแม่นยำทางตรรกะ 99.9%",
+        generic: "ตรรกะเงื่อนไขทั่วไป (เสี่ยงต่อความผิดพลาด)",
+        type: "activity"
+      },
+      {
+        feature: "Security Standard",
+        aetox: "Zero-Model Training (ความเป็นส่วนตัว 100%)",
+        generic: "พึ่งพา API สาธารณะ (เสี่ยงต่อข้อมูลรั่วไหล)",
+        type: "shield"
+      },
+      {
+        feature: "Business ROI",
+        aetox: "การันตีลดต้นทุน 40-70%",
+        generic: "ผลลัพธ์ไม่แน่นอน / แปรปรวนสูง",
+        type: "zap"
+      }
+    ]
   }
 };
 

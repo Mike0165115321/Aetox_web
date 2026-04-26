@@ -3,16 +3,9 @@ import Image from 'next/image';
 
 export default function Footer({ dict }: { dict?: any }) {
   const footerData = dict || {
-    founder: {
-      name: "ชยพล พรมสะวะนา (Chayaopol Promsavana)",
-      title: "Founder & System Architect | เจ้าของเหรียญทอง AI ระดับประเทศ",
-      location: "Based in Nan, Northern Thailand. Operating Worldwide."
-    },
-    sections: {
-      contact: "Contact",
-      social: "Social"
-    },
-    rights: "All Rights Reserved. Engineered by Chayapol Promsavana"
+    founder: { name: "", title: "", location: "" },
+    sections: { contact: "", social: "" },
+    rights: ""
   };
   return (
     <footer className="border-t border-white/5 bg-black py-16">

@@ -38,19 +38,21 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
       setSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
-      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+      alert(dict.footer.form.error);
     } finally {
       setLoading(false);
     }
   };
+
+  const { form } = dict.footer;
 
   return (
     <section id="waitlist-form" className="py-32 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto relative z-10">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-6xl font-black text-white">{dict.title}</h2>
-            <p className="text-gray-400 text-lg">{dict.description}</p>
+            <h2 className="text-4xl md:text-6xl font-black text-white">{dict.footer.title}</h2>
+            <p className="text-gray-400 text-lg">{dict.footer.description}</p>
           </div>
 
           <AnimatePresence mode="wait">
@@ -64,15 +66,15 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                 <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-emerald-500/40">
                   <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-4">ยืนยันเรียบร้อย!</h3>
+                <h3 className="text-3xl font-black text-white mb-4">{form.success.title}</h3>
                 <p className="text-gray-400 text-lg leading-relaxed max-w-md mx-auto">
-                  คุณได้รับสิทธิ์ Priority Access เรียบร้อยแล้ว ทีมงานจะติดต่อกลับพร้อมสิทธิพิเศษระดับ Early Bird ในเร็วๆ นี้
+                  {form.success.description}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
                   className="mt-10 text-deep-blue hover:text-white transition-colors font-bold text-sm uppercase tracking-[0.3em]"
                 >
-                  ปิดหน้าต่าง
+                  {form.success.close}
                 </button>
               </motion.div>
             ) : (
@@ -92,7 +94,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                       />
                     ))}
                   </div>
-                  <span className="text-xs font-black text-gray-500 uppercase tracking-widest">ขั้นตอนที่ {step} จาก 2</span>
+                  <span className="text-xs font-black text-gray-500 uppercase tracking-widest">{form.step} {step} {form.of} 2</span>
                 </div>
 
                 <AnimatePresence mode="wait">
@@ -105,17 +107,17 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                       className="space-y-6"
                     >
                       <div className="space-y-3">
-                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">ชื่อ - นามสกุล</label>
+                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.name.label}</label>
                         <div className="relative">
                           <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-                          <input name="name" type="text" required placeholder="ชื่อของคุณ" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all" />
+                          <input name="name" type="text" required placeholder={form.fields.name.placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all" />
                         </div>
                       </div>
                       <div className="space-y-3">
-                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">อีเมลติดต่อ</label>
+                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.email.label}</label>
                         <div className="relative">
                           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-                          <input name="email" type="email" required placeholder="ระบุอีเมลที่ใช้ทำงาน" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all" />
+                          <input name="email" type="email" required placeholder={form.fields.email.placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all" />
                         </div>
                       </div>
                       <button 
@@ -123,7 +125,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                         onClick={() => setStep(2)}
                         className="w-full py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-3 group"
                       >
-                        ขั้นตอนต่อไป
+                        {form.next}
                         <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </button>
                     </motion.div>
@@ -136,19 +138,18 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                       className="space-y-6"
                     >
                       <div className="space-y-3">
-                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">ตำแหน่งหรือเป้าหมายของคุณ</label>
+                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.position.label}</label>
                         <select name="position" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:border-deep-blue/50 focus:outline-none transition-all appearance-none cursor-pointer">
-                          <option value="Senior Programmer" className="bg-ultra-dark">Senior Programmer</option>
-                          <option value="Tech Lead / Team Lead" className="bg-ultra-dark">Tech Lead / Team Lead</option>
-                          <option value="Business Owner / CTO" className="bg-ultra-dark">Business Owner / CTO</option>
-                          <option value="System Architect Wannabe" className="bg-ultra-dark">System Architect Wannabe</option>
+                          {form.fields.position.options.map((opt: any) => (
+                            <option key={opt.value} value={opt.value} className="bg-ultra-dark">{opt.label}</option>
+                          ))}
                         </select>
                       </div>
                       <div className="space-y-3">
-                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">ความคาดหวังหรือปัญหาที่เจอตอนนี้</label>
+                        <label className="text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.challenge.label}</label>
                         <div className="relative">
                           <MessageSquare className="absolute left-4 top-5 w-4 h-4 text-gray-600" />
-                          <textarea name="challenge" rows={4} placeholder="ระบุปัญหาทางเทคนิคที่คุณกำลังเผชิญ..." className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all resize-none" />
+                          <textarea name="challenge" rows={4} placeholder={form.fields.challenge.placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all resize-none" />
                         </div>
                       </div>
                       <div className="flex gap-4">
@@ -157,14 +158,14 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                           onClick={() => setStep(1)}
                           className="w-1/3 py-5 rounded-2xl bg-white/5 border border-white/10 text-gray-400 font-bold hover:text-white transition-all"
                         >
-                          ย้อนกลับ
+                          {form.back}
                         </button>
                         <button 
                           type="submit"
                           disabled={loading}
                           className="flex-1 py-5 rounded-2xl bg-deep-blue text-white font-black text-lg uppercase tracking-[0.2em] hover:shadow-deep-glow transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
                         >
-                          {loading ? 'กำลังดำเนินการ...' : 'จองสิทธิ์เข้าถึงของฉัน'}
+                          {loading ? form.submitting : form.submit}
                           {!loading && <Send className="w-5 h-5" />}
                         </button>
                       </div>
@@ -174,7 +175,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
 
                 <div className="mt-8 text-center">
                   <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">
-                    ข้อมูลของคุณจะถูกเก็บเป็นความลับสูงสุด ตามมาตรฐานสากล
+                    {form.privacy}
                   </p>
                 </div>
               </motion.form>

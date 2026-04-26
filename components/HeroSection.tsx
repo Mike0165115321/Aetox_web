@@ -73,8 +73,8 @@ export default function HeroSection({ dict }: { dict: any }) {
         >
           {/* Primary CTA — The only glow allowed */}
           <Link 
-            href="#roi-calculator"
-            className="group px-10 py-5 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest transition-all shadow-aetox-glow hover:bg-aetox-accent-hover transform active:scale-95 flex items-center justify-center gap-3"
+            href="/services"
+            className="group px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-sm transition-all shadow-aetox-glow hover:bg-aetox-accent-hover transform active:scale-95 flex items-center justify-center gap-3"
           >
             {content.cta.primary}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -82,7 +82,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           
           <Link 
             href="/authority" 
-            className="px-10 py-5 rounded-2xl border border-aetox-border text-aetox-text-soft font-black text-xs uppercase tracking-widest transition-all transform active:scale-95 bg-aetox-surface/50 hover:text-aetox-text-main hover:border-aetox-text-soft/30 flex items-center justify-center"
+            className="px-10 py-5 rounded-2xl border border-aetox-border text-aetox-text-soft font-bold text-sm transition-all transform active:scale-95 bg-aetox-surface/50 hover:text-aetox-text-main hover:border-aetox-text-soft/30 flex items-center justify-center"
           >
             {content.cta.secondary}
           </Link>

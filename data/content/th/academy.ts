@@ -29,7 +29,10 @@ export const academyContent = {
       }
     ]
   },
-
+  skillTree: {
+    title: "แผนผังความรู้สู่มือโปร",
+    subtitle: "สถาปัตยกรรม 3 ชั้นที่เปลี่ยนคุณให้เป็นสถาปนิกผู้กุมความได้เปรียบ"
+  },
   // REFINED: The Skill Tree (Interactive Roadmap)
   categories: [
     {
@@ -83,7 +86,36 @@ export const academyContent = {
   footer: {
     title: "จองสิทธิ์เข้าถึงล่วงหน้าของคุณ",
     description: "คอร์สเรียนนี้จำกัดจำนวนผู้เข้าเรียนในแต่ละรุ่น เพื่อรักษาคุณภาพการถ่ายทอดแบบรายบุคคล (การสอนแบบเข้มข้น)",
-    waitlistLabel: "ลงชื่อรอรับข่าวสารและสิทธิพิเศษก่อนใคร"
+    waitlistLabel: "ลงชื่อรอรับข่าวสารและสิทธิพิเศษก่อนใคร",
+    form: {
+      step: "ขั้นตอนที่",
+      of: "จาก",
+      next: "ขั้นตอนต่อไป",
+      back: "ย้อนกลับ",
+      submitting: "กำลังดำเนินการ...",
+      submit: "จองสิทธิ์เข้าถึงของฉัน",
+      privacy: "ข้อมูลของคุณจะถูกเก็บเป็นความลับสูงสุด ตามมาตรฐานสากล",
+      error: "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+      fields: {
+        name: { label: "ชื่อ - นามสกุล", placeholder: "ชื่อของคุณ" },
+        email: { label: "อีเมลติดต่อ", placeholder: "ระบุอีเมลที่ใช้ทำงาน" },
+        position: { 
+          label: "ตำแหน่งหรือเป้าหมายของคุณ",
+          options: [
+            { value: "Senior Programmer", label: "Senior Programmer" },
+            { value: "Tech Lead / Team Lead", label: "Tech Lead / Team Lead" },
+            { value: "Business Owner / CTO", label: "Business Owner / CTO" },
+            { value: "System Architect Wannabe", label: "System Architect Wannabe" }
+          ]
+        },
+        challenge: { label: "ความคาดหวังหรือปัญหาที่เจอตอนนี้", placeholder: "ระบุปัญหาทางเทคนิคที่คุณกำลังเผชิญ..." }
+      },
+      success: {
+        title: "ยืนยันเรียบร้อย!",
+        description: "คุณได้รับสิทธิ์ Priority Access เรียบร้อยแล้ว ทีมงานจะติดต่อกลับพร้อมสิทธิพิเศษระดับ Early Bird ในเร็วๆ นี้",
+        close: "ปิดหน้าต่าง"
+      }
+    }
   }
 };
 

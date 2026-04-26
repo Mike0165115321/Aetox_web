@@ -49,13 +49,13 @@ export default async function Home() {
         <PainSection dict={dict.pain} />
 
         {/* 3. Superiority (Architecture Comparison) */}
-        <ArchitectureComparison />
+        <ArchitectureComparison dict={dict.comparison} />
 
         {/* 4. Proof (System Simulation) */}
-        <SystemSimulation />
+        <SystemSimulation dict={dict.simulation} />
 
         {/* 5. Trust (Expertise & Projects) */}
-        <TrustSection dict={dict.trust} projects={featuredProjects} />
+        <TrustSection dict={dict} projects={featuredProjects} />
 
         {/* 6. Capabilities (Services) */}
         <ServiceSection dict={dict.services} />

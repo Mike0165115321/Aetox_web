@@ -9,15 +9,15 @@ const iconMap: any = {
   Layers: Layers
 };
 
-export default function AcademySkillTree({ categories }: { categories: any[] }) {
+export default function AcademySkillTree({ dict, categories }: { dict: any, categories: any[] }) {
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
 
   return (
     <section id="skill-tree" className="py-24 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto">
         <div className="text-center mb-20 space-y-4">
-          <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">แผนผังความรู้สู่มือโปร</h2>
-          <p className="text-gray-400 text-lg">สถาปัตยกรรม 3 ชั้นที่เปลี่ยนคุณให้เป็นสถาปนิกผู้กุมความได้เปรียบ</p>
+          <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">{dict.title}</h2>
+          <p className="text-gray-400 text-lg">{dict.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">

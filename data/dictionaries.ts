@@ -12,7 +12,7 @@ const dictionaries = {
   },
   // English placeholders for future use
   en: {
-    home: () => import('./content/th/home').then((module) => module.default), // fallback to th for now
+    home: () => import('./content/en/home').then((module) => module.default),
     automation: () => import('./content/th/services/automation').then((module) => module.default),
     webSystems: () => import('./content/th/services/web-systems').then((module) => module.default),
     aiAgents: () => import('./content/th/services/ai-agents').then((module) => module.default),

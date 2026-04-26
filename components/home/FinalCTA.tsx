@@ -27,11 +27,11 @@ export default function FinalCTA({ dict }: { dict: any }) {
             {dict.description}
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-sm transition-all shadow-aetox-glow hover:bg-aetox-accent-hover transform active:scale-95">
               เริ่มวางแผนระบบของคุณ
               <ArrowRight size={16} />
             </Link>
-            <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-black text-xs uppercase tracking-widest hover:bg-aetox-surface-2 transition-all border border-aetox-border transform active:scale-95">
+            <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-bold text-sm transition-all border border-aetox-border transform active:scale-95">
               ดูผลงานทั้งหมด
             </Link>
           </div>

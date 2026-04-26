@@ -1,11 +1,13 @@
 export const servicesIndexContent = {
   hero: {
     title: {
-      white: "Strategic Solutions For",
-      accent: "Modern Business Problems."
+      white: "โซลูชันเชิงกลยุทธ์สำหรับ",
+      accent: "ปัญหาธุรกิจในยุคใหม่"
     },
     description: "ลดต้นทุนแฝง เร่งความเร็วการทำงาน และเปลี่ยนระบบของคุณให้รองรับ AI และ Automation ได้ตั้งแต่วันนี้"
   },
+  benefitLabel: "สิ่งที่คุณจะได้รับ",
+  technicalLabel: "ข้อมูลเจาะลึกทางเทคนิค",
 
   services: [
     {
