@@ -1,21 +1,15 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { useScroll } from '@/context/ScrollContext';
 
 export function useNavbarLogic() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { isScrolled } = useScroll();
   const [currentLang, setCurrentLang] = useState('TH');
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 20;
-      setIsScrolled(prev => prev !== scrolled ? scrolled : prev);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
     const handleClickOutside = (event: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(event.target as Node)) {
         setIsLangOpen(false);
@@ -33,7 +27,6 @@ export function useNavbarLogic() {
     document.addEventListener('keydown', handleEsc);
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEsc);
     };

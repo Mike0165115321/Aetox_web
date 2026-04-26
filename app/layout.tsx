@@ -20,14 +20,21 @@ export const metadata = {
 };
 
 import { CurrencyProvider } from "@/context/CurrencyContext";
+import { ScrollProvider } from "@/context/ScrollContext";
+import { GlobalBackground } from "@/components/layout/GlobalBackground";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${ibmPlexThai.variable} ${inter.variable} font-sans`}>
-      <body className="bg-ultra-dark text-foreground antialiased overflow-x-hidden min-h-screen">
-        <CurrencyProvider>
-          {children}
-        </CurrencyProvider>
+      <body className="bg-aetox-bg text-aetox-text-main antialiased overflow-x-hidden min-h-screen">
+        <GlobalBackground />
+        <ScrollProvider>
+          <CurrencyProvider>
+            <div className="relative z-10">
+              {children}
+            </div>
+          </CurrencyProvider>
+        </ScrollProvider>
       </body>
     </html>
   );

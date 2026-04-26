@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap, Maximize, Network } from 'lucide-react';
 import { scrollToSection } from '@/lib/scroll-utils';
 
 export default function HeroSection({ dict }: { dict: any }) {
@@ -12,12 +12,19 @@ export default function HeroSection({ dict }: { dict: any }) {
     cta: { primary: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)", secondary: "ดูสถาปัตยกรรมระบบ" }
   };
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-aetox-bg">
-      {/* Aetox Blueprint Grid — Felt more than seen */}
-      <div className="absolute inset-0 bg-aetox-blueprint bg-[length:50px_50px] opacity-[0.15] pointer-events-none" />
-      
-      {/* Strategic Ambient Light — No more generic glow */}
-      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-aetox-accent/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden border-b border-aetox-border">
+      {/* Background Architectural Elements - Simplified and Sharpened */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-32 -left-32 text-aetox-accent/[0.04]">
+          <Maximize size={600} strokeWidth={0.2} />
+        </div>
+        <div className="absolute -bottom-20 -right-20 text-aetox-accent/[0.04]">
+          <Network size={700} strokeWidth={0.2} />
+        </div>
+      </div>
+
+      {/* Subtle Bottom Fade for smooth transition */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-aetox-bg to-transparent pointer-events-none z-20" />
       
       <div className="relative z-10 flex flex-col items-center justify-center text-center container">
         {/* Aetox Logo — Prestigious & Purposeful */}
@@ -85,7 +92,7 @@ export default function HeroSection({ dict }: { dict: any }) {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30 z-30"
         >
           <span className="text-[8px] font-black uppercase tracking-[0.4em] text-aetox-text-soft">Scroll to Analyze</span>
           <div className="w-[1px] h-10 bg-gradient-to-b from-aetox-accent to-transparent" />

@@ -8,33 +8,41 @@ export const DEFAULT_NAVBAR_OFFSET = 120;
  * @param sections - รายการ sections ที่มี id
  * @param buffer - (Optional) ระยะชดเชยการตรวจจับ (Default: 160)
  */
-export function useActiveSection(sections: { id: string }[], buffer: number = 160) {
+export function useActiveSection(sections: { id: string }[]) {
   const [activeSection, setActiveSection] = useState(sections[0]?.id || '');
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || sections.length === 0) return;
 
-      const scrollPosition = window.scrollY + buffer;
-      let currentSection = sections[0]?.id || '';
-
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            currentSection = section.id;
-            break;
-          }
-        }
-      }
-      setActiveSection(currentSection);
+    const observers: IntersectionObserver[] = [];
+    
+    // ตั้งค่าตัวตรวจจับการทับซ้อน (IntersectionObserver)
+    // ใช้ threshold และ rootMargin เพื่อให้ตรวจจับได้แม่นยำและเป็นธรรมชาติ
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // ตรวจจับเมื่อส่วนนั้นอยู่ช่วงบนของหน้าจอ
+      threshold: 0
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // ตรวจสอบทันทีที่โหลดหน้า
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections, buffer]);
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [sections]);
 
   return activeSection;
 }

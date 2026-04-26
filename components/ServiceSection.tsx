@@ -17,8 +17,26 @@ export default function ServiceSection({ dict }: { dict?: any }) {
   };
 
   return (
-    <section className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      <div className="container">
+    <section className="py-32 relative bg-aetox-atmosphere overflow-hidden border-t border-aetox-border">
+      {/* Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-10 -right-20 text-aetox-accent/5"
+        >
+          <Bot size={500} strokeWidth={0.2} />
+        </motion.div>
+        <motion.div 
+          animate={{ rotate: [0, 10, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 -left-10 text-aetox-accent/5"
+        >
+          <Zap size={400} strokeWidth={0.2} />
+        </motion.div>
+      </div>
+
+      <div className="container relative z-10">
         <div className="max-w-4xl mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar';
+import FinalCTA from '@/components/home/FinalCTA';
 import HeroSection from '@/components/HeroSection';
 import ServiceSection from '@/components/ServiceSection';
 import Footer from '@/components/Footer';
@@ -35,74 +36,40 @@ export default async function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-aetox-bg selection:bg-aetox-accent/30 selection:text-white relative">
+    <main className="min-h-screen selection:bg-aetox-accent/30 selection:text-white relative">
       <FloatingNav sections={homeSections} />
-      
       <Navbar dict={navDict.navbar} />
       
       {/* 1. Hook (Hero) */}
       <HeroSection dict={dict.hero} />
 
-      {/* 2. Pain (Loss Realization) */}
-      <div id="pain">
+        {/* 2. Pain (Loss Realization) */}
         <PainSection dict={dict.pain} />
-      </div>
 
-      {/* 3. Superiority (Architecture Comparison) */}
-      <div id="comparison">
+        {/* 3. Superiority (Architecture Comparison) */}
         <ArchitectureComparison />
-      </div>
 
-      {/* 4. Proof (System Simulation) */}
-      <div id="simulation">
+        {/* 4. Proof (System Simulation) */}
         <SystemSimulation />
-      </div>
 
-      {/* 5. Trust (Expertise & Projects) */}
-      <TrustSection dict={dict.trust} projects={featuredProjects} />
+        {/* 5. Trust (Expertise & Projects) */}
+        <TrustSection dict={dict.trust} projects={featuredProjects} />
 
-      {/* 6. Capabilities (Services) */}
-      <div id="services">
+        {/* 6. Capabilities (Services) */}
         <ServiceSection dict={dict.services} />
-      </div>
 
-      {/* 7. Decision (ROI Calculator) */}
-      <section id="roi-calculator" className="scroll-mt-20">
-        <ROIPreview dict={dict.engagement} />
-      </section>
+        {/* 7. Decision (ROI Calculator) */}
+        <section id="roi-calculator" className="scroll-mt-20">
+          <ROIPreview dict={dict.engagement} />
+        </section>
 
-      {/* 8. Logic (Security) */}
-      <div id="security">
+        {/* 8. Logic (Security) */}
         <SecurityBlock dict={dict.security} />
-      </div>
 
-      {/* 9. Final Close */}
-      <section id="about" className="py-32 relative z-10 border-t border-aetox-border bg-gradient-to-b from-transparent to-aetox-accent/5">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aetox-surface border border-aetox-border text-aetox-text-muted text-[8px] font-black tracking-widest uppercase">
-              Decision Point
-            </div>
-            <h2 className="text-fluid-h1 font-black text-aetox-text-main">
-              {dict.about.headline.white}<span className="text-aetox-accent">{dict.about.headline.accent}</span>
-            </h2>
-            <p className="text-fluid-p text-aetox-text-soft mx-auto font-medium whitespace-pre-line">
-              {dict.about.description}
-            </p>
-            <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95">
-                เริ่มวางแผนระบบของคุณ
-                <ArrowRight size={16} />
-              </Link>
-              <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-black text-xs uppercase tracking-widest hover:bg-aetox-surface-2 transition-all border border-aetox-border transform active:scale-95">
-                ดูผลงานทั้งหมด
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+        {/* 9. Final Close */}
+        <FinalCTA dict={dict.about} />
 
-      <Footer dict={navDict.footer} />
+        <Footer dict={navDict.footer} />
     </main>
   );
 }

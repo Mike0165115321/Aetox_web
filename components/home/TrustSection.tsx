@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Award, Shield, CheckCircle2, ArrowRight, Star } from 'lucide-react';
+import { Award, Shield, CheckCircle2, ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProjectSlider from './ProjectSlider';
@@ -10,9 +10,13 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
   const { founder, standards } = dict;
 
   return (
-    <section id="trust" className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      {/* Background Accent */}
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-aetox-accent/5 rounded-full blur-[120px] pointer-events-none translate-x-1/2 translate-y-1/2" />
+    <section id="trust" className="py-32 relative overflow-hidden border-t border-aetox-border">
+      {/* Optimized Minimal Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+        <div className="absolute -top-20 -right-20 text-aetox-accent/[0.03]">
+          <Award size={500} strokeWidth={1} />
+        </div>
+      </div>
       
       <div className="container relative z-10">
         <div className="flex flex-col lg:flex-row gap-20 items-stretch">
@@ -79,6 +83,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                     src="/images/home/architecture.jpg"
                     alt="National AI Award"
                     fill
+                    sizes="160px"
                     className="object-cover opacity-60 hover:opacity-90 transition-opacity duration-700"
                     onError={(e) => { (e.target as any).style.display = 'none'; }}
                   />

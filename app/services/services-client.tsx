@@ -26,9 +26,8 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
   ];
 
   return (
-    <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative pt-20">
+    <main className="min-h-screen selection:bg-cyber-blue/30 selection:text-white relative pt-20">
       <FloatingNav sections={servicesSections} />
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
       
       <section id="services-hero" className="pt-24 pb-12 relative z-10 scroll-mt-20">

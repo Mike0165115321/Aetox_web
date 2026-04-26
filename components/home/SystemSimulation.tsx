@@ -12,23 +12,12 @@ export default function SystemSimulation() {
   ];
 
   return (
-    <section className="py-32 relative bg-aetox-atmosphere overflow-hidden border-t border-aetox-border">
-      {/* Background Architectural Elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-40 -left-40 text-aetox-accent/5"
-        >
-          <Cpu size={600} strokeWidth={0.2} />
-        </motion.div>
-        <motion.div 
-          animate={{ y: [0, 40, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-0 -right-20 text-aetox-accent/5"
-        >
-          <Server size={400} strokeWidth={0.2} />
-        </motion.div>
+    <section id="simulation" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+      {/* Optimized Minimal Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+        <div className="absolute -top-40 -left-40 text-aetox-accent/[0.03]">
+          <Cpu size={600} strokeWidth={1} />
+        </div>
       </div>
 
       <div className="container relative z-10">
@@ -85,7 +74,7 @@ export default function SystemSimulation() {
               </div>
             </div>
             <p className="text-aetox-text-soft text-sm italic font-medium">
-              "ประมวลผลเอกสารสัญญา 10,000 ฉบับ เพื่อหาความเสี่ยงทางกฎหมายภายใน 3.2 วินาที ด้วยความแม่นยำ 99.9%"
+              &quot;ประมวลผลเอกสารสัญญา 10,000 ฉบับ เพื่อหาความเสี่ยงทางกฎหมายภายใน 3.2 วินาที ด้วยความแม่นยำ 99.9%&quot;
             </p>
           </motion.div>
         </div>

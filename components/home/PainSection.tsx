@@ -54,32 +54,15 @@ export default function PainSection({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="pain" className="py-32 relative bg-aetox-atmosphere overflow-hidden border-t border-aetox-border">
-      {/* Architectural Background Elements (The Architect's Workspace) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
-        <motion.div 
-          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-10 -left-20 text-[200px] text-aetox-accent/5"
-        >
-          <Clock size={300} strokeWidth={0.5} />
-        </motion.div>
-        
-        <motion.div 
-          animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 -right-20 text-[250px] text-aetox-accent/5"
-        >
-          <TrendingDown size={350} strokeWidth={0.5} />
-        </motion.div>
-
-        <motion.div 
-          animate={{ x: [0, 15, 0], rotate: [5, 10, 5] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-0 left-1/4 text-[180px] text-aetox-accent/5"
-        >
-          <AlertTriangle size={250} strokeWidth={0.5} />
-        </motion.div>
+    <section id="pain" className="py-32 relative overflow-hidden">
+      {/* Optimized Minimal Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+        <div className="absolute -top-10 -left-20 text-aetox-accent/[0.03]">
+          <Clock size={300} strokeWidth={1} />
+        </div>
+        <div className="absolute top-1/4 -right-20 text-aetox-accent/[0.03]">
+          <TrendingDown size={350} strokeWidth={1} />
+        </div>
       </div>
 
       <div className="container relative z-10">

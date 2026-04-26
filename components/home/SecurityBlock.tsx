@@ -1,12 +1,19 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Lock, Database, EyeOff, Server, HardDrive } from 'lucide-react';
+import { ShieldCheck, Lock, Shield, EyeOff, Server } from 'lucide-react';
 
 export default function SecurityBlock({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="security" className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
+    <section id="security" className="py-32 relative overflow-hidden border-t border-aetox-border">
+      {/* Optimized Minimal Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+        <div className="absolute -top-40 -right-20 text-aetox-accent/[0.03]">
+          <Lock size={600} strokeWidth={1} />
+        </div>
+      </div>
+
       <div className="container relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-24">
           <motion.div

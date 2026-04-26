@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Check, X, Shield, Cpu, Zap, Activity } from 'lucide-react';
+import { Check, X, Shield, Cpu, Zap, Activity, Layers } from 'lucide-react';
 
 export default function ArchitectureComparison() {
   const comparison = [
@@ -31,8 +31,15 @@ export default function ArchitectureComparison() {
   ];
 
   return (
-    <section className="py-32 relative bg-aetox-bg overflow-hidden border-t border-aetox-border">
-      <div className="container">
+    <section id="comparison" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+      {/* Optimized Minimal Background Architectural Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+        <div className="absolute -top-10 -left-10 text-aetox-accent/[0.03]">
+          <Layers size={400} strokeWidth={1} />
+        </div>
+      </div>
+
+      <div className="container relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
             Architectural <span className="text-aetox-accent">Superiority</span>
