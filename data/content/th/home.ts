@@ -1,13 +1,13 @@
 export const homeContent = {
   hero: {
     headline: {
-      white: "Turn Problems Into",
-      accent: "Scalable Profit Systems."
+      white: "Inefficiency is a Choice.",
+      accent: "Precision is Our Standard."
     },
-    description: "เราออกแบบระบบ AI Automation ระดับองค์กร เพื่อแก้ปัญหาต้นทุนและเพิ่มประสิทธิภาพอย่างเป็นระบบ",
+    description: "อุดรอยรั่วทางธุรกิจและเปลี่ยนต้นทุนที่สูญเสีย ให้กลายเป็นระบบกำไรอัตโนมัติด้วยสถาปัตยกรรม AI ระดับ Enterprise",
     cta: {
-      primary: "ดูบริการทั้งหมด",
-      secondary: "ดูผลงานระดับ Enterprise"
+      primary: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)",
+      secondary: "ดูสถาปัตยกรรมระบบ"
     }
   },
   pain: {

@@ -6,6 +6,8 @@ import PainSection from '@/components/home/PainSection';
 import ROIPreview from '@/components/home/ROIPreview';
 import SecurityBlock from '@/components/home/SecurityBlock';
 import TrustSection from '@/components/home/TrustSection';
+import ArchitectureComparison from '@/components/home/ArchitectureComparison';
+import SystemSimulation from '@/components/home/SystemSimulation';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, AlertTriangle, Award, Layers, Calculator, ShieldCheck, MessageSquare } from 'lucide-react';
 import { getDictionary } from '@/data/dictionaries';
@@ -17,93 +19,83 @@ export default async function Home() {
   const navDict = await getDictionary('th', 'navigation');
 
   const homeSections: NavSection[] = [
-    { id: 'hero', label: 'Hook (จุดเริ่มต้น)', num: '01', icon: <Sparkles size={18} /> },
-    { id: 'pain', label: 'Pain (ปัญหาที่เจอ)', num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
-    { id: 'trust', label: 'Trust (ความเชื่อมั่น)', num: '03', icon: <Award size={18} />, offset: 60 },
-    { id: 'services', label: 'Proof (ระบบของเรา)', num: '04', icon: <Layers size={18} />, offset: 80 },
-    { id: 'roi-calculator', label: 'Money (ความคุ้มค่า)', num: '05', icon: <Calculator size={18} />, offset: 10 },
-    { id: 'security', label: 'Logic (ความปลอดภัย)', num: '06', icon: <ShieldCheck size={18} />, offset: 80 },
-    { id: 'about', label: 'Close (สรุปผล)', num: '07', icon: <MessageSquare size={18} />, offset: 65 },
+    { id: 'hero', label: 'Command', num: '01', icon: <Sparkles size={18} /> },
+    { id: 'pain', label: 'Pain', num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
+    { id: 'comparison', label: 'Superiority', num: '03', icon: <Award size={18} />, offset: 60 },
+    { id: 'simulation', label: 'Proof', num: '04', icon: <Layers size={18} />, offset: 80 },
+    { id: 'roi-calculator', label: 'Decision', num: '05', icon: <Calculator size={18} />, offset: 10 },
+    { id: 'security', label: 'Logic', num: '06', icon: <ShieldCheck size={18} />, offset: 80 },
+    { id: 'about', label: 'Contact', num: '07', icon: <MessageSquare size={18} />, offset: 65 },
   ];
 
   const featuredProjects = [
-    { 
-      id: bookmind.id, 
-      title: bookmind.title, 
-      description: bookmind.description, 
-      image: bookmind.image, 
-      slug: bookmind.slug, 
-      category: bookmind.category 
-    },
-    { 
-      id: robotGuide.id, 
-      title: robotGuide.title, 
-      description: robotGuide.description, 
-      image: robotGuide.image, 
-      slug: robotGuide.slug, 
-      category: robotGuide.category 
-    },
-    { 
-      id: treesBot.id, 
-      title: treesBot.title, 
-      description: treesBot.description, 
-      image: treesBot.image, 
-      slug: treesBot.slug, 
-      category: treesBot.category 
-    },
+    { id: bookmind.id, title: bookmind.title, description: bookmind.description, image: bookmind.image, slug: bookmind.slug, category: bookmind.category },
+    { id: robotGuide.id, title: robotGuide.title, description: robotGuide.description, image: robotGuide.image, slug: robotGuide.slug, category: robotGuide.category },
+    { id: treesBot.id, title: treesBot.title, description: treesBot.description, image: treesBot.image, slug: treesBot.slug, category: treesBot.category },
   ];
 
   return (
-    <main className="min-h-screen bg-ultra-dark selection:bg-cyber-blue/30 selection:text-white relative">
+    <main className="min-h-screen bg-aetox-bg selection:bg-aetox-accent/30 selection:text-white relative">
       <FloatingNav sections={homeSections} />
       
-      {/* Global Cyber Grid Background */}
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-20" />
-
       <Navbar dict={navDict.navbar} />
       
       {/* 1. Hook (Hero) */}
       <HeroSection dict={dict.hero} />
 
       {/* 2. Pain (Loss Realization) */}
-      <PainSection dict={dict.pain} />
+      <div id="pain">
+        <PainSection dict={dict.pain} />
+      </div>
 
-      {/* 3. Trust (Founder & Expertise) */}
+      {/* 3. Superiority (Architecture Comparison) */}
+      <div id="comparison">
+        <ArchitectureComparison />
+      </div>
+
+      {/* 4. Proof (System Simulation) */}
+      <div id="simulation">
+        <SystemSimulation />
+      </div>
+
+      {/* 5. Trust (Expertise & Projects) */}
       <TrustSection dict={dict.trust} projects={featuredProjects} />
 
-      {/* 4. Proof (Services & Capabilities) */}
+      {/* 6. Capabilities (Services) */}
       <div id="services">
         <ServiceSection dict={dict.services} />
       </div>
 
-      {/* 4 & 5. Engage & Money (ROI Calculator) */}
+      {/* 7. Decision (ROI Calculator) */}
       <section id="roi-calculator" className="scroll-mt-20">
         <ROIPreview dict={dict.engagement} />
       </section>
 
-      {/* 6. Logic (Security & Trust) */}
-      <SecurityBlock dict={dict.security} />
+      {/* 8. Logic (Security) */}
+      <div id="security">
+        <SecurityBlock dict={dict.security} />
+      </div>
 
-      {/* 7. Close (Final CTA) */}
-      <section id="about" className="py-32 relative z-10 border-t border-white/5 bg-gradient-to-b from-transparent to-cyber-blue/5">
-        <div className="container mx-auto">
+      {/* 9. Final Close */}
+      <section id="about" className="py-32 relative z-10 border-t border-aetox-border bg-gradient-to-b from-transparent to-aetox-accent/5">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center space-y-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-[10px] font-black tracking-widest uppercase">
-              ขั้นตอนสุดท้ายก่อนการตัดสินใจ
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aetox-surface border border-aetox-border text-aetox-text-muted text-[8px] font-black tracking-widest uppercase">
+              Decision Point
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.2]">
-              {dict.about.headline.white}<span className="text-cyber-blue">{dict.about.headline.accent}</span>
+            <h2 className="text-4xl md:text-7xl font-black text-aetox-text-main leading-[1.1] tracking-tighter">
+              {dict.about.headline.white}<span className="text-aetox-accent">{dict.about.headline.accent}</span>
             </h2>
-            <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto font-medium whitespace-pre-line">
+            <p className="text-aetox-text-soft text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium whitespace-pre-line">
               {dict.about.description}
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-cyber-blue text-black font-black text-lg hover:shadow-cyber-glow transition-all border border-cyber-blue/20 active:scale-95">
-                เริ่มวางแผนระบบของคุณวันนี้
-                <ArrowRight className="w-5 h-5" />
+              <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95">
+                เริ่มวางแผนระบบของคุณ
+                <ArrowRight size={16} />
               </Link>
-              <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-white/5 text-white font-black text-lg hover:bg-white/10 transition-all border border-white/10 active:scale-95">
-                ดูผลงานระดับ Enterprise
+              <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-black text-xs uppercase tracking-widest hover:bg-aetox-surface-2 transition-all border border-aetox-border transform active:scale-95">
+                ดูผลงานทั้งหมด
               </Link>
             </div>
           </div>
@@ -114,3 +106,4 @@ export default async function Home() {
     </main>
   );
 }
+

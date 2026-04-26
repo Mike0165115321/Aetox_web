@@ -4,30 +4,27 @@
 
 @layer base {
   body {
-    @apply bg-ultra-dark text-foreground font-sans antialiased overflow-x-hidden min-h-screen;
-    background-image: 
-      linear-gradient(to right, rgba(6, 182, 212, 0.03) 1px, transparent 1px), 
-      linear-gradient(to bottom, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
+    @apply bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen;
   }
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 border-t-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)];
+    @apply bg-aetox-surface/40 backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
   }
+  
   .glass-card-hover {
-    @apply hover:border-cyber-blue/60 hover:bg-white/[0.06] hover:shadow-cyber-glow transition-all duration-500 hover:-translate-y-1;
+    @apply hover:border-aetox-accent/30 hover:bg-aetox-surface/60 transition-all duration-500 hover:-translate-y-1;
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyber-blue to-deep-blue;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-aetox-text-main via-aetox-accent to-aetox-text-main bg-[length:200%_auto] animate-gradient-x;
   }
 
-  /* Cyber Form Utilities */
+  /* Industrial Form Utilities */
   .form-input-cyber, .form-select-cyber, .form-textarea-cyber {
-    @apply w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-700 
-           focus:outline-none focus:border-cyber-blue/50 focus:ring-1 focus:ring-cyber-blue/30 transition-all;
+    @apply w-full bg-aetox-surface border border-aetox-border rounded-2xl p-4 text-aetox-text-main placeholder-aetox-text-muted 
+           focus:outline-none focus:border-aetox-accent/50 focus:ring-1 focus:ring-aetox-accent/20 transition-all;
   }
 
   .form-select-cyber {
@@ -45,7 +42,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0A0F1C;
+    background: #000000;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -55,13 +52,13 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #06B6D4;
-    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    background: #0A84FF;
   }
 
   /* For Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.1) #0A0F1C;
+    scrollbar-color: rgba(255, 255, 255, 0.1) #000000;
   }
 }
+

@@ -15,25 +15,23 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ id, title, description, features, relatedProjects, Icon, index }: ServiceCardProps) {
   const CardContent = (
-    <>
-      <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:border-cyber-blue/50 group-hover:shadow-cyber-glow transition-all duration-300">
-        <Icon className="w-7 h-7 text-cyber-blue" />
+    <div className="flex flex-col h-full">
+      <div className="w-14 h-14 rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
+        <Icon className="w-7 h-7" />
       </div>
       
-      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyber-blue transition-colors">
+      <h3 className="text-xl font-black text-aetox-text-main mb-4 uppercase tracking-tight group-hover:text-aetox-accent transition-colors">
         {title}
       </h3>
-      <p className="text-gray-400 leading-relaxed text-sm mb-6">
+      <p className="text-aetox-text-soft leading-relaxed text-sm mb-8 font-medium">
         {description}
       </p>
 
       {features && (
-        <ul className="space-y-3 mb-6 flex-grow">
+        <ul className="space-y-4 mb-10 flex-grow">
           {features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2 text-xs text-gray-400">
-              <Check className="w-3.5 h-3.5 text-cyber-blue mt-0.5 shrink-0" />
+            <li key={i} className="flex items-start gap-3 text-[11px] font-bold text-aetox-text-soft uppercase tracking-widest leading-tight">
+              <Check className="w-3.5 h-3.5 text-aetox-accent mt-0.5 shrink-0" />
               <span>{feature}</span>
             </li>
           ))}
@@ -41,19 +39,19 @@ export default function ServiceCard({ id, title, description, features, relatedP
       )}
 
       {relatedProjects && relatedProjects.length > 0 && (
-        <div className="mt-auto pt-4 border-t border-white/10 w-full">
-          <p className="text-xs text-gray-500 mb-2 font-medium tracking-wider uppercase">Applied In</p>
-          <ul className="space-y-2">
+        <div className="mt-auto pt-8 border-t border-aetox-border/50 w-full">
+          <p className="text-[9px] text-aetox-text-muted mb-4 font-black tracking-[0.2em] uppercase">Enterprise Deployment</p>
+          <ul className="space-y-3">
             {relatedProjects.map((project, i) => (
-              <li key={i} className="flex items-center gap-2 text-xs text-cyber-blue hover:text-white transition-colors cursor-pointer">
-                <LinkIcon className="w-3 h-3" />
+              <li key={i} className="flex items-center gap-3 text-[11px] font-black text-aetox-text-soft hover:text-aetox-text-main transition-colors cursor-pointer tracking-tight">
+                <LinkIcon className="w-3 h-3 text-aetox-accent" />
                 <span>{project}</span>
               </li>
             ))}
           </ul>
         </div>
       )}
-    </>
+    </div>
   );
 
   return (
@@ -65,11 +63,11 @@ export default function ServiceCard({ id, title, description, features, relatedP
       className="h-full"
     >
       {id ? (
-        <Link href={`/services/${id}`} className="glass-card glass-card-hover group flex flex-col items-start p-8 rounded-2xl relative overflow-hidden h-full block transition-transform duration-300 hover:-translate-y-1">
+        <Link href={`/services/${id}`} className="glass-card group flex flex-col p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20 relative overflow-hidden h-full block transition-all duration-500 hover:bg-aetox-surface/40 hover:-translate-y-2">
           {CardContent}
         </Link>
       ) : (
-        <div className="glass-card glass-card-hover group flex flex-col items-start p-8 rounded-2xl relative overflow-hidden h-full">
+        <div className="glass-card group flex flex-col p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20 relative overflow-hidden h-full transition-all duration-500 hover:bg-aetox-surface/40">
           {CardContent}
         </div>
       )}
