@@ -62,31 +62,32 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
       </div>
 
       {/* Chat Window */}
-      <div className="glass-card rounded-[32px] border border-white/10 flex flex-col overflow-hidden shadow-2xl bg-black/40 min-h-[600px] relative">
+      <div className="glass-card rounded-[24px] md:rounded-[32px] border border-white/10 flex flex-col overflow-hidden shadow-2xl bg-black/40 min-h-[500px] md:min-h-[600px] relative">
         <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-10 pointer-events-none" />
         
         {/* Header */}
-        <div className="bg-white/[0.02] px-8 py-6 border-b border-white/5 flex items-center justify-between relative z-10">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyber-blue to-blue-600 flex items-center justify-center shadow-cyber-glow/20">
-              <Search size={22} className="text-black" />
+        <div className="bg-white/[0.02] px-5 md:px-8 py-4 md:py-6 border-b border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-tr from-cyber-blue to-blue-600 flex items-center justify-center shadow-cyber-glow/20 flex-shrink-0">
+              <Search size={18} className="text-black md:hidden" />
+              <Search size={22} className="text-black hidden md:block" />
             </div>
             <div>
-              <p className="text-lg font-black text-white tracking-wide flex items-center gap-2">
-                Aetox Enterprise AI <Sparkles size={14} className="text-cyber-blue" />
+              <p className="text-base md:text-lg font-black text-white tracking-wide flex items-center gap-2">
+                Aetox AI <Sparkles size={14} className="text-cyber-blue" />
               </p>
-              <p className="text-[11px] text-emerald-400 flex items-center uppercase tracking-widest font-black">
-                <CheckCircle2 size={12} className="mr-1.5" /> {dict.labels.activeKnowledge}
+              <p className="text-[10px] md:text-[11px] text-emerald-400 flex items-center uppercase tracking-widest font-black">
+                <CheckCircle2 size={10} className="mr-1 md:mr-1.5" /> {dict.labels.activeKnowledge}
               </p>
             </div>
           </div>
-          <div className="px-4 py-1.5 bg-black/40 rounded-full text-[11px] text-gray-500 font-mono border border-white/5">
+          <div className="px-3 py-1 bg-black/40 rounded-full text-[10px] text-gray-500 font-mono border border-white/5">
             RAG Engine v2.4
           </div>
         </div>
         
         {/* Chat Area */}
-        <div className="p-10 flex flex-col gap-10 flex-1 relative z-10">
+        <div className="p-5 md:p-10 flex flex-col gap-6 md:gap-10 flex-1 relative z-10">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div 
               key={useCase}
@@ -94,14 +95,14 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="space-y-10"
+              className="space-y-6 md:space-y-10"
             >
               {/* User Message */}
               <div className="flex justify-end">
                 <motion.div 
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  className="bg-white/5 backdrop-blur-md text-gray-200 px-6 py-4 rounded-[24px] rounded-tr-sm max-w-[80%] text-base border border-white/10 shadow-lg"
+                  className="bg-white/5 backdrop-blur-md text-gray-200 px-5 md:px-6 py-3 md:py-4 rounded-[20px] md:rounded-[24px] rounded-tr-sm max-w-[85%] md:max-w-[80%] text-sm md:text-base border border-white/10 shadow-lg"
                 >
                   {current.question}
                 </motion.div>
@@ -113,21 +114,21 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="bg-cyber-blue/5 backdrop-blur-md text-gray-100 px-8 py-7 pr-14 rounded-[32px] rounded-tl-sm max-w-[90%] text-base border border-cyber-blue/20 shadow-2xl relative group"
+                  className="bg-cyber-blue/5 backdrop-blur-md text-gray-100 px-5 md:px-8 py-5 md:py-7 pr-10 md:pr-14 rounded-[24px] md:rounded-[32px] rounded-tl-sm max-w-[95%] md:max-w-[90%] text-sm md:text-base border border-cyber-blue/20 shadow-2xl relative group"
                 >
-                  <div className="absolute top-6 right-6">
-                    <HelpCircle size={18} className="text-cyber-blue/30 cursor-help group-hover:text-cyber-blue/60 transition-colors" />
+                  <div className="absolute top-4 right-4 md:top-6 md:right-6">
+                    <HelpCircle size={16} className="text-cyber-blue/30 cursor-help group-hover:text-cyber-blue/60 transition-colors" />
                   </div>
 
-                  <div className="mb-8 leading-relaxed text-gray-200 whitespace-pre-line font-medium">
+                  <div className="mb-6 md:mb-8 leading-relaxed text-gray-200 whitespace-pre-line font-medium">
                     {current.answer}
                   </div>
                   
                   {/* Citation Button */}
-                  <div className={`inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl text-[12px] font-black border transition-all hover:scale-105 active:scale-95 ${currentStyle.bgAlert} ${currentStyle.color}`}>
-                    <FileText size={16} />
+                  <div className={`inline-flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[10px] md:text-[12px] font-black border transition-all hover:scale-105 active:scale-95 ${currentStyle.bgAlert} ${currentStyle.color}`}>
+                    <FileText size={14} className="md:w-4 md:h-4" />
                     <span className="uppercase tracking-wider">{dict.labels.citation}: {current.citation}</span>
-                    <ArrowRight size={14} className="ml-1 opacity-70" />
+                    <ArrowRight size={12} className="ml-0.5 md:ml-1 opacity-70" />
                   </div>
                 </motion.div>
               </div>
@@ -137,6 +138,7 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
 
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyber-blue/20 to-transparent" />
       </div>
+
     </div>
   );
 }

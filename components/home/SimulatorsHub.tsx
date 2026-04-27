@@ -36,7 +36,7 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
   return (
     <div className="w-full space-y-12">
       {/* Tab Switcher */}
-      <div className="flex flex-wrap justify-center gap-3 md:gap-4 p-2 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 max-w-fit mx-auto">
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 p-1.5 md:p-2 bg-white/5 backdrop-blur-md rounded-2xl md:rounded-3xl border border-white/10 max-w-fit mx-auto">
         {tabs.map((tab) => {
           const active = activeTab === tab.id;
           const Icon = tab.icon;
@@ -44,18 +44,18 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative flex items-center gap-3 px-6 py-3.5 rounded-2xl text-sm font-bold transition-all duration-500 group ${
+              className={`relative flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl text-[12px] md:text-sm font-bold transition-all duration-500 group ${
                 active ? 'text-white' : 'text-gray-500 hover:text-gray-300'
               }`}
             >
               {active && (
                 <motion.div 
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-white/10 border border-white/10 rounded-2xl shadow-xl"
+                  className="absolute inset-0 bg-white/10 border border-white/10 rounded-xl md:rounded-2xl shadow-xl"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <Icon size={18} className={`relative z-10 transition-colors duration-500 ${active ? tab.color : 'group-hover:text-gray-300'}`} />
+              <Icon size={16} className={`relative z-10 transition-colors duration-500 md:w-[18px] md:h-[18px] ${active ? tab.color : 'group-hover:text-gray-300'}`} />
               <span className="relative z-10">{tab.label}</span>
               {active && (
                 <motion.div 
@@ -69,7 +69,7 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
       </div>
 
       {/* Simulator Container with Card Swapping Animation */}
-      <div className="relative min-h-[650px]">
+      <div className="relative min-h-[500px] md:min-h-[650px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
