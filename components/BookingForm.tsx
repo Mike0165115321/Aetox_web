@@ -28,7 +28,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight"
+              className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight"
             >
               {hero.title}
             </motion.h2>
@@ -53,7 +53,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 <div className="w-20 h-20 bg-cyber-blue/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-cyber-blue/40">
                   <CheckCircle2 className="w-10 h-10 text-cyber-blue" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-4">{success.title}</h3>
+                <h3 className="text-3xl font-bold text-white mb-4">{success.title}</h3>
                 <p className="text-gray-400 text-lg max-w-md mx-auto leading-relaxed">
                   {success.message}
                 </p>
@@ -85,7 +85,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 <button 
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-6 rounded-2xl bg-white text-black font-black text-xl uppercase tracking-[0.2em] hover:bg-cyber-blue hover:text-white transition-all transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 group shadow-cyber-glow"
+                  className="w-full py-6 rounded-2xl bg-white text-black font-bold text-lg md:text-xl tracking-wider hover:bg-aetox-accent hover:text-white transition-all transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 group shadow-aetox-glow"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />

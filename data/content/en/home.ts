@@ -44,7 +44,7 @@ export const homeContent = {
         cost: 'Every 10 minutes a customer waits is a lost revenue opportunity.'
       },
       {
-        id: 'human-error',
+        id: 'trust-erosion',
         title: 'Hidden Costs from Errors',
         impact: 'Human errors in data entry and processing.',
         cost: 'A mere 1% error in your database can lead to millions in long-term damage.'

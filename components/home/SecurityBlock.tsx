@@ -20,12 +20,12 @@ export default function SecurityBlock({ dict }: { dict: any }) {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-surface border border-aetox-border text-aetox-accent text-[9px] font-black tracking-[0.3em] uppercase mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-surface border border-aetox-border text-aetox-accent text-xs font-bold tracking-wider mb-8"
           >
             <ShieldCheck size={14} className="shadow-aetox-glow" /> {dict.title}
           </motion.div>
           
-          <h2 className="text-fluid-h1 font-black text-aetox-text-main uppercase">
+          <h2 className="text-fluid-h1 font-bold text-aetox-text-main">
             {dict.headline.white} <span className="text-aetox-accent">{dict.headline.accent}</span>
           </h2>
           
@@ -52,7 +52,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                   <Icon size={32} />
                 </div>
                 
-                <h3 className="text-xl font-black text-aetox-text-main mb-4 uppercase tracking-tight group-hover:text-aetox-accent transition-colors">
+                <h3 className="text-xl md:text-2xl font-bold text-aetox-text-main mb-4 tracking-tight group-hover:text-aetox-accent transition-colors">
                   {feature.title}
                 </h3>
                 
@@ -61,7 +61,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                 </p>
 
                 <div className="mt-10 pt-8 border-t border-aetox-border/50">
-                  <div className="flex items-center gap-3 text-[9px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">
+                  <div className="flex items-center gap-3 text-xs font-bold text-aetox-text-muted tracking-wide">
                     <ShieldCheck size={14} className="text-aetox-accent" /> {dict.compliance}
                   </div>
                 </div>

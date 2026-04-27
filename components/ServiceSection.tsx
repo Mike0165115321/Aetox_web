@@ -28,12 +28,12 @@ export default function ServiceSection({ dict }: { dict?: any }) {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-aetox-accent font-black text-[10px] tracking-[0.2em] uppercase mb-6"
+            className="inline-flex items-center gap-2 text-aetox-accent font-bold text-xs tracking-wider mb-6"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent" />
             {content.badge}
           </motion.div>
-          <h2 className="text-fluid-h1 font-black text-aetox-text-main uppercase">{content.title}</h2>
+          <h2 className="text-fluid-h1 font-bold text-aetox-text-main">{content.title}</h2>
           <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest">
             {content.description}
           </p>

@@ -30,10 +30,10 @@ export default function ROIPreview({ dict }: { dict: any }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 text-aetox-accent font-black text-[10px] tracking-[0.2em] uppercase mb-6">
+              <div className="inline-flex items-center gap-2 text-aetox-accent font-bold text-xs tracking-wide mb-6">
                 <Calculator size={14} /> {dict.title}
               </div>
-              <h2 className="text-fluid-h2 font-black text-aetox-text-main leading-tight tracking-tighter">
+              <h2 className="text-fluid-h2 font-bold text-aetox-text-main leading-tight tracking-tighter">
                 {dict.roiHeadline.white} <br />
                 <span className="text-aetox-accent">{dict.roiHeadline.accent}</span>
               </h2>

@@ -22,10 +22,10 @@ export default function ArchitectureComparison({ dict }: { dict: any }) {
 
       <div className="container relative z-10">
         <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
+          <h2 className="text-fluid-h2 font-bold text-aetox-text-main tracking-tight">
             {dict.title} <span className="text-aetox-accent">{dict.titleAccent}</span>
           </h2>
-          <p className="text-fluid-p text-aetox-text-soft uppercase tracking-widest font-bold max-w-2xl mx-auto">
+          <p className="text-fluid-p text-aetox-text-soft font-bold max-w-2xl mx-auto mt-4">
             {dict.subtitle}
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function ArchitectureComparison({ dict }: { dict: any }) {
               {/* Table Header */}
               <div className="grid grid-cols-3 border-b border-aetox-border bg-aetox-surface/40">
                 {dict.headers.map((header: string, i: number) => (
-                  <div key={i} className={`p-5 md:p-8 font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] ${i === 1 ? 'text-aetox-accent flex items-center gap-2' : 'text-aetox-text-muted'}`}>
+                  <div key={i} className={`p-5 md:p-8 font-bold text-xs md:text-sm tracking-wide ${i === 1 ? 'text-aetox-accent flex items-center gap-2' : 'text-aetox-text-muted'}`}>
                     {i === 1 && <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />}
                     {header}
                   </div>
@@ -57,23 +57,23 @@ export default function ArchitectureComparison({ dict }: { dict: any }) {
                     className={`grid grid-cols-3 border-b border-aetox-border last:border-0 hover:bg-aetox-accent/[0.02] transition-colors group`}
                   >
                     <div className="p-5 md:p-8 flex items-center gap-3 md:gap-4">
-                      {Icon && <Icon className="w-4 h-4 md:w-5 md:h-5 text-aetox-text-muted group-hover:text-aetox-text-soft transition-colors" />}
-                      <span className="text-[10px] md:text-xs font-black text-aetox-text-main uppercase tracking-widest leading-tight">{item.feature}</span>
+                      {Icon && <Icon className="w-5 h-5 md:w-6 md:h-6 text-aetox-text-muted group-hover:text-aetox-text-soft transition-colors" />}
+                      <span className="text-xs md:text-sm font-bold text-aetox-text-main tracking-tight leading-tight">{item.feature}</span>
                     </div>
                     <div className="p-5 md:p-8 bg-aetox-accent/[0.03] border-x border-aetox-border/50">
                       <div className="flex items-start gap-2 md:gap-3">
-                        <div className="mt-1 w-3.5 h-3.5 md:w-4 md:h-4 rounded-full bg-aetox-accent/20 flex items-center justify-center flex-shrink-0">
-                          <Check className="w-2 md:w-2.5 h-2 md:h-2.5 text-aetox-accent" />
+                        <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-aetox-accent/20 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-2.5 md:w-3 h-2.5 md:h-3 text-aetox-accent" />
                         </div>
-                        <span className="text-xs md:text-sm font-bold text-aetox-text-main leading-relaxed">{item.aetox}</span>
+                        <span className="text-sm md:text-base font-bold text-aetox-text-main leading-relaxed">{item.aetox}</span>
                       </div>
                     </div>
                     <div className="p-5 md:p-8 opacity-40">
                       <div className="flex items-start gap-2 md:gap-3">
-                        <div className="mt-1 w-3.5 h-3.5 md:w-4 md:h-4 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                          <X className="w-2 md:w-2.5 h-2 md:h-2.5 text-red-500/50" />
+                        <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                          <X className="w-2.5 md:w-3 h-2.5 md:h-3 text-red-500/50" />
                         </div>
-                        <span className="text-xs md:text-sm font-medium text-aetox-text-soft leading-relaxed">{item.generic}</span>
+                        <span className="text-sm md:text-base font-medium text-aetox-text-soft leading-relaxed">{item.generic}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -92,7 +92,7 @@ export default function ArchitectureComparison({ dict }: { dict: any }) {
         </div>
 
         <div className="mt-8 md:mt-12 text-center">
-          <p className="text-[8px] md:text-[9px] font-black text-aetox-text-muted uppercase tracking-[0.3em]">
+          <p className="text-[11px] md:text-xs font-medium text-aetox-text-muted tracking-wide">
             {dict.footer}
           </p>
         </div>

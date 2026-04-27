@@ -23,10 +23,10 @@ export default function SystemSimulation({ dict }: { dict: any }) {
 
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-12 md:mb-24">
-          <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
+          <h2 className="text-fluid-h2 font-bold text-aetox-text-main tracking-tighter">
             {dict.title} <span className="text-aetox-accent">{dict.titleAccent}</span>
           </h2>
-          <p className="text-fluid-p text-aetox-text-soft uppercase tracking-widest font-bold max-w-xl mx-auto">
+          <p className="text-fluid-p text-aetox-text-soft font-bold max-w-xl mx-auto mt-4">
             {dict.subtitle}
           </p>
         </div>
@@ -52,11 +52,11 @@ export default function SystemSimulation({ dict }: { dict: any }) {
                     {Icon && <Icon className={`w-7 h-7 md:w-8 md:h-8 ${step.color} relative z-10`} />}
                     
                     {/* Step Number Badge */}
-                    <div className="absolute -top-2 -right-2 w-5 h-5 md:w-6 md:h-6 rounded-lg bg-aetox-bg border border-aetox-border flex items-center justify-center text-[9px] md:text-[10px] font-black text-aetox-text-muted">
+                    <div className="absolute -top-2 -right-2 w-5 h-5 md:w-6 md:h-6 rounded-lg bg-aetox-bg border border-aetox-border flex items-center justify-center text-[10px] md:text-xs font-bold text-aetox-text-muted">
                       0{step.id}
                     </div>
                   </div>
-                  <p className="text-[9px] md:text-[10px] font-black text-aetox-text-main uppercase tracking-[0.2em] text-center mb-2">
+                  <p className="text-xs md:text-sm font-bold text-aetox-text-main tracking-wide text-center mb-2">
                     {step.label}
                   </p>
                   <div className="w-1.5 h-1.5 rounded-full bg-aetox-border group-hover:bg-aetox-accent transition-colors" />
@@ -73,7 +73,7 @@ export default function SystemSimulation({ dict }: { dict: any }) {
             className="mt-12 md:mt-20 p-6 md:p-8 glass-card rounded-[24px] md:rounded-[32px] border-aetox-accent/10 bg-aetox-accent/[0.02] max-w-2xl mx-auto text-center"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="px-3 py-1 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 text-aetox-accent text-[8px] font-black uppercase tracking-widest">
+              <div className="px-4 py-2 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 text-aetox-accent text-xs font-bold tracking-wider">
                 {dict.caseLabel}
               </div>
             </div>

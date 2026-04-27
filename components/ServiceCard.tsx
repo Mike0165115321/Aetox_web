@@ -21,7 +21,7 @@ export default function ServiceCard({ id, title, description, features, relatedP
         <Icon className="w-7 h-7" />
       </div>
       
-      <h3 className="text-xl font-black text-aetox-text-main mb-4 uppercase tracking-tight group-hover:text-aetox-accent transition-colors">
+      <h3 className="text-xl md:text-2xl font-bold text-aetox-text-main mb-4 tracking-tight group-hover:text-aetox-accent transition-colors">
         {title}
       </h3>
       <p className="text-fluid-p text-aetox-text-soft mb-8 font-medium">
@@ -41,10 +41,10 @@ export default function ServiceCard({ id, title, description, features, relatedP
 
       {relatedProjects && relatedProjects.length > 0 && (
         <div className="mt-auto pt-8 border-t border-aetox-border/50 w-full">
-          <p className="text-[9px] text-aetox-text-muted mb-4 font-black tracking-[0.2em] uppercase">{deploymentLabel || 'Enterprise Deployment'}</p>
+          <p className="text-xs text-aetox-text-muted mb-4 font-bold tracking-wide">{deploymentLabel || 'Enterprise Deployment'}</p>
           <ul className="space-y-3">
             {relatedProjects.map((project, i) => (
-              <li key={i} className="flex items-center gap-3 text-[11px] font-black text-aetox-text-soft hover:text-aetox-text-main transition-colors cursor-pointer tracking-tight">
+              <li key={i} className="flex items-center gap-3 text-xs md:text-sm font-bold text-aetox-text-soft hover:text-aetox-text-main transition-colors cursor-pointer tracking-tight">
                 <LinkIcon className="w-3 h-3 text-aetox-accent" />
                 <span>{project}</span>
               </li>

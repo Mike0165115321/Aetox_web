@@ -92,7 +92,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30 z-30"
         >
-          <span className="text-[8px] font-black uppercase tracking-[0.4em] text-aetox-text-soft">{content.scrollLabel}</span>
+          <span className="text-xs font-bold tracking-[0.2em] text-aetox-text-soft">{content.scrollLabel}</span>
 
           <div className="w-[1px] h-10 bg-gradient-to-b from-aetox-accent to-transparent" />
         </motion.div>

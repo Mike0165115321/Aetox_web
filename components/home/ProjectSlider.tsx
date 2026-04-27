@@ -53,7 +53,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
             {/* High-End Fallback Background (Always present behind, or visible if image fails) */}
             <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/10 via-black to-black -z-10 flex items-center justify-center">
                <div className="text-center opacity-10">
-                 <p className="text-6xl font-black uppercase tracking-[0.5em] text-white">AETOX</p>
+                 <p className="text-6xl font-bold tracking-[0.5em] text-white">AETOX</p>
                  <p className="text-sm font-bold tracking-[1em] text-cyber-blue mt-4">PROJECT SHOWCASE</p>
                </div>
             </div>
@@ -75,14 +75,14 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
         >
           {/* Metadata Tag - Clearly Separated */}
           <div className="flex items-center gap-3 mb-6">
-            <span className="px-3 py-1.5 rounded-lg bg-aetox-accent/20 border border-aetox-accent/30 text-[9px] font-black text-aetox-accent uppercase tracking-[0.2em] backdrop-blur-md">
+            <span className="px-3 py-1.5 rounded-lg bg-aetox-accent/20 border border-aetox-accent/30 text-xs font-bold text-aetox-accent tracking-wider backdrop-blur-md">
               {projects[current].category}
             </span>
             <div className="w-1 h-1 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-xl md:text-4xl font-black text-aetox-text-main leading-[1.1] tracking-tight">
+            <h3 className="text-xl md:text-4xl font-bold text-aetox-text-main leading-[1.1] tracking-tight">
               {projects[current].title}
             </h3>
 
@@ -93,7 +93,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
             <div className="pt-6 flex items-center gap-6">
               <Link 
                 href={`/authority/${projects[current].category}/${projects[current].slug}`}
-                className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all active:scale-95"
+                className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-bold text-xs tracking-wider overflow-hidden transition-all active:scale-95"
               >
                 <span className="relative z-10">{viewDetailsLabel || 'View Details'}</span>
                 <ArrowRight size={14} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />

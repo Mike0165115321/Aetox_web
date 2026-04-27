@@ -17,10 +17,10 @@ export default function FinalCTA({ dict }: { dict: any }) {
 
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aetox-surface border border-aetox-border text-aetox-text-muted text-[8px] font-black tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aetox-surface border border-aetox-border text-aetox-text-muted text-xs font-bold tracking-wider">
             {dict.badge}
           </div>
-          <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
+          <h2 className="text-fluid-h2 font-bold text-aetox-text-main tracking-tighter">
             {dict.headline.white}<span className="text-aetox-accent">{dict.headline.accent}</span>
           </h2>
           <p className="text-fluid-p text-aetox-text-soft mx-auto font-medium whitespace-pre-line">

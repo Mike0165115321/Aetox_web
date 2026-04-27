@@ -9,9 +9,11 @@ interface PainItemProps {
   impact: string;
   cost: string;
   index: number;
+  observationLabel: string;
+  costLabel: string;
 }
 
-const PainCard = ({ title, impact, cost, index }: PainItemProps) => {
+const PainCard = ({ title, impact, cost, index, observationLabel, costLabel }: PainItemProps) => {
   const icons = [Clock, TrendingDown, AlertTriangle];
   const Icon = icons[index % icons.length];
 
@@ -30,19 +32,19 @@ const PainCard = ({ title, impact, cost, index }: PainItemProps) => {
       </div>
 
       <div className="space-y-6 flex-1">
-        <h3 className="text-xl font-black text-aetox-text-main uppercase tracking-tight">
+        <h3 className="text-xl md:text-2xl font-bold text-aetox-text-main tracking-tight">
           {title}
         </h3>
         
         <div className="space-y-4">
           <div className="p-4 rounded-xl bg-red-500/[0.03] border border-red-500/10">
-            <p className="text-red-400/80 text-[10px] font-black uppercase tracking-widest mb-1">Observation</p>
-            <p className="text-aetox-text-main text-sm font-bold leading-relaxed">{impact}</p>
+            <p className="text-red-400/80 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">{observationLabel}</p>
+            <p className="text-aetox-text-main text-sm md:text-base font-bold leading-relaxed">{impact}</p>
           </div>
           
           <div className="p-4 rounded-xl bg-aetox-accent/[0.03] border border-aetox-accent/10">
-            <p className="text-aetox-accent/80 text-[10px] font-black uppercase tracking-widest mb-1">Strategic Cost</p>
-            <p className="text-aetox-text-soft text-sm font-medium leading-relaxed italic">{cost}</p>
+            <p className="text-aetox-accent/80 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">{costLabel}</p>
+            <p className="text-aetox-text-soft text-sm md:text-base font-medium leading-relaxed italic">{cost}</p>
           </div>
         </div>
       </div>
@@ -81,7 +83,7 @@ export default function PainSection({ dict }: { dict: any }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-fluid-h2 font-black text-aetox-text-main uppercase"
+            className="text-fluid-h2 font-bold text-aetox-text-main tracking-tight mb-6"
           >
             {dict.title}
           </motion.h2>
@@ -91,7 +93,7 @@ export default function PainSection({ dict }: { dict: any }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest max-w-2xl"
+            className="text-fluid-p text-aetox-text-soft font-bold max-w-2xl mt-4"
           >
             {dict.subtitle}
           </motion.p>
@@ -103,6 +105,8 @@ export default function PainSection({ dict }: { dict: any }) {
               key={item.id} 
               {...item} 
               index={index} 
+              observationLabel={dict.observationLabel}
+              costLabel={dict.costLabel}
             />
           ))}
         </div>
@@ -116,15 +120,15 @@ export default function PainSection({ dict }: { dict: any }) {
         >
           <div className="p-8 rounded-[40px] glass-card border-aetox-border bg-aetox-surface/20 flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full">
             <div className="flex-1 text-center md:text-left">
-              <p className="text-aetox-text-main font-black text-xl tracking-tight">{dict.footerTitle}</p>
-              <p className="text-aetox-text-soft text-sm mt-2 font-medium uppercase tracking-widest">
+              <p className="text-aetox-text-main font-bold text-xl md:text-2xl tracking-tight">{dict.footerTitle}</p>
+              <p className="text-aetox-text-soft text-sm mt-2 font-medium tracking-wide">
                 {dict.footerDesc}
               </p>
             </div>
             <div className="shrink-0">
               <button 
                 onClick={() => scrollToSection('roi-calculator')}
-                className="px-8 py-5 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95 flex items-center gap-3"
+                className="px-8 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-sm tracking-wide hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95 flex items-center gap-3"
               >
                 {dict.cta} <ArrowRight size={16} />
               </button>

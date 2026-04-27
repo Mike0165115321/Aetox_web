@@ -44,19 +44,19 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-aetox-bg via-transparent to-transparent opacity-90" />
                 <div className="absolute bottom-4 left-5 right-5 md:bottom-5 md:left-6 md:right-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-[8px] md:text-[9px] font-black tracking-widest uppercase mb-1.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-xs font-bold tracking-wider mb-1.5">
                     <Star size={10} className="fill-yellow-500" /> {founder.accolade}
                   </div>
-                  <h4 className="text-white font-black text-[10px] md:text-xs uppercase tracking-wider">{trust.recognition}</h4>
+                  <h4 className="text-white font-bold text-xs md:text-sm tracking-wide">{trust.recognition}</h4>
                 </div>
               </div>
 
               <div className="space-y-4 md:space-y-6 flex-1">
                 <div>
-                  <h2 className="text-2xl md:text-4xl font-black text-aetox-text-main leading-tight mb-2 tracking-tight">
+                  <h2 className="text-2xl md:text-4xl font-bold text-aetox-text-main leading-tight mb-2 tracking-tight">
                     {founder.name}
                   </h2>
-                  <p className="text-aetox-accent font-black tracking-[0.3em] uppercase text-[9px] md:text-[10px]">
+                  <p className="text-aetox-accent font-bold tracking-wide text-xs md:text-sm">
                     {founder.title}
                   </p>
                 </div>
@@ -94,9 +94,9 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
               <div className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 border-b border-aetox-border/50">
                 <div className="flex items-center gap-3 md:gap-4">
                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
-                   <h3 className="text-aetox-text-main font-black text-[10px] md:text-sm uppercase tracking-[0.3em] md:tracking-[0.4em]">{trust.portfolio}</h3>
+                   <h3 className="text-aetox-text-main font-bold text-sm md:text-base tracking-tight">{trust.portfolio}</h3>
                 </div>
-                <Link href="/authority" className="text-aetox-text-muted hover:text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-colors">
+                <Link href="/authority" className="text-aetox-text-muted hover:text-white text-xs md:text-sm font-bold tracking-wide transition-colors">
                   {trust.viewFull}
                 </Link>
               </div>

@@ -28,7 +28,7 @@ export default function NavbarDesktop({
             className="h-10 w-auto animate-aetox-breathe" 
             priority 
           />
-          <span className="text-2xl font-black tracking-tighter text-aetox-text-main">
+          <span className="text-2xl font-bold tracking-tighter text-aetox-text-main">
             AETO<span className="text-aetox-accent">X</span>
           </span>
         </Link>
@@ -40,7 +40,7 @@ export default function NavbarDesktop({
           <Link 
             key={item.href} 
             href={`/${currentLang.toLowerCase()}${item.href}`} 
-            className="text-[12px] xl:text-[13px] font-black text-aetox-text-soft hover:text-aetox-text-main hover:scale-105 transition-all uppercase tracking-[0.2em] whitespace-nowrap"
+            className="text-xs xl:text-sm font-bold text-aetox-text-soft hover:text-aetox-text-main hover:scale-105 transition-all tracking-wide whitespace-nowrap"
           >
             {item.label}
           </Link>
@@ -58,7 +58,7 @@ export default function NavbarDesktop({
             }`}
           >
             <Globe className={`w-4 h-4 transition-colors ${isLangOpen ? 'text-aetox-accent' : 'group-hover:text-aetox-accent'}`} />
-            <span className="text-xs font-black tracking-widest">{currentLang}</span>
+            <span className="text-xs font-bold tracking-wider">{currentLang}</span>
             <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
           </button>
 
@@ -104,7 +104,7 @@ export default function NavbarDesktop({
         {/* CTA */}
         <Link 
           href="/contact" 
-          className="hidden md:block px-8 py-3 rounded-xl bg-aetox-accent text-white text-sm font-black hover:bg-aetox-accent-hover transition-all shadow-aetox-glow transform active:scale-95 uppercase tracking-widest"
+          className="hidden md:block px-8 py-3 rounded-xl bg-aetox-accent text-white text-sm font-bold hover:bg-aetox-accent-hover transition-all shadow-aetox-glow transform active:scale-95 tracking-wider"
         >
           {ctaLabel}
         </Link>

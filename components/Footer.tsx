@@ -14,18 +14,18 @@ export default function Footer({ dict }: { dict?: any }) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <Image src="/images/1001.svg" alt="Aetox Logo" width={32} height={32} className="h-8 w-auto" />
-              <span className="text-xl font-black tracking-widest text-white">
-                AETO<span className="text-cyber-blue drop-shadow-cyber-glow">X</span>
+              <span className="text-xl font-bold tracking-tight text-white">
+                AETO<span className="text-aetox-accent">X</span>
               </span>
             </div>
             <div className="text-gray-400 max-w-sm">
               <p className="font-medium text-white">{footerData.founder.name}</p>
-              <p className="text-cyber-blue text-sm font-semibold tracking-wider">
+              <p className="text-aetox-accent text-sm font-bold tracking-tight">
                 {footerData.founder.title}
               </p>
             </div>
             <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <MapPin className="w-4 h-4 text-cyber-blue" />
+              <MapPin className="w-4 h-4 text-aetox-accent" />
               {footerData.founder.location}
             </div>
           </div>
@@ -35,11 +35,11 @@ export default function Footer({ dict }: { dict?: any }) {
               <h4 className="text-white font-bold uppercase tracking-widest text-xs">{footerData.sections.contact}</h4>
               <ul className="space-y-3 text-gray-400 text-sm">
                 <li className="flex items-center gap-3 hover:text-white transition-colors">
-                  <Mail className="w-4 h-4 text-cyber-blue" />
+                  <Mail className="w-4 h-4 text-aetox-accent" />
                   <a href="mailto:phrmsawanachyphl@gmail.com">phrmsawanachyphl@gmail.com</a>
                 </li>
                 <li className="flex items-center gap-3 hover:text-white transition-colors">
-                  <Phone className="w-4 h-4 text-cyber-blue" />
+                  <Phone className="w-4 h-4 text-aetox-accent" />
                   <a href="tel:0968013963">0968013963</a>
                 </li>
               </ul>
@@ -49,7 +49,7 @@ export default function Footer({ dict }: { dict?: any }) {
               <h4 className="text-white font-bold uppercase tracking-widest text-xs">{footerData.sections.social}</h4>
               <ul className="space-y-3 text-gray-400 text-sm">
                 <li className="flex items-center gap-3 hover:text-white transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyber-blue shrink-0"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-aetox-accent shrink-0"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                   <a href="https://github.com/Mike0165115321" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
                 </li>
               </ul>
