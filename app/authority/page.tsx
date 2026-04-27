@@ -14,8 +14,8 @@ export default async function AuthorityPage() {
   const content = projectsContent;
   
   const authoritySections: NavSection[] = [
-    { id: 'authority-hero', label: 'Overview', num: 'INT', icon: <Rocket size={18} /> },
-    { id: 'project-showcase', label: 'Portfolio', num: '01', icon: <Award size={18} />, offset: 80 },
+    { id: 'authority-hero', label: 'ภาพรวม (Overview)', num: 'INT', icon: <Rocket size={18} /> },
+    { id: 'project-showcase', label: 'ผลงาน (Portfolio)', num: '01', icon: <Award size={18} />, offset: 80 },
   ];
 
   return (

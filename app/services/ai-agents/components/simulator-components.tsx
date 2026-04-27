@@ -21,9 +21,9 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
             <div className="p-2 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20">
               <DatabaseIcon className="w-5 h-5" />
             </div>
-            <h3 className="text-2xl font-black text-white">เทคโนโลยี RAG ระดับองค์กร</h3>
+            <h3 className="text-2xl font-black text-white">Enterprise RAG Technology</h3>
           </div>
-          <p className="text-sm font-black text-gray-500 uppercase tracking-[0.2em]">สถาปัตยกรรมและความสามารถระบบ</p>
+          <p className="text-sm font-black text-gray-500 uppercase tracking-[0.2em]">Architecture & Capabilities</p>
         </div>
 
         <div className="space-y-6">
@@ -56,8 +56,8 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.02]">
-                  <th className="px-8 py-6 text-xs font-black text-gray-500 uppercase tracking-widest">คุณสมบัติ</th>
-                  <th className="px-8 py-6 text-xs font-black text-gray-500 uppercase tracking-widest text-center">AI ทั่วไป</th>
+                  <th className="px-8 py-6 text-xs font-black text-gray-500 uppercase tracking-widest">Features</th>
+                  <th className="px-8 py-6 text-xs font-black text-gray-500 uppercase tracking-widest text-center">General AI</th>
                   <th className="px-8 py-6 text-xs font-black text-cyber-blue uppercase tracking-widest text-center">
                     AETOX RAG
                   </th>
@@ -89,7 +89,7 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
           </div>
         </div>
         <p className="mt-6 flex items-center gap-2 text-xs text-gray-500 font-mono uppercase tracking-widest justify-end">
-          <Info size={12} className="text-cyber-blue" /> ข้อมูลเปรียบเทียบอ้างอิงตามมาตรฐานระดับองค์กร
+          <Info size={12} className="text-cyber-blue" /> Comparison based on enterprise standards
         </p>
       </div>
     </div>
@@ -214,10 +214,3 @@ function DatabaseIcon(props: any) {
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
   );
 }
-
-const steps_data = [
-  { title: "Ingestion", desc: "รับข้อมูลจากหลายแหล่ง เช่น PDF, Doc, Database", icon: <RefreshCw size={32} /> },
-  { title: "Processing", desc: "AI ย่อยเนื้อหาและทำความเข้าใจความสัมพันธ์", icon: <Cpu size={32} /> },
-  { title: "Vectorizing", desc: "แปลงเป็น Vector และเก็บในฐานความรู้ปลอดภัย", icon: <Layers size={32} /> },
-  { title: "Ready", desc: "ระบบพร้อมดึงมาสังเคราะห์คำตอบแบบเรียลไทม์", icon: <Zap size={32} /> }
-];

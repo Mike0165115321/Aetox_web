@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-export function useContactForm() {
+export function useContactForm(errorMessage?: string) {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,7 +25,7 @@ export function useContactForm() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('ขออภัย เกิดข้อผิดพลาดในการส่งข้อความ กรุณาลองใหม่อีกครั้ง');
+      if (errorMessage) alert(errorMessage);
     } finally {
       setIsLoading(false);
     }

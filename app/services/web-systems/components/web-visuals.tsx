@@ -2,14 +2,14 @@
 import { motion } from 'framer-motion';
 import { Globe, Database, Layout, Search, Bot, Shield, Lock } from 'lucide-react';
 
-export function StackArchitectureVisual() {
+export function StackArchitectureVisual({ dict }: { dict: any }) {
   return (
     <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" />
-            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">Stack Architecture</span>
+            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">{dict.title}</span>
         </div>
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             <div className="relative w-full h-[320px] flex items-center justify-center" style={{ perspective: '2000px' }}>
@@ -30,7 +30,7 @@ export function StackArchitectureVisual() {
                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent rounded-[32px]" />
                    <Globe className="w-10 h-10 text-gray-600 opacity-40" />
                    <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center">
-                     <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Cloud Infra</span>
+                     <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{dict.infra}</span>
                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-pulse" />
                    </div>
                 </motion.div>
@@ -47,7 +47,7 @@ export function StackArchitectureVisual() {
                       <span className="text-cyber-blue font-black text-lg tracking-tighter">TS</span>
                    </div>
                    <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center">
-                     <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Type-Safe Core</span>
+                     <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">{dict.core}</span>
                      <div className="flex gap-1">
                        {[1,2,3].map(i => <div key={i} className="w-1 h-1 bg-cyber-blue rounded-full" />)}
                      </div>
@@ -64,7 +64,7 @@ export function StackArchitectureVisual() {
                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent rounded-[32px]" />
                    <Layout className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
                    <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center">
-                     <span className="text-[10px] font-black text-white uppercase tracking-widest">App Router</span>
+                     <span className="text-[10px] font-black text-white uppercase tracking-widest">{dict.router}</span>
                      <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-cyber-blue/20 text-cyber-blue border border-cyber-blue/30">V14</span>
                    </div>
                 </motion.div>
@@ -76,14 +76,14 @@ export function StackArchitectureVisual() {
   );
 }
 
-export function DataPipelineVisual() {
+export function DataPipelineVisual({ dict }: { dict: any }) {
   return (
     <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-4 z-20 relative">
             <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" />
-            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">Data Pipeline Architecture</span>
+            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">{dict.title}</span>
         </div>
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             
@@ -105,7 +105,7 @@ export function DataPipelineVisual() {
             <div className="relative w-[200px] h-[200px]">
                 <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-[#0A0F1C] border border-white/10 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
                    <Search className="w-5 h-5 text-gray-400" />
-                   <div className="absolute -top-6 text-[8px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">Queries</div>
+                   <div className="absolute -top-6 text-[8px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">{dict.queries}</div>
                 </motion.div>
 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
@@ -115,17 +115,17 @@ export function DataPipelineVisual() {
                       <div className="absolute inset-0 bg-cyber-blue/10 animate-pulse" />
                       <Database className="w-7 h-7 text-cyber-blue relative z-10 drop-shadow-lg" />
                    </div>
-                   <div className="absolute -right-16 top-1/2 -translate-y-1/2 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">Schema</div>
+                   <div className="absolute -right-16 top-1/2 -translate-y-1/2 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.schema}</div>
                 </div>
 
                 <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} className="absolute bottom-0 left-2 w-12 h-12 bg-[#0A0F1C] border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
                    <Globe className="w-5 h-5 text-cyber-blue drop-shadow-[0_0_5px_#06B6D4]" />
-                   <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">Analytics</div>
+                   <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.analytics}</div>
                 </motion.div>
 
                 <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="absolute bottom-0 right-2 w-12 h-12 bg-[#0A0F1C] border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
                    <Bot className="w-5 h-5 text-cyber-blue drop-shadow-[0_0_5px_#06B6D4]" />
-                   <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">AI Ready</div>
+                   <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.aiReady}</div>
                 </motion.div>
             </div>
         </div>
@@ -134,14 +134,14 @@ export function DataPipelineVisual() {
   );
 }
 
-export function SecurityShieldVisual() {
+export function SecurityShieldVisual({ dict }: { dict: any }) {
   return (
     <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-2 z-20 relative">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
-            <span className="text-[10px] font-bold text-emerald-500 tracking-widest">Enterprise Security Shield</span>
+            <span className="text-[10px] font-bold text-emerald-500 tracking-widest">{dict.title}</span>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center relative w-full scale-90">
             <div className="relative w-[220px] h-[220px] flex items-center justify-center">
@@ -169,13 +169,13 @@ export function SecurityShieldVisual() {
             </div>
             <div className="absolute bottom-0 flex flex-wrap justify-center gap-2 px-2 w-full z-30">
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0A0F1C] border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
-                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> Role-Based Auth
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.rbac}
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0A0F1C] border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
-                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> AES-256
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.encryption}
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0A0F1C] border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
-                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> Threat Shield
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.threatShield}
               </div>
             </div>
         </div>

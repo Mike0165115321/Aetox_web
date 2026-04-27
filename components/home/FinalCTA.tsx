@@ -18,7 +18,7 @@ export default function FinalCTA({ dict }: { dict: any }) {
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aetox-surface border border-aetox-border text-aetox-text-muted text-[8px] font-black tracking-widest uppercase">
-            Decision Point
+            {dict.badge}
           </div>
           <h2 className="text-fluid-h2 font-black text-aetox-text-main uppercase tracking-tighter">
             {dict.headline.white}<span className="text-aetox-accent">{dict.headline.accent}</span>
@@ -28,11 +28,11 @@ export default function FinalCTA({ dict }: { dict: any }) {
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
             <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-sm transition-all shadow-aetox-glow hover:bg-aetox-accent-hover transform active:scale-95">
-              เริ่มวางแผนระบบของคุณ
+              {dict.primaryCTA}
               <ArrowRight size={16} />
             </Link>
             <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-bold text-sm transition-all border border-aetox-border transform active:scale-95">
-              ดูผลงานทั้งหมด
+              {dict.secondaryCTA}
             </Link>
           </div>
         </div>

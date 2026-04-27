@@ -11,9 +11,10 @@ interface ServiceCardProps {
   relatedProjects?: string[];
   Icon: LucideIcon;
   index: number;
+  deploymentLabel?: string;
 }
 
-export default function ServiceCard({ id, title, description, features, relatedProjects, Icon, index }: ServiceCardProps) {
+export default function ServiceCard({ id, title, description, features, relatedProjects, Icon, index, deploymentLabel }: ServiceCardProps) {
   const CardContent = (
     <div className="flex flex-col h-full">
       <div className="w-14 h-14 rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
@@ -40,7 +41,7 @@ export default function ServiceCard({ id, title, description, features, relatedP
 
       {relatedProjects && relatedProjects.length > 0 && (
         <div className="mt-auto pt-8 border-t border-aetox-border/50 w-full">
-          <p className="text-[9px] text-aetox-text-muted mb-4 font-black tracking-[0.2em] uppercase">Enterprise Deployment</p>
+          <p className="text-[9px] text-aetox-text-muted mb-4 font-black tracking-[0.2em] uppercase">{deploymentLabel || 'Enterprise Deployment'}</p>
           <ul className="space-y-3">
             {relatedProjects.map((project, i) => (
               <li key={i} className="flex items-center gap-3 text-[11px] font-black text-aetox-text-soft hover:text-aetox-text-main transition-colors cursor-pointer tracking-tight">

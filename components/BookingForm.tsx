@@ -5,26 +5,19 @@ import { useContactForm } from './contact/useContactForm';
 import { IdentitySection, PreferenceSection, ProjectScopeSection } from './booking/FormSections';
 
 export default function BookingForm({ dict }: { dict?: any }) {
-  const { submitted, setSubmitted, isLoading, handleSubmit } = useContactForm();
+  const { submitted, setSubmitted, isLoading, handleSubmit } = useContactForm(dict?.form?.error || dict?.common?.errors?.general);
 
-  const content = dict || {};
-  const form = content.form || {};
+  if (!dict) return null;
+  const content = dict;
+  const form = content.form;
   
-  const identity = form.identity || {
-    name: { label: "", placeholder: "" },
-    company: { label: "", placeholder: "" },
-    email: { label: "", placeholder: "" },
-    preferredMethod: { label: "", options: [] },
-    contactDetail: { label: "", placeholder: "" },
-    contactTime: { label: "", options: [] }
-  };
-
-  const category = form.category || { label: "", options: [] };
-  const budget = form.budget || { label: "", options: [] };
-  const timeline = form.timeline || { label: "", options: [] };
-  const challenge = form.challenge || { label: "", placeholder: "" };
-  const hero = content.hero || { title: "", subtitle: "" };
-  const success = content.success || { title: "", message: "", close: "" };
+  const identity = form.identity;
+  const category = form.category;
+  const budget = form.budget;
+  const timeline = form.timeline;
+  const challenge = form.challenge;
+  const hero = content.hero;
+  const success = content.success;
 
   return (
     <section className="py-24 relative overflow-hidden scroll-mt-20" id="contact-form">
@@ -79,13 +72,14 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 onSubmit={handleSubmit}
                 className="space-y-12"
               >
-                <IdentitySection identity={identity} />
-                <PreferenceSection identity={identity} />
+                <IdentitySection identity={identity} title={form.sections?.basic} />
+                <PreferenceSection identity={identity} title={form.sections?.contact} />
                 <ProjectScopeSection 
                   category={category} 
                   budget={budget} 
                   timeline={timeline} 
                   challenge={challenge} 
+                  title={form.sections?.project}
                 />
 
                 <button 
@@ -97,7 +91,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                     <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
-                      {form.submit || 'ส่งข้อความหาเรา'}
+                      {form.submit}
                       <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </>
                   )}

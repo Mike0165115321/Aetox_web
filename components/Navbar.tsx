@@ -37,6 +37,7 @@ export default function Navbar({ dict }: { dict?: any }) {
         isLangOpen={isLangOpen}
         setIsLangOpen={setIsLangOpen}
         langRef={langRef}
+        dict={dict}
       />
 
       {/* Mobile Toggle Button */}
@@ -61,6 +62,7 @@ export default function Navbar({ dict }: { dict?: any }) {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         currentLang={currentLang}
         setCurrentLang={setCurrentLang}
+        dict={dict}
       />
     </nav>
   );

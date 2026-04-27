@@ -19,17 +19,27 @@ export default async function Home() {
   const dict = await getDictionary('th', 'home');
   const navDict = await getDictionary('th', 'navigation');
 
-  const homeSections: NavSection[] = [
-    { id: 'hero', label: 'วิสัยทัศน์', num: '01', icon: <Sparkles size={18} /> },
-    { id: 'pain', label: 'ปัญหาที่พบ', num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
-    { id: 'comparison', label: 'สถาปัตยกรรม', num: '03', icon: <Layers size={18} />, offset: 60 },
-    { id: 'simulation', label: 'การจำลอง', num: '04', icon: <Cpu size={18} />, offset: 80 },
-    { id: 'trust', label: 'ความเชื่อมั่น', num: '05', icon: <Award size={18} />, offset: 70 },
-    { id: 'services', label: 'โซลูชัน', num: '06', icon: <LayoutGrid size={18} />, offset: 70 },
-    { id: 'roi-calculator', label: 'ความคุ้มค่า', num: '07', icon: <TrendingUp size={18} />, offset: 10 },
-    { id: 'security', label: 'ความปลอดภัย', num: '08', icon: <ShieldCheck size={18} />, offset: 80 },
-    { id: 'about', label: 'ติดต่อเรา', num: '09', icon: <MessageSquare size={18} />, offset: 65 },
-  ];
+  const homeSections: NavSection[] = dict.navigation.map((item: any, index: number) => {
+    const icons = [
+      <Sparkles size={18} key="0" />,
+      <AlertTriangle size={18} key="1" />,
+      <Layers size={18} key="2" />,
+      <Cpu size={18} key="3" />,
+      <Award size={18} key="4" />,
+      <LayoutGrid size={18} key="5" />,
+      <TrendingUp size={18} key="6" />,
+      <ShieldCheck size={18} key="7" />,
+      <MessageSquare size={18} key="8" />,
+    ];
+    
+    const offsets = [0, 40, 60, 80, 70, 70, 10, 80, 65];
+    
+    return {
+      ...item,
+      icon: icons[index],
+      offset: offsets[index] || 0
+    };
+  });
 
   const featuredProjects = [
     { id: bookmind.id, title: bookmind.title, description: bookmind.description, image: bookmind.image, slug: bookmind.slug, category: bookmind.category },

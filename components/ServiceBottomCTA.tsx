@@ -32,7 +32,11 @@ export default function ServiceBottomCTA({
     return text.replace(/{{serviceName}}/g, serviceName);
   };
 
-  const content = dict ? {
+  // If dict is not provided, we should ideally handle it gracefully or expect it to be passed from the page level.
+  // We remove the hardcoded fallback to enforce content/code separation.
+  if (!dict) return null;
+
+  const content = {
     title: dict.title,
     subtitle: dict.subtitle,
     hire: {
@@ -47,21 +51,6 @@ export default function ServiceBottomCTA({
       label: dict.learn.label,
       suitLabel: dict.learn.suitLabel
     }
-  } : {
-    title: { white: "พร้อมวางรากฐาน", accent: "อัจฉริยะ", suffix: "ให้ธุรกิจคุณหรือยัง?" },
-    subtitle: "เลือกก้าวต่อไปที่เหมาะกับเป้าหมายของคุณ",
-    hire: {
-      title: `จ้างเราทำระบบ ${serviceName} สิ`,
-      desc: `ให้เราออกแบบและวางระบบ ${serviceName} ระดับองค์กรที่แม่นยำ ปลอดภัย และปรับแต่งมาเพื่อแก้ปัญหาธุรกิจของคุณโดยเฉพาะ`,
-      label: "ปรึกษาเรา",
-      suitLabel: "เหมาะสำหรับองค์กรที่"
-    },
-    learn: {
-      title: `มาเรียนการสร้าง ${serviceName} สิ`,
-      desc: `เจาะลึกเบื้องหลังการสร้างระบบ ${serviceName} ตั้งแต่ทฤษฎีจนถึงการใช้งานจริงในระดับโปรดักชัน ผ่านหลักสูตรจากประสบการณ์ตรง`,
-      label: "สมัครเรียนกับเรา",
-      suitLabel: "เหมาะสำหรับผู้ที่"
-    }
   };
 
 
@@ -72,7 +61,7 @@ export default function ServiceBottomCTA({
       
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
+          <h2 className="text-fluid-h1 text-white leading-tight">
             {content.title.white} <br className="hidden md:block" />
             <span className="text-cyber-blue drop-shadow-cyber-glow">{content.title.accent}</span> {content.title.suffix}
           </h2>
@@ -92,7 +81,7 @@ export default function ServiceBottomCTA({
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-2xl font-bold text-white group-hover:text-cyber-blue transition-colors">{content.hire.title}</h3>
-                  <p className="text-gray-400 leading-relaxed text-sm">
+                  <p className="text-gray-400 text-fluid-p">
                     {content.hire.desc}
                   </p>
                   {hirePoints.length > 0 && (
@@ -100,7 +89,7 @@ export default function ServiceBottomCTA({
                       <p className="text-[10px] font-bold text-gray-500">{content.hire.suitLabel}</p>
                       <ul className="space-y-2">
                         {hirePoints.map((point, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
+                          <li key={idx} className="flex items-start gap-2 text-fluid-sm text-gray-400">
                             <div className="w-1 h-1 rounded-full bg-cyber-blue mt-1.5 shrink-0 shadow-cyber-glow" />
                             {point}
                           </li>
@@ -135,7 +124,7 @@ export default function ServiceBottomCTA({
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-2xl font-bold text-white group-hover:text-deep-blue transition-colors">{content.learn.title}</h3>
-                  <p className="text-gray-400 leading-relaxed text-sm">
+                  <p className="text-gray-400 text-fluid-p">
                     {content.learn.desc}
                   </p>
                   {learnPoints.length > 0 && (
@@ -143,7 +132,7 @@ export default function ServiceBottomCTA({
                       <p className="text-[10px] font-bold text-gray-500">{content.learn.suitLabel}</p>
                       <ul className="space-y-2">
                         {learnPoints.map((point, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
+                          <li key={idx} className="flex items-start gap-2 text-fluid-sm text-gray-400">
                             <div className="w-1 h-1 rounded-full bg-deep-blue mt-1.5 shrink-0 shadow-deep-glow" />
                             {point}
                           </li>

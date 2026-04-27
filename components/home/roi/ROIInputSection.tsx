@@ -51,7 +51,7 @@ export const ROIInputSection = ({
       <div className="space-y-4">
         <div className="flex justify-between items-center">
           <label className="text-[10px] font-bold text-aetox-text-soft">{dict.inputs.staffCount}</label>
-          <span className="text-aetox-text-main font-bold text-xl">{staffCount} คน</span>
+          <span className="text-aetox-text-main font-bold text-xl">{staffCount} {dict.common.units.people}</span>
         </div>
         <input type="range" min="1" max="100" value={staffCount} onChange={(e) => setStaffCount(parseInt(e.target.value))} className="w-full h-1.5 bg-aetox-surface rounded-lg appearance-none cursor-pointer accent-aetox-accent" />
       </div>
@@ -67,7 +67,7 @@ export const ROIInputSection = ({
       <div className="space-y-4">
         <div className="flex justify-between items-center">
           <label className="text-[10px] font-bold text-aetox-text-soft">{dict.inputs.hoursSpent}</label>
-          <span className="text-aetox-text-main font-bold text-xl">{hoursSpent} ชม. / วัน</span>
+          <span className="text-aetox-text-main font-bold text-xl">{hoursSpent} {dict.common.units.hoursPerDay}</span>
         </div>
         <input type="range" min="1" max="8" step="0.5" value={hoursSpent} onChange={(e) => setHoursSpent(parseFloat(e.target.value))} className="w-full h-1.5 bg-aetox-surface rounded-lg appearance-none cursor-pointer accent-aetox-accent" />
       </div>

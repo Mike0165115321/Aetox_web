@@ -47,10 +47,12 @@ module.exports = {
 
       // 4. FLUID TYPOGRAPHY — สเกลตัวอักษรอัตโนมัติ ไม่ต้องทำ Breakpoint ซ้อน
       fontSize: {
-        "fluid-h1": ["clamp(2.25rem, 5vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
-        "fluid-h2": ["clamp(1.75rem, 4vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
-        "fluid-h3": ["clamp(1.25rem, 2.5vw, 2rem)", { lineHeight: "1.2" }],
-        "fluid-p":  ["clamp(1rem, 1.5vw, 1.125rem)", { lineHeight: "1.6" }], // Fixed: 16px min on mobile
+        "fluid-h1": ["clamp(2.25rem, 4vw + 1rem, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "fluid-h2": ["clamp(1.75rem, 3vw + 1rem, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "fluid-h3": ["clamp(1.25rem, 2vw + 1rem, 2rem)", { lineHeight: "1.2", fontWeight: "600" }],
+        "fluid-h4": ["clamp(1.125rem, 1.5vw + 1rem, 1.5rem)", { lineHeight: "1.4", fontWeight: "500" }],
+        "fluid-p":  ["clamp(1rem, 1vw + 0.75rem, 1.125rem)", { lineHeight: "1.6", fontWeight: "400" }],
+        "fluid-sm": ["clamp(0.875rem, 0.5vw + 0.75rem, 1rem)", { lineHeight: "1.5", fontWeight: "400" }],
       },
 
       // 5. EFFECTS & ANIMATIONS

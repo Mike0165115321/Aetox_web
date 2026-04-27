@@ -6,14 +6,19 @@ export const academyContent = {
       accent: "สถาปนิกผู้ออกแบบระบบ"
     },
     suffix: "ระดับองค์กร (Enterprise) ใน 12 สัปดาห์",
-    description: "ก้าวข้ามขีดจำกัดของการเขียน Code แบบเดิมๆ สู่การเป็นสถาปนิกผู้ออกแบบระบบ AI & Automation ที่ขับเคลื่อนธุรกิจได้จริง ด้วย Blueprint จากสถาปนิกผู้เชี่ยวชาญ",
-    cta: "ลงชื่อจองสิทธิ์ล่วงหน้า"
+    description: "ก้าวข้ามขีดจำกัดของการเขียนโค้ด (Code) แบบเดิมๆ สู่การเป็นสถาปนิกผู้ออกแบบระบบ AI และระบบอัตโนมัติ (Automation) ที่ขับเคลื่อนธุรกิจได้จริง ด้วยพิมพ์เขียว (Blueprint) จากสถาปนิกผู้เชี่ยวชาญ",
+    cta: "ลงชื่อจองสิทธิ์ล่วงหน้า",
+    trustBadge: "ได้รับความไว้วางใจระดับเหรียญทอง"
   },
 
-  // NEW: The Moment of Truth (ROI & Hidden Costs)
   roi: {
     title: "ราคาที่ต้องจ่ายให้กับสถาปัตยกรรมที่ไม่ได้มาตรฐาน",
     description: "การวางระบบที่ผิดพลาดเพียงครั้งเดียว อาจหมายถึงความสูญเสียมหาศาลที่คุณคาดไม่ถึง",
+    hiddenLoss: "ความสูญเสียที่ซ่อนอยู่",
+    advantage: "ความได้เปรียบของการวางสถาปัตยกรรม",
+    wasteTime: "เสียเวลาและโอกาส",
+    growthProfit: "กำไรที่เติบโตได้",
+    footerNote: "อย่าเป็นแค่นักเขียนโปรแกรม จงเป็นสถาปนิกผู้ออกแบบระบบ",
     comparison: [
       {
         label: "การพัฒนาระบบแบบลองผิดลองถูก",
@@ -23,7 +28,7 @@ export const academyContent = {
       },
       {
         label: "วิธีการออกแบบตามมาตรฐาน Aetox.dev",
-        cost: "ROI 500% ใน 6 เดือน",
+        cost: "คุ้มทุน (ROI) 500% ใน 6 เดือน",
         impact: "ระบบรองรับการขยายตัว (Scalable) ตั้งแต่วันแรก, ลดต้นทุนโครงสร้างพื้นฐาน 50%, มาตรฐานความปลอดภัยระดับสากล",
         isBad: false
       }
@@ -33,23 +38,22 @@ export const academyContent = {
     title: "แผนผังความรู้สู่มือโปร",
     subtitle: "สถาปัตยกรรม 3 ชั้นที่เปลี่ยนคุณให้เป็นสถาปนิกผู้กุมความได้เปรียบ"
   },
-  // REFINED: The Skill Tree (Interactive Roadmap)
   categories: [
     {
       id: 'intelligence',
-      title: 'Intelligence Layer (RAG & Agentic AI)',
+      title: 'ชั้นสติปัญญา (Intelligence Layer - RAG & Agentic AI)',
       subtitle: "สมองกลของระบบคุณ",
-      description: 'เจาะลึกสถาปัตยกรรม AI เฉพาะทางที่คิดเองได้ ไม่ใช่แค่การเรียก API ทั่วไป',
+      description: 'เจาะลึกสถาปัตยกรรม AI เฉพาะทางที่คิดเองได้ ไม่ใช่แค่การเรียกใช้ API ทั่วไป',
       skills: [
         { name: "วิศวกรรม RAG ขั้นสูง", value: "+40% มูลค่าในตลาด" },
-        { name: "การออกแบบ Agentic Workflow", value: "ระดับการทำงานอัตโนมัติขั้นสูงสุด" },
-        { name: "การจัดการฐานข้อมูล Vector", value: "ประสิทธิภาพสูงสุด" }
+        { name: "การออกแบบกระบวนการทำงานแบบเอเจนท์ (Agentic Workflow)", value: "ระดับการทำงานอัตโนมัติขั้นสูงสุด" },
+        { name: "การจัดการฐานข้อมูลเวกเตอร์ (Vector Database)", value: "ประสิทธิภาพสูงสุด" }
       ],
       icon: 'Brain'
     },
     {
       id: 'execution',
-      title: 'Execution Layer (High-End Automation)',
+      title: 'ชั้นการทำงาน (Execution Layer - High-End Automation)',
       subtitle: "แรงงานดิจิทัลของระบบคุณ",
       description: 'ออกแบบระบบบอทที่ทำงานร่วมกันอย่างสมบูรณ์แบบ ไร้ข้อผิดพลาด 100%',
       skills: [
@@ -61,25 +65,30 @@ export const academyContent = {
     },
     {
       id: 'foundation',
-      title: 'Foundation Layer (Enterprise Stack)',
+      title: 'ชั้นรากฐาน (Foundation Layer - Enterprise Stack)',
       subtitle: "กระดูกสันหลังของระบบคุณ",
-      description: 'วางรากฐานด้วย Tech Stack มาตรฐานโลกที่ปลอดภัยและยืดหยุ่นสูงสุด',
+      description: 'วางรากฐานด้วยชุดเทคโนโลยี (Tech Stack) มาตรฐานโลกที่ปลอดภัยและยืดหยุ่นสูงสุด',
       skills: [
         { name: "Next.js 15 App Router", value: "เทคโนโลยีแห่งอนาคต" },
-        { name: "โครงสร้างแบบ Type-Safe", value: "Code สะอาดและปลอดภัย" },
+        { name: "โครงสร้างแบบโค้ดปลอดภัย (Type-Safe)", value: "โค้ดสะอาดและปลอดภัย" },
         { name: "ความปลอดภัยระดับองค์กร (AES-256)", value: "ความเชื่อถือสูงสุด" }
       ],
       icon: 'Layers'
     }
   ],
 
-  // NEW: Founder's Authority
   authority: {
+    badge: "มาตรฐาน Aetox.dev",
+    dna: "DNA สถาปนิก",
+    excellence: "ความเป็นเลิศที่เชื่อถือได้",
+    quote: "ผมไม่ได้มาสอนคุณเขียนโค้ดเพื่อส่งงานไปวันๆ แต่ผมมาสอนให้คุณรู้วิธีวางรากฐานธุรกิจที่รองรับ AI และระบบอัตโนมัติ (Automation) ในระยะยาวแบบที่สถาปนิกจริงๆ เขาทำกัน",
+    founderName: "Mike (Chayapol P.)",
+    founderTitle: "ผู้ก่อตั้ง & หัวหน้าสถาปนิก",
     title: "เรียนรู้จากสถาปนิกผู้ออกแบบระบบ AI ระดับประเทศ",
-    description: "Mike (Chayapol Promsavana) สถาปนิกผู้อยู่เบื้องหลังระบบ AI และ Automation ระดับองค์กร พร้อมถ่ายทอด DNA การคิดแบบสถาปนิกให้คุณ",
+    description: "Mike (Chayapol Promsavana) สถาปนิกผู้อยู่เบื้องหลังระบบ AI และระบบอัตโนมัติ (Automation) ระดับองค์กร พร้อมถ่ายทอดแนวคิด (DNA) การคิดแบบสถาปนิกให้คุณ",
     achievements: [
       "สถาปนิกผู้ออกแบบระบบระดับองค์กร",
-      "ผู้เชี่ยวชาญด้าน RAG & Automation Loops"
+      "ผู้เชี่ยวชาญด้าน RAG & วงจรระบบอัตโนมัติ (Automation Loops)"
     ]
   },
 
@@ -102,17 +111,17 @@ export const academyContent = {
         position: { 
           label: "ตำแหน่งหรือเป้าหมายของคุณ",
           options: [
-            { value: "Senior Programmer", label: "Senior Programmer" },
-            { value: "Tech Lead / Team Lead", label: "Tech Lead / Team Lead" },
-            { value: "Business Owner / CTO", label: "Business Owner / CTO" },
-            { value: "System Architect Wannabe", label: "System Architect Wannabe" }
+            { value: "Senior Programmer", label: "โปรแกรมเมอร์อาวุโส (Senior Programmer)" },
+            { value: "Tech Lead / Team Lead", label: "หัวหน้าทีมเทคนิค (Tech Lead / Team Lead)" },
+            { value: "Business Owner / CTO", label: "เจ้าของธุรกิจ / ผู้บริหารฝ่ายเทคโนโลยี (Business Owner / CTO)" },
+            { value: "System Architect", label: "ผู้ที่ต้องการเป็นสถาปนิกวางระบบ (System Architect)" }
           ]
         },
-        challenge: { label: "ความคาดหวังหรือปัญหาที่เจอตอนนี้", placeholder: "ระบุปัญหาทางเทคนิคที่คุณกำลังเผชิญ..." }
+        challenge: { label: "ความคาดหวังหรือปัญหาที่คุณกำลังเผชิญ...", placeholder: "ระบุปัญหาทางเทคนิคที่คุณกำลังเผชิญ..." }
       },
       success: {
         title: "ยืนยันเรียบร้อย!",
-        description: "คุณได้รับสิทธิ์ Priority Access เรียบร้อยแล้ว ทีมงานจะติดต่อกลับพร้อมสิทธิพิเศษระดับ Early Bird ในเร็วๆ นี้",
+        description: "คุณได้รับสิทธิ์เข้าถึงลำดับต้น (Priority Access) เรียบร้อยแล้ว ทีมงานจะติดต่อกลับพร้อมสิทธิพิเศษช่วงแรก (Early Bird) ในเร็วๆ นี้",
         close: "ปิดหน้าต่าง"
       }
     }
@@ -120,3 +129,4 @@ export const academyContent = {
 };
 
 export default academyContent;
+

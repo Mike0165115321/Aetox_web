@@ -32,7 +32,7 @@ export const ROIResultCard = ({ results, currency, dict }: ROIResultCardProps) =
           <p className="text-aetox-text-muted text-[10px] font-bold mb-6">{dict.results.annualImpact}</p>
           <div className="flex items-baseline gap-4 flex-wrap">
             <NumberCounter value={results.annualImpact} className="text-fluid-h1 font-black text-aetox-text-main" />
-            <span className="text-aetox-accent font-bold text-lg md:text-2xl">{currency === 'THB' ? 'บาท / ปี' : 'USD / Yr'}</span>
+            <span className="text-aetox-accent font-bold text-lg md:text-2xl">{currency === 'THB' ? dict.common.units.bahtPerYear : dict.common.units.usdPerYear}</span>
           </div>
           <motion.p animate={{ x: [0, 5, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-red-500/80 font-bold mt-10 flex items-center gap-2 text-[10px]">
             <Zap size={14} className="fill-red-500 shrink-0" /> {dict.results.lossWarning}
@@ -49,7 +49,7 @@ export const ROIResultCard = ({ results, currency, dict }: ROIResultCardProps) =
           <div className="space-y-3">
             <p className="text-aetox-text-muted text-[9px] font-bold">{dict.results.efficiencyBoost}</p>
             <div className="text-fluid-h3 font-black text-aetox-accent">
-              <NumberCounter value={results.efficiencyBoost} suffix="%" />
+              <NumberCounter value={results.efficiencyBoost} suffix={dict.common.units.percent} />
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, ArrowLeft, Layers, Database, TrendingUp, Rocket, Cpu, ArrowRight } from 'lucide-react';
+import { Zap, ArrowLeft, Layers, Database, TrendingUp, Rocket, Cpu, ArrowRight, Calculator, Shield } from 'lucide-react';
 import Link from 'next/link';
 import ServiceBottomCTA from '@/components/ServiceBottomCTA';
 import AutomationSimulator from './automation-simulator';
@@ -16,28 +16,26 @@ import { PriorityQueueVisual, ScalableBotsVisual, ObservabilityVisual } from './
 import AutomationShowcase from './components/automation-showcase';
 export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any, navDict: any, ctaDict: any }) {
   const sections: NavSection[] = [
-    { id: 'hero', label: 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
-    { id: 'pillar-1', label: dict.pillars.pillar1.title.split(' (')[0], num: '01', icon: <Layers size={16} />, offset: 120 },
-    { id: 'pillar-2', label: dict.pillars.pillar2.title.split(' (')[0], num: '02', icon: <Zap size={16} />, offset: 120 },
-    { id: 'pillar-3', label: dict.pillars.pillar3.title.split(' (')[0], num: '03', icon: <Database size={16} />, offset: 120 },
-    { id: 'automation-simulator', label: dict.roi.title, num: 'SIM', icon: <TrendingUp size={16} />, offset: 0 },
+    { id: 'hero', label: dict.hero.badge || 'แนะนำระบบ', num: 'INT', icon: <Cpu size={16} />, offset: 0 },
+    { id: 'roi-simulator', label: dict.roi.title, num: 'ROI', icon: <Calculator size={16} />, offset: 0 },
+    { id: 'pillar-1', label: dict.pillars.pillar1.title, num: '01', icon: <Layers size={16} />, offset: 120 },
+    { id: 'pillar-2', label: dict.pillars.pillar2.title, num: '02', icon: <Rocket size={16} />, offset: 120 },
+    { id: 'pillar-3', label: dict.pillars.pillar3.title, num: '03', icon: <Shield size={16} />, offset: 120 },
     { id: 'cta-section', label: ctaDict.bottom.label || 'เริ่มต้นใช้งาน', num: 'END', icon: <Rocket size={16} />, offset: 120 },
   ];
-
-  // scrollToSection is handled by @/lib/scroll-utils
 
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-deep-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
       <Navbar dict={navDict.navbar} />
-      <FloatingNav sections={sections} accentColor="#3B82F6" />
+      <FloatingNav sections={sections} />
 
-      {/* ─── Layer 1: Strategic Hero ─── */}
+      {/* Layer 1: Hook (Strategic Hero) ─── */}
       <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
         <div className="container mx-auto">
-          <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-deep-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
+          <Link href="/services" className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-10 group backdrop-blur-sm">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-wide">กลับสู่หน้าบริการ</span>
+            <span className="text-sm font-bold tracking-wide">{navDict.common.labels.backToServices || 'กลับสู่หน้าบริการ'}</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
@@ -69,13 +67,13 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
                   className="px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white font-black text-xl hover:bg-white/10 hover:border-deep-blue/40 transition-all active:scale-95 flex items-center gap-4 group backdrop-blur-xl"
                 >
                   <TrendingUp className="w-6 h-6 text-deep-blue" />
-                  {dict.roi.title.split('ของ')[0]}
+                  {dict.roi.subTitle || 'วิเคราะห์ความคุ้มค่า'}
                 </button>
               </motion.div>
             </motion.div>
 
             <div className="lg:w-5/12 w-full">
-              <AutomationShowcase steps={dict.showcase} />
+              <AutomationShowcase steps={dict.showcase} dict={dict.roi} />
             </div>
           </div>
         </div>
@@ -106,7 +104,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
               </div>
             </div>
             <div className="lg:w-5/12 w-full">
-              <PriorityQueueVisual />
+              <PriorityQueueVisual dict={dict.visuals.pillar1} />
             </div>
           </div>
         </div>
@@ -135,7 +133,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
               </div>
             </div>
             <div className="lg:w-5/12 w-full">
-              <ScalableBotsVisual />
+              <ScalableBotsVisual dict={dict.visuals.pillar2} />
             </div>
           </div>
         </div>
@@ -164,7 +162,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
               </div>
             </div>
             <div className="lg:w-5/12 w-full">
-              <ObservabilityVisual />
+              <ObservabilityVisual dict={dict.visuals.pillar3} />
             </div>
           </div>
         </div>

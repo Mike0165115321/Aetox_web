@@ -1,10 +1,10 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { 
   User, Rocket, TrendingUp, Building2,
-  ShieldCheck, Zap, Info, Plus, Clock,
-  Users, BarChart3, Target
+  ShieldCheck, Zap, Plus, Clock,
+  Users, BarChart3
 } from 'lucide-react';
 import { useCurrency } from '@/context/CurrencyContext';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
@@ -15,8 +15,6 @@ import { FeaturesDashboard } from './components/simulator-components';
 const TIERS = [
   {
     id: 'personal',
-    label: 'ใช้ในทีมเล็ก',
-    sub: '1-3 คน',
     icon: User,
     color: 'text-sky-400',
     glow: 'shadow-sky-500/20',
@@ -26,8 +24,6 @@ const TIERS = [
   },
   {
     id: 'early',
-    label: 'เริ่มต้น',
-    sub: 'Startup',
     icon: Rocket,
     color: 'text-cyber-blue',
     glow: 'shadow-cyber-glow/20',
@@ -37,8 +33,6 @@ const TIERS = [
   },
   {
     id: 'growth',
-    label: 'ขยายตัว',
-    sub: 'SME / ธุรกิจโต',
     icon: TrendingUp,
     color: 'text-emerald-400',
     glow: 'shadow-emerald-500/20',
@@ -48,8 +42,6 @@ const TIERS = [
   },
   {
     id: 'enterprise',
-    label: 'ระดับองค์กร',
-    sub: 'Enterprise',
     icon: Building2,
     color: 'text-violet-400',
     glow: 'shadow-violet-500/20',
@@ -60,7 +52,7 @@ const TIERS = [
 ];
 
 export default function AiAgentsSimulator({ dict }: { dict: any }) {
-  const { currency, formatCurrency, convert, exchangeRate } = useCurrency();
+  const { currency, formatCurrency, exchangeRate } = useCurrency();
   const simulator = dict.simulator;
   const [tierId, setTierId] = useState('early');
   
@@ -123,7 +115,6 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
     return text.replace(/{{(\w+)}}/g, (_, key) => params[key] || "");
   }
 
-
   return (
     <div className="space-y-24">
       {/* ─── ROI Calculator ─── */}
@@ -158,14 +149,13 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                   <Icon size={18} />
                 </div>
                 <div>
-                  <p className={`text-sm font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{dictTierItem?.label || tier.label}</p>
-                  <p className={`text-[11px] font-medium ${active ? tier.color : 'text-gray-600'}`}>{dictTierItem?.sub || tier.sub}</p>
+                  <p className={`text-sm font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{dictTierItem?.label || tier.id}</p>
+                  <p className={`text-[11px] font-medium ${active ? tier.color : 'text-gray-600'}`}>{dictTierItem?.sublabel || dictTierItem?.sub || tier.id}</p>
                 </div>
               </motion.button>
             );
           })}
         </div>
-
 
         {/* ─── Main Grid ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -183,7 +173,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
               </div>
 
               <SliderGroup label={simulator.labels.queries}     value={queriesPerDay}  onChange={setQueriesPerDay}  min={10}    max={50000} step={10}   unit="" />
-              <SliderGroup label={simulator.labels.staff}       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit=" คน" />
+              <SliderGroup label={simulator.labels.staff}       value={staffCount}     onChange={setStaffCount}     min={1}     max={100}   step={1}    unit={` ${simulator.labels.unitStaff || 'คน'}`} />
               <SliderGroup 
                 label={simulator.labels.salary} 
                 value={avgSalary} 
@@ -194,7 +184,7 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 unit="" 
                 displayValue={formatCurrency(avgSalary)}
               />
-              <SliderGroup label={simulator.labels.time}       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit=" นาที" />
+              <SliderGroup label={simulator.labels.time}       value={minutesPerCase} onChange={setMinutesPerCase} min={1}     max={120}   step={1}    unit={` ${simulator.labels.unitTime || 'นาที'}`} />
               <SliderGroup 
                 label={simulator.labels.value} 
                 value={valuePerCase} 
@@ -207,7 +197,6 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
               />
             </div>
 
-            
             <div className="pt-5 border-t border-white/5 space-y-5">
               <div className={`flex items-center justify-between mb-2 ${activeTier.color}`}>
                 <span className="text-[10px] font-bold uppercase tracking-wider">{simulator.labels.aetoxBudget}</span>
@@ -236,24 +225,19 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 isAccent 
               />
             </div>
-
           </div>
 
           {/* Results Panel */}
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-
-            {/* Card 1: AI vs Human */}
             <StatCard
               label={simulator.labels.capacity}
-              value={`${calc.aiVsHumanMultiplier.toLocaleString()} เท่า`}
+              value={`${calc.aiVsHumanMultiplier.toLocaleString()} ${simulator.labels.unitMultiplier || 'เท่า'}`}
               desc={replaceParams(simulator.labels.capacityDesc, { staffCount, humanCapacity: Math.round(calc.humanCapacityDaily).toLocaleString() })}
               icon={<Users size={18} />}
               color={activeTier.color}
               bg={activeTier.bg}
               border={activeTier.border}
             />
-
-            {/* Card 2: Cost Saved */}
             <StatCard
               label={simulator.labels.monthlySaving}
               value={formatCurrency(calc.monthlySaving)}
@@ -264,18 +248,15 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
               border="border-emerald-500/20"
               isPositive
             />
-
-            {/* Card 3: Hours Recovered */}
             <StatCard
               label={simulator.labels.hoursRecovered}
-              value={`${calc.hoursRecoveredMonthly.toLocaleString()} ชม.`}
+              value={`${calc.hoursRecoveredMonthly.toLocaleString()} ${simulator.labels.unitHour || 'ชม.'}`}
               desc={simulator.labels.hoursRecoveredDesc}
               icon={<Clock size={18} />}
               color="text-violet-400"
               bg="bg-violet-500/10"
               border="border-violet-500/20"
             />
-
 
             {/* Hero card: Yearly Saving */}
             <div className={`md:col-span-3 glass-card p-8 rounded-3xl border ${activeTier.border} bg-gradient-to-br ${activeTier.bg.replace('bg-', 'from-').replace('/10', '/[0.03]')} to-transparent relative overflow-hidden`}>
@@ -295,24 +276,22 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
                 <p className="text-gray-500 font-medium text-sm">{simulator.labels.yearlySavingDesc}</p>
               </div>
 
-              
               <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-3 gap-6">
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.breakEvenLabel}</span>
                   <div className="text-2xl font-bold text-white">
-                    {calc.breakEvenMonth > 0 ? `${calc.breakEvenMonth.toFixed(1)}` : 'ทันที'}
-                    <span className="text-xs text-gray-400 font-bold ml-1">{calc.breakEvenMonth > 0 ? 'เดือน' : ''}</span>
+                    {calc.breakEvenMonth > 0 ? `${calc.breakEvenMonth.toFixed(1)}` : (simulator.labels.instantly || 'ทันที')}
+                    <span className="text-xs text-gray-400 font-bold ml-1">{calc.breakEvenMonth > 0 ? (simulator.labels.unitMonth || 'เดือน') : ''}</span>
                   </div>
                 </div>
-
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase">ROI ต่อปี</span>
+                  <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.roiPerYear || 'ROI ต่อปี'}</span>
                   <div className="text-2xl font-bold text-emerald-400">
                     {Math.round(calc.roi).toLocaleString()}%
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase">สถานะ</span>
+                  <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.status || 'สถานะ'}</span>
                   <div className="text-2xl font-bold text-white">24/7</div>
                 </div>
               </div>
@@ -327,8 +306,6 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
     </div>
   );
 }
-
-/* ─── Sub-components ────────────────────────────────────────────── */
 
 function SliderGroup({ label, value, onChange, min, max, step = 1, unit, displayValue, isAccent = false }: any) {
   return (

@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Zap, Database, Cpu, Link as LinkIcon, CheckCircle2, FileText, Search, RefreshCw, Layers, ShieldCheck, TrendingUp, ArrowRight } from 'lucide-react';
+import { Bot, Zap, Database, Cpu, CheckCircle2, FileText, Search, RefreshCw, Layers, ShieldCheck, TrendingUp, ArrowRight } from 'lucide-react';
 import ServiceVisualCard from '@/components/ServiceVisualCard';
 
 /* ─── Shared UI Components ────────────────────────────────────────── */
@@ -45,26 +45,21 @@ export function AppliedIn({ items, label }: { items: { name: string; link?: stri
 }
 
 /* ─── 01. Orchestrator Visual ─────────────────────────────────────── */
-export function OrchestratorVisual() {
+export function OrchestratorVisual({ dict }: { dict: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const phaseData = [
-    { title: 'การย่อยคำถาม (Decomposition)', tag: 'ขั้นตอนที่ 01', desc: 'วิเคราะห์คำถามที่ซับซ้อน แตกเป็นงานย่อย (Sub-queries)' },
-    { title: 'การประมวลผลขนาน (Parallel)', tag: 'ขั้นตอนที่ 02', desc: 'รัน Agent หลายตัวพร้อมกันเพื่อประมวลผลคนละส่วน' },
-    { title: 'การสังเคราะห์ผลลัพธ์ (Synthesis)', tag: 'ขั้นตอนที่ 03', desc: 'รวบรวมคำตอบจากทุกแหล่ง สรุปเป็นรายงานที่สมบูรณ์' },
-  ];
-
+  const phaseData = dict.phases;
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-bold text-cyber-blue uppercase">Agentic Orchestration</span>
+          <span className="text-[10px] font-bold text-cyber-blue uppercase tracking-widest">Agentic Orchestration</span>
         </div>
         <div className="text-[9px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
@@ -73,13 +68,13 @@ export function OrchestratorVisual() {
           {phase === 0 && (
             <motion.div key="decomp" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} className="w-full space-y-3">
               <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-[8px] font-bold text-gray-500 mb-1">คำถามที่ซับซ้อน (Complex Query)</div>
-                <div className="text-[11px] text-white">วิเคราะห์ความเสี่ยงธุรกิจพลังงาน 2026...</div>
+                <div className="text-[8px] font-bold text-gray-500 mb-1">{dict.complexQuery}</div>
+                <div className="text-[11px] text-white">{dict.energyRisk}</div>
               </div>
-              <div className="flex justify-center"><div className="px-2 py-0.5 rounded-full bg-cyber-blue/10 border border-cyber-blue/30 text-[8px] font-bold text-cyber-blue">แยกงานย่อย ↓</div></div>
+              <div className="flex justify-center"><div className="px-2 py-0.5 rounded-full bg-cyber-blue/10 border border-cyber-blue/30 text-[8px] font-bold text-cyber-blue">{dict.subTasks}</div></div>
 
               <div className="grid grid-cols-2 gap-2">
-                {['แนวโน้มตลาด', 'งบการเงิน'].map((q, i) => (
+                {[dict.marketTrends, dict.financials].map((q, i) => (
                   <div key={i} className="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-[9px] text-gray-400 truncate text-center">{q}</div>
                 ))}
               </div>
@@ -104,7 +99,7 @@ export function OrchestratorVisual() {
                 {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center"><FileText className="w-4 h-4 text-gray-500" /></div>)}
               </div>
               <div className="p-4 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 shadow-cyber-glow">
-                <div className="text-[9px] font-black text-cyber-blue uppercase mb-1.5">รายงานสรุปผล (Consolidated Report)</div>
+                <div className="text-[9px] font-black text-cyber-blue uppercase mb-1.5">{dict.consolidatedReport}</div>
 
                 <div className="space-y-1">
                   {[1,2].map(i => <div key={i} className="h-1 bg-cyber-blue/30 rounded-full" style={{ width: `${100-i*20}%` }} />)}
@@ -131,19 +126,14 @@ export function OrchestratorVisual() {
 }
 
 /* ─── 02. Hybrid Retrieval Visual ─────────────────────────────────── */
-export function HybridRetrievalVisual() {
+export function HybridRetrievalVisual({ dict }: { dict: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const phaseData = [
-    { title: "HyDE Embedding", tag: "ขั้นตอนที่ 01", desc: "จินตนาการคำตอบล่วงหน้าเป็น Vector Target" },
-    { title: "Hybrid Search", tag: "ขั้นตอนที่ 02", desc: "Semantic GPU + Keyword ทำงานคู่ขนาน" },
-    { title: "Adaptive Reranking", tag: "ขั้นตอนที่ 03", desc: "Cross-Encoder ตัดสิน — ข้ามขั้นตอนถ้าคะแนนสูงพอ" },
-  ];
-
+  const phaseData = dict.phases;
 
   return (
     <div className="flex flex-col h-full">
@@ -159,16 +149,16 @@ export function HybridRetrievalVisual() {
           {phase === 0 && (
             <motion.div key="hyde" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col items-center gap-4">
               <div className="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
-                <div className="text-[8px] font-black text-gray-500 uppercase w-12 shrink-0">คำถาม (Query)</div>
+                <div className="text-[8px] font-black text-gray-500 uppercase w-12 shrink-0">{dict.query}</div>
                 <div className="flex-1 h-1.5 bg-white/10 rounded-full" />
               </div>
               <div className="flex flex-col items-center gap-0.5">
                 <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-cyber-blue/40 text-sm">↓</motion.div>
-                <span className="text-[8px] font-black text-cyber-blue uppercase bg-cyber-blue/10 border border-cyber-blue/20 px-2 py-0.5 rounded-full">AI จำลองคำตอบล่วงหน้า</span>
+                <span className="text-[8px] font-black text-cyber-blue uppercase bg-cyber-blue/10 border border-cyber-blue/20 px-2 py-0.5 rounded-full">{dict.hypothetical}</span>
                 <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="text-cyber-blue/40 text-sm">↓</motion.div>
               </div>
               <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="w-full px-4 py-2 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 shadow-cyber-glow/10">
-                <div className="text-[8px] font-black text-cyber-blue uppercase mb-1.5">เวกเตอร์สมมติ (Hypothetical Vector)</div>
+                <div className="text-[8px] font-black text-cyber-blue uppercase mb-1.5">{dict.vector}</div>
 
                 <div className="flex gap-1">
                   {[60, 85, 45, 90, 70, 55, 80, 40].map((h, i) => (
@@ -219,7 +209,7 @@ export function HybridRetrievalVisual() {
               ))}
               <div className="mt-2 flex items-center justify-center gap-2 px-3 py-1 rounded-xl bg-cyber-blue/5 border border-cyber-blue/20">
                 <Zap className="w-2.5 h-2.5 text-cyber-blue" />
-                <span className="text-[8px] font-black text-white">เกณฑ์การตัดสิน: 0.7+ → ข้ามขั้นตอนจัดลำดับ</span>
+                <span className="text-[8px] font-black text-white">{dict.threshold}</span>
               </div>
 
             </motion.div>
@@ -243,19 +233,14 @@ export function HybridRetrievalVisual() {
 }
 
 /* ─── 03. Self-Correction Visual ──────────────────────────────────── */
-export function SelfCorrectionVisual() {
+export function SelfCorrectionVisual({ dict }: { dict: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const phaseData = [
-    { title: "Confidence Check", tag: "ขั้นตอนที่ 01", desc: "AI ตรวจสอบความมั่นใจของคำตอบ (Confidence Score)" },
-    { title: "Verification Loop", tag: "ขั้นตอนที่ 02", desc: "หากความแม่นยำต่ำเกินไป ระบบจะสืบค้นใหม่โดยอัตโนมัติ" },
-    { title: "Self-Optimization", tag: "ขั้นตอนที่ 03", desc: "ปรับจูนพารามิเตอร์การค้นหาให้แม่นยำขึ้นในรอบถัดไป" },
-  ];
-
+  const phaseData = dict.phases;
 
   return (
     <div className="flex flex-col h-full">
@@ -277,10 +262,10 @@ export function SelfCorrectionVisual() {
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-lg font-black text-red-500">42%</span>
-                  <span className="text-[6px] font-black text-gray-500 uppercase">ความมั่นใจ</span>
+                  <span className="text-[6px] font-black text-gray-500 uppercase">{dict.confidence}</span>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[8px] font-black text-red-500 uppercase tracking-widest animate-pulse">ตรวจพบความแม่นยำต่ำ</div>
+              <div className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[8px] font-black text-red-500 uppercase tracking-widest animate-pulse">{dict.lowPrecision}</div>
 
             </motion.div>
           )}
@@ -291,7 +276,7 @@ export function SelfCorrectionVisual() {
                 <motion.div animate={{ rotate: -360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="text-cyber-blue"><RefreshCw className="w-6 h-6" /></motion.div>
                 <div className="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center shadow-cyber-glow"><Search className="w-5 h-5 text-cyber-blue" /></div>
               </div>
-              <div className="text-[8px] font-black text-cyber-blue uppercase tracking-widest mt-2">Re-querying Knowledge Base...</div>
+              <div className="text-[8px] font-black text-cyber-blue uppercase tracking-widest mt-2">{dict.requerying}</div>
               <div className="w-32 h-1 bg-white/5 rounded-full overflow-hidden mt-1">
                 <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-1/2 h-full bg-cyber-blue" />
               </div>
@@ -306,10 +291,10 @@ export function SelfCorrectionVisual() {
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-lg font-black text-green-500">96%</span>
-                  <span className="text-[6px] font-black text-gray-500 uppercase">ความมั่นใจ</span>
+                  <span className="text-[6px] font-black text-gray-500 uppercase">{dict.confidence}</span>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[8px] font-black text-green-500 uppercase tracking-widest">ตรวจสอบและปรับปรุงแล้ว</div>
+              <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[8px] font-black text-green-500 uppercase tracking-widest">{dict.optimized}</div>
 
             </motion.div>
           )}
@@ -332,19 +317,14 @@ export function SelfCorrectionVisual() {
 }
 
 /* ─── 04. Strategic Output Visual ─────────────────────────────────── */
-export function StrategicOutputVisual() {
+export function StrategicOutputVisual({ dict }: { dict: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const phaseData = [
-    { title: 'Adaptive Role-Playing', tag: 'ขั้นตอนที่ 01', desc: 'AI สวมบทบาทผู้เชี่ยวชาญตามโจทย์ที่ได้รับ' },
-    { title: 'Cross-Concept Synthesis', tag: 'ขั้นตอนที่ 02', desc: 'วิเคราะห์จุดเหมือน-ต่าง ข้ามฐานข้อมูลขนาดใหญ่' },
-    { title: 'Inference Consolidation', tag: 'ขั้นตอนที่ 03', desc: 'สังเคราะห์ข้อมูลเป็นคำตอบเชิงกลยุทธ์ที่แม่นยำ' },
-  ];
-
+  const phaseData = dict.phases;
 
   return (
     <div className="flex flex-col h-full">
@@ -378,7 +358,7 @@ export function StrategicOutputVisual() {
           )}
           {phase === 2 && (
             <motion.div key="output" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-[9px] text-gray-400">
-              <span className="text-cyber-blue">ข้อเสนอแนะ:</span> เร่งการขยายตัวในไตรมาสที่ 2 เนื่องจากสภาพคล่องของคู่แข่งลดลง...
+              <span className="text-cyber-blue">{dict.suggestion}</span> {dict.liquidity}
             </motion.div>
           )}
 
@@ -401,9 +381,9 @@ export function StrategicOutputVisual() {
 }
 
 /* ─── 05. Real-time Stream Visual ─────────────────────────────────── */
-export function RealTimeStreamVisual() {
+export function RealTimeStreamVisual({ dict }: { dict: any }) {
   const [streamText, setStreamText] = useState('');
-  const fullText = 'วิเคราะห์เสร็จสิ้น: พบจุดเสถียรภาพใหม่ที่ 94.2% พร้อมรอยต่อข้อมูลที่ไหลลื่น 24/7...';
+  const fullText = dict.fullText;
 
   useEffect(() => {
     let i = 0;
@@ -413,7 +393,7 @@ export function RealTimeStreamVisual() {
       if (i > fullText.length) i = 0;
     }, 50);
     return () => clearInterval(t);
-  }, []);
+  }, [fullText]);
 
   return (
     <div className="flex flex-col h-full">
@@ -434,12 +414,12 @@ export function RealTimeStreamVisual() {
       </div>
       <div className="mt-4 p-4 h-[90px] flex items-center justify-between px-2 bg-white/[0.02] border border-white/5 rounded-2xl">
         <div className="flex gap-4">
-          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">ความหน่วง (Latency)</div><div className="text-[10px] font-mono text-white">42ms</div></div>
-          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">ปริมาณงาน (Throughput)</div><div className="text-[10px] font-mono text-white">124 t/s</div></div>
+          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">{dict.latency}</div><div className="text-[10px] font-mono text-white">42ms</div></div>
+          <div className="space-y-1"><div className="text-[7px] text-gray-600 font-black uppercase">{dict.throughput}</div><div className="text-[10px] font-mono text-white">124 t/s</div></div>
         </div>
         <div className="flex items-center gap-2 text-[8px] font-black text-emerald-500 uppercase tracking-widest">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-emerald-glow animate-pulse" />
-          เชื่อมต่อแล้ว (Synchronized)
+          {dict.synchronized}
         </div>
 
       </div>
@@ -448,25 +428,18 @@ export function RealTimeStreamVisual() {
 }
 
 /* ─── AI Showcase Component ────────────────────────────────────────── */
-export function AiShowcase({ steps: passedSteps }: { steps?: { title: string; subtitle: string; desc: string }[] }) {
+export function AiShowcase({ dict }: { dict: any }) {
   const [activeStep, setActiveStep] = useState(0);
 
-  const defaultSteps = [
-    { title: 'Agentic Orchestration', subtitle: 'Advanced', desc: 'แตกโจทย์ซับซ้อนเป็นงานย่อย และสั่งการ Agent หลายตัวทำงานขนานกันแบบอัตโนมัติ' },
-    { title: 'Hybrid Retrieval', subtitle: 'Pillar 02', desc: 'Semantic + Keyword search ทำงานคู่ขนาน พร้อม AI จินตนาการคำตอบล่วงหน้า' },
-    { title: 'Self-Correction', subtitle: 'Intelligence', desc: 'ระบบตรวจสอบความถูกต้องและมั่นใจของคำตอบ พร้อมระบบวนลูปแก้ไขตัวเอง' },
-    { title: 'Strategic Output', subtitle: 'Pillar 03', desc: 'สังเคราะห์ข้อมูลแบบ Cross-concept พร้อมระบุแหล่งที่มาอย่างแม่นยำ' },
-    { title: 'Real-time Stream', subtitle: 'Performance', desc: 'แสดงผลลัพธ์แบบ Token-by-token ทันที ไม่ต้องรอให้เจนเสร็จทั้งหมด' },
-  ];
-
-  const steps = passedSteps || defaultSteps;
+  const engagement = dict.engagement || { steps: [] };
+  const steps = engagement.steps;
 
   const visuals = [
-    <OrchestratorVisual key="orch" />,
-    <HybridRetrievalVisual key="hybrid" />,
-    <SelfCorrectionVisual key="self-correct" />,
-    <StrategicOutputVisual key="strategic" />,
-    <RealTimeStreamVisual key="stream" />,
+    <OrchestratorVisual key="orch" dict={dict.visuals.orchestrator} />,
+    <HybridRetrievalVisual key="hybrid" dict={dict.visuals.hybrid} />,
+    <SelfCorrectionVisual key="self-correct" dict={dict.visuals.correction} />,
+    <StrategicOutputVisual key="strategic" dict={dict.visuals.strategic} />,
+    <RealTimeStreamVisual key="stream" dict={dict.visuals.stream} />,
   ];
 
   return (
@@ -503,7 +476,7 @@ export function AiShowcase({ steps: passedSteps }: { steps?: { title: string; su
 
       <div className="relative flex items-center justify-between h-12 mt-4">
         <div className="flex gap-2">
-          {steps.map((_, i) => (
+          {steps.map((_: any, i: number) => (
             <button 
               key={i} 
               onClick={() => setActiveStep(i)} 

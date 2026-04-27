@@ -14,7 +14,7 @@ interface ProjectSlide {
   category: string;
 }
 
-export default function ProjectSlider({ projects }: { projects: ProjectSlide[] }) {
+export default function ProjectSlider({ projects, viewDetailsLabel }: { projects: ProjectSlide[], viewDetailsLabel?: string }) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -95,7 +95,7 @@ export default function ProjectSlider({ projects }: { projects: ProjectSlide[] }
                 href={`/authority/${projects[current].category}/${projects[current].slug}`}
                 className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all active:scale-95"
               >
-                <span className="relative z-10">ดูรายละเอียด</span>
+                <span className="relative z-10">{viewDetailsLabel || 'View Details'}</span>
                 <ArrowRight size={14} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />
                 <div className="absolute inset-0 bg-aetox-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
               </Link>

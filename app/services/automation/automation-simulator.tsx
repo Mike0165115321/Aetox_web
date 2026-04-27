@@ -101,10 +101,10 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
       <div className="bg-[#0A0F1C] text-white rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
         <div className="px-6 sm:px-8 py-6 border-b border-white/5 bg-white/[0.02]">
           <div className="text-center md:text-left">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-none mb-1 text-white">
+            <h2 className="text-fluid-h3 leading-none mb-1 text-white">
               {dict.title.split(' — ')[0]} — <span className="text-[#06B6D4]">Automation Simulator</span>
             </h2>
-            <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold opacity-70">วิเคราะห์ต้นทุนและพารามิเตอร์ระบบ</p>
+            <p className="text-fluid-sm text-gray-500 uppercase tracking-[0.2em] opacity-70">{dict.subTitle}</p>
           </div>
         </div>
 
@@ -112,7 +112,7 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
           {/* CONTROL PANEL */}
           <div className="lg:w-[35%] border-b lg:border-b-0 lg:border-r border-white/5 p-6 sm:p-8 space-y-10 bg-black/20">
             <div className="flex justify-between items-center pb-6 border-b border-white/5">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Currency Control</span>
+              <span className="text-fluid-sm text-gray-500 uppercase tracking-[0.2em]">Currency Control</span>
               <div className="flex items-center gap-3">
                 <CurrencySwitcher />
                 <button onClick={() => updateComplexity('medium')} className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"><RotateCcw size={14} /></button>
@@ -120,7 +120,7 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
             </div>
             
             <section className="space-y-5">
-              <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">เลือกประเภทงาน</h3>
+              <h3 className="text-fluid-sm text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">{dict.workloadTitle}</h3>
               <div className="flex flex-col gap-3">
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
@@ -141,14 +141,14 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
             </section>
 
             <section className="space-y-6">
-              <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">ปรับตั้งค่าพารามิเตอร์</h3>
+              <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">{dict.params.title}</h3>
               <div className="grid grid-cols-1 gap-7">
-                <SliderGroup label="จำนวนงาน / เดือน" min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-[#06B6D4]" displayValue={volume.toLocaleString()} />
-                <SliderGroup label="พนักงาน (คน)" min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
-                <SliderGroup label="ค่าจ้าง/ชม." min={50} max={500} step={10} value={hourlyRate} onChange={setHourlyRate} accent="accent-rose-400" displayValue={formatMoney(hourlyRate)} />
-                <SliderGroup label="ต้นทุนแฝง/งาน" min={0} max={500} step={5} value={unitCostManual} onChange={setUnitCostManual} accent="accent-amber-400" displayValue={formatMoney(unitCostManual)} />
-                <SliderGroup label="ลงทุนบอท (Capex)" min={7500} max={120000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-[#06B6D4]" displayValue={formatMoney(botPrice)} />
-                <SliderGroup label="บำรุงรักษา (Opex)" min={500} max={15000} step={100} value={maintCost} onChange={setMaintCost} accent="accent-amber-400" displayValue={formatMoney(maintCost)} />
+                <SliderGroup label={dict.params.volume} min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-[#06B6D4]" displayValue={volume.toLocaleString()} />
+                <SliderGroup label={dict.params.staff} min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
+                <SliderGroup label={dict.params.hourlyRate} min={50} max={500} step={10} value={hourlyRate} onChange={setHourlyRate} accent="accent-rose-400" displayValue={formatMoney(hourlyRate)} />
+                <SliderGroup label={dict.params.unitCost} min={0} max={500} step={5} value={unitCostManual} onChange={setUnitCostManual} accent="accent-amber-400" displayValue={formatMoney(unitCostManual)} />
+                <SliderGroup label={dict.params.botPrice} min={7500} max={120000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-[#06B6D4]" displayValue={formatMoney(botPrice)} />
+                <SliderGroup label={dict.params.maintCost} min={500} max={15000} step={100} value={maintCost} onChange={setMaintCost} accent="accent-amber-400" displayValue={formatMoney(maintCost)} />
               </div>
             </section>
           </div>
@@ -156,16 +156,16 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
           {/* MAIN KPIs AREA */}
           <div className="lg:w-[65%] p-6 sm:p-8 space-y-8 bg-black/5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <KpiCard label="ประหยัดได้ / เดือน" valInCurrency={calc.monthlySaving} accent color="text-emerald-400" detail="ยอดเงินประหยัดรายเดือนสุทธิหลังจากหักลบค่าใช้จ่ายระบบแล้ว" currency={currency} formatMoney={formatMoney} />
+              <KpiCard label={dict.kpis.monthlySaving} valInCurrency={calc.monthlySaving} accent color="text-emerald-400" detail={dict.kpis.monthlySavingDetail} currency={currency} formatMoney={formatMoney} unitLabel={dict.labels.unit} />
               <div className="p-6 rounded-2xl border bg-white/[0.03] border-white/10 min-h-[140px] flex flex-col justify-between relative group">
                 <div className="absolute top-4 right-4 z-20">
                   <SimulatorIcon name="help" size={16} />
                 </div>
                 <div>
-                  <p className="text-[11px] text-gray-500 font-bold mb-3 tracking-wide">ระยะเวลาคืนทุน</p>
+                  <p className="text-[11px] text-gray-500 font-bold mb-3 tracking-wide">{dict.kpis.payback}</p>
                   <div className="space-y-2">
-                    <p className="text-2xl lg:text-3xl font-bold text-emerald-400 leading-none">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
-                    <p className="text-[14px] font-bold text-emerald-400 opacity-70 tracking-wide">หน่วย: เดือน (Payback)</p>
+                    <p className="text-fluid-h2 text-emerald-400 leading-none">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
+                    <p className="text-fluid-p text-emerald-400 opacity-70 tracking-wide">{dict.labels.unit}: {dict.kpis.paybackUnit}</p>
                   </div>
                 </div>
               </div>
@@ -173,39 +173,39 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-rose-950/20 border border-rose-500/20 rounded-[2rem] p-8 space-y-4 shadow-xl">
-                <p className="text-sm font-bold text-rose-400 mb-2">❌ ระบบเดิม (Manual)</p>
+                <p className="text-sm font-bold text-rose-400 mb-2">{dict.comparison.manual}</p>
                 <div className="space-y-4 text-sm">
-                  <div className="flex justify-between items-center"><span className="text-gray-400 font-medium">เวลาทำงานรวม</span><span className="font-bold text-white">{calc.manualHours.toFixed(1)} ชม./ด.</span></div>
-                  <div className="flex justify-between items-center border-b border-rose-500/10 pb-3"><span className="text-gray-400 font-medium">ต้นทุนรวมปัจจุบัน</span><span className="font-bold text-rose-300">{formatMoney(calc.totalBefore)}</span></div>
-                  <div className="flex justify-between items-center pt-1"><span className="text-gray-400 font-bold text-xs">ต้นทุนต่องาน</span><span className="font-bold text-white text-xl">{formatMoney(calc.costPerUnitBefore)}</span></div>
+                  <div className="flex justify-between items-center"><span className="text-gray-400 font-medium">{dict.comparison.totalHours}</span><span className="font-bold text-white">{calc.manualHours.toFixed(1)} {dict.unitHours}</span></div>
+                  <div className="flex justify-between items-center border-b border-rose-500/10 pb-3"><span className="text-gray-400 font-medium">{dict.comparison.totalCost}</span><span className="font-bold text-rose-300">{formatMoney(calc.totalBefore)}</span></div>
+                  <div className="flex justify-between items-center pt-1"><span className="text-gray-400 font-bold text-xs">{dict.comparison.costPerUnit}</span><span className="font-bold text-white text-xl">{formatMoney(calc.costPerUnitBefore)}</span></div>
                 </div>
               </div>
               <div className={`${theme.botBg} border ${theme.botBorder} rounded-[2rem] p-8 space-y-4 shadow-xl`}>
-                <p className={`text-sm font-bold flex items-center gap-2 mb-2 ${theme.success}`}>✅ ระบบอัตโนมัติ (Bot)</p>
+                <p className={`text-sm font-bold flex items-center gap-2 mb-2 ${theme.success}`}>{dict.comparison.bot}</p>
                 <div className="space-y-4 text-sm">
-                  <div className="flex justify-between items-center"><span className="text-gray-400 font-medium">งบลงทุนบอท</span><span className="font-bold text-white">{formatMoney(botPrice)}</span></div>
-                  <div className="flex justify-between items-center border-b border-white/5 pb-3"><span className="text-gray-400 font-medium">ค่าบำรุงรักษา</span><span className={`font-bold ${theme.success}`}>{formatMoney(maintCost)}/ด.</span></div>
-                  <div className="flex justify-between items-center pt-1"><span className="text-gray-400 font-bold text-xs">ต้นทุนต่องาน</span><span className={`font-bold text-xl ${theme.success}`}>{formatMoney(calc.costPerUnitAfter)}</span></div>
+                  <div className="flex justify-between items-center"><span className="text-gray-400 font-medium">{dict.comparison.invest}</span><span className="font-bold text-white">{formatMoney(botPrice)}</span></div>
+                  <div className="flex justify-between items-center border-b border-white/5 pb-3"><span className="text-gray-400 font-medium">{dict.comparison.maint}</span><span className={`font-bold ${theme.success}`}>{formatMoney(maintCost)}/ด.</span></div>
+                  <div className="flex justify-between items-center pt-1"><span className="text-gray-400 font-bold text-xs">{dict.comparison.costPerUnit}</span><span className={`font-bold text-xl ${theme.success}`}>{formatMoney(calc.costPerUnitAfter)}</span></div>
                 </div>
               </div>
             </div>
 
             <div className="bg-[#0D1321] border border-white/5 rounded-3xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity"><Zap size={100} /></div>
-              <p className="text-[11px] sm:text-xs font-extrabold text-gray-300 border-b border-white/5 pb-4 tracking-wide">การวัดผลประสิทธิภาพ (Efficiency Benchmark)</p>
+              <p className="text-[11px] sm:text-xs font-extrabold text-gray-300 border-b border-white/5 pb-4 tracking-wide">{dict.benchmark.title}</p>
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <div className="flex justify-between items-end"><span className="text-sm font-bold text-white">บอท AETOX</span><span className={`text-lg font-bold ${theme.success}`}>{calc.botHours.toFixed(1)} ชม.</span></div>
+                  <div className="flex justify-between items-end"><span className="text-sm font-bold text-white">{dict.benchmark.botLabel}</span><span className={`text-lg font-bold ${theme.success}`}>{calc.botHours.toFixed(1)} {dict.unitTime}</span></div>
                   <div className="w-full h-4 bg-white/5 rounded-full overflow-hidden border border-white/5"><div className="h-full rounded-full transition-all duration-1000" style={{ width: `${calc.botBarPct}%`, background: theme.botGrad, boxShadow: theme.botGlow }} /></div>
                 </div>
                 <div className="space-y-2">
-                  <div className="flex justify-between items-end"><span className="text-sm font-bold text-gray-400">ทีมงานคน ({staffCount} คน)</span><span className="text-lg font-bold text-rose-400">{calc.manualHours.toFixed(1)} ชม.</span></div>
+                  <div className="flex justify-between items-end"><span className="text-sm font-bold text-gray-400">{dict.benchmark.manualLabel} ({staffCount} {dict.labels.people || 'คน'})</span><span className="text-lg font-bold text-rose-400">{calc.manualHours.toFixed(1)} {dict.unitTime}</span></div>
                   <div className="w-full h-4 bg-white/5 rounded-full overflow-hidden border border-white/5"><div className="h-full w-full rounded-full" style={{ background: 'linear-gradient(to right,#9f1239,#f43f5e)' }} /></div>
                 </div>
               </div>
               <div className="flex justify-center gap-10 pt-4 border-t border-white/5 font-bold text-[11px] sm:text-sm uppercase tracking-wider">
-                <span className="text-emerald-400">ประหยัดเวลา {fmt(calc.savedHours)} ชม.</span>
-                <span className={theme.success}>เร็วกว่าเดิม {calc.speedX} เท่า</span>
+                <span className="text-emerald-400">{dict.benchmark.savedHours} {fmt(calc.savedHours)} {dict.unitTime}</span>
+                <span className={theme.success}>{dict.benchmark.speedX} {calc.speedX} {dict.unitTimes}</span>
               </div>
             </div>
           </div>
@@ -217,8 +217,8 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
         <div className="bg-[#0D1321]/80 p-8 sm:p-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
             <div>
-              <p className="text-lg sm:text-xl font-bold text-white flex items-center gap-3 mb-1"><TrendingUp size={24} className="text-[#06B6D4]" /> {dict.title}</p>
-              <p className="text-[10px] text-gray-500 ml-9 uppercase tracking-widest font-bold">พยากรณ์ผลตอบแทนสะสมในระยะเวลา {timeframe} เดือน</p>
+              <p className="text-fluid-h3 text-white flex items-center gap-3 mb-1"><TrendingUp size={24} className="text-[#06B6D4]" /> {dict.title}</p>
+              <p className="text-fluid-sm text-gray-500 ml-9 uppercase tracking-widest font-bold">{dict.projectionDesc.replace('{timeframe}', timeframe.toString())}</p>
             </div>
             <div className="bg-black/40 p-1.5 rounded-2xl border border-white/10 flex items-center gap-1 w-full sm:w-auto shadow-inner">
               {[{ val: 6, label: dict.timeframes.m6 }, { val: 12, label: dict.timeframes.y1 }, { val: 36, label: dict.timeframes.y3 }].map((t) => (
@@ -252,10 +252,11 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
                     
                     // Map labels from dict
                     let label = p.label;
-                    if (label === 'ปีที่ 1') label = dict.labels.year1;
-                    if (label === 'ปีที่ 2') label = dict.labels.year2;
-                    if (label === 'ปีที่ 3') label = dict.labels.year3;
-                    if (label && label.startsWith('เดือน')) label = `${dict.labels.month} ${label.split(' ')[1]}`;
+                    if (label.includes('Year 1')) label = dict.labels.year1;
+                    else if (label.includes('Year 2')) label = dict.labels.year2;
+                    else if (label.includes('Year 3')) label = dict.labels.year3;
+                    else if (label.includes('Month 1')) label = dict.labels.firstMonth || 'เดือนแรก';
+                    else if (label.includes('Month') || label.includes('M.')) label = `${dict.labels.month} ${p.month}`;
 
                     return (
                       <div key={p.month} className="flex flex-col items-center h-full justify-end group relative z-10">
@@ -283,11 +284,11 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
               <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-all"><BarChart3 size={120} /></div>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform shadow-inner"><BarChart3 size={28} /></div>
-                <div><p className="text-base font-bold text-white">ผลตอบแทนรายเดือน</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Monthly Performance</p></div>
+                <div><p className="text-base font-bold text-white">{dict.summary.monthlyTitle}</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{dict.summary.monthlySub}</p></div>
               </div>
               <div className="space-y-5 pt-4">
-                <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">กำไรสุทธิ / เดือน</span><span className="text-2xl font-bold text-emerald-400 tabular-nums">{formatMoney(calc.monthlySaving)}</span></div>
-                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">ค่าบำรุงรักษา (Opex)</span><span className="text-lg font-bold text-gray-400 tabular-nums">{formatMoney(maintCost)}</span></div>
+                <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">{dict.summary.netProfitMonth}</span><span className="text-2xl font-bold text-emerald-400 tabular-nums">{formatMoney(calc.monthlySaving)}</span></div>
+                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">{dict.summary.maintOpex}</span><span className="text-lg font-bold text-gray-400 tabular-nums">{formatMoney(maintCost)}</span></div>
               </div>
             </div>
 
@@ -295,11 +296,11 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
               <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-all"><Wallet size={120} /></div>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-[#06B6D4]/10 flex items-center justify-center text-[#06B6D4] group-hover:scale-110 transition-transform shadow-inner"><Wallet size={28} /></div>
-                <div><p className="text-base font-bold text-white">สรุปกำไรรวมระยะยาว</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Accumulated ROI</p></div>
+                <div><p className="text-base font-bold text-white">{dict.summary.longTermTitle}</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{dict.summary.longTermSub}</p></div>
               </div>
               <div className="space-y-5 pt-4">
-                <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">กำไรรวม {timeframe} เดือน</span><span className="text-2xl font-bold text-white tabular-nums">{formatMoney(calc.netProfitAfterInvestment)}</span></div>
-                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">อัตราการลดต้นทุน</span><span className="text-lg font-bold text-[#06B6D4] tabular-nums">{calc.costReductionPct}%</span></div>
+                <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">{dict.summary.netProfitLong.replace('{time}', timeframe.toString())}</span><span className="text-2xl font-bold text-white tabular-nums">{formatMoney(calc.netProfitAfterInvestment)}</span></div>
+                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">{dict.summary.costReduction}</span><span className="text-lg font-bold text-[#06B6D4] tabular-nums">{calc.costReductionPct}%</span></div>
               </div>
             </div>
 
@@ -307,11 +308,11 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
               <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-all"><Clock size={120} /></div>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform shadow-inner"><Clock size={28} /></div>
-                <div><p className="text-base font-bold text-white">ขีดความสามารถที่เพิ่มขึ้น</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Capacity & Resource Gains</p></div>
+                <div><p className="text-base font-bold text-white">{dict.summary.capacityTitle}</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{dict.summary.capacitySub}</p></div>
               </div>
               <div className="space-y-5 pt-4">
-                <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">รวมเวลาที่เซฟได้</span><span className="text-2xl font-bold text-indigo-400 tabular-nums">{fmt(calc.totalHoursSavedLongTerm)} ชม.</span></div>
-                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">ค่า Error เฉลี่ย (Human)</span><span className="text-lg font-bold text-white tabular-nums">5.0%</span></div>
+                <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">{dict.summary.totalSaved}</span><span className="text-2xl font-bold text-indigo-400 tabular-nums">{fmt(calc.totalHoursSavedLongTerm)} {dict.unitTime}</span></div>
+                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">{dict.benchmark.errorRate}</span><span className="text-lg font-bold text-white tabular-nums">5.0%</span></div>
               </div>
             </div>
           </div>
@@ -320,4 +321,3 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
     </div>
   );
 }
-

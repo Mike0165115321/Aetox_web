@@ -74,7 +74,7 @@ export default function PainSection({ dict }: { dict: any }) {
             className="inline-flex items-center gap-2 text-aetox-accent font-black text-[10px] tracking-[0.2em] uppercase mb-6"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
-            Critical Business Analysis
+            {dict.badge}
           </motion.div>
           
           <motion.h2
@@ -116,9 +116,9 @@ export default function PainSection({ dict }: { dict: any }) {
         >
           <div className="p-8 rounded-[40px] glass-card border-aetox-border bg-aetox-surface/20 flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full">
             <div className="flex-1 text-center md:text-left">
-              <p className="text-aetox-text-main font-black text-xl tracking-tight">Inefficiency is a deliberate cost.</p>
+              <p className="text-aetox-text-main font-black text-xl tracking-tight">{dict.footerTitle}</p>
               <p className="text-aetox-text-soft text-sm mt-2 font-medium uppercase tracking-widest">
-                Stop leaking revenue and deploy intelligence today.
+                {dict.footerDesc}
               </p>
             </div>
             <div className="shrink-0">
@@ -126,7 +126,7 @@ export default function PainSection({ dict }: { dict: any }) {
                 onClick={() => scrollToSection('roi-calculator')}
                 className="px-8 py-5 rounded-2xl bg-aetox-accent text-white font-black text-xs uppercase tracking-widest hover:bg-aetox-accent-hover shadow-aetox-glow transition-all transform active:scale-95 flex items-center gap-3"
               >
-                คำนวณมูลค่าความเสียหาย <ArrowRight size={16} />
+                {dict.cta} <ArrowRight size={16} />
               </button>
             </div>
           </div>

@@ -10,6 +10,7 @@ interface KpiCardProps {
   formatMoney: (value: number, showLabel?: boolean, short?: boolean) => string;
   accent?: boolean;
   color?: string;
+  unitLabel?: string;
 }
 
 export function KpiCard({ 
@@ -19,7 +20,8 @@ export function KpiCard({
   currency, 
   formatMoney, 
   accent = false, 
-  color = 'text-white' 
+  color = 'text-white',
+  unitLabel
 }: KpiCardProps) {
   const [showInfo, setShowInfo] = useState(false);
 
@@ -40,7 +42,7 @@ export function KpiCard({
         <p className="text-[11px] text-gray-500 font-bold mb-3 tracking-wide">{label}</p>
         <div className="space-y-2">
           <p className={`text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none ${color}`}>{formatMoney(valInCurrency, false)}</p>
-          <p className={`text-[14px] font-bold ${color} opacity-70 tracking-wide`}>หน่วย: {currency === 'THB' ? 'บาท (THB)' : 'USD'}</p>
+          <p className={`text-[14px] font-bold ${color} opacity-70 tracking-wide`}>{unitLabel || 'Unit'}: {currency === 'THB' ? 'บาท (THB)' : 'USD'}</p>
         </div>
       </div>
     </div>

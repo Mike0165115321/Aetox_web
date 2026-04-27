@@ -8,9 +8,9 @@ export default async function ContactPage() {
   const navDict = await getDictionary('th', 'navigation');
 
   const contactSections: NavSection[] = [
-    { id: 'direct-contact', label: 'ช่องทางติดต่อด่วน', num: '01', icon: <Phone size={18} /> },
-    { id: 'contact-form', label: 'รายละเอียดโปรเจกต์', num: '02', icon: <FileText size={18} />, offset: 80 },
-    { id: 'roadmap', label: 'ขั้นตอนถัดไป', num: '03', icon: <Zap size={18} />, offset: 80 },
+    { id: 'direct-contact', label: dict.floatingNav.direct, num: '01', icon: <Phone size={18} /> },
+    { id: 'contact-form', label: dict.floatingNav.details, num: '02', icon: <FileText size={18} />, offset: 80 },
+    { id: 'roadmap', label: dict.floatingNav.roadmap, num: '03', icon: <Zap size={18} />, offset: 80 },
   ];
 
   return (

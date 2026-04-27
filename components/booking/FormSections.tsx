@@ -1,13 +1,13 @@
 'use client';
 import { User, Building2, Mail, MessageSquare, Target, Wallet, Clock } from 'lucide-react';
 
-export const IdentitySection = ({ identity }: { identity: any }) => (
+export const IdentitySection = ({ identity, title }: { identity: any; title: string }) => (
   <div className="glass-card rounded-3xl p-8 md:p-10 border-white/5 space-y-8">
     <div className="flex items-center gap-3 mb-2">
       <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center">
         <User className="w-4 h-4 text-cyber-blue" />
       </div>
-      <h3 className="text-lg font-bold text-white uppercase tracking-wider">ข้อมูลพื้นฐานของคุณ</h3>
+      <h3 className="text-lg font-bold text-white uppercase tracking-wider">{title}</h3>
     </div>
     
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -33,13 +33,13 @@ export const IdentitySection = ({ identity }: { identity: any }) => (
   </div>
 );
 
-export const PreferenceSection = ({ identity }: { identity: any }) => (
+export const PreferenceSection = ({ identity, title }: { identity: any; title: string }) => (
   <div className="glass-card rounded-3xl p-8 md:p-10 border-white/5 space-y-8">
     <div className="flex items-center gap-3 mb-2">
       <div className="w-8 h-8 rounded-lg bg-deep-blue/10 flex items-center justify-center">
         <MessageSquare className="w-4 h-4 text-deep-blue" />
       </div>
-      <h3 className="text-lg font-bold text-white uppercase tracking-wider">ช่องทางการติดต่อ</h3>
+      <h3 className="text-lg font-bold text-white uppercase tracking-wider">{title}</h3>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -67,13 +67,13 @@ export const PreferenceSection = ({ identity }: { identity: any }) => (
   </div>
 );
 
-export const ProjectScopeSection = ({ category, budget, timeline, challenge }: any) => (
+export const ProjectScopeSection = ({ category, budget, timeline, challenge, title }: any) => (
   <div className="glass-card rounded-3xl p-8 md:p-10 border-white/5 space-y-8">
     <div className="flex items-center gap-3 mb-2">
       <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center">
         <Target className="w-4 h-4 text-cyber-blue" />
       </div>
-      <h3 className="text-lg font-bold text-white uppercase tracking-wider">รายละเอียดโปรเจกต์</h3>
+      <h3 className="text-lg font-bold text-white uppercase tracking-wider">{title}</h3>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -8,10 +8,10 @@ export function useROICalculator() {
   const [avgSalary, setAvgSalary] = useState<number>(35000);
   const [hoursSpent, setHoursSpent] = useState<number>(3);
   
-  // ใช้ useRef สำหรับเก็บค่าสกุลเงินก่อนหน้าเพื่อป้องกัน loop
+  // Use useRef to store previous currency to prevent calculation loops
   const prevCurrencyRef = useRef(currency);
 
-  // จัดการการแปลงค่าเงินเมื่อมีการเปลี่ยนสกุลเงิน
+  // Handle currency conversion when currency changes
   useEffect(() => {
     if (prevCurrencyRef.current !== currency) {
       setAvgSalary(prev => {
@@ -26,8 +26,8 @@ export function useROICalculator() {
     }
   }, [currency, exchangeRate]);
 
-  // คำนวณผลลัพธ์โดยตรง (Computed Properties) 
-  // วิธีนี้ช่วยลดการ Re-render และแก้ปัญหา Error จากการใช้ setResults ใน useEffect
+  // Direct calculation (Computed Properties) 
+  // This reduces Re-renders and fixes errors from using setResults in useEffect
   const ratio = hoursSpent / 8;
   const monthlyLoss = Math.round(ratio * avgSalary * staffCount);
   const annualImpact = monthlyLoss * 12;

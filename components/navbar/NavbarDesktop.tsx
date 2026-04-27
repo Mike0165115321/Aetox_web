@@ -11,7 +11,8 @@ export default function NavbarDesktop({
   currentLang, 
   isLangOpen, 
   setIsLangOpen, 
-  langRef 
+  langRef,
+  dict
 }: any) {
   return (
     <div className="container mx-auto relative flex items-center z-[110]">
@@ -75,7 +76,7 @@ export default function NavbarDesktop({
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-lg">🇹🇭</span>
-                      <span>ภาษาไทย (TH)</span>
+                      <span>{dict?.languages?.th || "ภาษาไทย (TH)"}</span>
                     </div>
                     <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
                   </button>

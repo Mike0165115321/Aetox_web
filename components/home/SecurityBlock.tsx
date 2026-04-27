@@ -26,7 +26,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
           </motion.div>
           
           <h2 className="text-fluid-h1 font-black text-aetox-text-main uppercase">
-            Industrial <span className="text-aetox-accent">Logic Protection</span>
+            {dict.headline.white} <span className="text-aetox-accent">{dict.headline.accent}</span>
           </h2>
           
           <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest leading-relaxed max-w-2xl mx-auto">
@@ -62,7 +62,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
 
                 <div className="mt-10 pt-8 border-t border-aetox-border/50">
                   <div className="flex items-center gap-3 text-[9px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">
-                    <ShieldCheck size={14} className="text-aetox-accent" /> Verified Compliance
+                    <ShieldCheck size={14} className="text-aetox-accent" /> {dict.compliance}
                   </div>
                 </div>
               </motion.div>
@@ -72,11 +72,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
 
         {/* Security Trust Badges */}
         <div className="mt-24 flex flex-wrap justify-center items-center gap-16">
-          {[
-            { label: 'SSL', desc: 'Encryption' },
-            { label: '256', desc: 'AES Standard' },
-            { label: 'SOC', desc: 'Compliant' }
-          ].map((badge, idx) => (
+          {dict.badges.map((badge: any, idx: number) => (
             <motion.div
               key={badge.label}
               initial={{ opacity: 0, scale: 0.8 }}

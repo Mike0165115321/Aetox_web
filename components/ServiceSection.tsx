@@ -10,11 +10,8 @@ export default function ServiceSection({ dict }: { dict?: any }) {
     'web-systems': Globe
   };
 
-  const content = dict || {
-    title: "Core Architecture",
-    description: "บริการหลักที่เราเชี่ยวชาญ เพื่อยกระดับองค์กรของคุณสู่ยุค Digital & AI เต็มรูปแบบ",
-    items: []
-  };
+  if (!dict) return null;
+  const content = dict;
 
   return (
     <section id="services" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
@@ -34,7 +31,7 @@ export default function ServiceSection({ dict }: { dict?: any }) {
             className="inline-flex items-center gap-2 text-aetox-accent font-black text-[10px] tracking-[0.2em] uppercase mb-6"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent" />
-            Strategic Capabilities
+            {content.badge}
           </motion.div>
           <h2 className="text-fluid-h1 font-black text-aetox-text-main uppercase">{content.title}</h2>
           <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest">
@@ -55,6 +52,7 @@ export default function ServiceSection({ dict }: { dict?: any }) {
                 relatedProjects={service.relatedProjects}
                 Icon={Icon} 
                 index={index}
+                deploymentLabel={content.common?.general?.deploymentLabel}
               />
             );
           })}

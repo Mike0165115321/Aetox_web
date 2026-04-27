@@ -13,7 +13,7 @@ export default function AcademyROI({ dict }: { dict: any }) {
     if (cost.includes('1,200,000')) {
       const val = 1200000;
       const converted = currency === 'USD' ? convert(val, 'THB', 'USD') : val;
-      return `${formatCurrency(converted)} ${currency === 'THB' ? '+ บาท / ปี' : '+ / Year'}`;
+      return `${formatCurrency(converted)} ${currency === 'THB' ? '+ ' + (dict.common?.units?.bahtPerYear || 'บาท / ปี') : '+ ' + (dict.common?.units?.usdPerYear || '/ Year')}`;
     }
     return cost;
   };
@@ -50,7 +50,7 @@ export default function AcademyROI({ dict }: { dict: any }) {
                     {item.isBad ? <AlertTriangle className="w-6 h-6 text-red-500" /> : <TrendingUp className="w-6 h-6 text-emerald-500" />}
                   </div>
                   <div className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full ${item.isBad ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
-                    {item.isBad ? 'ความสูญเสียที่ซ่อนอยู่' : 'ความได้เปรียบของการวางสถาปัตยกรรม'}
+                    {item.isBad ? dict.hiddenLoss : dict.advantage}
                   </div>
                 </div>
 
@@ -72,11 +72,11 @@ export default function AcademyROI({ dict }: { dict: any }) {
                     <div className="flex gap-4">
                       {item.isBad ? (
                         <div className="flex items-center gap-2 text-red-500/70 text-xs font-bold uppercase">
-                          <Clock className="w-4 h-4" /> เสียเวลาและโอกาส
+                          <Clock className="w-4 h-4" /> {dict.wasteTime}
                         </div>
                       ) : (
                         <div className="flex items-center gap-2 text-emerald-500/70 text-xs font-bold uppercase">
-                          <DollarSign className="w-4 h-4" /> กำไรที่เติบโตได้
+                          <DollarSign className="w-4 h-4" /> {dict.growthProfit}
                         </div>
                       )}
                     </div>
@@ -88,7 +88,7 @@ export default function AcademyROI({ dict }: { dict: any }) {
 
           <div className="mt-16 text-center">
             <p className="text-gray-500 text-sm font-bold uppercase tracking-[0.3em]">
-              อย่าเป็นแค่นักเขียนโปรแกรม จงเป็นสถาปนิกผู้ออกแบบระบบ
+              {dict.footerNote}
             </p>
           </div>
         </div>

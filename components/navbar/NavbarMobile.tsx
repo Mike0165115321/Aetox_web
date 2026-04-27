@@ -9,7 +9,8 @@ export default function NavbarMobile({
   isMobileMenuOpen, 
   setIsMobileMenuOpen, 
   currentLang, 
-  setCurrentLang 
+  setCurrentLang,
+  dict
 }: any) {
   return (
     <AnimatePresence mode="wait">
@@ -58,10 +59,10 @@ export default function NavbarMobile({
                   }`}
                   onClick={() => setCurrentLang('TH')}
                 >
-                  🇹🇭 TH
+                  🇹🇭 {dict?.languages?.th?.split(' ')[1] || "TH"}
                 </button>
                 <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl opacity-20 cursor-not-allowed text-[10px] font-black tracking-widest text-aetox-text-muted">
-                  🇺🇸 EN
+                  🇺🇸 {dict?.languages?.en?.split(' ')[1] || "EN"}
                 </button>
               </div>
 

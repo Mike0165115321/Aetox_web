@@ -18,8 +18,8 @@ export default function MikeAuthority({ dict }: { dict: any }) {
               <div className="w-24 h-24 bg-deep-blue/20 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-deep-blue/40 rotate-12 group-hover:rotate-0 transition-transform duration-500">
                 <Award className="w-12 h-12 text-deep-blue drop-shadow-deep-glow" />
               </div>
-              <h3 className="text-2xl font-black text-white mb-4">มาตรฐาน Aetox.dev</h3>
-              <p className="text-gray-500 text-xs font-bold uppercase tracking-[0.3em] mb-10">DNA สถาปนิก</p>
+              <h3 className="text-2xl font-black text-white mb-4">{dict.badge}</h3>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-[0.3em] mb-10">{dict.dna}</p>
               
               <div className="space-y-4">
                 {dict.achievements.map((item: string, i: number) => (
@@ -39,7 +39,7 @@ export default function MikeAuthority({ dict }: { dict: any }) {
           <div className="lg:w-7/12 space-y-10">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-3 text-deep-blue font-black text-[10px] tracking-[0.3em] uppercase">
-                <ShieldCheck className="w-4 h-4" /> ความเป็นเลิศที่เชื่อถือได้
+                <ShieldCheck className="w-4 h-4" /> {dict.excellence}
               </div>
               <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
                 {dict.title}
@@ -52,15 +52,15 @@ export default function MikeAuthority({ dict }: { dict: any }) {
             <div className="p-8 rounded-3xl bg-deep-blue/5 border border-deep-blue/10 relative group">
               <div className="absolute top-0 left-0 w-1 h-full bg-deep-blue opacity-50 group-hover:opacity-100 transition-opacity" />
               <p className="text-gray-300 italic leading-relaxed text-lg">
-                " ผมไม่ได้มาสอนคุณเขียนโค้ดเพื่อส่งงานไปวันๆ แต่ผมมาสอนให้คุณรู้วิธีวางรากฐานธุรกิจที่รองรับ AI และ Automation ในระยะยาวแบบที่สถาปนิกจริงๆ เขาทำกัน "
+                &quot; {dict.quote} &quot;
               </p>
               <div className="mt-6 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/10 border border-white/10 overflow-hidden">
                     <div className="w-full h-full bg-gradient-to-tr from-deep-blue to-cyber-blue opacity-50" />
                 </div>
                 <div>
-                  <p className="text-sm font-black text-white uppercase tracking-widest">Mike (Chayapol P.)</p>
-                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">ผู้ก่อตั้ง & หัวหน้าสถาปนิก</p>
+                  <p className="text-sm font-black text-white uppercase tracking-widest">{dict.founderName}</p>
+                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{dict.founderTitle}</p>
                 </div>
               </div>
             </div>

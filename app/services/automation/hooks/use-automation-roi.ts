@@ -1,3 +1,4 @@
+'use client';
 import { useMemo } from 'react';
 
 export type Complexity = 'light' | 'medium' | 'heavy';
@@ -5,8 +6,8 @@ export type Timeframe = 6 | 12 | 36;
 
 export const workloadConfig = {
   light: {
-    label: 'งานระดับพื้นฐาน',
-    sublabel: 'คีย์ข้อมูล / จัดการเอกสารทั่วไป',
+    label: 'Light Workload',
+    sublabel: 'Basic automation',
     humanSeconds: 60,
     botSeconds: 6,
     defaultVolume: 1000,
@@ -18,8 +19,8 @@ export const workloadConfig = {
     icon: 'zap'
   },
   medium: {
-    label: 'งานระดับกลาง',
-    sublabel: 'ตรวจสอบ / ดึงข้อมูลจากหลายแหล่ง',
+    label: 'Medium Workload',
+    sublabel: 'Semi-complex flows',
     humanSeconds: 180,
     botSeconds: 25,
     defaultVolume: 10000,
@@ -31,8 +32,8 @@ export const workloadConfig = {
     icon: 'layers'
   },
   heavy: {
-    label: 'งานระดับซับซ้อน',
-    sublabel: 'เชื่อมต่อหลายระบบ / งานเชิงตรรกะ',
+    label: 'Heavy Workload',
+    sublabel: 'High-logic systems',
     humanSeconds: 420,
     botSeconds: 45,
     defaultVolume: 50000,
@@ -105,21 +106,21 @@ export function useAutomationRoi(inputs: RoiInputs) {
       const cumSaving = monthlySaving * month;
 
       let label = "";
-      if (timeframe === 6) label = `เดือนที่ ${month}`;
+      if (timeframe === 6) label = `Month ${month}`;
       else if (timeframe === 12) {
-        if (month === 1) label = "เดือนแรก";
-        else if (month % 3 === 0) label = `เดือนที่ ${month}`;
+        if (month === 1) label = "Month 1";
+        else if (month % 3 === 0) label = `Month ${month}`;
       }
       else {
-        if (month === 1) label = "ปีที่ 1";
-        else if (month === 13) label = "ปีที่ 2";
-        else if (month === 25) label = "ปีที่ 3";
-        else if (month % 12 === 0) label = `ด. ${month}`;
+        if (month === 1) label = "Year 1";
+        else if (month === 13) label = "Year 2";
+        else if (month === 25) label = "Year 3";
+        else if (month % 12 === 0) label = `M. ${month}`;
       }
 
       return {
         month,
-        label,
+        label, // Default English label, can be mapped in UI
         cumSaving,
         breakEven: cumSaving >= botPrice,
       };
@@ -140,5 +141,5 @@ export function useAutomationRoi(inputs: RoiInputs) {
       costPerUnitBefore, costPerUnitAfter, maxProjectionValue,
       totalPeriodSavings, netProfitAfterInvestment, totalHoursSavedLongTerm, costReductionPct
     };
-  }, [volume, hourlyRate, unitCostManual, botPrice, maintCost, complexity, timeframe, currency, exchangeRate]);
+  }, [volume, hourlyRate, unitCostManual, botPrice, maintCost, complexity, timeframe, currency, exchangeRate, c.botSeconds, c.humanSeconds]);
 }

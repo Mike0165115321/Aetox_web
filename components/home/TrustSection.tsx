@@ -47,23 +47,20 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-[8px] md:text-[9px] font-black tracking-widest uppercase mb-1.5">
                     <Star size={10} className="fill-yellow-500" /> {founder.accolade}
                   </div>
-                  <h4 className="text-white font-black text-[10px] md:text-xs uppercase tracking-wider">Recognition of Excellence</h4>
+                  <h4 className="text-white font-black text-[10px] md:text-xs uppercase tracking-wider">{trust.recognition}</h4>
                 </div>
               </div>
 
               <div className="space-y-4 md:space-y-6 flex-1">
                 <div>
-                  {/* === แก้ไขชื่อของคุณตรงนี้ === */}
                   <h2 className="text-2xl md:text-4xl font-black text-aetox-text-main leading-tight mb-2 tracking-tight">
                     {founder.name}
                   </h2>
-                  {/* === แก้ไขตำแหน่งของคุณตรงนี้ === */}
                   <p className="text-aetox-accent font-black tracking-[0.3em] uppercase text-[9px] md:text-[10px]">
                     {founder.title}
                   </p>
                 </div>
                 
-                {/* === แก้ไขคำอธิบายของคุณตรงนี้ === */}
                 <p className="text-sm md:text-lg text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-8">
                   &quot;{founder.description}&quot;
                 </p>
@@ -80,7 +77,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
 
               <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-aetox-border/50">
                 <Link href="/contact" className="group flex items-center justify-between text-aetox-text-main font-bold text-sm hover:text-aetox-accent transition-all">
-                  {about?.consultLabel || "ปรึกษาเรา"} <ArrowRight className="group-hover:translate-x-3 transition-transform w-4 h-4 md:w-[18px] md:h-[18px]" />
+                  {dict.common?.labels?.consultUs} <ArrowRight className="group-hover:translate-x-3 transition-transform w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </Link>
               </div>
             </motion.div>
@@ -97,44 +94,37 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
               <div className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 border-b border-aetox-border/50">
                 <div className="flex items-center gap-3 md:gap-4">
                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
-                   <h3 className="text-aetox-text-main font-black text-[10px] md:text-sm uppercase tracking-[0.3em] md:tracking-[0.4em]">Elite Portfolio</h3>
+                   <h3 className="text-aetox-text-main font-black text-[10px] md:text-sm uppercase tracking-[0.3em] md:tracking-[0.4em]">{trust.portfolio}</h3>
                 </div>
                 <Link href="/authority" className="text-aetox-text-muted hover:text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-colors">
-                  View Full
+                  {trust.viewFull}
                 </Link>
               </div>
 
               <div className="p-3 md:p-6">
-                <ProjectSlider projects={projects} />
+                <ProjectSlider projects={projects} viewDetailsLabel={dict.common?.labels?.viewDetails} />
               </div>
             </motion.div>
 
             {/* Strategic Value Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              {[
-                { 
-                  icon: Shield, 
-                  title: 'Architectural Excellence', 
-                  desc: 'ออกแบบเพื่อความเสถียรและความปลอดภัยสูงสุด' 
-                },
-                { 
-                  icon: ShieldCheck, 
-                  title: 'ROI Driven Engineering', 
-                  desc: 'เราออกแบบมูลค่าทางธุรกิจที่วัดผลได้จริง' 
-                }
-              ].map((item, idx) => (
-                <motion.div 
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + idx * 0.1 }}
-                  className="glass-card p-6 md:p-10 rounded-[24px] md:rounded-[32px] border-aetox-border bg-aetox-surface/10 hover:bg-aetox-surface/30 transition-all duration-500 group flex flex-col justify-center"
-                >
-                  <item.icon className="text-aetox-accent mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 w-7 h-7 md:w-8 md:h-8" />
-                  <h4 className="text-aetox-text-main font-black text-xs md:text-base uppercase tracking-tight mb-2 md:mb-4">{item.title}</h4>
-                  <p className="text-aetox-text-soft text-[12px] md:text-sm font-medium leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
+              {(trust.values || []).map((item: any, idx: number) => {
+                const icons = [Shield, ShieldCheck];
+                const Icon = icons[idx % icons.length];
+                return (
+                  <motion.div 
+                    key={item.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                    className="glass-card p-6 md:p-10 rounded-[24px] md:rounded-[32px] border-aetox-border bg-aetox-surface/10 hover:bg-aetox-surface/30 transition-all duration-500 group flex flex-col justify-center"
+                  >
+                    <Icon className="text-aetox-accent mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 w-7 h-7 md:w-8 md:h-8" />
+                    <h4 className="text-aetox-text-main font-black text-xs md:text-base uppercase tracking-tight mb-2 md:mb-4">{item.title}</h4>
+                    <p className="text-aetox-text-soft text-[12px] md:text-sm font-medium leading-relaxed">{item.desc}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 

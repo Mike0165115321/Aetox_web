@@ -20,7 +20,7 @@ export default function AcademyHero({ dict }: { dict: any }) {
             className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-deep-blue/30 transition-all group backdrop-blur-sm shadow-sm"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm font-bold tracking-wide">กลับสู่หน้าหลัก</span>
+            <span className="text-sm font-bold tracking-wide">{dict.common?.labels?.backToHome || "Back to Home"}</span>
           </Link>
         </motion.div>
 
@@ -64,7 +64,7 @@ export default function AcademyHero({ dict }: { dict: any }) {
             
             <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-white/5 border border-white/10">
               <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ได้รับความไว้วางใจระดับเหรียญทอง</span>
+              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">{dict.trustBadge}</span>
             </div>
           </div>
         </motion.div>
