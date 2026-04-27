@@ -14,7 +14,7 @@ import {
   Sparkles
 } from 'lucide-react';
 
-export function RagChatSimulator({ dict }: { dict: any }) {
+export function RagChatSimulator({ dict, compact = false }: { dict: any, compact?: boolean }) {
   const [useCase, setUseCase] = useState(dict.useCases[0].id);
 
   const iconMap: any = {
@@ -35,11 +35,13 @@ export function RagChatSimulator({ dict }: { dict: any }) {
   const currentStyle = styleMap[current.id] || styleMap.hr;
 
   return (
-    <div className="w-full max-w-5xl mx-auto my-20 space-y-10">
-      <div className="text-center space-y-4">
-        <h3 className="text-3xl font-black text-white">{dict.title.white} <span className="text-cyber-blue">{dict.title.accent}</span></h3>
-        <p className="text-gray-500">{dict.description}</p>
-      </div>
+    <div className={`w-full mx-auto space-y-10 ${compact ? 'max-w-full my-0' : 'max-w-5xl my-20'}`}>
+      {!compact && (
+        <div className="text-center space-y-4">
+          <h3 className="text-3xl font-black text-white">{dict.title.white} <span className="text-cyber-blue">{dict.title.accent}</span></h3>
+          <p className="text-gray-500">{dict.description}</p>
+        </div>
+      )}
 
       {/* Use Case Selector */}
       <div className="flex flex-wrap justify-center gap-3 w-full">

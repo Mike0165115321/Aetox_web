@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Calculator } from 'lucide-react';
-import AutomationSimulatorHome from './AutomationSimulatorHome';
+import { Calculator, Zap, BrainCircuit, LayoutGrid } from 'lucide-react';
+import SimulatorsHub from './SimulatorsHub';
 
 export default function ROIPreview({ dict }: { dict: any }) {
   if (!dict) return null;
@@ -43,7 +43,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <AutomationSimulatorHome dict={dict.simulator} />
+          <SimulatorsHub dict={dict.simulators} />
         </motion.div>
         
         {/* Footer CTA */}

@@ -51,7 +51,7 @@ const TIERS = [
   },
 ];
 
-export default function AiAgentsSimulator({ dict }: { dict: any }) {
+export default function AiAgentsSimulator({ dict, compact = false }: { dict: any, compact?: boolean }) {
   const { currency, formatCurrency, exchangeRate } = useCurrency();
   const simulator = dict.simulator;
   const [tierId, setTierId] = useState('early');
@@ -116,16 +116,18 @@ export default function AiAgentsSimulator({ dict }: { dict: any }) {
   }
 
   return (
-    <div className="space-y-24">
+    <div className={compact ? 'space-y-8' : 'space-y-24'}>
       {/* ─── ROI Calculator ─── */}
       <div className="space-y-8">
         {/* Header */}
-        <div className="space-y-3">
-          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
-            {simulator.title.white} <span className="text-cyber-blue">{simulator.title.accent}</span>
-          </h2>
-          <p className="text-gray-500 max-w-xl text-base font-medium">{simulator.description}</p>
-        </div>
+        {!compact && (
+          <div className="space-y-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              {simulator.title.white} <span className="text-cyber-blue">{simulator.title.accent}</span>
+            </h2>
+            <p className="text-gray-500 max-w-xl text-base font-medium">{simulator.description}</p>
+          </div>
+        )}
 
         {/* ─── Tier Selector ─── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">

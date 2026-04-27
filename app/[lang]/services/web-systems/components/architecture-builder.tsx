@@ -10,7 +10,7 @@ import {
 // ประเภทของระบบที่รองรับ
 type SystemType = 'none' | 'ecommerce' | 'internal' | 'data';
 
-export default function ArchitectureBuilder({ dict }: { dict: any }) {
+export default function ArchitectureBuilder({ dict, compact = false }: { dict: any, compact?: boolean }) {
   const [selectedSystem, setSelectedSystem] = useState<SystemType>('none');
   const [buildStep, setBuildStep] = useState<number>(0);
   const [isBuilding, setIsBuilding] = useState<boolean>(false);
@@ -163,33 +163,35 @@ export default function ArchitectureBuilder({ dict }: { dict: any }) {
       </div>
 
       {/* ─── Desktop View (Preserved) ─── */}
-      <div className="hidden md:block w-full glass-card rounded-[24px] border border-white/10 shadow-2xl overflow-hidden bg-black/40">
+      <div className={`hidden md:block w-full overflow-hidden ${compact ? '' : 'glass-card rounded-[24px] border border-white/10 shadow-2xl bg-black/40'}`}>
         
         {/* 1. Header (Status Bar) */}
-        <div className="bg-ultra-dark/90 px-6 py-5 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20">
-              <Cpu className="text-cyber-blue" size={20} />
+        {!compact && (
+          <div className="bg-ultra-dark/90 px-6 py-5 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20">
+                <Cpu className="text-cyber-blue" size={20} />
+              </div>
+              <h2 className="text-sm font-bold text-white uppercase tracking-wider">{dict.title}</h2>
             </div>
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">{dict.title}</h2>
+            
+            <div className="flex gap-6 text-[10px] font-bold">
+              <div className="flex flex-col gap-1">
+                <span className="text-gray-500 uppercase tracking-widest">ARCHITECTURE</span>
+                <span className="text-white">{activeConfig ? activeConfig.title : 'N/A'}</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-gray-500 uppercase tracking-widest">STATUS</span>
+                <span className={`${isBuilding ? 'text-amber-400 animate-pulse' : (buildStep === 5 ? 'text-emerald-400' : 'text-gray-500')} flex items-center gap-1`}>
+                  {isBuilding ? dict.status.building.toUpperCase() : (buildStep === 5 ? <><CheckCircle2 size={12}/> {dict.status.ready.toUpperCase()}</> : dict.status.waiting.toUpperCase())}
+                </span>
+              </div>
+            </div>
           </div>
-          
-          <div className="flex gap-6 text-[10px] font-bold">
-            <div className="flex flex-col gap-1">
-              <span className="text-gray-500 uppercase tracking-widest">ARCHITECTURE</span>
-              <span className="text-white">{activeConfig ? activeConfig.title : 'N/A'}</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-gray-500 uppercase tracking-widest">STATUS</span>
-              <span className={`${isBuilding ? 'text-amber-400 animate-pulse' : (buildStep === 5 ? 'text-emerald-400' : 'text-gray-500')} flex items-center gap-1`}>
-                {isBuilding ? dict.status.building.toUpperCase() : (buildStep === 5 ? <><CheckCircle2 size={12}/> {dict.status.ready.toUpperCase()}</> : dict.status.waiting.toUpperCase())}
-              </span>
-            </div>
-          </div>
-        </div>
+        )}
 
         {/* 2. Main Builder Display */}
-        <div className="relative p-6 md:p-10 min-h-[520px] flex flex-col bg-gradient-to-b from-transparent to-black/20">
+        <div className={`relative p-6 md:p-10 min-h-[520px] flex flex-col bg-gradient-to-b from-transparent to-black/20 ${compact ? 'rounded-[40px] border border-white/10' : ''}`}>
           <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-5 pointer-events-none" />
           
           {selectedSystem === 'none' && (
