@@ -1,12 +1,25 @@
 export const aiAgentsContent = {
+  navigation: {
+    hero: "บทนำ",
+    simulator: "ระบบจำลอง RAG",
+    orchestrator: "ระบบควบคุม (Orchestrator)",
+    retrieval: "การสืบค้นข้อมูล",
+    generation: "การสรุปผลเชิงกลยุทธ์",
+    pipeline: "เส้นทางข้อมูล",
+    roi: "วิเคราะห์ความคุ้มค่า",
+    cta: "เริ่มต้นใช้งาน"
+  },
   hero: {
     badge: "สถาปัตยกรรมเอเจนต์อัจฉริยะ (AI Agent)",
+    techBadge: "ระบบเอเจนต์ AI และ RAG สำหรับองค์กร",
     title: {
       white: "ระบบปัญญาประดิษฐ์",
       accent: "สำหรับองค์กร"
     },
     description: "เปลี่ยนข้อมูลนิ่งในองค์กรให้กลายเป็น 'ผู้เชี่ยวชาญ AI' ที่พร้อมช่วยตัดสินใจและทำงานแทนคุณ ด้วยระบบ RAG อัจฉริยะที่แม่นยำสูงสุด พร้อมการอ้างอิงแหล่งที่มาที่ตรวจสอบได้จริง",
-    cta: "เริ่มออกแบบโซลูชัน AI ของคุณ"
+    cta: "เริ่มออกแบบโซลูชัน AI ของคุณ",
+    demoLabel: "ดูตัวอย่างการใช้งาน",
+    backLabel: "ย้อนกลับไปยังบริการ"
   },
 
   showcase: [
@@ -324,6 +337,18 @@ export const aiAgentsContent = {
       latency: "ความหน่วง (Latency)",
       throughput: "ปริมาณงาน (Throughput)",
       synchronized: "เชื่อมต่อแล้ว (Synchronized)"
+    },
+    labels: {
+      orchestration: "การควบคุมเอเจนต์ (Agentic Orchestration)",
+      hybridRetrieval: "การสืบค้นข้อมูลแม่นยำสูง (Hybrid Retrieval)",
+      selfCorrection: "ระบบตรวจสอบและแก้ไขตัวเอง",
+      strategicGen: "การสังเคราะห์เชิงกลยุทธ์",
+      streamInterface: "ส่วนแสดงผลเรียลไทม์",
+      agent: "เอเจนต์",
+      planner: "ผู้วางแผนกลยุทธ์",
+      analyst: "นักวิเคราะห์ความเสี่ยง",
+      skip: "ข้ามขั้นตอน",
+      rank: "จัดลำดับ"
     }
   },
   cta: {

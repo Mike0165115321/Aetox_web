@@ -45,7 +45,7 @@ export function AppliedIn({ items, label }: { items: { name: string; link?: stri
 }
 
 /* ─── 01. Orchestrator Visual ─────────────────────────────────────── */
-export function OrchestratorVisual({ dict }: { dict: any }) {
+export function OrchestratorVisual({ dict, labels }: { dict: any; labels: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
@@ -59,11 +59,11 @@ export function OrchestratorVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-bold text-cyber-blue uppercase tracking-widest">Agentic Orchestration</span>
+          <span className="text-[10px] font-bold text-cyber-blue uppercase tracking-widest">{labels.orchestration}</span>
         </div>
         <div className="text-[9px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative h-[220px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
             <motion.div key="decomp" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} className="w-full space-y-3">
@@ -81,14 +81,41 @@ export function OrchestratorVisual({ dict }: { dict: any }) {
             </motion.div>
           )}
           {phase === 1 && (
-            <motion.div key="parallel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex items-center justify-around">
+            <motion.div key="parallel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex items-center justify-around relative">
+              {/* Central Connection Beam */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-px bg-cyber-blue/10">
+                <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }} className="w-20 h-full bg-gradient-to-r from-transparent via-cyber-blue to-transparent" />
+              </div>
+
               {[1,2,3].map((a) => (
-                <div key={a} className="flex flex-col items-center gap-2">
-                  <div className="relative">
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: 'linear' }} className="w-10 h-10 rounded-full border border-dashed border-cyber-blue/30" />
-                    <Bot className="absolute inset-0 m-auto w-5 h-5 text-cyber-blue" />
+                <div key={a} className="flex flex-col items-center gap-3 relative z-10">
+                  <div className="relative group">
+                    <motion.div 
+                      animate={{ rotate: 360, borderColor: ['rgba(6,182,212,0.1)', 'rgba(16,185,129,0.4)', 'rgba(6,182,212,0.1)'] }} 
+                      transition={{ duration: 4, repeat: Infinity, ease: 'linear' }} 
+                      className="w-14 h-14 rounded-full border border-dashed flex items-center justify-center bg-black/40 backdrop-blur-sm"
+                    />
+                    <motion.div 
+                      animate={{ opacity: [0.3, 0.6, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute inset-0 rounded-full bg-cyber-blue/5 shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+                    />
+                    <Bot className="absolute inset-0 m-auto w-6 h-6 text-cyber-blue" />
+                    
+                    {/* Status Dot */}
+                    <div className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-black shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                   </div>
-                  <div className="text-[7px] font-black text-gray-500 uppercase tracking-widest">Agent 0{a}</div>
+                  
+                  <div className="text-center space-y-1">
+                    <div className="text-[7px] font-black text-gray-500 uppercase tracking-widest">{labels.agent} 0{a}</div>
+                    <motion.div 
+                      animate={{ color: ['#9CA3AF', '#06B6D4', '#9CA3AF'] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: a * 0.3 }}
+                      className="text-[9px] font-mono font-black tabular-nums"
+                    >
+                      {(85 + a * 4).toFixed(1)}%
+                    </motion.div>
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -126,7 +153,7 @@ export function OrchestratorVisual({ dict }: { dict: any }) {
 }
 
 /* ─── 02. Hybrid Retrieval Visual ─────────────────────────────────── */
-export function HybridRetrievalVisual({ dict }: { dict: any }) {
+export function HybridRetrievalVisual({ dict, labels }: { dict: any; labels: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
@@ -140,11 +167,11 @@ export function HybridRetrievalVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Hybrid Precision Retrieval</span>
+          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">{labels.hybridRetrieval}</span>
         </div>
         <div className="text-[9px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative h-[220px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
             <motion.div key="hyde" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col items-center gap-4">
@@ -157,12 +184,23 @@ export function HybridRetrievalVisual({ dict }: { dict: any }) {
                 <span className="text-[8px] font-black text-cyber-blue uppercase bg-cyber-blue/10 border border-cyber-blue/20 px-2 py-0.5 rounded-full">{dict.hypothetical}</span>
                 <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="text-cyber-blue/40 text-sm">↓</motion.div>
               </div>
-              <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="w-full px-4 py-2 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 shadow-cyber-glow/10">
-                <div className="text-[8px] font-black text-cyber-blue uppercase mb-1.5">{dict.vector}</div>
+              <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="w-full px-4 py-3 rounded-xl bg-cyber-blue/10 border border-cyber-blue/40 shadow-[0_0_30px_rgba(6,182,212,0.15)]">
+                <div className="flex justify-between items-center mb-2">
+                  <div className="text-[8px] font-black text-cyber-blue uppercase tracking-widest">{dict.vector}</div>
+                  <div className="text-[7px] font-mono text-emerald-400">INDEX_ACTIVE_99.2%</div>
+                </div>
 
-                <div className="flex gap-1">
-                  {[60, 85, 45, 90, 70, 55, 80, 40].map((h, i) => (
-                    <motion.div key={i} animate={{ scaleY: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }} className="flex-1 bg-cyber-blue/50 rounded-sm" style={{ height: `${h * 0.15}px`, minHeight: '4px' }} />
+                <div className="flex gap-1.5 h-16 items-end">
+                  {[60, 85, 45, 90, 70, 55, 80, 40, 65, 50].map((h, i) => (
+                    <motion.div 
+                      key={i} 
+                      animate={{ 
+                        height: [`${h * 0.15}px`, `${h * 0.22}px`, `${h * 0.15}px`],
+                        backgroundColor: i % 3 === 0 ? 'rgba(16,185,129,0.5)' : 'rgba(6,182,212,0.5)'
+                      }} 
+                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }} 
+                      className="flex-1 rounded-sm shadow-cyber-glow/10" 
+                    />
                   ))}
                 </div>
               </motion.div>
@@ -203,7 +241,7 @@ export function HybridRetrievalVisual({ dict }: { dict: any }) {
                   </div>
                   <div className={`text-[8px] font-black w-6 text-right ${item.score >= 0.7 ? 'text-cyber-blue' : 'text-gray-600'}`}>{item.score}</div>
                   <div className={`text-[6px] font-black px-1 py-0.5 rounded ${item.skip ? 'bg-green-500/10 border border-green-500/30 text-green-500' : 'bg-white/5 text-gray-600'}`}>
-                    {item.skip ? 'SKIP' : 'RANK'}
+                    {item.skip ? labels.skip : labels.rank}
                   </div>
                 </div>
               ))}
@@ -233,7 +271,7 @@ export function HybridRetrievalVisual({ dict }: { dict: any }) {
 }
 
 /* ─── 03. Self-Correction Visual ──────────────────────────────────── */
-export function SelfCorrectionVisual({ dict }: { dict: any }) {
+export function SelfCorrectionVisual({ dict, labels }: { dict: any; labels: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
@@ -247,11 +285,11 @@ export function SelfCorrectionVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Self-Correction Engine</span>
+          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">{labels.selfCorrection}</span>
         </div>
         <div className="text-[9px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative h-[220px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
             <motion.div key="check" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-4 w-full">
@@ -270,15 +308,36 @@ export function SelfCorrectionVisual({ dict }: { dict: any }) {
             </motion.div>
           )}
           {phase === 1 && (
-            <motion.div key="loop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-3 w-full">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center opacity-50"><Database className="w-5 h-5" /></div>
-                <motion.div animate={{ rotate: -360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="text-cyber-blue"><RefreshCw className="w-6 h-6" /></motion.div>
-                <div className="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center shadow-cyber-glow"><Search className="w-5 h-5 text-cyber-blue" /></div>
+            <motion.div key="loop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-4 w-full">
+              <div className="flex items-center gap-6">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center opacity-50 relative">
+                  <Database className="w-6 h-6" />
+                </div>
+                <motion.div animate={{ rotate: -360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="text-cyber-blue relative">
+                  <RefreshCw className="w-8 h-8" />
+                  <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1, repeat: Infinity }} className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cyber-blue shadow-cyber-glow" />
+                </motion.div>
+                <div className="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center shadow-cyber-glow relative">
+                  <Search className="w-6 h-6 text-cyber-blue" />
+                </div>
               </div>
-              <div className="text-[8px] font-black text-cyber-blue uppercase tracking-widest mt-2">{dict.requerying}</div>
-              <div className="w-32 h-1 bg-white/5 rounded-full overflow-hidden mt-1">
-                <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-1/2 h-full bg-cyber-blue" />
+              
+              <div className="w-full max-w-[200px] space-y-2">
+                <div className="flex justify-between items-center text-[7px] font-black text-cyber-blue/70 uppercase tracking-[0.2em]">
+                  <span>{dict.requerying}</span>
+                  <motion.span animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.5, repeat: Infinity }}>SYNCING...</motion.span>
+                </div>
+                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                  <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }} className="w-1/2 h-full bg-gradient-to-r from-transparent via-cyber-blue to-transparent" />
+                </div>
+                <div className="flex flex-col gap-1 pt-1">
+                  {[1, 2].map(i => (
+                    <div key={i} className="flex justify-between items-center text-[6px] font-mono text-gray-600">
+                      <span>LOG_FIX_ID_{4820 + i}</span>
+                      <span className="text-emerald-500/60">REPAIRED</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
@@ -317,7 +376,7 @@ export function SelfCorrectionVisual({ dict }: { dict: any }) {
 }
 
 /* ─── 04. Strategic Output Visual ─────────────────────────────────── */
-export function StrategicOutputVisual({ dict }: { dict: any }) {
+export function StrategicOutputVisual({ dict, labels }: { dict: any; labels: any }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setPhase((prev) => (prev + 1) % 3), 5000);
@@ -331,18 +390,31 @@ export function StrategicOutputVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Strategic Generation</span>
+          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">{labels.strategicGen}</span>
         </div>
         <div className="text-[9px] font-mono text-gray-500 bg-white/5 px-2 py-0.5 rounded border border-white/10">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative h-[220px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
-            <motion.div key="roles" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-2">
-              {['Strategic Planner', 'Risk Analyst'].map((r, i) => (
-                <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                  <div className="w-7 h-7 rounded-full bg-cyber-blue/10 flex items-center justify-center text-cyber-blue"><Bot size={14} /></div>
-                  <div className="text-[9px] font-black text-white uppercase">{r}</div>
+            <motion.div key="roles" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-3">
+              {[labels.planner, labels.analyst].map((r, i) => (
+                <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 relative group overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyber-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center gap-3 relative z-10">
+                    <div className="w-8 h-8 rounded-full bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center text-cyber-blue shadow-[0_0_10px_rgba(6,182,212,0.1)]">
+                      <Bot size={16} />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="text-[9px] font-black text-white uppercase tracking-wider">{r}</div>
+                      <div className="flex gap-0.5">
+                        {[1,2,3,4,5].map(b => (
+                          <motion.div key={b} animate={{ height: [2, 6, 2] }} transition={{ duration: 0.5 + b*0.1, repeat: Infinity }} className="w-0.5 bg-cyber-blue/40" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-[7px] font-black text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 relative z-10">ACTIVE</div>
                 </div>
               ))}
             </motion.div>
@@ -381,7 +453,7 @@ export function StrategicOutputVisual({ dict }: { dict: any }) {
 }
 
 /* ─── 05. Real-time Stream Visual ─────────────────────────────────── */
-export function RealTimeStreamVisual({ dict }: { dict: any }) {
+export function RealTimeStreamVisual({ dict, labels }: { dict: any; labels: any }) {
   const [streamText, setStreamText] = useState('');
   const fullText = dict.fullText;
 
@@ -400,16 +472,23 @@ export function RealTimeStreamVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyber-blue" />
-          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Real-time Stream Interface</span>
+          <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">{labels.streamInterface}</span>
         </div>
         <div className="text-[9px] font-mono text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-widest">Live SSE</div>
       </div>
       <div className="flex-1 flex items-center justify-center h-[220px]">
-        <div className="w-full p-5 rounded-2xl bg-ultra-dark/50 border border-white/10 font-mono text-[10px] leading-relaxed text-gray-300 relative overflow-hidden group h-full">
-          <div className="absolute top-0 right-0 p-3 opacity-20"><Zap className="w-4 h-4 text-cyber-blue" /></div>
-          <span className="text-cyber-blue mr-2 tracking-tighter opacity-50"># inference_output_{">"}</span>
-          {streamText}
-          <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ duration: 0.8, repeat: Infinity }} className="inline-block w-1.5 h-3.5 bg-cyber-blue ml-1 align-middle shadow-cyber-glow" />
+        <div className="w-full p-5 rounded-2xl bg-black/60 border border-white/10 font-mono text-[11px] leading-relaxed text-gray-300 relative overflow-hidden group h-full shadow-inner">
+          <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-[0.03]" />
+          <div className="absolute top-0 right-0 p-3 opacity-20"><Zap className="w-5 h-5 text-cyber-blue shadow-cyber-glow" /></div>
+          <div className="relative z-10">
+            <span className="text-cyber-blue mr-2 tracking-tighter opacity-70 font-black"># inference_output_{">"}</span>
+            <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">{streamText}</span>
+            <motion.span 
+              animate={{ opacity: [0, 1, 0] }} 
+              transition={{ duration: 0.8, repeat: Infinity }} 
+              className="inline-block w-2 h-4 bg-cyber-blue ml-1 align-middle shadow-[0_0_10px_rgba(6,182,212,0.8)]" 
+            />
+          </div>
         </div>
       </div>
       <div className="mt-4 p-4 h-[90px] flex items-center justify-between px-2 bg-white/[0.02] border border-white/5 rounded-2xl">
@@ -435,16 +514,16 @@ export function AiShowcase({ dict }: { dict: any }) {
   const steps = engagement.steps;
 
   const visuals = [
-    <OrchestratorVisual key="orch" dict={dict.visuals.orchestrator} />,
-    <HybridRetrievalVisual key="hybrid" dict={dict.visuals.hybrid} />,
-    <SelfCorrectionVisual key="self-correct" dict={dict.visuals.correction} />,
-    <StrategicOutputVisual key="strategic" dict={dict.visuals.strategic} />,
-    <RealTimeStreamVisual key="stream" dict={dict.visuals.stream} />,
+    <OrchestratorVisual key="orch" dict={dict.visuals.orchestrator} labels={dict.visuals.labels} />,
+    <HybridRetrievalVisual key="hybrid" dict={dict.visuals.hybrid} labels={dict.visuals.labels} />,
+    <SelfCorrectionVisual key="self-correct" dict={dict.visuals.correction} labels={dict.visuals.labels} />,
+    <StrategicOutputVisual key="strategic" dict={dict.visuals.strategic} labels={dict.visuals.labels} />,
+    <RealTimeStreamVisual key="stream" dict={dict.visuals.stream} labels={dict.visuals.labels} />,
   ];
 
   return (
     <div className="space-y-6">
-      <ServiceVisualCard minHeight="h-auto">
+      <ServiceVisualCard minHeight="h-[560px] lg:h-[620px]">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div 
             key={activeStep} 

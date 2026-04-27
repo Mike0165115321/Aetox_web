@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import BookingForm from '@/components/BookingForm';
 import Footer from '@/components/Footer';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
-import { Mail, Phone, Zap, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, Zap, ShieldCheck, Search, MessageSquare, Rocket } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ContactClient({ dict, navDict, contactSections }: { dict: any, navDict: any, contactSections: NavSection[] }) {
@@ -69,79 +69,109 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
       <BookingForm dict={dict} />
 
       {/* 3. Next Steps / Roadmap */}
-      <section id="roadmap" className="py-32 border-t border-aetox-border overflow-hidden scroll-mt-20">
-        {/* Background Architectural Elements */}
+      <section id="roadmap" className="py-32 border-t border-aetox-border overflow-hidden scroll-mt-20 relative">
+        {/* Background Decorative Elements */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <motion.div 
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-20 -right-20 text-aetox-accent/5"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-40 -right-40 text-aetox-accent/10"
           >
-            <Zap size={500} strokeWidth={0.2} />
+            <Zap size={600} strokeWidth={0.1} />
           </motion.div>
         </div>
 
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-16">
+          <div className="max-w-6xl mx-auto text-center space-y-20">
             <div className="space-y-4">
-              <h2 className="text-fluid-h2 font-black text-aetox-text-main">{dict.roadmap.title}</h2>
-              <p className="text-fluid-p text-aetox-text-soft font-medium">{dict.roadmap.subtitle}</p>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-aetox-accent text-xs font-black uppercase tracking-[0.3em] mb-4"
+              >
+                Workflow Integration
+              </motion.div>
+              <h2 className="text-fluid-h2 font-black text-aetox-text-main tracking-tight leading-tight">{dict.roadmap.title}</h2>
+              <p className="text-fluid-p text-aetox-text-soft font-medium max-w-2xl mx-auto">{dict.roadmap.subtitle}</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 relative">
-              {/* Connector Lines (Desktop) */}
-              <motion.div 
-                initial={{ opacity: 0, scaleX: 0 }}
-                whileInView={{ opacity: 1, scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, delay: 0.5, ease: "circOut" }}
-                className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-aetox-accent/30 to-transparent -translate-y-1/2 origin-left" 
-              />
-              
-              {dict.roadmap.steps.map((item: any, idx: number) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+              {/* Central Flow Line (Desktop) */}
+              <div className="hidden md:block absolute top-[45px] left-[15%] right-[15%] h-px bg-white/5 overflow-hidden">
                 <motion.div 
-                  key={item.n} 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 20,
-                    delay: idx * 0.2 
-                  }}
-                  className="relative space-y-6 group"
-                >
-                  {/* Connector (Mobile) */}
-                  {idx < 2 && (
-                    <motion.div 
-                      initial={{ opacity: 0, height: 0 }}
-                      whileInView={{ opacity: 1, height: 48 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + idx * 0.2 }}
-                      className="md:hidden absolute top-20 left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-aetox-accent/30 to-transparent" 
-                    />
-                  )}
-                  
+                  animate={{ x: ['-100%', '100%'] }} 
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
+                  className="w-1/3 h-full bg-gradient-to-r from-transparent via-aetox-accent/40 to-transparent" 
+                />
+              </div>
+              
+              {dict.roadmap.steps.map((item: any, idx: number) => {
+                const icons = [
+                  <Search key="s" className="w-6 h-6" />,
+                  <MessageSquare key="m" className="w-6 h-6" />,
+                  <Rocket key="r" className="w-6 h-6" />
+                ];
+                
+                return (
                   <motion.div 
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
-                    className="w-16 h-16 rounded-full bg-aetox-accent text-white font-black flex items-center justify-center mx-auto shadow-aetox-glow relative z-10 transition-transform group-hover:scale-110"
+                    key={item.n} 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: idx * 0.2 }}
+                    className="relative group"
                   >
-                    {item.n}
+                    <div className="glass-card p-8 lg:p-10 rounded-[32px] border-aetox-border hover:border-aetox-accent/30 transition-all duration-500 hover:bg-aetox-accent/[0.02] flex flex-col items-center text-center space-y-6 h-full relative overflow-hidden">
+                      {/* Step Number Badge */}
+                      <div className="absolute top-6 right-8 text-[40px] font-black text-white/[0.03] pointer-events-none group-hover:text-aetox-accent/[0.05] transition-colors italic">
+                        0{item.n}
+                      </div>
+
+                      {/* Icon Container */}
+                      <div className="w-20 h-20 rounded-2xl bg-aetox-surface border border-white/5 flex items-center justify-center relative shadow-2xl group-hover:shadow-aetox-glow/20 transition-all duration-500 group-hover:-translate-y-1">
+                        <div className="absolute inset-0 rounded-2xl bg-aetox-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="text-aetox-accent relative z-10">
+                          {icons[idx]}
+                        </div>
+                        {/* Status Ring */}
+                        <motion.div 
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                          className="absolute -inset-1 rounded-2xl border border-dashed border-aetox-accent/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                        />
+                      </div>
+
+                      <div className="space-y-3 relative z-10">
+                        <h4 className="text-aetox-text-main font-bold text-xl tracking-tight group-hover:text-aetox-accent transition-colors">{item.t}</h4>
+                        <p className="text-aetox-text-soft text-[13px] leading-relaxed font-medium">
+                          {item.d}
+                        </p>
+                      </div>
+
+                      {/* Mobile Arrow */}
+                      {idx < 2 && (
+                        <div className="md:hidden pt-4 text-aetox-accent/20">
+                          <Zap size={20} className="animate-pulse" />
+                        </div>
+                      )}
+                    </div>
                   </motion.div>
-                  <h4 className="text-aetox-text-main font-bold text-xl group-hover:text-aetox-accent transition-colors">{item.t}</h4>
-                  <p className="text-aetox-text-soft text-sm leading-relaxed max-w-[280px] mx-auto font-medium">{item.d}</p>
-                </motion.div>
-              ))}
+                );
+              })}
             </div>
 
-            <div className="pt-12">
-               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-aetox-surface/50 border border-aetox-border text-aetox-text-soft">
-                 <ShieldCheck className="text-aetox-accent" size={20} />
-                 <span className="text-xs md:text-sm font-bold tracking-wide">{dict.roadmap.privacyNote}</span>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="pt-12"
+            >
+               <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-white/[0.02] border border-white/5 text-aetox-text-soft shadow-inner">
+                 <ShieldCheck className="text-emerald-500 shadow-emerald-glow" size={20} />
+                 <span className="text-[11px] md:text-xs font-black uppercase tracking-widest">{dict.roadmap.privacyNote}</span>
                </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

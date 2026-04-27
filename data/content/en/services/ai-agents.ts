@@ -1,6 +1,17 @@
 export const aiAgentsContent = {
+  navigation: {
+    hero: "Introduction",
+    simulator: "RAG Simulator",
+    orchestrator: "Orchestration",
+    retrieval: "Hybrid Retrieval",
+    generation: "Strategic Output",
+    pipeline: "Knowledge Pipeline",
+    roi: "ROI Simulator",
+    cta: "Get Started"
+  },
   hero: {
     badge: "Intelligent AI Agent Architecture",
+    techBadge: "AGENTIC AI & RAG SYSTEMS",
     title: {
       white: "Enterprise-Grade",
       accent: "Artificial Intelligence"
@@ -327,6 +338,18 @@ Note: The specific course must not be marked as 'Reserved for faculty students' 
       latency: "Latency",
       throughput: "Throughput",
       synchronized: "Synchronized"
+    },
+    labels: {
+      orchestration: "Agentic Orchestration",
+      hybridRetrieval: "Hybrid Precision Retrieval",
+      selfCorrection: "Self-Correction Engine",
+      strategicGen: "Strategic Generation",
+      streamInterface: "Real-time Stream Interface",
+      agent: "Agent",
+      planner: "Strategic Planner",
+      analyst: "Risk Analyst",
+      skip: "SKIP",
+      rank: "RANK"
     }
   },
   cta: {

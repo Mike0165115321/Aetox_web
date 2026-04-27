@@ -34,12 +34,15 @@ const dictionaries = {
 };
 
 export const getDictionary = async (lang: 'th' | 'en', page: keyof typeof dictionaries['th']): Promise<any> => {
+  // Safety check for lang
+  const safeLang = dictionaries[lang] ? lang : 'th';
+  
   // Load page content and common content in parallel
   const [pageContent, navigation, cta, defaults] = await Promise.all([
-    dictionaries[lang][page](),
-    dictionaries[lang].navigation(),
-    dictionaries[lang].cta(),
-    dictionaries[lang].defaults()
+    dictionaries[safeLang][page](),
+    dictionaries[safeLang].navigation(),
+    dictionaries[safeLang].cta(),
+    dictionaries[safeLang].defaults()
   ]);
   
   // Create a unified dictionary structure

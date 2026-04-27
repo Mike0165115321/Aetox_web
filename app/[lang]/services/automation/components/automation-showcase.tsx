@@ -2,11 +2,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, CheckCircle2, Users, Zap, AlertTriangle, TrendingUp } from 'lucide-react';
+import ServiceVisualCard from '@/components/ServiceVisualCard';
 
 export default function AutomationShowcase({ steps, dict }: { steps: any[], dict: any }) {
   const [activeStep, setActiveStep] = useState(0);
   
   const visuals = [
+// ... (visuals code remains same, I'll use a larger block to be safe)
     // Slide 0: Live Automation Pipeline
     (
       <div key="0" className="relative h-full flex flex-col items-center justify-center p-5 gap-2 overflow-hidden">
@@ -126,20 +128,14 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
 
   return (
     <div className="space-y-6">
-      <div className="glass-card rounded-[32px] border border-white/10 overflow-hidden relative h-[520px] lg:h-[600px] flex flex-col">
-        <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-10" />
+      <ServiceVisualCard minHeight="h-[520px] lg:h-[600px]" className="p-0 overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div 
             key={activeStep} 
-            initial={{ opacity: 0, x: 40, scale: 0.95 }} 
-            animate={{ opacity: 1, x: 0, scale: 1 }} 
-            exit={{ opacity: 0, x: -40, scale: 1.05 }} 
-            transition={{ 
-              type: "spring",
-              stiffness: 120,
-              damping: 20,
-              mass: 1
-            }} 
+            initial={{ opacity: 0, x: 20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            exit={{ opacity: 0, x: -20 }} 
+            transition={{ duration: 0.3 }} 
             className="absolute inset-0 flex flex-col"
           >
             {/* Visual Area */}
@@ -178,7 +174,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
             </div>
           </motion.div>
         </AnimatePresence>
-      </div>
+      </ServiceVisualCard>
 
       {/* Navigation Layer */}
       <div className="relative flex items-center justify-between h-16 mt-4">
