@@ -1,27 +1,26 @@
 export const authorityContent = {
   hero: {
-    title: "เครื่องพิสูจน์ความเชี่ยวชาญ (Proven Authority)",
-    description: "ผลงานระดับประเทศและระบบที่ซับซ้อนที่เป็นเครื่องพิสูจน์ศักยภาพของเรา"
+    title: "Proven Authority",
+    description: "National-level achievements and complex systems that prove our capabilities."
   },
   caseStudies: [
     {
       id: 'nongnan',
-      title: 'หุ่นยนต์ AI "น้องน่าน"',
-      role: 'สถาปัตยกรรม AI เชิงกลยุทธ์',
-      desc: 'หุ่นยนต์ปัญญาประดิษฐ์ระดับสูงที่พิสูจน์ความสามารถด้านสถาปัตยกรรม AI ขั้นสูง',
-      location: 'การแข่งขันระดับชาติ',
-      duration: '6 เดือน'
+      title: 'AI Robot "Nong Nan"',
+      role: 'Strategic AI Architecture',
+      desc: 'High-level artificial intelligence robot that demonstrates advanced AI architectural expertise.',
+      location: 'National Competition',
+      duration: '6 Months'
     },
     {
       id: 'willoftherealm',
       title: 'Will-of-the-Realm',
-      role: 'สถาปัตยกรรมระบบที่ซับซ้อน',
-      desc: 'ระบบสถาปัตยกรรมซอฟต์แวร์ที่ซับซ้อนซึ่งแสดงศักยภาพการจัดการข้อมูลและตรรกะระดับองค์กร (Enterprise)',
-      location: 'ระบบภายใน',
-      duration: '3 เดือน'
+      role: 'Complex Systems Architecture',
+      desc: 'Sophisticated software architectural system showcasing enterprise-level data management and logic capabilities.',
+      location: 'Internal System',
+      duration: '3 Months'
     }
   ]
 };
 
 export default authorityContent;
-

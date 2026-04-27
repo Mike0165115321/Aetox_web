@@ -5,9 +5,9 @@ export const allProjects = Object.values(items);
 
 export const projectsContent = {
   hero: {
-    badge: "ผลงานสถาปัตยกรรมระบบ",
-    title: "สถาปัตยกรรมระดับ Masterpieces",
-    subtitle: "เปลี่ยนความซับซ้อนให้เป็นความได้เปรียบทางธุรกิจ ด้วยระบบที่ถูกออกแบบมาอย่างประณีต"
+    badge: "System Architecture Portfolio",
+    title: "Architectural Masterpieces",
+    subtitle: "Transform complexity into business advantage with meticulously designed systems."
   },
   categories: projectCategories,
   items: allProjects

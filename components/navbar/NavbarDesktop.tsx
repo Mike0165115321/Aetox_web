@@ -16,7 +16,7 @@ export default function NavbarDesktop({
   switchLanguage
 }: any) {
   return (
-    <div className="container mx-auto relative flex items-center z-[110]">
+    <div className="container mx-auto relative flex items-center justify-between z-[110] px-6">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start">
         <Link href={`/${currentLang.toLowerCase()}`} className="flex items-center gap-4 hover:opacity-80 transition-opacity group">
@@ -35,12 +35,12 @@ export default function NavbarDesktop({
       </div>
 
       {/* Center: Menu */}
-      <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+      <div className="hidden lg:flex items-center gap-6 xl:gap-10 mx-4">
         {menuItems.map((item: any) => (
           <Link 
             key={item.href} 
             href={`/${currentLang.toLowerCase()}${item.href}`} 
-            className="text-[13px] font-black text-aetox-text-soft hover:text-aetox-text-main hover:scale-105 transition-all uppercase tracking-[0.2em]"
+            className="text-[12px] xl:text-[13px] font-black text-aetox-text-soft hover:text-aetox-text-main hover:scale-105 transition-all uppercase tracking-[0.2em] whitespace-nowrap"
           >
             {item.label}
           </Link>
@@ -48,7 +48,7 @@ export default function NavbarDesktop({
       </div>
 
       {/* Right: Actions */}
-      <div className="flex-1 flex justify-end items-center gap-6">
+      <div className="flex-1 flex justify-end items-center gap-4 xl:gap-6">
         {/* Language Selector */}
         <div className="relative hidden md:block" ref={langRef}>
           <button 

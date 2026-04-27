@@ -1,60 +1,60 @@
 export const servicesIndexContent = {
   hero: {
     title: {
-      white: "โซลูชันเชิงกลยุทธ์สำหรับ",
-      accent: "ปัญหาธุรกิจในยุคใหม่"
+      white: "Strategic Solutions for",
+      accent: "Modern Business Challenges"
     },
-    description: "ลดต้นทุนแฝง เร่งความเร็วการทำงาน และเปลี่ยนระบบของคุณให้รองรับ AI และระบบอัตโนมัติ (Automation) ได้ตั้งแต่วันนี้"
+    description: "Reduce hidden costs, accelerate operations, and transform your systems to be AI and Automation ready today."
   },
-  benefitLabel: "สิ่งที่คุณจะได้รับ",
-  technicalLabel: "ข้อมูลเจาะลึกทางเทคนิค",
+  benefitLabel: "What You Will Receive",
+  technicalLabel: "Deep Technical Insights",
 
   services: [
     {
       id: 'ai-agents',
-      title: 'เอไอเฉพาะทาง (Custom Domain AI - สร้าง AI ที่เป็นเอกสิทธิ์ของคุณ)',
-      highlight: 'ลืม AI สำเร็จรูปที่ตอบแบบกว้างๆ เราออกแบบระบบ AI ที่เรียนรู้จาก "ชุดความรู้เฉพาะ" ของคุณ ไม่ว่าจะเป็นตำราเรียน คู่มือ หรือข้อมูลที่ไหลเข้ามาแบบเรียลไทม์ พร้อมสถาปัตยกรรมที่ให้ AI อัปเดตตัวเองได้ทันทีโดยไม่ต้องเสียเวลาเทรนโมเดลใหม่',
-      tag: 'ระบบ AI เอเจนท์ และ RAG อัจฉริยะ',
-      desc: 'สร้าง "ผู้เชี่ยวชาญดิจิทัล" ที่รู้ลึกในธุรกิจของคุณอย่างแท้จริง ตอบคำถามได้ตรงจุด อ้างอิงแหล่งที่มาได้ และพร้อมเรียนรู้ข้อมูลใหม่ๆ ทันทีที่คุณป้อนเข้าไป',
+      title: 'Custom Domain AI (Build Your Proprietary Intelligence)',
+      highlight: 'Forget generic AI that gives broad answers. We design AI systems that learn from your "Unique Knowledge Base" – whether it\'s textbooks, manuals, or real-time data streams – with an architecture that updates itself instantly without the need for costly retraining.',
+      tag: 'AI Agents & Intelligent RAG Systems',
+      desc: 'Create a "Digital Expert" that truly understands your business. Provides precise answers, cites sources, and learns new information the moment you feed it.',
       suitable: [
-        'ธุรกิจที่ต้องการสร้าง AI ของตัวเองเพื่อตอบคำถามจากชุดข้อมูลเฉพาะ (เช่น ตำรา, กฎหมาย, คู่มือเทคนิค)',
-        'แพลตฟอร์มที่ข้อมูลเปลี่ยนแปลงตลอดเวลา และต้องการ AI ที่อัปเดตตัวเองได้แบบนาทีต่อนาที (เช่น ข่าวสาร, ตลาดทุน)',
-        'องค์กรที่ต้องการระบบ AI ที่พร้อมปรับตัวและเรียนรู้ความรู้ใหม่ๆ ได้ตลอดเวลาโดยไม่ติดข้อจำกัดเดิม'
+        'Businesses wanting to build their own AI to answer questions from specific datasets (e.g., textbooks, legal documents, technical manuals).',
+        'Platforms where data changes constantly and require an AI that updates itself minute-by-minute (e.g., news, capital markets).',
+        'Organizations needing an AI system ready to adapt and learn new knowledge without traditional limitations.',
       ],
-      benefit: 'ได้ครอบครองระบบ AI เฉพาะทางที่รู้ลึก รู้จริง และอัปเดตความรู้ได้ทันโลกตลอดเวลา',
+      benefit: 'Own a specialized AI system that is deeply knowledgeable, accurate, and always up-to-date with the world.',
       path: '/services/ai-agents'
     },
 
     {
       id: 'automation',
-      title: 'แรงงานดิจิทัลและระบบอัตโนมัติ (Digital Workforce & Process Automation)',
-      tag: 'ระบบอัตโนมัติสำหรับกระบวนการทำงาน',
-      desc: 'เปลี่ยนคอมพิวเตอร์ให้ทำงานแทนคนในงานที่ซ้ำซ้อน เราออกแบบระบบบอทที่ทำงานเป็นวงจรประสิทธิภาพ (Efficiency Loops) เพื่อจัดการงานบันทึกข้อมูลและกระบวนการที่ทำด้วยมือ (Manual) ทุกรูปแบบด้วยความเร็วที่เหนือกว่ามนุษย์มหาศาล',
+      title: 'Digital Workforce & Process Automation',
+      tag: 'Workflow Automation Systems',
+      desc: 'Let computers handle repetitive tasks. We design bot systems that operate in high-efficiency loops to manage data entry and manual processes of all kinds at speeds far exceeding human capabilities.',
       suitable: [
-        'ธุรกิจที่ใช้พนักงานจำนวนมากในงานบันทึกข้อมูล หรือดึงข้อมูลข้ามระบบแบบซ้ำๆ (Data Entry Displacement)',
-        'องค์กรที่ต้องการระบบคอมพิวเตอร์ที่ทำงานแทนคนได้ตลอด 24 ชั่วโมง โดยไม่มีข้อผิดพลาดและไม่ต้องหยุดพัก',
-        'งานที่เป็นกระบวนการแบบลำดับขั้นตอน (Workflow) ที่ต้องการความเร็วสูงสุดผ่านการรันระบบที่มีประสิทธิภาพสูง'
+        'Businesses using many staff for data entry or repetitive cross-system data retrieval (Data Entry Displacement).',
+        'Organizations needing 24/7 autonomous operations without errors or breaks.',
+        'Sequential workflow tasks that require maximum speed through high-performance system execution.',
       ],
-      benefit: 'ลดการพึ่งพาแรงงานคนในงานที่ไม่สร้างมูลค่า และเปลี่ยนต้นทุนพนักงานให้กลายเป็นระบบซอฟต์แวร์ที่เสถียรตลอดกาล',
+      benefit: 'Reduce reliance on human labor for low-value tasks and transform staff costs into stable, perpetual software systems.',
       path: '/services/automation'
     },
 
     {
       id: 'web-systems',
-      title: 'ระบบแกนหลักทางธุรกิจ (Core Business Systems)',
-      tag: 'ระบบเว็บสำหรับองค์กรระดับ Enterprise',
-      desc: 'พัฒนาระบบเว็บ (Web Systems) ที่เป็นแกนหลักของธุรกิจ ออกแบบให้ยืดหยุ่น ปลอดภัย และรองรับการเชื่อมต่อกับ AI และระบบอัตโนมัติได้ในระยะยาว',
+      title: 'Core Business Systems',
+      tag: 'Enterprise-Grade Web Systems',
+      desc: 'Develop web systems that serve as your business core. Designed for flexibility, security, and long-term compatibility with AI and automation integrations.',
       suitable: [
-        'ธุรกิจที่ถูกจำกัดศักยภาพด้วยระบบสำเร็จรูป (SaaS) แบบเช่าใช้ (Vendor Lock-in)',
-        'องค์กรที่ต้องการเปลี่ยนหน้าเว็บให้เป็น "ศูนย์กลางปฏิบัติการ" ของธุรกิจ',
-        'บริษัทที่เตรียมพร้อมโครงสร้างฐานข้อมูล เพื่อรองรับ AI และระบบอัตโนมัติในเฟสต่อไป'
+        'Businesses limited by generic SaaS/off-the-shelf software (Vendor Lock-in).',
+        'Organizations wanting to turn their web interface into a "Business Operations Center".',
+        'Companies preparing database structures to support AI and automation in the next phase.',
       ],
-      benefit: 'ได้เป็นเจ้าของสินทรัพย์ดิจิทัล (Digital Asset) ที่ยืดหยุ่น ขยายสเกลได้ และไม่ต้องรื้อทิ้งเมื่อธุรกิจโต',
+      benefit: 'Own a flexible, scalable digital asset that doesn\'t need to be scrapped as your business grows.',
       path: '/services/web-systems'
     }
   ],
 
-  ctaLabel: "ดูว่าระบบนี้ช่วยธุรกิจคุณได้ยังไง"
+  ctaLabel: "See How This System Helps Your Business"
 };
 
 export default servicesIndexContent;
