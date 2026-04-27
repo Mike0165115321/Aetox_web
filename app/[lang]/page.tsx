@@ -15,9 +15,9 @@ import { getDictionary } from '@/data/dictionaries';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { bookmind, robotGuide, treesBot } from '@/data/content/th/projects/items';
 
-export default async function Home() {
-  const dict = await getDictionary('th', 'home');
-  const navDict = await getDictionary('th', 'navigation');
+export default async function Home({ params }: { params: { lang: 'th' | 'en' } }) {
+  const lang = params.lang || 'th';
+  const dict = await getDictionary(lang, 'home');
 
   const homeSections: NavSection[] = dict.navigation.map((item: any, index: number) => {
     const icons = [
@@ -50,7 +50,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen selection:bg-aetox-accent/30 selection:text-white relative">
       <FloatingNav sections={homeSections} />
-      <Navbar dict={navDict.navbar} />
+      <Navbar dict={dict.common.navigation.navbar} />
       
       {/* 1. Hook (Hero) */}
       <HeroSection dict={dict.hero} />
@@ -79,7 +79,7 @@ export default async function Home() {
         {/* 9. Final Close */}
         <FinalCTA dict={dict.about} />
 
-        <Footer dict={navDict.footer} />
+        <Footer dict={dict.common.navigation.footer} />
     </main>
   );
 }

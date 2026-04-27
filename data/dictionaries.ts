@@ -30,14 +30,28 @@ const dictionaries = {
 };
 
 export const getDictionary = async (lang: 'th' | 'en', page: keyof typeof dictionaries['th']): Promise<any> => {
-  const pageContent = await dictionaries[lang][page]();
-  const defaults = await dictionaries[lang].defaults();
+  // Load page content and common content in parallel
+  const [pageContent, navigation, cta, defaults] = await Promise.all([
+    dictionaries[lang][page](),
+    dictionaries[lang].navigation(),
+    dictionaries[lang].cta(),
+    dictionaries[lang].defaults()
+  ]);
   
-  // Recursively merge 'common' into top-level sections if they are objects
-  const merged: any = { ...pageContent, common: defaults };
+  // Create a unified dictionary structure
+  const merged: any = {
+    ...pageContent,
+    common: {
+      navigation,
+      cta,
+      defaults
+    }
+  };
+
+  // For backward compatibility and convenience, also inject 'common' into top-level objects
   for (const key in pageContent) {
     if (typeof pageContent[key] === 'object' && pageContent[key] !== null && !Array.isArray(pageContent[key])) {
-      merged[key] = { ...pageContent[key], common: defaults };
+      merged[key] = { ...pageContent[key], common: merged.common };
     }
   }
   

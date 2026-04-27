@@ -1,162 +1,221 @@
 export const homeContent = {
+  navigation: [
+    { id: 'hero', label: 'วิสัยทัศน์', num: '01' },
+    { id: 'pain', label: 'ปัญหาที่พบ', num: '02' },
+    { id: 'comparison', label: 'สถาปัตยกรรม', num: '03' },
+    { id: 'simulation', label: 'การจำลองระบบ', num: '04' },
+    { id: 'trust', label: 'ความเชื่อมั่น', num: '05' },
+    { id: 'services', label: 'โซลูชัน', num: '06' },
+    { id: 'roi-calculator', label: 'ความคุ้มค่า', num: '07' },
+    { id: 'security', label: 'ความปลอดภัย', num: '08' },
+    { id: 'about', label: 'ติดต่อเรา', num: '09' },
+  ],
   hero: {
     headline: {
-      white: "Inefficiency is a Choice.",
-      accent: "Precision is Our Standard."
+      white: "ความไร้ประสิทธิภาพคือสิ่งที่คุณเลือกหยุดได้",
+      accent: "ความแม่นยำคือมาตรฐานของเรา"
     },
-    description: "Eliminate business leakage and transform lost costs into automated profit systems with Enterprise-grade AI architecture.",
+    description: "อุดรอยรั่วทางธุรกิจและเปลี่ยนต้นทุนที่สูญเสีย ให้กลายเป็นระบบกำไรอัตโนมัติด้วยสถาปัตยกรรม AI ระดับองค์กร (Enterprise Architecture)",
     cta: {
-      primary: "Calculate Business ROI",
-      secondary: "View System Architecture"
-    }
+      primary: "ดูบริการของเรา",
+      secondary: "ปรึกษาเรา"
+    },
+    scrollLabel: "เลื่อนเพื่อวิเคราะห์"
   },
+
   pain: {
-    title: "The Cost of Inaction",
-    subtitle: "Staying with inefficient legacy systems is silently eating away your profit.",
+    title: "มูลค่าของความนิ่งเฉย",
+    subtitle: "การนิ่งเฉยต่อระบบเดิมที่ไร้ประสิทธิภาพ กำลังกัดกินกำไรของคุณโดยไม่รู้ตัว",
+    badge: "การวิเคราะห์ธุรกิจเชิงลึก (Critical Business Analysis)",
+    footerTitle: "ความไร้ประสิทธิภาพคือต้นทุนที่คุณเลือกได้",
+    footerDesc: "หยุดการรั่วไหลของรายได้และเริ่มใช้งานระบบอัจฉริยะวันนี้",
+    cta: "คำนวณมูลค่าความเสียหาย",
     items: [
       {
         id: 'time-loss',
-        title: 'Productivity Loss',
-        impact: 'Employees waste 30–50% of their time on manual tasks.',
-        cost: 'You are paying 100% salary for only 50% actual output.'
+        title: 'การสูญเสียผลิตภาพ',
+        impact: 'พนักงานเสียเวลา 30–50% ไปกับงานที่จัดการเองด้วยมือ (Manual)',
+        cost: 'นั่นหมายความว่าคุณกำลังจ่ายเงินเดือน 100% เพื่อให้ได้ผลงานจริงเพียง 50%'
       },
       {
         id: 'revenue-leak',
-        title: 'Revenue Leakage',
-        impact: 'Slow response times cause a 40% drop-off in conversions.',
-        cost: 'Every 10 minutes a customer waits is a lost revenue opportunity.'
+        title: 'รายได้ที่รั่วไหล',
+        impact: 'การตอบสนองที่ล่าช้าทำให้ลูกค้าหายไปกลางคัน (Drop-off) 40%',
+        cost: 'ทุกๆ 10 นาทีที่ลูกค้าต้องรอระบบ คือโอกาสสร้างรายได้ที่หายไปทันที'
       },
       {
         id: 'human-error',
-        title: 'Hidden Cost of Errors',
-        impact: 'Manual data entry leads to frequent human errors.',
-        cost: 'A 1% error in your database can lead to millions in long-term damage.'
+        title: 'ต้นทุนแฝงจากความผิดพลาด',
+        impact: 'ความผิดพลาดจากการบันทึกข้อมูลด้วยคน (Human Error)',
+        cost: 'ความผิดพลาดเพียง 1% ในฐานข้อมูล อาจนำไปสู่ความเสียหายระดับล้านในระยะยาว'
       }
     ]
   },
   trust: {
     founder: {
-      name: "Chayapon Promsawana",
-      title: "Founder & System Architect",
-      accolade: "National AI Gold Medalist",
-      description: "System Architect specializing in AI and Automation, focusing on designing systems that solve real problems and drive business results."
+      name: "ชยพล พรมสะวะนา",
+      title: "ผู้ก่อตั้งและสถาปนิกวางระบบ",
+      accolade: "เหรียญทอง AI ระดับชาติ",
+      description: "สถาปนิกผู้ออกแบบระบบผู้เชี่ยวชาญด้าน AI และระบบอัตโนมัติ (Automation) มุ่งเน้นการออกแบบระบบที่แก้ปัญหาจริง และสร้างผลลัพธ์ให้ธุรกิจ"
     },
+    recognition: "การยอมรับในความเป็นเลิศ (Recognition of Excellence)",
+    portfolio: "ผลงานดีเด่น (Elite Portfolio)",
+    viewFull: "ดูทั้งหมด",
     standards: [
-      "Enterprise-Grade Scalable Systems",
-      "Business Result Driven Design",
-      "Strategic Technology Partnership"
+      "ระบบรองรับการขยายตัวระดับองค์กร",
+      "การออกแบบที่เน้นผลลัพธ์ทางธุรกิจ",
+      "พันธมิตรทางเทคโนโลยีเชิงกลยุทธ์"
+    ],
+    values: [
+      { 
+        title: 'ความเป็นเลิศด้านสถาปัตยกรรม (Architectural Excellence)', 
+        desc: 'ออกแบบเพื่อความเสถียรและความปลอดภัยสูงสุด' 
+      },
+      { 
+        title: 'วิศวกรรมที่เน้นความคุ้มค่า (ROI Driven Engineering)', 
+        desc: 'เราออกแบบมูลค่าทางธุรกิจที่วัดผลได้จริง' 
+      }
     ]
   },
   engagement: {
-    title: "Calculate Business ROI",
-    description: "Do you know where your profit is leaking? Simulate the results of turning 'cost leakage' into 'revenue inflow' with Aetox automation.",
+    title: "คำนวณความคุ้มค่าทางธุรกิจ (ROI)",
+    description: "รู้ไหมว่ากำไรคุณหายไปตรงไหน? ลองคำนวณเพื่อจำลองผลลัพธ์ที่เปลี่ยน ‘ต้นทุนที่รั่ว’ ให้กลายเป็น ‘รายได้ที่ไหลเข้า’ ด้วยระบบอัตโนมัติของ Aetox",
+    roiHeadline: {
+      white: "อุดรอยรั่วทางธุรกิจ",
+      accent: "เปลี่ยนต้นทุนให้เป็นกำไร"
+    },
     inputs: {
-      staffCount: "Number of staff (manual tasks)",
-      avgSalary: "Average Monthly Salary (THB)",
-      hoursSpent: "Hours spent on manual tasks / day"
+      staffCount: "จำนวนพนักงาน (คนที่ทำงานซ้ำซ้อน)",
+      avgSalary: "เงินเดือนเฉลี่ย (บาท)",
+      hoursSpent: "ชั่วโมงที่เสียไปกับงานที่ทำด้วยมือ / วัน",
+      parametersLabel: "พารามิเตอร์การคำนวณ",
+      presetsLabel: "รูปแบบธุรกิจตัวอย่าง",
+      presets: {
+        startup: "ธุรกิจเริ่มต้น (Startup)",
+        sme: "ธุรกิจกำลังโต (SME)",
+        enterprise: "องค์กรขนาดใหญ่ (Enterprise)"
+      }
     },
     results: {
-      monthlySavings: "Monthly Savings",
-      annualImpact: "Increased Annual Profit",
-      efficiencyBoost: "Efficiency Boost (%)"
+      monthlySavings: "เงินที่ประหยัดได้ต่อเดือน",
+      annualImpact: "กำไรที่เพิ่มขึ้นรายปี (Annual Savings)",
+      efficiencyBoost: "ประสิทธิภาพที่เพิ่มขึ้น (%)",
+      lossWarning: "นี่คือมูลค่าที่ธุรกิจของคุณสูญเสียไปในแต่ละปี",
+      footerNote: "*ข้อมูลอ้างอิงจากการวิเคราะห์ผลกระทบเชิงกลยุทธ์"
     },
-    cta: "Get Free ROI Analysis & Quote"
+    cta: "รับรายงานวิเคราะห์ ROI ฟรีและขอใบเสนอราคา"
   },
   security: {
-    title: "Enterprise Security Standards",
-    description: "Data security is the heart of enterprise systems for maximum confidence and safety.",
+    title: "มาตรฐานความปลอดภัยระดับองค์กร",
+    description: "ความปลอดภัยของข้อมูลคือหัวใจสำคัญของระบบระดับองค์กร เพื่อความมั่นใจสูงสุดในการใช้งาน",
+    headline: {
+      white: "การคุ้มครองข้อมูล",
+      accent: "ระดับอุตสาหกรรม"
+    },
+    compliance: "ผ่านการรับรองมาตรฐาน (Verified Compliance)",
+    badges: [
+      { label: 'SSL', desc: 'การเข้ารหัส (Encryption)' },
+      { label: '256', desc: 'มาตรฐาน AES' },
+      { label: 'SOC', desc: 'ได้มาตรฐาน (Compliant)' }
+    ],
     features: [
       {
-        title: "Zero-Model Training",
-        desc: "Your business and private data will NEVER be used to train external AI models. 100% Data Sovereignty."
+        title: "การันตีความเป็นส่วนตัว 100%",
+        desc: "ข้อมูลส่วนตัวและข้อมูลธุรกิจของคุณจะไม่ถูกนำไปใช้ฝึกฝน AI ภายนอกโดยเด็ดขาด (Zero-Model Training)"
       },
       {
-        title: "Enterprise-Grade Encryption",
-        desc: "Security standards with AES-256 encryption for every bit of data flowing through the system."
+        title: "การเข้ารหัสระดับองค์กร",
+        desc: "มาตรฐานการรักษาความปลอดภัยระดับสูง ด้วยการเข้ารหัสข้อมูลทุกชุดที่ไหลผ่านระบบ (AES-256)"
       },
       {
-        title: "Private Deployment Options",
-        desc: "Choose to deploy on Private Cloud or On-premise for total security control."
+        title: "ทางเลือกการติดตั้งแบบส่วนตัว",
+        desc: "เลือกติดตั้งระบบในคลาวด์ส่วนตัว (Private Cloud) หรือในพื้นที่ขององค์กร (On-premise) เพื่อควบคุมความปลอดภัยได้เองทั้งหมด"
       }
     ]
   },
   services: {
-    title: "Strategic Business Solutions",
-    description: "We design 3 core architectural pillars to eliminate inefficiency and drive scalable growth.",
+    badge: "ขีดความสามารถเชิงกลยุทธ์ (Strategic Capabilities)",
+    title: "สถาปัตยกรรมหลักของธุรกิจ",
+    description: "บริการหลักที่เราเชี่ยวชาญ เพื่อยกระดับองค์กรของคุณสู่ยุคดิจิทัลและเอไออย่างเต็มรูปแบบ",
     items: [
       {
         id: 'ai-agents',
-        title: 'AI Agent Architecture',
-        description: 'RAG-powered intelligence that reduces research and decision time for management.',
-        features: ['Reduce document search time by 90%', 'Real-time business trend analysis', '100% accuracy with source citations'],
-        relatedProjects: ['Legal Document Analysis A', 'Employee Q&A System B'],
+        title: 'สถาปัตยกรรมเอเจนต์อัจฉริยะ (AI Agent)',
+        description: 'สมองกล RAG ที่ลดเวลาการหาข้อมูลและตัดสินใจของทีมบริหาร',
+        features: ['ลดเวลาหาข้อมูลเอกสาร 90%', 'วิเคราะห์แนวโน้มธุรกิจแบบเรียลไทม์', 'ความแม่นยำสูงสุดด้วยการอ้างอิงแหล่งที่มา'],
+        relatedProjects: ['โครงการวิเคราะห์เอกสารกฎหมาย A', 'ระบบถามตอบพนักงานบริษัท B'],
       },
       {
         id: 'automation',
-        title: 'Workflow Automation',
-        description: 'Automated data pipelines that give employees time back for revenue-generating tasks.',
-        features: ['Eliminate Human Error in workflows', 'Works 24/7 on your behalf', 'Seamless integration between all systems'],
-        relatedProjects: ['Automated Invoicing System C', 'Sales Data Pipeline'],
+        title: 'ระบบอัตโนมัติ (Workflow Automation)',
+        description: 'ท่อส่งข้อมูลอัตโนมัติที่ทำให้พนักงานมีเวลาไปทำสิ่งที่สร้างรายได้จริงๆ',
+        features: ['ลดความผิดพลาดจากมนุษย์ในกระบวนการทำงาน', 'ทำงานแทนพนักงานได้ตลอด 24/7', 'เชื่อมต่อทุกระบบเข้าหากันอย่างไร้รอยต่อ'],
+        relatedProjects: ['ระบบออกบิลอัตโนมัติ องค์กร C', 'ท่อส่งข้อมูลประมวลผลยอดขาย'],
       },
       {
         id: 'web-systems',
-        title: 'Enterprise Web Systems',
-        description: 'Digital headquarters built for maximum scalability and top-tier security.',
-        features: ['Support hundreds of thousands of concurrent users', 'Real-time Profit Dashboards', 'Edge Network infrastructure'],
-        relatedProjects: ['Resource Management Platform D', 'Internal Sales CRM'],
+        title: 'ระบบเว็บระดับองค์กร',
+        description: 'ฐานทัพดิจิทัลที่รองรับการขยายตัว (Scalable) และความปลอดภัยสูงสุด',
+        features: ['รองรับผู้ใช้งานหลักแสนได้พร้อมกัน', 'แผงควบคุม (Dashboard) แสดงผลกำไรแบบเรียลไทม์', 'โครงสร้างเว็บระดับสูงสุด (Edge Network)'],
+        relatedProjects: ['แพลตฟอร์มบริหารจัดการทรัพยากร D', 'ระบบ CRM ภายในสำหรับฝ่ายขาย'],
       }
     ]
   },
   about: {
+    badge: "จุดตัดสินใจ (Decision Point)",
     headline: {
-      white: "We don't just build code.",
-      accent: " We build advantages."
+      white: "เราไม่ได้สร้างแค่โค้ด",
+      accent: " แต่เราสร้างความได้เปรียบ"
     },
-    description: "Aetox.dev was founded by Chayapon Promsawana (National AI Gold Medalist) to transform business problems into measurable intelligent systems.\n\nWe don't stop at coding; we design architectures that integrate AI and Automation to reduce redundant tasks and drive sustainable growth for your organization.",
+    description: "Aetox.dev ก่อตั้งโดย ชยพล พรหมสะวะนา (เหรียญทอง AI ระดับชาติ) เพื่อเปลี่ยนปัญหาธุรกิจให้กลายเป็นระบบอัจฉริยะที่วัดผลได้จริง\n\nเราไม่ได้หยุดแค่การเขียนโค้ด แต่เราออกแบบสถาปัตยกรรมที่ผสาน AI และระบบอัตโนมัติ เพื่อลดงานซ้ำซ้อน และสร้างการเติบโตที่ยั่งยืนให้กับองค์กรของคุณอย่างแท้จริง",
+    consultLabel: "ปรึกษาสถาปนิกผู้ออกแบบระบบ",
+    primaryCTA: "เริ่มวางแผนระบบของคุณ",
+    secondaryCTA: "ดูผลงานทั้งหมด"
   },
   simulation: {
-    title: "System",
-    titleAccent: "Simulation",
-    subtitle: "Architecture that transforms massive data into precise decisions.",
+    title: "การจำลอง",
+    titleAccent: "การทำงานของระบบ",
+    subtitle: "สถาปัตยกรรมที่เปลี่ยนข้อมูลมหาศาล ให้กลายเป็นการตัดสินใจที่แม่นยำ",
     steps: [
-      { id: 1, label: 'Enterprise Data Store', color: 'text-aetox-text-soft' },
-      { id: 2, label: 'RAG Retrieval Engine', color: 'text-aetox-accent' },
-      { id: 3, label: 'Neural Logic Processing', color: 'text-aetox-accent' },
-      { id: 4, label: 'Security Gateway', color: 'text-aetox-text-soft' },
-      { id: 5, label: 'Decision Output', color: 'text-aetox-accent' }
+      { id: 1, label: 'คลังข้อมูลองค์กร', color: 'text-aetox-text-soft' },
+      { id: 2, label: 'ระบบสืบค้น RAG', color: 'text-aetox-accent' },
+      { id: 3, label: 'การประมวลผลตรรกะ AI', color: 'text-aetox-accent' },
+      { id: 4, label: 'เกตเวย์ความปลอดภัย', color: 'text-aetox-text-soft' },
+      { id: 5, label: 'ผลลัพธ์การตัดสินใจ', color: 'text-aetox-accent' }
     ],
-    caseLabel: "Live Case Logic",
-    caseDescription: "Processed 10,000 legal contracts to identify risks in 3.2 seconds with 99.9% accuracy."
+    caseLabel: "ตรรกะการทำงานจริง",
+    caseDescription: "ประมวลผลเอกสารสัญญา 10,000 ฉบับ เพื่อหาความเสี่ยงทางกฎหมายภายใน 3.2 วินาที ด้วยความแม่นยำ 99.9%"
   },
   comparison: {
-    title: "Architectural",
-    titleAccent: "Superiority",
-    subtitle: "Why Enterprise systems require superior architecture over standard code.",
-    headers: ["Feature / Capability", "Aetox Solution", "Generic Development"],
-    footer: "*Data based on comparative system performance audits 2024",
+    title: "ความเหนือกว่า",
+    titleAccent: "ทางสถาปัตยกรรม",
+    subtitle: "ทำไมระบบระดับองค์กรถึงต้องการสถาปัตยกรรมที่เหนือกว่าโค้ดทั่วไป",
+    headers: ["หัวข้อ / ความสามารถ", "โซลูชันจาก Aetox", "โค้ดทั่วไป (Generic)"],
+    swipeLabel: "เลื่อนเพื่อเปรียบเทียบ",
+    footer: "*อ้างอิงข้อมูลจากการตรวจสอบประสิทธิภาพระบบเปรียบเทียบปี 2024",
     items: [
       {
-        feature: "System Foundation",
-        aetox: "Enterprise AI Architecture (RAG-Optimized)",
-        generic: "Standard Web Application Code",
+        feature: "รากฐานของระบบ",
+        aetox: "สถาปัตยกรรมระบบองค์กรอัจฉริยะ (Enterprise AI)",
+        generic: "โค้ดแอปพลิเคชันเว็บมาตรฐาน",
         type: "cpu"
       },
       {
-        feature: "Logic Accuracy",
-        aetox: "99.9% Mathematical Precision",
-        generic: "Basic Conditional Logic (Prone to Error)",
+        feature: "ความแม่นยำของตรรกะ",
+        aetox: "ความแม่นยำทางตรรกะ 99.9%",
+        generic: "ตรรกะเงื่อนไขทั่วไป (เสี่ยงต่อความผิดพลาด)",
         type: "activity"
       },
       {
-        feature: "Security Standard",
-        aetox: "Zero-Model Training (100% Data Privacy)",
-        generic: "Public API Dependencies (Data Risk)",
+        feature: "มาตรฐานความปลอดภัย",
+        aetox: "ข้อมูลเป็นส่วนตัว 100% (Zero-Model Training)",
+        generic: "พึ่งพา API สาธารณะ (เสี่ยงต่อข้อมูลรั่วไหล)",
         type: "shield"
       },
       {
-        feature: "Business ROI",
-        aetox: "Guaranteed 40-70% Cost Reduction",
-        generic: "Uncertain / Variable Result",
+        feature: "ความคุ้มค่า (ROI)",
+        aetox: "การันตีลดต้นทุน 40-70%",
+        generic: "ผลลัพธ์ไม่แน่นอน / แปรปรวนสูง",
         type: "zap"
       }
     ]

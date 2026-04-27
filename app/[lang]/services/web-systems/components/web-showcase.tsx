@@ -9,7 +9,7 @@ export default function WebShowcase({ steps }: { steps: any[] }) {
   const visuals = [
     // 1: Modern Architecture
     (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
+        <div key="0" className="relative h-full flex flex-col items-center justify-center p-8">
            <div className="w-full max-w-xs space-y-2 z-10">
               <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3 backdrop-blur-sm">
                  <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-cyber-glow" />
@@ -25,7 +25,7 @@ export default function WebShowcase({ steps }: { steps: any[] }) {
     ),
     // 2: Data Architecture
     (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
+        <div key="1" className="relative h-full flex flex-col items-center justify-center p-8">
            <div className="relative w-40 h-40 flex items-center justify-center">
               <Database className="w-16 h-16 text-cyber-blue absolute z-10" />
               <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute inset-0 border-2 border-dashed border-cyber-blue/30 rounded-full" />
@@ -44,7 +44,7 @@ export default function WebShowcase({ steps }: { steps: any[] }) {
     ),
     // 3: Security & Compliance
     (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
+        <div key="2" className="relative h-full flex flex-col items-center justify-center p-8">
            <div className="relative">
               <Shield className="w-24 h-24 text-white/5" />
               <div className="absolute inset-0 flex items-center justify-center">
@@ -64,7 +64,7 @@ export default function WebShowcase({ steps }: { steps: any[] }) {
     ),
     // 4: Performance Optimization
     (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
+        <div key="3" className="relative h-full flex flex-col items-center justify-center p-8">
            <div className="flex gap-3 items-end h-20">
               {[80, 100, 95, 98].map((h, i) => (
                 <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }} className="w-8 bg-cyber-blue/20 border-t-2 border-cyber-blue rounded-t-lg shadow-cyber-glow" />
@@ -79,7 +79,7 @@ export default function WebShowcase({ steps }: { steps: any[] }) {
     ),
     // 5: AI Integration Ready
     (
-        <div className="relative h-full flex flex-col items-center justify-center p-8">
+        <div key="4" className="relative h-full flex flex-col items-center justify-center p-8">
            <div className="relative">
               <Laptop className="w-24 h-24 text-white/5" />
               <motion.div animate={{ opacity: [0.3, 1, 0.3], y: [-5, 5, -5] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

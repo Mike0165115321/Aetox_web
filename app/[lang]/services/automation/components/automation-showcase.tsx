@@ -9,7 +9,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
   const visuals = [
     // Slide 0: Live Automation Pipeline
     (
-      <div className="relative h-full flex flex-col items-center justify-center p-5 gap-2 overflow-hidden">
+      <div key="0" className="relative h-full flex flex-col items-center justify-center p-5 gap-2 overflow-hidden">
         <motion.div animate={{scale:[1,1.5,1],opacity:[0.03,0.08,0.03]}} transition={{duration:4,repeat:Infinity}} className="absolute w-72 h-72 rounded-full bg-deep-blue"/>
         <div className="relative z-10 w-full max-w-[240px] space-y-2">
           <div className="text-center mb-1"><span className="text-[7px] font-black text-gray-600 uppercase tracking-widest">Live Automation Pipeline</span></div>
@@ -31,7 +31,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
     ),
     // Slide 1: Before/After Queue Bottleneck
     (
-      <div className="relative h-full flex flex-col items-center justify-center p-5 gap-2">
+      <div key="1" className="relative h-full flex flex-col items-center justify-center p-5 gap-2">
         <div className="w-full max-w-xs space-y-2">
           <div className="text-center mb-1"><span className="text-[7px] font-black text-gray-600 uppercase tracking-widest">Before vs After</span></div>
           <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
@@ -48,7 +48,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
     ),
     // Slide 2: Speed Race — Human vs Bot
     (
-      <div className="relative h-full flex flex-col items-center justify-center p-6 gap-4">
+      <div key="2" className="relative h-full flex flex-col items-center justify-center p-6 gap-4">
         <div className="w-full max-w-xs space-y-4">
           <div className="text-center"><span className="text-[7px] font-black text-gray-600 uppercase tracking-widest">Speed Comparison</span></div>
           <div className="grid grid-cols-2 gap-3">
@@ -77,7 +77,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
     ),
     // Slide 3: Zero Error Engine
     (
-      <div className="relative h-full flex flex-col items-center justify-center p-6 gap-3">
+      <div key="3" className="relative h-full flex flex-col items-center justify-center p-6 gap-3">
         <div className="w-full max-w-xs space-y-3">
           <div className="text-center"><span className="text-[7px] font-black text-gray-600 uppercase tracking-widest">Error Rate Analysis</span></div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
@@ -99,7 +99,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
     ),
     // Slide 4: 24/7 Coverage
     (
-      <div className="relative h-full flex flex-col items-center justify-center p-6 gap-4">
+      <div key="4" className="relative h-full flex flex-col items-center justify-center p-6 gap-4">
         <div className="w-full max-w-xs space-y-4">
           <div className="text-center"><span className="text-[7px] font-black text-gray-600 uppercase tracking-widest">24-Hour Coverage</span></div>
           <div className="space-y-3">
