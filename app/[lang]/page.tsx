@@ -15,8 +15,8 @@ import { getDictionary } from '@/data/dictionaries';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { bookmind, robotGuide, treesBot } from '@/data/content/th/projects/items';
 
-export default async function Home({ params }: { params: { lang: 'th' | 'en' } }) {
-  const lang = params.lang || 'th';
+export default async function Home({ params }: { params: Promise<{ lang: 'th' | 'en' }> }) {
+  const { lang = 'th' } = await params;
   const dict = await getDictionary(lang, 'home');
 
   const homeSections: NavSection[] = dict.navigation.map((item: any, index: number) => {

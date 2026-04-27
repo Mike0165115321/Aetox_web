@@ -6,9 +6,9 @@ import { getDictionary } from '@/data/dictionaries';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, ShieldCheck, Code2 } from 'lucide-react';
 
-export default async function ProjectDetailPage({ params }: { params: Promise<{ category: string, slug: string }> }) {
-  const { category, slug } = await params;
-  const navDict = await getDictionary('th', 'navigation');
+export default async function ProjectDetailPage({ params }: { params: Promise<{ lang: string, category: string, slug: string }> }) {
+  const { lang = 'th', category, slug } = await params;
+  const navDict = await getDictionary(lang as 'th' | 'en', 'navigation');
   
   // Find the project in our data
   // Find the project in our data (Case-insensitive search)

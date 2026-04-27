@@ -9,7 +9,7 @@ export default function NavbarMobile({
   isMobileMenuOpen, 
   setIsMobileMenuOpen, 
   currentLang, 
-  setCurrentLang,
+  switchLanguage,
   dict
 }: any) {
   return (
@@ -36,7 +36,7 @@ export default function NavbarMobile({
                   transition={{ delay: 0.1 + index * 0.05 }}
                 >
                   <Link 
-                    href={item.href} 
+                    href={`/${currentLang.toLowerCase()}${item.href}`} 
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="group flex items-center justify-between text-2xl font-bold text-aetox-text-soft hover:text-aetox-text-main transition-all py-4 border-b border-aetox-border"
                   >
@@ -57,17 +57,22 @@ export default function NavbarMobile({
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all text-[10px] font-black tracking-widest ${
                     currentLang === 'TH' ? 'bg-aetox-bg text-aetox-text-main shadow-xl border border-aetox-border' : 'text-aetox-text-muted'
                   }`}
-                  onClick={() => setCurrentLang('TH')}
+                  onClick={() => switchLanguage('th')}
                 >
                   🇹🇭 {dict?.languages?.th?.split(' ')[1] || "TH"}
                 </button>
-                <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl opacity-20 cursor-not-allowed text-[10px] font-black tracking-widest text-aetox-text-muted">
+                <button 
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all text-[10px] font-black tracking-widest ${
+                    currentLang === 'EN' ? 'bg-aetox-bg text-aetox-text-main shadow-xl border border-aetox-border' : 'text-aetox-text-muted'
+                  }`}
+                  onClick={() => switchLanguage('en')}
+                >
                   🇺🇸 {dict?.languages?.en?.split(' ')[1] || "EN"}
                 </button>
               </div>
 
               <Link 
-                href="/contact" 
+                href={`/${currentLang.toLowerCase()}/contact`} 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-aetox-accent text-white text-lg font-black shadow-aetox-glow transition-all active:scale-[0.98]"
               >

@@ -151,28 +151,28 @@ export const webSystemsContent = {
     },
     resetLabel: "เริ่มการวิเคราะห์ใหม่",
     impactLabel: "ผลลัพธ์ทางธุรกิจ",
-    suitableFor: "ที่เหมาะกับธุรกิจคุณ"
+    suitableFor: "Suitable for your business"
   },
 
   visuals: {
     stack: {
-      title: "สถาปัตยกรรมระดับองค์กร",
-      infra: "คลาวด์พื้นฐาน",
-      core: "แกนหลัก Type-Safe",
-      router: "แอปเร้าเตอร์สมัยใหม่"
+      title: "Enterprise Architecture",
+      infra: "Cloud Infrastructure",
+      core: "Type-Safe Core",
+      router: "Modern App Router"
     },
     pipeline: {
-      title: "ท่อส่งข้อมูลอัจฉริยะ",
-      queries: "การดึงข้อมูล",
-      schema: "ผังข้อมูลเวกเตอร์",
-      analytics: "วิเคราะห์เชิงลึก",
-      aiReady: "พร้อมสำหรับ AI"
+      title: "Smart Data Pipeline",
+      queries: "Data Retrieval",
+      schema: "Vector Schema",
+      analytics: "Deep Analytics",
+      aiReady: "AI Ready"
     },
     security: {
-      title: "ระบบความปลอดภัยสูงสุด",
-      rbac: "ควบคุมสิทธิ์ (RBAC)",
-      encryption: "เข้ารหัสข้อมูล",
-      threatShield: "ป้องกันภัยคุกคาม"
+      title: "Maximum Security",
+      rbac: "Access Control (RBAC)",
+      encryption: "Data Encryption",
+      threatShield: "Threat Protection"
     }
   },
 

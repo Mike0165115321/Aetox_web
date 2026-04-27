@@ -47,7 +47,7 @@ export default function AiAgentsClient({ dict, navDict, ctaDict }: { dict: any, 
         <div className="container mx-auto">
           <Link href="/services" className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-12 group backdrop-blur-sm shadow-sm">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-wide">{dict.hero?.backLabel || navDict.common.labels.backToServices || 'Back to Services'}</span>
+            <span className="text-sm font-bold tracking-wide">{dict.hero?.backLabel || dict.common.labels.backToServices || 'Back to Services'}</span>
           </Link>
 
 

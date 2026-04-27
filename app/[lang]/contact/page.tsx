@@ -3,9 +3,9 @@ import { NavSection } from '@/components/FloatingNav';
 import { Phone, FileText, Zap } from 'lucide-react';
 import ContactClient from './contact-client';
 
-export default async function ContactPage() {
-  const dict = await getDictionary('th', 'contact');
-  const navDict = await getDictionary('th', 'navigation');
+export default async function ContactPage({ params }: { params: Promise<{ lang: 'th' | 'en' }> }) {
+  const { lang = 'th' } = await params;
+  const dict = await getDictionary(lang, 'contact');
 
   const contactSections: NavSection[] = [
     { id: 'direct-contact', label: dict.floatingNav.direct, num: '01', icon: <Phone size={18} /> },
@@ -14,6 +14,10 @@ export default async function ContactPage() {
   ];
 
   return (
-    <ContactClient dict={dict} navDict={navDict} contactSections={contactSections} />
+    <ContactClient 
+      dict={dict} 
+      navDict={dict.common.navigation} 
+      contactSections={contactSections} 
+    />
   );
 }

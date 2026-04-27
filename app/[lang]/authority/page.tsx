@@ -1,17 +1,16 @@
 import { getDictionary } from '@/data/dictionaries';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { projectsContent } from '@/data/content/th/projects';
 import AuthorityHero from './components/AuthorityHero';
 import ProjectShowcase from './components/ProjectShowcase';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { Layout, Rocket, Award } from 'lucide-react';
 
-export default async function AuthorityPage() {
-  const navDict = await getDictionary('th', 'navigation');
+export default async function AuthorityPage({ params }: { params: Promise<{ lang: 'th' | 'en' }> }) {
+  const { lang = 'th' } = await params;
+  const dict = await getDictionary(lang, 'projects');
   
-  // Use the newly structured projects data
-  const content = projectsContent;
+  const content = dict;
   
   const authoritySections: NavSection[] = [
     { id: 'authority-hero', label: 'ภาพรวม (Overview)', num: 'INT', icon: <Rocket size={18} /> },
@@ -22,7 +21,7 @@ export default async function AuthorityPage() {
     <main className="min-h-screen selection:bg-cyber-blue/30 selection:text-white relative">
       <FloatingNav sections={authoritySections} />
 
-      <Navbar dict={navDict.navbar} />
+      <Navbar dict={dict.common.navigation.navbar} />
       
       {/* Modular Sections */}
       <div id="authority-hero" className="scroll-mt-20">
@@ -32,7 +31,7 @@ export default async function AuthorityPage() {
         <ProjectShowcase content={content} />
       </div>
       
-      <Footer dict={navDict.footer} />
+      <Footer dict={dict.common.navigation.footer} />
     </main>
   );
 }

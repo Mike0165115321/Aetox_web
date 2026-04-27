@@ -40,7 +40,7 @@ export default function WebSystemsClient({ dict, navDict, ctaDict }: { dict: any
         <div className="container mx-auto">
           <Link href="/services" className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-cyber-blue/30 transition-all mb-10 group backdrop-blur-sm">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-wide">{navDict.common.labels.backToServices || 'กลับสู่หน้าบริการ'}</span>
+            <span className="text-sm font-bold tracking-wide">{dict.common.labels.backToServices || 'กลับสู่หน้าบริการ'}</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-16">

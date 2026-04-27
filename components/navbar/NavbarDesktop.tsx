@@ -12,13 +12,14 @@ export default function NavbarDesktop({
   isLangOpen, 
   setIsLangOpen, 
   langRef,
-  dict
+  dict,
+  switchLanguage
 }: any) {
   return (
     <div className="container mx-auto relative flex items-center z-[110]">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start">
-        <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity group">
+        <Link href={`/${currentLang.toLowerCase()}`} className="flex items-center gap-4 hover:opacity-80 transition-opacity group">
           <Image 
             src="/images/logo.svg" 
             alt="Aetox Logo" 
@@ -38,7 +39,7 @@ export default function NavbarDesktop({
         {menuItems.map((item: any) => (
           <Link 
             key={item.href} 
-            href={item.href} 
+            href={`/${currentLang.toLowerCase()}${item.href}`} 
             className="text-[13px] font-black text-aetox-text-soft hover:text-aetox-text-main hover:scale-105 transition-all uppercase tracking-[0.2em]"
           >
             {item.label}
@@ -71,14 +72,28 @@ export default function NavbarDesktop({
               >
                 <div className="flex flex-col gap-1">
                   <button 
-                    className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-aetox-accent/10 text-aetox-text-main border border-aetox-accent/20 transition-all text-xs font-bold"
-                    onClick={() => setIsLangOpen(false)}
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-xl transition-all text-xs font-bold ${
+                      currentLang === 'TH' ? 'bg-aetox-accent/10 text-aetox-text-main border border-aetox-accent/20' : 'text-aetox-text-soft hover:bg-white/5 hover:text-aetox-text-main'
+                    }`}
+                    onClick={() => { switchLanguage('th'); setIsLangOpen(false); }}
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-lg">🇹🇭</span>
                       <span>{dict?.languages?.th || "ภาษาไทย (TH)"}</span>
                     </div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
+                    {currentLang === 'TH' && <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />}
+                  </button>
+                  <button 
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-xl transition-all text-xs font-bold ${
+                      currentLang === 'EN' ? 'bg-aetox-accent/10 text-aetox-text-main border border-aetox-accent/20' : 'text-aetox-text-soft hover:bg-white/5 hover:text-aetox-text-main'
+                    }`}
+                    onClick={() => { switchLanguage('en'); setIsLangOpen(false); }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg">🇺🇸</span>
+                      <span>{dict?.languages?.en || "English (EN)"}</span>
+                    </div>
+                    {currentLang === 'EN' && <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />}
                   </button>
                 </div>
               </motion.div>

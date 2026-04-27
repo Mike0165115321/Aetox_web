@@ -27,14 +27,14 @@ import { CurrencyProvider } from "@/context/CurrencyContext";
 import { ScrollProvider } from "@/context/ScrollContext";
 import { GlobalBackground } from "@/components/layout/GlobalBackground";
 
-export default function RootLayout({ 
+export default async function RootLayout({ 
   children,
   params
 }: { 
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const lang = params?.lang || 'th';
+  const { lang = 'th' } = await params;
 
   return (
     <html lang={lang} className={`${ibmPlexThai.variable} ${inter.variable}`}>

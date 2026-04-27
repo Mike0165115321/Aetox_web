@@ -38,21 +38,21 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
       setSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
-      alert(dict.footer.form.error);
+      alert(dict.form.error);
     } finally {
       setLoading(false);
     }
   };
 
-  const { form } = dict.footer;
+  const { form } = dict;
 
   return (
     <section id="waitlist-form" className="py-32 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto relative z-10">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-6xl font-black text-white">{dict.footer.title}</h2>
-            <p className="text-gray-400 text-lg">{dict.footer.description}</p>
+            <h2 className="text-4xl md:text-6xl font-black text-white">{dict.title}</h2>
+            <p className="text-gray-400 text-lg">{dict.description}</p>
           </div>
 
           <AnimatePresence mode="wait">

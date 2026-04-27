@@ -101,7 +101,32 @@ export const aiAgentsContent = {
       { id: 'enterprise', label: 'ระดับองค์กร (Enterprise)', sublabel: 'องค์กรขนาดใหญ่' }
     ],
     labels: {
-      breakEvenLabel: "ระยะเวลาคืนทุน"
+      info: "ข้อมูลพื้นฐาน",
+      queries: "จำนวนคำถาม / วัน",
+      staff: "พนักงานที่เกี่ยวข้อง",
+      salary: "เงินเดือนเฉลี่ย",
+      time: "เวลาที่ใช้หาข้อมูล / งาน",
+      value: "มูลค่าเฉลี่ยต่อเคส",
+      aetoxBudget: "งบประมาณลงทุน AETOX",
+      setup: "ค่าธรรมเนียมติดตั้ง (Setup)",
+      monthly: "ค่าบริการรายเดือน (SaaS)",
+      unitStaff: "คน",
+      unitTime: "นาที",
+      capacity: "ขีดความสามารถที่เพิ่มขึ้น",
+      capacityDesc: "AI สามารถทำงานแทนพนักงาน {{staffCount}} คน และรองรับได้ถึง {{humanCapacity}} เคส/วัน",
+      monthlySaving: "เงินที่ประหยัดได้ / เดือน",
+      monthlySavingDesc: "ลดต้นทุนจากแรงงานมนุษย์ {{humanCost}} ต่อเดือน",
+      hoursRecovered: "เวลาที่ได้คืนมา",
+      hoursRecoveredDesc: "เวลาที่พนักงานสามารถไปโฟกัสงานสำคัญ",
+      yearlySaving: "กำไรสุทธิรวม / ปี",
+      yearlySavingDesc: "มูลค่าทางธุรกิจที่เพิ่มขึ้นหลังจากหักค่าใช้จ่าย AI แล้ว",
+      breakEvenLabel: "ระยะเวลาคืนทุน",
+      instantly: "ทันที",
+      unitMonth: "เดือน",
+      unitHour: "ชม.",
+      unitMultiplier: "เท่า",
+      roiPerYear: "ROI ต่อปี",
+      status: "สถานะ"
     },
     features: [
       { 

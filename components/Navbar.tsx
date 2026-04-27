@@ -8,12 +8,12 @@ export default function Navbar({ dict }: { dict?: any }) {
   const {
     isScrolled,
     currentLang,
-    setCurrentLang,
     isLangOpen,
     setIsLangOpen,
     isMobileMenuOpen,
     setIsMobileMenuOpen,
-    langRef
+    langRef,
+    switchLanguage
   } = useNavbarLogic();
   
   const menuItems = dict?.menu || [];
@@ -38,6 +38,7 @@ export default function Navbar({ dict }: { dict?: any }) {
         setIsLangOpen={setIsLangOpen}
         langRef={langRef}
         dict={dict}
+        switchLanguage={switchLanguage}
       />
 
       {/* Mobile Toggle Button */}
@@ -61,7 +62,7 @@ export default function Navbar({ dict }: { dict?: any }) {
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         currentLang={currentLang}
-        setCurrentLang={setCurrentLang}
+        switchLanguage={switchLanguage}
         dict={dict}
       />
     </nav>

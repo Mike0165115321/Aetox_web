@@ -1,15 +1,20 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useScroll } from '@/context/ScrollContext';
 
 export function useNavbarLogic() {
   const { isScrolled } = useScroll();
-  const [currentLang, setCurrentLang] = useState('TH');
+  const pathname = usePathname();
+  const router = useRouter();
+  
+  const currentLang = pathname?.split('/')[1] === 'en' ? 'EN' : 'TH';
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
     const handleClickOutside = (event: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(event.target as Node)) {
         setIsLangOpen(false);
@@ -40,11 +45,15 @@ export function useNavbarLogic() {
   return {
     isScrolled,
     currentLang,
-    setCurrentLang,
     isLangOpen,
     setIsLangOpen,
     isMobileMenuOpen,
     setIsMobileMenuOpen,
-    langRef
+    langRef,
+    switchLanguage: (lang: string) => {
+      const segments = pathname.split('/');
+      segments[1] = lang.toLowerCase();
+      router.push(segments.join('/'));
+    }
   };
 }
