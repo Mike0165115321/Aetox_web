@@ -78,7 +78,7 @@ export const ProjectScopeSection = ({ category, budget, timeline, challenge, tit
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div className="space-y-3">
-        <label className="flex items-center gap-2 text-base font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
+        <label className="flex gap-2 text-base font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
           <Target className="w-3 h-3 flex-shrink-0 mb-1" /> {category.label}
         </label>
         <select name="category" className="form-select-cyber">
@@ -88,7 +88,7 @@ export const ProjectScopeSection = ({ category, budget, timeline, challenge, tit
         </select>
       </div>
       <div className="space-y-3">
-        <label className="flex items-center gap-2 text-base font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
+        <label className="flex gap-2 text-base font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
           <Wallet className="w-3 h-3 flex-shrink-0 mb-1" /> {budget.label}
         </label>
         <select name="budget" className="form-select-cyber">
@@ -98,7 +98,7 @@ export const ProjectScopeSection = ({ category, budget, timeline, challenge, tit
         </select>
       </div>
       <div className="space-y-3">
-        <label className="flex items-center gap-2 text-base font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
+        <label className="flex gap-2 text-base font-semibold text-gray-300 ml-1 min-h-[3.5rem] items-end pb-1">
           <Clock className="w-3 h-3 flex-shrink-0 mb-1" /> {timeline.label}
         </label>
         <select name="timeline" className="form-select-cyber">
