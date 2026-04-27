@@ -61,7 +61,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                   </p>
                 </div>
                 
-                <p className="text-sm md:text-lg text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-8">
+                <p className="text-sm md:text-base text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-6 opacity-90 whitespace-pre-line">
                   &quot;{founder.description}&quot;
                 </p>
 
@@ -101,7 +101,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                 </Link>
               </div>
 
-              <div className="p-3 md:p-6">
+              <div className="overflow-hidden">
                 <ProjectSlider projects={projects} viewDetailsLabel={dict.common?.labels?.viewDetails} />
               </div>
             </motion.div>
@@ -120,7 +120,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                     className="glass-card p-6 md:p-10 rounded-[24px] md:rounded-[32px] border-aetox-border bg-aetox-surface/10 hover:bg-aetox-surface/30 transition-all duration-500 group flex flex-col justify-center"
                   >
                     <Icon className="text-aetox-accent mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 w-7 h-7 md:w-8 md:h-8" />
-                    <h4 className="text-aetox-text-main font-black text-xs md:text-base uppercase tracking-tight mb-2 md:mb-4">{item.title}</h4>
+                    <h4 className="text-aetox-text-main font-bold text-sm md:text-lg tracking-tight mb-2 md:mb-3">{item.title}</h4>
                     <p className="text-aetox-text-soft text-[12px] md:text-sm font-medium leading-relaxed">{item.desc}</p>
                   </motion.div>
                 );

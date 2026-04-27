@@ -103,7 +103,49 @@ export const homeContent = {
       lossWarning: "This is the value your business loses every year.",
       footerNote: "*Based on strategic impact analysis references."
     },
-    cta: "Get Free ROI Report & Proposal"
+    cta: "Get Free ROI Report & Proposal",
+    simulator: {
+      title: "Automation ROI Projection",
+      subTitle: "Analyze Costs & System Parameters",
+      workloadTitle: "Select Workload Type",
+      levels: [
+        { id: 'light', label: 'Foundation Level', sublabel: 'Data Entry / Basic Docs' },
+        { id: 'medium', label: 'Mid-Level', sublabel: 'Verification / Multi-source Data' },
+        { id: 'heavy', label: 'Complex Level', sublabel: 'System Integration / High Logic' }
+      ],
+      params: {
+        title: "Parameter Tuning",
+        volume: "Workload / Month",
+        staff: "Related Staff",
+        hourlyRate: "Hourly Rate",
+        unitCost: "Manual Unit Cost",
+        botPrice: "Bot Investment",
+        maintCost: "Maintenance / Mo."
+      },
+      kpis: {
+        monthlySaving: "Monthly Savings",
+        payback: "Payback Period",
+        paybackUnit: "Months (Payback)"
+      },
+      comparison: {
+        manual: "Legacy System (Manual)",
+        bot: "Automated System (Bot)",
+        totalHours: "Total Work Hours",
+        totalCost: "Total Current Cost",
+        costPerUnit: "Cost Per Task",
+        invest: "Bot Investment",
+        maint: "Maintenance"
+      },
+      benchmark: {
+        title: "Efficiency Benchmark",
+        botLabel: "AETOX Bot",
+        manualLabel: "Human Team",
+        savedHours: "Hours Saved",
+        speedX: "Faster than Human",
+        unitTime: "Hrs",
+        unitTimes: "X"
+      }
+    }
   },
   security: {
     title: "Enterprise Security Standards",

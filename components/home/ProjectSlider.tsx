@@ -17,126 +17,98 @@ interface ProjectSlide {
 export default function ProjectSlider({ projects, viewDetailsLabel }: { projects: ProjectSlide[], viewDetailsLabel?: string }) {
   const [current, setCurrent] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % projects.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [projects.length]);
+  if (!projects || projects.length === 0) return null;
 
   const next = () => setCurrent((prev) => (prev + 1) % projects.length);
   const prev = () => setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
 
   return (
-    <div className="relative group overflow-hidden rounded-[32px] md:rounded-[40px] border border-white/10 aspect-[4/5] md:aspect-video bg-black/40 shadow-2xl">
+    <div className="relative w-full aspect-[4/5] md:aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden bg-[#050505] border border-white/10 shadow-2xl">
       <AnimatePresence mode="wait">
         <motion.div
           key={projects[current].id}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
           className="absolute inset-0"
         >
-          <div className="relative w-full h-full">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
             <Image 
               src={projects[current].image}
-              alt={projects[current].title}
+              alt=""
               fill
-              sizes="(max-width: 768px) 100vw, 800px"
-              className="object-cover opacity-60"
-              onError={(e) => {
-                // If image fails, hide it and show the fallback below
-                (e.target as any).style.display = 'none';
-              }}
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+              className="object-cover opacity-40 transition-transform duration-[5000ms] scale-110"
             />
-            {/* High-End Fallback Background (Always present behind, or visible if image fails) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/10 via-black to-black -z-10 flex items-center justify-center">
-               <div className="text-center opacity-10">
-                 <p className="text-6xl font-bold tracking-[0.5em] text-white">AETOX</p>
-                 <p className="text-sm font-bold tracking-[1em] text-cyber-blue mt-4">PROJECT SHOWCASE</p>
-               </div>
-            </div>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Content Overlay - Organized for No Overlap */}
-      <div className="absolute inset-0 p-8 md:p-14 flex flex-col justify-end">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
-        
-        <motion.div 
-          key={projects[current].id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative max-w-2xl z-10"
-        >
-          {/* Metadata Tag - Clearly Separated */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="px-3 py-1.5 rounded-lg bg-aetox-accent/20 border border-aetox-accent/30 text-xs font-bold text-aetox-accent tracking-wider backdrop-blur-md">
-              {projects[current].category}
-            </span>
-            <div className="w-1 h-1 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-xl md:text-4xl font-bold text-aetox-text-main leading-[1.1] tracking-tight">
-              {projects[current].title}
-            </h3>
+          {/* Content Overlay - Simple & Robust Structure */}
+          <div className="absolute inset-0 z-10 p-8 md:p-14 lg:p-20 flex flex-col justify-end">
+            <div className="max-w-4xl space-y-6 md:space-y-8">
+              {/* Category */}
+              <div className="flex items-center gap-4">
+                <span className="px-4 py-1.5 rounded-full bg-aetox-accent text-white text-[11px] md:text-sm font-bold tracking-[0.2em] uppercase shadow-aetox-glow">
+                  {projects[current].category}
+                </span>
+                <div className="h-px w-16 bg-white/20" />
+              </div>
 
-            <p className="text-aetox-text-soft text-sm md:text-base font-medium leading-relaxed max-w-lg opacity-80 line-clamp-2">
-              {projects[current].description}
-            </p>
+              {/* Title - Large & Readable */}
+              <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.4] md:leading-[1.2] tracking-tight py-2">
+                {projects[current].title}
+              </h3>
 
-            <div className="pt-6 flex items-center gap-6">
-              <Link 
-                href={`/authority/${projects[current].category}/${projects[current].slug}`}
-                className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-bold text-xs tracking-wider overflow-hidden transition-all active:scale-95"
-              >
-                <span className="relative z-10">{viewDetailsLabel || 'View Details'}</span>
-                <ArrowRight size={14} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-aetox-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-              </Link>
+              {/* Description - Scaled Up */}
+              <p className="text-aetox-text-soft text-base md:text-xl font-medium leading-relaxed max-w-3xl opacity-90 line-clamp-3">
+                {projects[current].description}
+              </p>
 
-              {/* Mini Counter */}
-              <div className="hidden md:flex items-center gap-2">
-                <span className="text-aetox-accent font-black text-xs">{(current + 1).toString().padStart(2, '0')}</span>
-                <div className="w-8 h-[1px] bg-aetox-border" />
-                <span className="text-aetox-text-muted font-black text-xs">{projects.length.toString().padStart(2, '0')}</span>
+              {/* Actions */}
+              <div className="pt-6 md:pt-10 flex flex-wrap items-center gap-10">
+                <Link 
+                  href={`/authority/${projects[current].category}/${projects[current].slug}`}
+                  className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-white text-black font-bold text-base md:text-lg overflow-hidden transition-all active:scale-95 shadow-2xl"
+                >
+                  <span className="relative z-10">{viewDetailsLabel || 'ดูรายละเอียด'}</span>
+                  <ArrowRight size={22} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                  <div className="absolute inset-0 bg-aetox-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </Link>
+
+                {/* Progress Indicators */}
+                <div className="flex items-center gap-3">
+                  {projects.map((_, i) => (
+                    <div 
+                      key={i}
+                      className={`h-1.5 rounded-full transition-all duration-700 ${
+                        i === current ? 'w-16 bg-aetox-accent' : 'w-4 bg-white/20'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </motion.div>
-      </div>
+      </AnimatePresence>
 
-      {/* Navigation Controls - Relocated for Balance */}
-      <div className="absolute bottom-8 right-8 flex gap-3 z-30">
+      {/* Navigation Controls */}
+      <div className="absolute top-10 right-10 z-30 flex gap-3">
         <button 
           onClick={prev}
-          className="w-12 h-12 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent hover:border-aetox-accent transition-all active:scale-90 group"
+          className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent transition-all active:scale-90"
         >
-          <ArrowLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
+          <ArrowLeft size={24} />
         </button>
         <button 
           onClick={next}
-          className="w-12 h-12 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent hover:border-aetox-accent transition-all active:scale-90 group"
+          className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent transition-all active:scale-90"
         >
-          <ArrowRight size={20} className="group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight size={24} />
         </button>
-      </div>
-
-      {/* Progress Bar - Top Aligned */}
-      <div className="absolute top-0 left-0 w-full p-8 md:p-14 z-20 pointer-events-none">
-        <div className="flex gap-2 justify-end">
-          {projects.map((_, i) => (
-            <div 
-              key={i}
-              className={`h-1 transition-all duration-700 rounded-full ${i === current ? 'w-12 bg-aetox-accent shadow-aetox-glow' : 'w-4 bg-white/10'}`}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );
