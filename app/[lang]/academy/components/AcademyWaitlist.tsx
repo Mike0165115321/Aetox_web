@@ -4,27 +4,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2, User, Mail, MessageSquare, ChevronRight } from 'lucide-react';
 
 export default function AcademyWaitlist({ dict }: { dict: any }) {
-  const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    goals: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-      const formData = new FormData(e.currentTarget);
       const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        category: `Academy: ${formData.get('position')}`,
-        challenge: formData.get('challenge'),
-        company: 'Academy Prospect',
-        preferredMethod: 'Email',
-        contactDetail: formData.get('email'),
-        contactTime: 'As soon as possible',
-        budget: 'N/A',
-        timeline: 'Immediate'
+        type: 'academy_waitlist', // Tag clearly for your future dashboard
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        goals: formData.goals,
+        category: 'Academy Early Access Waitlist',
+        preferredMethod: 'Direct Call / Line',
+        contactDetail: formData.phone,
       };
 
       const response = await fetch('/api/contact', {
@@ -61,7 +70,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                 key="success"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-8 md:p-20 rounded-[32px] md:rounded-[40px] text-center border-deep-blue/30 shadow-deep-glow"
+                className="glass-card p-8 md:p-20 rounded-[32px] md:rounded-[40px] text-center border-aetox-accent/30 shadow-aetox-glow"
               >
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8 border border-emerald-500/40">
                   <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 text-emerald-500" />
@@ -72,7 +81,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
-                  className="mt-8 md:mt-10 text-deep-blue hover:text-white transition-colors font-bold text-xs md:text-sm uppercase tracking-[0.3em]"
+                  className="mt-8 md:mt-10 text-aetox-accent hover:text-white transition-colors font-bold text-xs md:text-sm uppercase tracking-[0.3em]"
                 >
                   {form.success.close}
                 </button>
@@ -85,96 +94,89 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                 onSubmit={handleSubmit}
                 className="glass-card p-6 md:p-12 rounded-[32px] md:rounded-[40px] border-white/5 bg-black/40 shadow-2xl relative"
               >
-                <div className="mb-10 md:mb-12 flex justify-between items-center px-2">
-                  <div className="flex gap-2">
-                    {[1, 2].map((s) => (
-                      <div 
-                        key={s} 
-                        className={`h-1 rounded-full transition-all duration-500 ${step >= s ? 'w-8 md:w-12 bg-deep-blue' : 'w-3 md:w-4 bg-white/10'}`} 
+                <div className="space-y-6">
+                  {/* Name Input */}
+                  <div className="space-y-2 md:space-y-3">
+                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.name.label}</label>
+                    <div className="relative">
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                      <input 
+                        name="name" 
+                        type="text" 
+                        required 
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder={form.fields.name.placeholder} 
+                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all text-sm md:text-base" 
                       />
-                    ))}
+                    </div>
                   </div>
-                  <span className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest">{form.step} {step} {form.of} 2</span>
+
+                  {/* Email Input */}
+                  <div className="space-y-2 md:space-y-3">
+                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.email.label}</label>
+                    <div className="relative">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                      <input 
+                        name="email" 
+                        type="email" 
+                        required 
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder={form.fields.email.placeholder} 
+                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all text-sm md:text-base" 
+                      />
+                    </div>
+                  </div>
+
+                  {/* Phone Input */}
+                  <div className="space-y-2 md:space-y-3">
+                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.phone.label}</label>
+                    <div className="relative">
+                      <Send className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                      <input 
+                        name="phone" 
+                        type="text" 
+                        required 
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder={form.fields.phone.placeholder} 
+                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all text-sm md:text-base" 
+                      />
+                    </div>
+                  </div>
+
+                  {/* Goals Input */}
+                  <div className="space-y-2 md:space-y-3">
+                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.goals.label}</label>
+                    <div className="relative">
+                      <MessageSquare className="absolute left-4 top-4 w-4 h-4 text-gray-600" />
+                      <textarea 
+                        name="goals" 
+                        rows={3} 
+                        value={formData.goals}
+                        onChange={handleChange}
+                        placeholder={form.fields.goals.placeholder} 
+                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all resize-none text-sm md:text-base" 
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-4">
+                    <button 
+                      type="submit"
+                      disabled={loading}
+                      className="w-full py-4 md:py-5 rounded-xl md:rounded-2xl bg-aetox-accent text-white font-black text-base md:text-lg uppercase tracking-[0.15em] md:tracking-[0.2em] hover:shadow-aetox-glow transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
+                    >
+                      {loading ? form.submitting : form.submit}
+                      {!loading && <Send className="w-4 h-4 md:w-5 md:h-5" />}
+                    </button>
+                  </div>
                 </div>
 
-                <AnimatePresence mode="wait">
-                  {step === 1 ? (
-                    <motion.div
-                      key="step1"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      className="space-y-5 md:space-y-6"
-                    >
-                      <div className="space-y-2 md:space-y-3">
-                        <label className="text-[10px] md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.name.label}</label>
-                        <div className="relative">
-                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-                          <input name="name" type="text" required placeholder={form.fields.name.placeholder} className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all text-sm md:text-base" />
-                        </div>
-                      </div>
-                      <div className="space-y-2 md:space-y-3">
-                        <label className="text-[10px] md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.email.label}</label>
-                        <div className="relative">
-                          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-                          <input name="email" type="email" required placeholder={form.fields.email.placeholder} className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all text-sm md:text-base" />
-                        </div>
-                      </div>
-                      <button 
-                        type="button"
-                        onClick={() => setStep(2)}
-                        className="w-full py-4 md:py-5 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-3 group text-sm md:text-base"
-                      >
-                        {form.next}
-                        <ChevronRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="step2"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      className="space-y-5 md:space-y-6"
-                    >
-                      <div className="space-y-2 md:space-y-3">
-                        <label className="text-[10px] md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.position.label}</label>
-                        <select name="position" className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 px-5 md:px-6 text-white focus:border-deep-blue/50 focus:outline-none transition-all appearance-none cursor-pointer text-sm md:text-base">
-                          {form.fields.position.options.map((opt: any) => (
-                            <option key={opt.value} value={opt.value} className="bg-ultra-dark">{opt.label}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="space-y-2 md:space-y-3">
-                        <label className="text-[10px] md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.challenge.label}</label>
-                        <div className="relative">
-                          <MessageSquare className="absolute left-4 top-4 md:top-5 w-4 h-4 text-gray-600" />
-                          <textarea name="challenge" rows={3} placeholder={form.fields.challenge.placeholder} className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-deep-blue/50 focus:outline-none transition-all resize-none text-sm md:text-base" />
-                        </div>
-                      </div>
-                      <div className="flex gap-3 md:gap-4">
-                        <button 
-                          type="button"
-                          onClick={() => setStep(1)}
-                          className="w-[80px] md:w-1/3 py-4 md:py-5 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 text-gray-400 font-bold hover:text-white transition-all text-sm"
-                        >
-                          {form.back}
-                        </button>
-                        <button 
-                          type="submit"
-                          disabled={loading}
-                          className="flex-1 py-4 md:py-5 rounded-xl md:rounded-2xl bg-deep-blue text-white font-black text-base md:text-lg uppercase tracking-[0.15em] md:tracking-[0.2em] hover:shadow-deep-glow transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
-                        >
-                          {loading ? form.submitting : form.submit}
-                          {!loading && <Send className="w-4 h-4 md:w-5 md:h-5" />}
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
                 <div className="mt-8 text-center">
-                  <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">
+                  <p className="text-sm text-gray-600 font-bold uppercase tracking-widest">
                     {form.privacy}
                   </p>
                 </div>

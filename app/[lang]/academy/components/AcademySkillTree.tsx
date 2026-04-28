@@ -32,25 +32,25 @@ export default function AcademySkillTree({ dict, categories }: { dict: any, cate
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
                   className={`
-                    w-full p-6 md:p-8 rounded-3xl border text-left transition-all duration-500 relative overflow-hidden group
+                    w-full p-5 md:p-8 rounded-3xl border text-left transition-all duration-500 relative overflow-hidden group
                     active:scale-[0.98]
                     ${isActive 
-                      ? 'bg-deep-blue border-deep-blue shadow-deep-glow' 
+                      ? 'bg-aetox-accent border-aetox-accent shadow-aetox-glow' 
                       : 'bg-white/5 border-white/10 hover:bg-white/10'}
                   `}
                 >
                   <div className="flex items-center gap-4 md:gap-6 relative z-10">
                     <div className={`
-                      w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center transition-all duration-500
-                      ${isActive ? 'bg-white text-deep-blue' : 'bg-white/10 text-gray-400 group-hover:scale-110'}
+                      w-10 h-10 md:w-14 md:h-14 rounded-2xl flex items-center justify-center transition-all duration-500
+                      ${isActive ? 'bg-white text-aetox-accent' : 'bg-white/10 text-gray-400 group-hover:scale-110'}
                     `}>
-                      <Icon className="w-6 h-6 md:w-7 md:h-7" />
+                      <Icon className="w-5 h-5 md:w-7 md:h-7" />
                     </div>
                     <div className="flex-1">
-                      <p className={`text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${isActive ? 'text-white/70' : 'text-gray-500'}`}>
+                      <p className={`text-[9px] md:text-xs font-bold uppercase tracking-[0.2em] mb-1 ${isActive ? 'text-white/70' : 'text-gray-500'}`}>
                         {cat.subtitle}
                       </p>
-                      <h3 className={`text-lg md:text-xl font-bold ${isActive ? 'text-white' : 'text-gray-300'}`}>
+                      <h3 className={`text-base md:text-2xl font-bold leading-tight ${isActive ? 'text-white' : 'text-gray-300'}`}>
                         {cat.title}
                       </h3>
                     </div>
@@ -94,15 +94,15 @@ export default function AcademySkillTree({ dict, categories }: { dict: any, cate
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.1 }}
-                          className="flex items-center justify-between p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 group hover:border-deep-blue/40 transition-colors"
+                          className="flex items-center justify-between p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 group hover:border-aetox-accent/40 transition-colors"
                         >
                           <div className="flex items-center gap-3 md:gap-4">
-                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-deep-blue shadow-deep-glow group-hover:scale-150 transition-transform" />
+                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-aetox-accent shadow-aetox-glow group-hover:scale-150 transition-transform" />
                             <span className="text-white font-bold text-base md:text-lg">{skill.name}</span>
                           </div>
-                          <div className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-deep-blue/10 border border-deep-blue/20 flex items-center gap-2">
-                            <Target className="w-2.5 h-2.5 md:w-3 md:h-3 text-deep-blue" />
-                            <span className="text-[8px] md:text-[10px] font-black text-deep-blue uppercase tracking-widest">{skill.value}</span>
+                          <div className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 flex items-center gap-2">
+                            <Target className="w-2.5 h-2.5 md:w-3 md:h-3 text-aetox-accent" />
+                            <span className="text-[10px] md:text-xs font-black text-aetox-accent uppercase tracking-widest">{skill.value}</span>
                           </div>
                         </motion.div>
                       ))}

@@ -49,7 +49,7 @@ export default function AcademyROI({ dict }: { dict: any }) {
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${item.isBad ? 'bg-red-500/10' : 'bg-emerald-500/10'}`}>
                     {item.isBad ? <AlertTriangle className="w-6 h-6 text-red-500" /> : <TrendingUp className="w-6 h-6 text-emerald-500" />}
                   </div>
-                  <div className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full ${item.isBad ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
+                  <div className={`text-xs font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full ${item.isBad ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
                     {item.isBad ? dict.hiddenLoss : dict.advantage}
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export default function AcademyROI({ dict }: { dict: any }) {
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-gray-500 text-sm font-bold uppercase tracking-[0.3em]">
+            <p className="text-gray-500 text-base font-bold uppercase tracking-[0.3em]">
               {dict.footerNote}
             </p>
           </div>

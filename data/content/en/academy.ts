@@ -106,23 +106,18 @@ export const academyContent = {
       privacy: "Your data is kept strictly confidential according to international standards.",
       error: "An error occurred. Please try again.",
       fields: {
-        name: { label: "Full Name", placeholder: "Your name" },
-        email: { label: "Contact Email", placeholder: "Work email" },
-        position: { 
-          label: "Your Position or Goal",
-          options: [
-            { value: "Senior Programmer", label: "Senior Programmer" },
-            { value: "Tech Lead / Team Lead", label: "Tech Lead / Team Lead" },
-            { value: "Business Owner / CTO", label: "Business Owner / CTO" },
-            { value: "System Architect", label: "Aspiring System Architect" }
-          ]
-        },
-        challenge: { label: "Expectations or Challenges You're Facing...", placeholder: "Describe technical challenges you're facing..." }
+        name: { label: "Full Name", placeholder: "Enter your full name" },
+        email: { label: "Professional Contact Email", placeholder: "Enter your professional email" },
+        phone: { label: "Phone / Line ID", placeholder: "For private coordination and priority access" },
+        goals: { 
+          label: "Systems or Skills You Wish to Master", 
+          placeholder: "e.g., Enterprise AI Architecture, Agentic Workflows, or Scalable Automation..." 
+        }
       },
       success: {
-        title: "Confirmed!",
-        description: "You have received Priority Access. Our team will contact you with early-bird specials soon.",
-        close: "Close"
+        title: "Reservation Successful",
+        description: "Your information has been registered for Priority Access. Our architect will contact you shortly with blueprint details and exclusive offers.",
+        close: "Close Window"
       }
     }
   }

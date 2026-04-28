@@ -106,22 +106,17 @@ export const academyContent = {
       privacy: "ข้อมูลของคุณจะถูกเก็บเป็นความลับสูงสุด ตามมาตรฐานสากล",
       error: "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
       fields: {
-        name: { label: "ชื่อ - นามสกุล", placeholder: "ชื่อของคุณ" },
-        email: { label: "อีเมลติดต่อ", placeholder: "ระบุอีเมลที่ใช้ทำงาน" },
-        position: { 
-          label: "ตำแหน่งหรือเป้าหมายของคุณ",
-          options: [
-            { value: "Senior Programmer", label: "โปรแกรมเมอร์อาวุโส (Senior Programmer)" },
-            { value: "Tech Lead / Team Lead", label: "หัวหน้าทีมเทคนิค (Tech Lead / Team Lead)" },
-            { value: "Business Owner / CTO", label: "เจ้าของธุรกิจ / ผู้บริหารฝ่ายเทคโนโลยี (Business Owner / CTO)" },
-            { value: "System Architect", label: "ผู้ที่ต้องการเป็นสถาปนิกวางระบบ (System Architect)" }
-          ]
-        },
-        challenge: { label: "ความคาดหวังหรือปัญหาที่คุณกำลังเผชิญ...", placeholder: "ระบุปัญหาทางเทคนิคที่คุณกำลังเผชิญ..." }
+        name: { label: "ชื่อ - นามสกุล", placeholder: "กรอกชื่อ-นามสกุลของคุณ" },
+        email: { label: "อีเมลติดต่อระดับมืออาชีพ", placeholder: "ระบุอีเมลที่ใช้ทำงานของคุณ" },
+        phone: { label: "เบอร์โทรศัพท์ / Line ID", placeholder: "สำหรับการประสานงานและจองสิทธิ์ส่วนตัว" },
+        goals: { 
+          label: "ระบบหรือทักษะที่คุณต้องการเชี่ยวชาญเป็นพิเศษ", 
+          placeholder: "เช่น การวางโครงสร้าง Enterprise AI, การออกแบบระบบ Agentic Workflow หรือการจัดการ Scalable Automation..." 
+        }
       },
       success: {
-        title: "ยืนยันเรียบร้อย!",
-        description: "คุณได้รับสิทธิ์เข้าถึงลำดับต้น (Priority Access) เรียบร้อยแล้ว ทีมงานจะติดต่อกลับพร้อมสิทธิพิเศษช่วงแรก (Early Bird) ในเร็วๆ นี้",
+        title: "จองสิทธิ์สำเร็จ",
+        description: "ข้อมูลของคุณถูกบันทึกเข้าระบบลำดับต้น (Priority Access) เรียบร้อยแล้ว สถาปนิกของเราจะติดต่อกลับเพื่อแจ้งรายละเอียดพิมพ์เขียวและสิทธิพิเศษสำหรับคุณในเร็วๆ นี้",
         close: "ปิดหน้าต่าง"
       }
     }
