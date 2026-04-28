@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { RotateCcw, Zap, TrendingUp, ArrowRight } from 'lucide-react';
 import { useCurrency } from '@/context/CurrencyContext';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
-import { useAutomationRoi, workloadConfig, type Complexity } from '@/app/[lang]/services/automation/hooks/use-automation-roi';
-import { KpiCard, SliderGroup, SimulatorIcon } from '@/app/[lang]/services/automation/components/simulator-ui';
+import { useAutomationRoi, workloadConfig, type Complexity } from '@/components/simulators/automation/use-automation-roi';
+import { KpiCard, SliderGroup, SimulatorIcon } from '@/components/simulators/automation/simulator-ui';
 
 export default function AutomationSimulatorHome({ dict }: { dict: any }) {
   const [current, setCurrent] = useState(0);

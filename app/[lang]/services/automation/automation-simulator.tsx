@@ -5,8 +5,8 @@ import { useCurrency } from '@/context/CurrencyContext';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
 
 // Import extracted logic and components
-import { useAutomationRoi, workloadConfig, type Complexity, type Timeframe } from './hooks/use-automation-roi';
-import { KpiCard, SliderGroup, SimulatorIcon } from './components/simulator-ui';
+import { useAutomationRoi, workloadConfig, type Complexity, type Timeframe } from '@/components/simulators/automation/use-automation-roi';
+import { KpiCard, SliderGroup, SimulatorIcon } from '@/components/simulators/automation/simulator-ui';
 
 const theme = {
   primary: 'text-[#06B6D4]',
