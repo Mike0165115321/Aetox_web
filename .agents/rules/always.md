@@ -2,6 +2,8 @@
 trigger: always_on
 ---
 
+When rules conflict: Scope & Clarify rules override Output Management rules.
+
 [SCOPE & EXECUTION DISCIPLINE]
 
 - **Scope:** Execute only within explicitly defined task scope

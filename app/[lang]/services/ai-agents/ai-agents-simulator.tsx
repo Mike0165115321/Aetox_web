@@ -9,7 +9,10 @@ import {
 import { useCurrency } from '@/context/CurrencyContext';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
 import { useRoiCalculator } from './hooks/use-roi-calculator';
+import { useSimulatorState } from './hooks/use-simulator-state';
 import { FeaturesDashboard } from './components/simulator-components';
+import SliderGroup from '@/components/ui/simulator/SliderGroup';
+import StatCard from '@/components/ui/simulator/StatCard';
 
 // ─── Tier Definitions ──────────────────────────────────────────────
 const TIERS = [
@@ -58,52 +61,18 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
   
   const activeTier = TIERS.find(t => t.id === tierId)!;
 
-  // Slider states
-  const [queriesPerDay, setQueriesPerDay]   = useState(activeTier.preset.queriesPerDay);
-  const [avgSalary, setAvgSalary]           = useState(activeTier.preset.avgSalary);
-  const [staffCount, setStaffCount]         = useState(activeTier.preset.staffCount);
-  const [minutesPerCase, setMinutesPerCase] = useState(activeTier.preset.minutesPerCase);
-  const [aiMonthlyFee, setAiMonthlyFee]     = useState(activeTier.preset.aiMonthlyFee);
-  const [setupCost, setSetupCost]           = useState(activeTier.preset.setupCost);
-  const [valuePerCase, setValuePerCase]     = useState(activeTier.preset.valuePerCase);
-  const [dropRate]                          = useState(20);
+  // Use modular state hook
+  const { params, setters } = useSimulatorState({ tierId, tiers: TIERS, currency, exchangeRate });
+  
+  const {
+    queriesPerDay, avgSalary, staffCount, minutesPerCase,
+    aiMonthlyFee, setupCost, valuePerCase, dropRate
+  } = params;
 
-  // Sync presets on tier change or currency change during render phase
-  const [prevTierId, setPrevTierId] = useState(tierId);
-  const [prevCurrency, setPrevCurrency] = useState(currency);
-
-  if (prevTierId !== tierId) {
-    setPrevTierId(tierId);
-    const p = activeTier.preset;
-    setQueriesPerDay(p.queriesPerDay);
-    setStaffCount(p.staffCount);
-    setMinutesPerCase(p.minutesPerCase);
-    
-    if (currency === 'USD' && exchangeRate) {
-      setAvgSalary(Math.round(p.avgSalary / exchangeRate / 100) * 100);
-      setValuePerCase(Math.round(p.valuePerCase / exchangeRate / 5) * 5);
-      setAiMonthlyFee(Math.round(p.aiMonthlyFee / exchangeRate / 50) * 50);
-      setSetupCost(Math.round(p.setupCost / exchangeRate / 100) * 100);
-    } else {
-      setAvgSalary(p.avgSalary);
-      setValuePerCase(p.valuePerCase);
-      setAiMonthlyFee(p.aiMonthlyFee);
-      setSetupCost(p.setupCost);
-    }
-  } else if (prevCurrency !== currency && exchangeRate) {
-    setPrevCurrency(currency);
-    if (currency === 'USD') {
-      setAvgSalary(prev => Math.round(prev / exchangeRate / 100) * 100);
-      setValuePerCase(prev => Math.round(prev / exchangeRate / 5) * 5);
-      setAiMonthlyFee(prev => Math.round(prev / exchangeRate / 50) * 50);
-      setSetupCost(prev => Math.round(prev / exchangeRate / 100) * 100);
-    } else {
-      setAvgSalary(prev => Math.round(prev * exchangeRate / 100) * 100);
-      setValuePerCase(prev => Math.round(prev * exchangeRate / 100) * 100);
-      setAiMonthlyFee(prev => Math.round(prev * exchangeRate / 1000) * 1000);
-      setSetupCost(prev => Math.round(prev * exchangeRate / 1000) * 1000);
-    }
-  }
+  const {
+    setQueriesPerDay, setAvgSalary, setStaffCount, setMinutesPerCase,
+    setAiMonthlyFee, setSetupCost, setValuePerCase
+  } = setters;
 
   const calc = useRoiCalculator({
     useCase: tierId, queriesPerDay, avgSalary, staffCount,
@@ -305,39 +274,6 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
       <section id="retrieval">
         <FeaturesDashboard features={simulator.features} comparisonRows={simulator.comparisonRows} />
       </section>
-    </div>
-  );
-}
-
-function SliderGroup({ label, value, onChange, min, max, step = 1, unit, displayValue, isAccent = false }: any) {
-  return (
-    <div className="space-y-2.5">
-      <div className="flex justify-between items-center">
-        <label className="text-[11px] font-bold text-gray-400">{label}</label>
-        <span className={`text-sm font-bold ${isAccent ? 'text-cyber-blue' : 'text-white'}`}>
-          {displayValue || value.toLocaleString() + unit}
-        </span>
-      </div>
-      <input
-        type="range" min={min} max={max} step={step} value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className={`w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyber-blue ${isAccent ? 'shadow-cyber-glow/20' : ''}`}
-      />
-    </div>
-  );
-}
-
-function StatCard({ label, value, desc, icon, color, bg, border, isPositive }: any) {
-  return (
-    <div className={`glass-card p-6 rounded-2xl border ${border} ${bg} relative group`}>
-      <div className="flex justify-between items-start mb-4">
-        <div className={`p-2 rounded-xl bg-white/5 ${color}`}>{icon}</div>
-      </div>
-      <div className="space-y-1">
-        <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wide">{label}</p>
-        <div className={`text-2xl font-bold ${isPositive ? 'text-emerald-400' : 'text-white'}`}>{value}</div>
-        <p className="text-[11px] text-gray-400 font-medium leading-tight mt-1.5">{desc}</p>
-      </div>
     </div>
   );
 }
