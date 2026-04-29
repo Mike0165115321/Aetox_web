@@ -26,7 +26,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
     
     try {
       const data = {
-        type: 'academy_waitlist', // Tag clearly for your future dashboard
+        type: 'academy', // คลีนข้อมูลให้เป็น academy เพื่อใช้ใน Dataset และ CRM
         name: formData.name,
         email: formData.email,
         phone: formData.phone,

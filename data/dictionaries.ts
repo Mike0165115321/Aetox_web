@@ -11,6 +11,7 @@ const th = {
   cta: () => import('./content/th/common/cta').then((module) => module.default),
   defaults: () => import('./content/th/common/defaults').then((module) => module.default),
   projects: () => import('./content/th/projects/index').then((module) => module.default),
+  admin: () => import('./content/th/admin').then((module) => module.default),
 };
 
 const dictionaries = {
@@ -29,6 +30,7 @@ const dictionaries = {
     cta: () => import('./content/en/common/cta').then((module) => module.default),
     defaults: () => import('./content/en/common/defaults').then((module) => module.default),
     projects: () => import('./content/en/projects/index').then((module) => module.default),
+    admin: () => import('./content/en/admin').then((module) => module.default),
   }
 
 };
