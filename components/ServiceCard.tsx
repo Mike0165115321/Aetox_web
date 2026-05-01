@@ -12,9 +12,10 @@ interface ServiceCardProps {
   Icon: LucideIcon;
   index: number;
   deploymentLabel?: string;
+  lang: string;
 }
 
-export default function ServiceCard({ id, title, description, features, relatedProjects, Icon, index, deploymentLabel }: ServiceCardProps) {
+export default function ServiceCard({ id, title, description, features, relatedProjects, Icon, index, deploymentLabel, lang }: ServiceCardProps) {
   const CardContent = (
     <div className="flex flex-col h-full">
       <div className="w-14 h-14 rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
@@ -64,11 +65,11 @@ export default function ServiceCard({ id, title, description, features, relatedP
       className="h-full"
     >
       {id ? (
-        <Link href={`/services/${id}`} className="glass-card group flex flex-col p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20 relative overflow-hidden h-full transition-all duration-500 hover:bg-aetox-surface/40 hover:-translate-y-2">
+        <Link href={`/${lang}/services/${id}`} className="aetox-card group flex flex-col p-10 h-full hover:-translate-y-2">
           {CardContent}
         </Link>
       ) : (
-        <div className="glass-card group flex flex-col p-10 rounded-[40px] border-aetox-border bg-aetox-surface/20 relative overflow-hidden h-full transition-all duration-500 hover:bg-aetox-surface/40">
+        <div className="aetox-card group flex flex-col p-10 h-full">
           {CardContent}
         </div>
       )}

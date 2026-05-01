@@ -1,57 +1,31 @@
-/*
- * ─────────────────────────────────────────────────────────────
- *  AETOX DARK THEME
- *  Assigns values to all CSS Variables declared in tokens.css
- *  Scope: .dark (toggled via JS on <html> element)
- * ─────────────────────────────────────────────────────────────
- */
-
 .dark {
-  /* Backgrounds (Surface Hierarchy) - Deepened for Atmosphere */
-  --aetox-bg:               #030303;
-  --aetox-surface-lowest:   #050505;
-  --aetox-surface-low:      #080808;
-  --aetox-surface:          #0A0A0A;
-  --aetox-surface-high:     #121212;
-  --aetox-surface-highest:  #1A1A1A;
-
-  /* Borders */
-  --aetox-border:           rgba(255, 255, 255, 0.06);
-  --aetox-border-strong:    rgba(255, 255, 255, 0.12);
-
-  /* Atmosphere (Dark Mode: Deep Blue) */
-  --aetox-aura-1:           rgba(10, 132, 255, 0.15); /* Aetox Blue */
-  --aetox-aura-2:           rgba(255, 255, 255, 0.03); /* Subtle White Mist */
-
-  /* Components (Dark Mode: Glassmorphism) */
-  --aetox-card-bg:          color-mix(in srgb, var(--aetox-surface), transparent 80%);
-  --aetox-card-hover:       color-mix(in srgb, var(--aetox-surface), transparent 60%);
-  --aetox-card-border:      var(--aetox-border);
-  --aetox-alert-error-bg:   color-mix(in srgb, var(--aetox-error), transparent 95%);
-  --aetox-alert-error-text: color-mix(in srgb, var(--aetox-error), transparent 20%);
-  --aetox-alert-accent-bg:  color-mix(in srgb, var(--aetox-accent), transparent 95%);
-  --aetox-alert-accent-text:color-mix(in srgb, var(--aetox-accent), transparent 20%);
+  /* Backgrounds & Surfaces (RGB) */
+  --aetox-bg-rgb-val:            5, 5, 5;
+  --aetox-surface-lowest-rgb-val: 8, 8, 8;
+  
+  /* Legacy/Static Values */
+  --aetox-surface-low:       #0F0F0F;
+  --aetox-surface-val:       #111111;
+  
+  /* Card System */
+  --aetox-card-bg:           #0A0A0A;
+  --aetox-card-border:       rgba(255, 255, 255, 0.06);
+  --aetox-card-hover:        #0D0D0D;
 
   /* Typography */
-  --aetox-text-main:        #F5F5F7;
-  --aetox-text-soft:        #86868B;
-  --aetox-text-muted:       #48484A;
+  --aetox-text-main-val:     #F5F5F7;
+  --aetox-text-soft-val:     #86868B;
+  --aetox-text-muted-val:    #48484A;
 
-  /* Accent (iOS Blue — same as light) */
-  --aetox-accent:           #0A84FF;
-  --aetox-accent-hover:     #0071E3;
-  --aetox-accent-subtle:    rgba(10, 132, 255, 0.15);
+  /* Accent (RGB) */
+  --aetox-accent-rgb:        10, 132, 255;
+  --aetox-error-rgb:         255, 69, 58;
 
-  /* Status */
-  --aetox-error:            #FF453A;
-  --aetox-error-surface:    rgba(255, 69, 58, 0.15);
-
-  /* Grid */
-  --aetox-grid-line:        rgba(255, 255, 255, 0.018);
+  /* Borders & Grids */
+  --aetox-border-val:        rgba(255, 255, 255, 0.08);
+  --aetox-grid-line:         rgba(255, 255, 255, 0.02);
 
   /* Shadows */
-  --aetox-shadow-card:      0 1px 0 rgba(255, 255, 255, 0.04),
-                            0 8px 32px rgba(0, 0, 0, 0.70);
-  --aetox-shadow-glow:      0 0 0 1px rgba(10, 132, 255, 0.25),
-                            0 8px 24px rgba(10, 132, 255, 0.12);
+  --aetox-shadow-card:       0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  --aetox-shadow-glow:       0 0 0 1px rgba(10, 132, 255, 0.2), 0 12px 32px rgba(10, 132, 255, 0.15);
 }

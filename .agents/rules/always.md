@@ -40,3 +40,8 @@ When rules conflict: Scope & Clarify rules override Output Management rules.
    Respond in Thai by default.
    Use English only for code, variable names, or technical terms
    where translation reduces clarity.
+
+CSS/styling must always be separated from component logic. 
+Never write inline styles or embed CSS directly in code files. 
+Always use dedicated style files and import them. 
+Every file should have a clear, single responsibility structure.

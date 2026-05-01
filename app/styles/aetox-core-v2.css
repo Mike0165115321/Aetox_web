@@ -1,0 +1,119 @@
+@layer components {
+  /* ─────────────────────────────────────────────────────────────
+   *  AETOX DESIGN SYSTEM — Component Tokens
+   *  Using @layer components ensures Tailwind processes these
+   *  classes in the correct order, preventing build errors.
+   * ─────────────────────────────────────────────────────────────
+   */
+
+  /* ── 1. Layout & Structure ────────────────────────────────── */
+  .aetox-container {
+    @apply container mx-auto px-6 md:px-12 lg:px-20;
+  }
+
+  /* ── 2. Atmospheric Elements ──────────────────────────────── */
+  .aetox-grid-overlay {
+    @apply absolute inset-0 pointer-events-none z-0;
+    background-image: var(--aetox-blueprint);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    opacity: 0.15;
+  }
+
+  .aetox-aura-primary {
+    @apply absolute w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none bg-aetox-accent/20 mix-blend-screen;
+    background: radial-gradient(circle, var(--aetox-accent) 0%, transparent 70%);
+  }
+
+  .aetox-aura-secondary {
+    @apply absolute w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none bg-[#8A2BE2]/10 mix-blend-screen;
+    background: radial-gradient(circle, #8A2BE2 0%, transparent 70%);
+  }
+
+  /* ── 3. Buttons & Interactives ────────────────────────────── */
+  .aetox-btn-main {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl 
+           bg-aetox-accent text-white font-bold text-sm tracking-widest uppercase
+           transition-all duration-300 shadow-aetox-glow hover:bg-aetox-accent-hover 
+           hover:scale-[1.02] active:scale-95;
+  }
+
+  .aetox-btn-glass {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl 
+           bg-aetox-surface-lowest border border-aetox-border text-aetox-text-main 
+           font-bold text-sm tracking-widest uppercase transition-all duration-300 
+           hover:bg-aetox-surface-low active:scale-95;
+  }
+
+  /* ── 4. Cards & Surfaces ────────────────────────────────── */
+  .aetox-card {
+    @apply rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
+    background-color: var(--aetox-card-bg);
+    border-color: var(--aetox-card-border);
+  }
+  
+  .aetox-card:hover {
+    background-color: var(--aetox-card-hover);
+  }
+
+  .aetox-label {
+    @apply text-fluid-label font-bold uppercase tracking-[0.2em] text-aetox-text-soft mb-2 block ml-1;
+  }
+
+  .aetox-input {
+    @apply w-full bg-aetox-surface-lowest border border-aetox-border rounded-2xl py-4 px-6
+           text-aetox-text-main placeholder:text-aetox-text-muted
+           focus:border-aetox-accent focus:outline-none transition-all duration-300
+           text-fluid-p font-medium;
+  }
+
+  .aetox-select {
+    @apply w-full bg-aetox-surface-lowest border border-aetox-border rounded-2xl py-4 px-6
+           text-aetox-text-main appearance-none cursor-pointer
+           focus:border-aetox-accent focus:outline-none transition-all duration-300
+           text-fluid-p font-medium;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1rem;
+  }
+
+  .aetox-alert-error {
+    @apply p-4 rounded-xl border transition-colors;
+    background-color: var(--aetox-alert-error-bg);
+    border-color: var(--aetox-alert-error-text);
+  }
+
+  .aetox-alert-accent {
+    @apply p-4 rounded-xl border transition-colors;
+    background-color: var(--aetox-alert-accent-bg);
+    border-color: var(--aetox-alert-accent-text);
+  }
+
+  /* ── 5. Navigation & Floating UI ────────────────────────── */
+  .aetox-nav-container {
+    @apply flex flex-col gap-4 p-2.5 rounded-[32px] bg-aetox-surface-lowest/40 backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
+  }
+
+  .aetox-nav-item {
+    @apply relative w-12 h-12 flex items-center justify-center rounded-[20px] transition-all duration-500 
+           text-aetox-text-muted hover:bg-aetox-accent hover:text-white hover:scale-110 active:scale-95;
+  }
+
+  .aetox-nav-item.active {
+    @apply bg-aetox-accent text-white shadow-aetox-glow;
+  }
+
+  .aetox-nav-tooltip {
+    @apply px-5 py-2.5 rounded-[20px] bg-aetox-surface-lowest backdrop-blur-3xl border border-aetox-border shadow-aetox-card;
+  }
+
+  .aetox-nav-indicator {
+    @apply absolute -inset-1.5 rounded-[24px] bg-aetox-accent/30 blur-md -z-10;
+  }
+
+  /* ── 6. Special Effects ─────────────────────────────────── */
+  .aetox-particle {
+    @apply absolute rounded-full bg-aetox-accent/20 blur-[1px] animate-pulse pointer-events-none;
+  }
+}

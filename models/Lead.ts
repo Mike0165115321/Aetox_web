@@ -8,7 +8,7 @@ export interface IInteraction {
 }
 
 export interface ILead extends Document {
-  type: 'project' | 'academy' | 'academy_waitlist';
+  type: 'project'; // ปรับเหลือแค่โปรเจกต์
   status: 'new' | 'contacted' | 'qualified' | 'rejected' | 'closed';
   name: string;
   email: string;
@@ -23,10 +23,6 @@ export interface ILead extends Document {
   budget?: string;
   timeline?: string;
   challenge?: string;
-  
-  // Academy specific
-  experience?: string;
-  goals?: string;
   
   // CRM Tracking
   notes?: string;
@@ -44,9 +40,10 @@ const LeadSchema = new Schema<ILead>({
     type: String,
     required: [true, 'Lead type is required'],
     enum: {
-      values: ['project', 'academy', 'academy_waitlist'],
+      values: ['project'], // ลบ academy ออกจาก enum
       message: '{VALUE} is not a valid lead type'
     },
+    default: 'project',
     index: true,
   },
   status: {
@@ -78,9 +75,6 @@ const LeadSchema = new Schema<ILead>({
   timeline: { type: String },
   challenge: { type: String },
   
-  experience: { type: String },
-  goals: { type: String },
-  
   notes: { type: String },
   priority: {
     type: String,
@@ -102,7 +96,6 @@ const LeadSchema = new Schema<ILead>({
   timestamps: true,
 });
 
-// Added index for createdAt via timestamps automatically, but explicit for clarity if needed
 LeadSchema.index({ createdAt: -1 });
 
 const Lead = (models.Lead as Model<ILead>) || model<ILead>('Lead', LeadSchema);

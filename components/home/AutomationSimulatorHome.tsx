@@ -1,72 +1,57 @@
 'use client';
 import React, { useState } from 'react';
-import { RotateCcw, Zap, TrendingUp, ArrowRight } from 'lucide-react';
+import { RotateCcw, Zap, TrendingUp } from 'lucide-react';
 import { useCurrency } from '@/context/CurrencyContext';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
 import { useAutomationRoi, workloadConfig, type Complexity } from '@/components/simulators/automation/use-automation-roi';
 import { KpiCard, SliderGroup, SimulatorIcon } from '@/components/simulators/automation/simulator-ui';
 
 export default function AutomationSimulatorHome({ dict }: { dict: any }) {
-  const [current, setCurrent] = useState(0);
   const { currency, exchangeRate } = useCurrency();
   const [complexity, setComplexity] = useState<Complexity>('medium');
   const [volume, setVolume] = useState(10000);
   const [staffCount, setStaffCount] = useState(6);
-  const [hourlyRate, setHourlyRate] = useState(120);
-  const [unitCostManual, setUnitCostManual] = useState(25);
-  const [botPrice, setBotPrice] = useState(35000);
-  const [maintCost, setMaintCost] = useState(2500);
+  
+  // เก็บค่าเป็น THB เสมอ (Base Currency) เพื่อความเสถียรของ Slider
+  const [hourlyRateTHB, setHourlyRateTHB] = useState(120);
+  const [unitCostManualTHB, setUnitCostManualTHB] = useState(5);
+  const [botPriceTHB, setBotPriceTHB] = useState(35000);
+  const [maintCostTHB, setMaintCostTHB] = useState(2500);
 
   const calc = useAutomationRoi({
     volume,
-    hourlyRate,
-    unitCostManual,
-    botPrice,
-    maintCost,
+    hourlyRateTHB,
+    unitCostManualTHB,
+    botPriceTHB,
+    maintCostTHB,
     complexity,
     timeframe: 12,
     currency,
     exchangeRate
   });
 
-  if (!dict || !dict.levels) {
-    return (
-      <div className="w-full p-20 text-center bg-aetox-surface-lowest/80 backdrop-blur-xl rounded-[40px] border border-aetox-border">
-        <p className="text-aetox-text-soft animate-pulse font-bold tracking-widest uppercase">Initializing Simulator...</p>
-      </div>
-    );
-  }
-
   const updateComplexity = (lvl: Complexity) => {
     const cfg = workloadConfig[lvl];
     setComplexity(lvl);
     setVolume(cfg.defaultVolume);
     setStaffCount(cfg.defaultStaff);
-    if (currency === 'USD') {
-      setHourlyRate(Math.round(cfg.defaultHourlyRate / exchangeRate));
-      setUnitCostManual(Math.round(cfg.defaultUnitCost / exchangeRate));
-      setBotPrice(Math.round(cfg.defaultBotPrice / exchangeRate / 100) * 100);
-      setMaintCost(Math.round(cfg.defaultMaint / exchangeRate / 10) * 10);
-    } else {
-      setHourlyRate(cfg.defaultHourlyRate);
-      setUnitCostManual(cfg.defaultUnitCost);
-      setBotPrice(cfg.defaultBotPrice);
-      setMaintCost(cfg.defaultMaint);
-    }
+    setHourlyRateTHB(cfg.defaultHourlyRate);
+    setUnitCostManualTHB(cfg.defaultUnitCost);
+    setBotPriceTHB(cfg.defaultBotPrice);
+    setMaintCostTHB(cfg.defaultMaint);
   };
 
   const formatMoney = (value: number, showLabel = true, short = true) => {
     const symbol = currency === 'USD' ? '$' : '฿';
-    let result = '';
-    if (value >= 1000000 && short) {
-      result = `${symbol}${(value / 1000000).toFixed(2)}M`;
-    } else if (value >= 1000 && short) {
-      result = `${symbol}${(value / 1000).toFixed(1)}K`;
-    } else {
-      result = `${symbol}${Math.round(value).toLocaleString()}`;
-    }
-    return showLabel ? result : result;
+    if (value >= 1000000 && short) return `${symbol}${(value / 1000000).toFixed(2)}M`;
+    if (value >= 1000 && short) return `${symbol}${(value / 1000).toFixed(1)}K`;
+    return `${symbol}${Math.round(value).toLocaleString()}`;
   };
+
+  // ตัวช่วยแปลงค่าสำหรับ "แสดงผล" เท่านั้น (ไม่เกี่ยวกับ Logic ของ Slider)
+  const toCurrentDisplay = (valTHB: number) => currency === 'USD' ? valTHB / exchangeRate : valTHB;
+
+  if (!dict || !dict.levels) return null;
 
   return (
     <div className="w-full bg-aetox-surface-lowest/80 backdrop-blur-xl rounded-[24px] md:rounded-[40px] border border-aetox-border overflow-hidden shadow-2xl">
@@ -121,10 +106,27 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
               {dict.params.title}
             </h4>
             <div className="space-y-6 md:space-y-8">
+              {/* Slider ทุตัวใช้หน่วย THB เสมอเพื่อให้ค่าไม่กระโดดตอนสลับสกุลเงิน */}
               <SliderGroup label={dict.params.volume} min={100} max={50000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
               <SliderGroup label={dict.params.staff} min={1} max={20} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
-              <SliderGroup label={dict.params.hourlyRate} min={50} max={500} step={10} value={hourlyRate} onChange={setHourlyRate} accent="accent-rose-400" displayValue={formatMoney(hourlyRate)} />
-              <SliderGroup label={dict.params.botPrice} min={5000} max={100000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-aetox-accent" displayValue={formatMoney(botPrice)} />
+              
+              <SliderGroup 
+                label={dict.params.hourlyRate} 
+                min={50} max={500} step={10} 
+                value={hourlyRateTHB} 
+                onChange={setHourlyRateTHB} 
+                accent="accent-rose-400" 
+                displayValue={formatMoney(toCurrentDisplay(hourlyRateTHB))} 
+              />
+              
+              <SliderGroup 
+                label={dict.params.botPrice} 
+                min={5000} max={150000} step={1000} 
+                value={botPriceTHB} 
+                onChange={setBotPriceTHB} 
+                accent="accent-aetox-accent" 
+                displayValue={formatMoney(toCurrentDisplay(botPriceTHB))} 
+              />
             </div>
           </section>
         </div>
@@ -137,7 +139,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
               valInCurrency={calc.monthlySaving} 
               accent 
               color="text-emerald-400" 
-              detail="กำไรสุทธิต่อเดือนหลังจากหักค่าบำรุงรักษาระบบแล้ว" 
+              detail="กำไรสุทธิต่อเดือนหลังหักค่าใช้จ่ายทั้งหมด" 
               currency={currency} 
               formatMoney={formatMoney} 
               unitLabel="ประหยัดได้" 
@@ -152,33 +154,33 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-rose-500/5 border border-rose-500/10 space-y-3 md:space-y-4">
+            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-rose-500/5 border border-rose-500/10 space-y-3 md:space-y-4 shadow-sm">
               <p className="text-[10px] md:text-xs font-bold text-rose-400 uppercase tracking-widest">{dict.comparison.manual}</p>
               <div className="space-y-2 md:space-y-3">
                 <div className="flex justify-between text-xs md:text-sm"><span className="text-gray-500">{dict.comparison.totalHours}</span><span className="text-white font-bold">{calc.manualHours.toFixed(0)} ชม.</span></div>
                 <div className="flex justify-between text-xs md:text-sm border-t border-white/5 pt-2 md:pt-3"><span className="text-gray-500">{dict.comparison.totalCost}</span><span className="text-rose-400 font-bold">{formatMoney(calc.totalBefore)}</span></div>
               </div>
             </div>
-            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-emerald-500/5 border border-emerald-500/10 space-y-3 md:space-y-4">
+            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-emerald-500/5 border border-emerald-500/10 space-y-3 md:space-y-4 shadow-sm">
               <p className="text-[10px] md:text-xs font-bold text-emerald-400 uppercase tracking-widest">{dict.comparison.bot}</p>
               <div className="space-y-2 md:space-y-3">
-                <div className="flex justify-between text-xs md:text-sm"><span className="text-gray-500">{dict.comparison.invest}</span><span className="text-white font-bold">{formatMoney(botPrice)}</span></div>
-                <div className="flex justify-between text-xs md:text-sm border-t border-white/5 pt-2 md:pt-3"><span className="text-gray-500">{dict.comparison.maint}</span><span className="text-emerald-400 font-bold">{formatMoney(maintCost)}/ด.</span></div>
+                <div className="flex justify-between text-xs md:text-sm"><span className="text-gray-500">{dict.comparison.invest}</span><span className="text-white font-bold">{formatMoney(calc.botPrice)}</span></div>
+                <div className="flex justify-between text-xs md:text-sm border-t border-white/5 pt-2 md:pt-3"><span className="text-gray-500">{dict.comparison.maint}</span><span className="text-emerald-400 font-bold">{formatMoney(calc.maintCost)}/ด.</span></div>
               </div>
             </div>
           </div>
 
           {/* Benchmark */}
-          <div className="p-6 md:p-8 rounded-[24px] md:rounded-3xl bg-white/[0.03] border border-white/5 space-y-5 md:space-y-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none"><Zap size={80} /></div>
+          <div className="p-6 md:p-8 rounded-[24px] md:rounded-3xl bg-white/[0.03] border border-white/5 space-y-5 md:space-y-6 relative overflow-hidden shadow-sm">
+            <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none text-aetox-accent"><Zap size={80} /></div>
             <h4 className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-white/5 pb-3 md:pb-4">{dict.benchmark.title}</h4>
             <div className="space-y-5 md:space-y-6">
               <div className="space-y-2">
-                <div className="flex justify-between items-end text-xs md:text-sm"><span className="font-bold text-white">{dict.benchmark.botLabel}</span><span className="font-bold text-emerald-400">{calc.botHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
+                <div className="flex justify-between items-end text-xs md:text-sm"><span className="font-bold text-white uppercase tracking-widest">{dict.benchmark.botLabel}</span><span className="font-bold text-emerald-400">{calc.botHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
                 <div className="w-full h-2.5 md:h-3 bg-white/5 rounded-full overflow-hidden"><div className="h-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all duration-1000" style={{ width: `${calc.botBarPct}%` }} /></div>
               </div>
               <div className="space-y-2">
-                <div className="flex justify-between items-end text-xs md:text-sm"><span className="font-bold text-gray-500">{dict.benchmark.manualLabel}</span><span className="font-bold text-rose-400">{calc.manualHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
+                <div className="flex justify-between items-end text-xs md:text-sm"><span className="font-bold text-gray-500 uppercase tracking-widest">{dict.benchmark.manualLabel}</span><span className="font-bold text-rose-400">{calc.manualHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
                 <div className="w-full h-2.5 md:h-3 bg-white/5 rounded-full overflow-hidden"><div className="h-full w-full bg-rose-500/50" /></div>
               </div>
             </div>

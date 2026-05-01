@@ -9,7 +9,6 @@ export default function LeadsManagement({ dict }: { dict: any }) {
   const [loading, setLoading] = useState(true); 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [filterStatus, setFilterStatus] = useState('all');
-  const [filterType, setFilterType] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLead, setSelectedLead] = useState<any>(null);
 
@@ -40,17 +39,14 @@ export default function LeadsManagement({ dict }: { dict: any }) {
     total: allLeads.length,
     new: allLeads.filter((l: any) => l.status === 'new').length,
     project: allLeads.filter((l: any) => l.type === 'project').length,
-    academy: allLeads.filter((l: any) => l.type.includes('academy')).length,
   };
 
   const filteredLeads = allLeads.filter((l: any) => {
     const matchStatus = filterStatus === 'all' || l.status === filterStatus;
-    const matchType = filterType === 'all' || 
-                     (filterType === 'academy' ? l.type.includes('academy') : l.type === filterType);
     const matchSearch = l.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                        l.email.toLowerCase().includes(searchTerm.toLowerCase());
     
-    return matchStatus && matchType && matchSearch;
+    return matchStatus && matchSearch;
   });
 
   const handleLeadUpdate = (updatedLead: any) => {
@@ -98,11 +94,10 @@ export default function LeadsManagement({ dict }: { dict: any }) {
     <>
     <div className="space-y-8">
       {/* 1. Stats Overview */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {[
           { label: dict.stats.total, value: stats.total, color: 'text-white' },
           { label: dict.stats.new, value: stats.new, color: 'text-blue-400' },
-          { label: dict.stats.academy, value: stats.academy, color: 'text-purple-400' },
           { label: dict.stats.project, value: stats.project, color: 'text-emerald-400' },
         ].map((s, i) => (
           <div key={i} className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl">
@@ -116,27 +111,6 @@ export default function LeadsManagement({ dict }: { dict: any }) {
       <div className="space-y-4 bg-zinc-900/50 p-6 rounded-[32px] border border-white/5">
         <div className="flex flex-col lg:flex-row justify-between gap-6">
           <div className="space-y-4 flex-grow">
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-black uppercase text-zinc-600 tracking-widest">หมวดหมู่:</span>
-              <div className="flex bg-black p-1.5 rounded-2xl border border-white/5">
-                {[
-                  { id: 'all', label: 'ทั้งหมด' },
-                  { id: 'project', label: 'จ้างงานโปรเจกต์' },
-                  { id: 'academy', label: 'สมัครเรียน Academy' }
-                ].map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setFilterType(t.id)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${
-                      filterType === t.id ? 'bg-zinc-800 text-white' : 'text-zinc-600 hover:text-zinc-400'
-                    }`}
-                  >
-                    {t.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div className="flex items-center gap-4">
               <span className="text-xs font-black uppercase text-zinc-600 tracking-widest">สถานะ:</span>
               <div className="flex flex-wrap gap-2">
@@ -196,7 +170,7 @@ export default function LeadsManagement({ dict }: { dict: any }) {
                       {dict.badges[lead.status] || lead.status}
                     </span>
                     <span className="bg-zinc-800 text-zinc-400 px-3 py-1.5 rounded-lg text-xs font-bold uppercase">
-                      {dict.badges[lead.type.includes('academy') ? 'academy' : 'project']}
+                      โปรเจกต์
                     </span>
                     
                     {/* Preferred Method Badge */}
@@ -250,27 +224,17 @@ export default function LeadsManagement({ dict }: { dict: any }) {
 
                   {/* Specific Details */}
                   <div className="bg-black/40 rounded-[24px] p-6 border border-white/5">
-                    {lead.type === 'project' ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-                        <div className="space-y-2">
-                          <p className="text-zinc-600 uppercase font-black tracking-widest text-xs mb-3">{dict.details.challenge}</p>
-                          <p className="text-zinc-300 leading-relaxed italic text-base">&quot;{lead.challenge}&quot;</p>
-                        </div>
-                        <div className="space-y-3">
-                          <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-24">{dict.details.company}:</span> <span className="text-zinc-200 text-base">{lead.company || '-'}</span></p>
-                          <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-24">{dict.details.category}:</span> <span className="text-zinc-200 text-base">{lead.category}</span></p>
-                          <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-24">{dict.details.budget}:</span> <span className="text-zinc-200 text-base">{lead.budget}</span></p>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                      <div className="space-y-2">
+                        <p className="text-zinc-600 uppercase font-black tracking-widest text-xs mb-3">{dict.details.challenge}</p>
+                        <p className="text-zinc-300 leading-relaxed italic text-base">&quot;{lead.challenge}&quot;</p>
                       </div>
-                    ) : (
-                      <div className="text-base space-y-4">
-                        <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-32">{dict.details.experience}:</span> <span className="text-zinc-200">{lead.experience}</span></p>
-                        <div className="pt-2">
-                          <p className="text-zinc-600 font-bold uppercase text-xs mb-2">{dict.details.goals}:</p>
-                          <p className="text-zinc-200 italic">&quot;{lead.goals}&quot;</p>
-                        </div>
+                      <div className="space-y-3">
+                        <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-24">{dict.details.company}:</span> <span className="text-zinc-200 text-base">{lead.company || '-'}</span></p>
+                        <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-24">{dict.details.category}:</span> <span className="text-zinc-200 text-base">{lead.category}</span></p>
+                        <p><span className="text-zinc-600 font-bold uppercase text-xs inline-block w-24">{dict.details.budget}:</span> <span className="text-zinc-200 text-base">{lead.budget}</span></p>
                       </div>
-                    )}
+                    </div>
                   </div>
 
                   {/* Timeline Snippet */}

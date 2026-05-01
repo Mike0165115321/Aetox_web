@@ -11,12 +11,6 @@ export const ctaContent = {
       desc: "Let us design and implement an enterprise-grade {{serviceName}} system that is precise, secure, and tailored to solve your specific business challenges.",
       label: "Consult Us",
       suitLabel: "Ideal for organizations that:"
-    },
-    learn: {
-      title: "Learn to Build {{serviceName}}",
-      desc: "Dive deep into the architecture of {{serviceName}} from theory to production-ready implementation, through courses built on direct experience.",
-      label: "Join the Academy",
-      suitLabel: "Ideal for those who:"
     }
   },
   final: {

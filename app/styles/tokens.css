@@ -1,65 +1,23 @@
 /*
  * ─────────────────────────────────────────────────────────────
- *  AETOX DESIGN TOKENS — Schema Declaration
- *
- *  Purpose: ประกาศรายการ CSS Variable ทั้งหมดที่ระบบใช้
- *           ไม่มีการกำหนดค่า — ค่าถูก assign ใน themes/
- *
- *  Import order:
- *    1. tokens.css  ← (this file) schema declaration
- *    2. themes/light.css  ← :root values
- *    3. themes/dark.css   ← .dark values
- *    4. utilities.css     ← classes that consume tokens
- *
- *  ถ้าต้องการเพิ่ม token ใหม่:
- *    1. เพิ่ม --aetox-xxx: initial; ที่นี่ก่อน
- *    2. กำหนดค่าใน themes/light.css และ themes/dark.css
- *    3. เพิ่ม color ใน tailwind.config.js → colors
+ *  AETOX DESIGN SYSTEM — Color Tokens (Full RGB Strategy)
+ *  Converting core surfaces to RGB to support opacity modifiers
+ *  for advanced glassmorphism and atmospheric effects.
  * ─────────────────────────────────────────────────────────────
  */
 
 :root {
-  /* Backgrounds */
-  --aetox-bg:               initial;
-  --aetox-surface-lowest:   initial;
-  --aetox-surface-low:      initial;
-  --aetox-surface:          initial;
-  --aetox-surface-high:     initial;
-  --aetox-surface-highest:  initial;
-
-  /* Borders */
-  --aetox-border:           initial;
-  --aetox-border-strong:    initial;
-
-  /* Atmosphere & Effects */
-  --aetox-aura-1:           initial;
-  --aetox-aura-2:           initial;
-
-  /* Components */
-  --aetox-card-bg:          initial;
-  --aetox-card-hover:       initial;
-  --aetox-card-border:      initial;
-  --aetox-alert-error-bg:   initial;
-  --aetox-alert-error-text: initial;
-  --aetox-alert-accent-bg:  initial;
-  --aetox-alert-accent-text:initial;
-
-  /* Typography */
-  --aetox-text-main:        initial;
-  --aetox-text-soft:        initial;
-  --aetox-text-muted:       initial;
-
-  /* Accent */
-  --aetox-accent:           initial;
-  --aetox-accent-hover:     initial;
-  --aetox-accent-subtle:    initial;
-
-  /* Status */
-  --aetox-error:            initial;
-  --aetox-error-surface:    initial;
-
-  /* Grid & Shadow */
-  --aetox-grid-line:        initial;
-  --aetox-shadow-card:      initial;
-  --aetox-shadow-glow:      initial;
+  /* Core Palette (Raw RGB) */
+  --aetox-accent-rgb:        10, 132, 255;
+  --aetox-error-rgb:         255, 69, 58;
+  
+  /* Surfaces (Raw RGB for /opacity support) */
+  --aetox-bg-rgb:            var(--aetox-bg-rgb-val);
+  --aetox-surface-lowest-rgb: var(--aetox-surface-lowest-rgb-val);
+  
+  /* Semantic Variables (Mapped) */
+  --aetox-text-main:         var(--aetox-text-main-val);
+  --aetox-text-soft:         var(--aetox-text-soft-val);
+  --aetox-text-muted:        var(--aetox-text-muted-val);
+  --aetox-border:            var(--aetox-border-val);
 }

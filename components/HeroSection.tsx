@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import React, { useEffect } from 'react';
 
-export default function HeroSection({ dict }: { dict: any }) {
+export default function HeroSection({ dict, lang }: { dict: any, lang: string }) {
   // Parallax Logic: เฉพาะหน้า Hero เท่านั้น
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -112,12 +112,12 @@ export default function HeroSection({ dict }: { dict: any }) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-lg flex flex-col md:flex-row gap-6 w-full md:w-auto"
         >
-          <Link href="/services" className="aetox-btn-main group">
+          <Link href={`/${lang}/services`} className="aetox-btn-main group">
             {content.cta.primary}
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           
-          <Link href="/authority" className="aetox-btn-glass">
+          <Link href={`/${lang}/authority`} className="aetox-btn-glass">
             {content.cta.secondary}
           </Link>
         </motion.div>

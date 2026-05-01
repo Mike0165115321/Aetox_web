@@ -45,35 +45,41 @@ module.exports = {
       //    bg-aetox-accent      ← CTA เท่านั้น
       // ─────────────────────────────────────────────────────────────────────────
       colors: {
-
         // ── Backgrounds (Surface Hierarchy) ───────────────────────────────────
-        "aetox-bg":                "var(--aetox-bg)",           // พื้นหลังสุด (ลึกที่สุด)
-        "aetox-surface-lowest":    "var(--aetox-surface-lowest)",// ต่ำกว่า bg (sub-canvas)
-        "aetox-surface-low":       "var(--aetox-surface-low)",  // Layer 1
-        "aetox-surface":           "var(--aetox-surface)",      // Layer 2 — Card หลัก
-        "aetox-surface-high":      "var(--aetox-surface-high)", // Layer 3 — Nested card
-        "aetox-surface-highest":   "var(--aetox-surface-highest)", // Layer 4 — Tooltip/Popover
+        "aetox-bg":                "rgb(var(--aetox-bg-rgb) / <alpha-value>)",
+        "aetox-surface-lowest":    "rgb(var(--aetox-surface-lowest-rgb) / <alpha-value>)",
+        "aetox-surface-low":       "var(--aetox-surface-low)",
+        "aetox-surface":           "var(--aetox-surface)",
+        "aetox-surface-high":      "var(--aetox-surface-high)",
+        "aetox-surface-highest":   "var(--aetox-surface-highest)",
+        
+        // Unified Card System
+        "aetox-card-bg":           "var(--aetox-card-bg)",
+        "aetox-card-border":       "var(--aetox-card-border)",
+        "aetox-card-hover":        "var(--aetox-card-hover)",
 
-        // ── Borders & Dividers ────────────────────────────────────────────────
-        "aetox-border":            "var(--aetox-border)",       // เส้นขอบปกติ
-        "aetox-border-strong":     "var(--aetox-border-strong)",// เส้นขอบเน้น
+        // ── Borders ───────────────────────────────────────────────────────────
+        "aetox-border":            "var(--aetox-border)",
+        "aetox-border-strong":     "var(--aetox-border-strong)",
 
         // ── Typography ────────────────────────────────────────────────────────
-        "aetox-text-main":         "var(--aetox-text-main)",    // Headline / Body หลัก
-        "aetox-text-soft":         "var(--aetox-text-soft)",    // Secondary text
-        "aetox-text-muted":        "var(--aetox-text-muted)",   // Placeholder / Disabled
+        "aetox-text-main":         "rgb(var(--aetox-accent-rgb) / <alpha-value>)", // Fallback if main fails
+        "aetox-text-main":         "var(--aetox-text-main-val)",
+        "aetox-text-soft":         "var(--aetox-text-soft-val)",
+        "aetox-text-muted":        "var(--aetox-text-muted-val)",
 
-        // ── Accent — ใช้เฉพาะ CTA, Active state, Data highlight ──────────────
-        "aetox-accent":            "var(--aetox-accent)",       // iOS Blue #0A84FF
-        "aetox-accent-hover":      "var(--aetox-accent-hover)", // Hover state
-        "aetox-accent-subtle":     "var(--aetox-accent-subtle)",// Background tint (badges)
+        // ── Accent & Status (With Opacity Support) ─────────────────────────────
+        "aetox-accent":            "rgb(var(--aetox-accent-rgb) / <alpha-value>)",
+        "aetox-accent-hover":      "rgb(var(--aetox-accent-rgb) / 0.8)",
+        "aetox-accent-subtle":     "rgb(var(--aetox-accent-rgb) / 0.1)",
+        "aetox-error":             "rgb(var(--aetox-error-rgb) / <alpha-value>)",
+        "aetox-error-surface":     "rgb(var(--aetox-error-rgb) / 0.1)",
 
-        // ── Status ────────────────────────────────────────────────────────────
-        "aetox-error":             "var(--aetox-error)",
-        "aetox-error-surface":     "var(--aetox-error-surface)",
+        // ── Atmosphere (Auras) ────────────────────────────────────────────────
+        "aetox-aura-1":            "var(--aetox-aura-1)",
+        "aetox-aura-2":            "var(--aetox-aura-2)",
 
-        // ── Legacy aliases (backward compat) ──────────────────────────────────
-        // ใช้ใน component เก่าที่ยังไม่ได้ migrate
+        // ── Legacy ────────────────────────────────────────────────────────────
         "cyber-blue":              "#06B6D4",
         "ultra-dark":              "#050505",
         "deep-blue":               "#0066CC",

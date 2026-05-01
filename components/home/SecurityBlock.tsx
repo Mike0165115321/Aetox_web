@@ -1,13 +1,12 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Lock, Shield, EyeOff, Server } from 'lucide-react';
+import { ShieldCheck, Lock, EyeOff, Server } from 'lucide-react';
 
 export default function SecurityBlock({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
     <section id="security" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
-      {/* Optimized Minimal Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
         <div className="absolute -top-40 -right-20 text-aetox-accent/[0.03]">
           <Lock size={600} strokeWidth={1} />
@@ -20,16 +19,16 @@ export default function SecurityBlock({ dict }: { dict: any }) {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-surface border border-aetox-border text-aetox-accent text-xs font-bold tracking-wider mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-card-bg border border-aetox-border text-aetox-accent text-[10px] font-black tracking-widest uppercase mb-8 shadow-sm"
           >
             <ShieldCheck size={14} className="shadow-aetox-glow" /> {dict.title}
           </motion.div>
           
-          <h2 className="text-fluid-h1 font-bold text-aetox-text-main">
+          <h2 className="text-fluid-h1 font-bold text-aetox-text-main mb-6 uppercase">
             {dict.headline.white} <span className="text-aetox-accent">{dict.headline.accent}</span>
           </h2>
           
-          <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-widest leading-relaxed max-w-2xl mx-auto">
+          <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-[0.2em] leading-relaxed max-w-2xl mx-auto opacity-80">
             {dict.description}
           </p>
         </div>
@@ -46,9 +45,9 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="group glass-card p-12 rounded-[48px] border-aetox-border bg-aetox-surface/20 transition-all duration-500 hover:bg-aetox-surface/40 hover:-translate-y-2"
+                className="aetox-card group p-10 md:p-12 !rounded-[48px] transition-all duration-500 hover:-translate-y-2 shadow-xl"
               >
-                <div className="w-16 h-16 rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
+                <div className="w-16 h-16 rounded-2xl bg-aetox-card-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
                   <Icon size={32} />
                 </div>
                 
@@ -60,8 +59,8 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                   {feature.desc}
                 </p>
 
-                <div className="mt-10 pt-8 border-t border-aetox-border/50">
-                  <div className="flex items-center gap-3 text-xs font-bold text-aetox-text-muted tracking-wide">
+                <div className="mt-10 pt-8 border-t border-aetox-border">
+                  <div className="flex items-center gap-3 text-[10px] font-black text-aetox-text-muted tracking-widest uppercase">
                     <ShieldCheck size={14} className="text-aetox-accent" /> {dict.compliance}
                   </div>
                 </div>
@@ -79,9 +78,9 @@ export default function SecurityBlock({ dict }: { dict: any }) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 + idx * 0.1 }}
-              className="flex items-center gap-4 opacity-20 hover:opacity-100 transition-all duration-700 cursor-default group"
+              className="flex items-center gap-4 opacity-30 hover:opacity-100 transition-all duration-700 cursor-default group"
             >
-              <div className="w-10 h-10 rounded-full border border-aetox-border flex items-center justify-center font-black text-[10px] text-aetox-text-main group-hover:border-aetox-accent group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
+              <div className="w-10 h-10 rounded-full border border-aetox-border bg-aetox-card-bg flex items-center justify-center font-black text-[10px] text-aetox-text-main group-hover:border-aetox-accent group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
                 {badge.label}
               </div>
               <span className="font-black text-aetox-text-main text-[10px] tracking-[0.3em] uppercase group-hover:text-aetox-text-main transition-colors">{badge.desc}</span>

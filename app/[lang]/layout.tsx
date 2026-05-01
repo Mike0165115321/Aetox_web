@@ -1,5 +1,6 @@
 import { IBM_Plex_Sans_Thai, Inter, Lexend } from "next/font/google";
 import "../globals.css";
+import Script from "next/script"; // นำเข้า Script จาก next/script
 
 const lexend = Lexend({
   subsets: ["latin"],
@@ -40,14 +41,16 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }) {
-  const { lang = 'th' } = await params;
+  const resolvedParams = await params;
+  const lang = resolvedParams?.lang || 'th';
 
   return (
     <html lang={lang} className={`${lexend.variable} ${ibmPlexThai.variable} ${inter.variable}`} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      <body className="bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen">
+        {/* ใช้ next/script พร้อม strategy="beforeInteractive" เพื่อให้รันก่อน React Hydrate */}
+        <Script id="theme-initializer" strategy="beforeInteractive">
+          {`
+            (function() {
               try {
                 const saved = localStorage.getItem('aetox-theme');
                 if (saved === 'light') {
@@ -58,11 +61,10 @@ export default async function RootLayout({
               } catch (e) {
                 document.documentElement.classList.add('dark');
               }
-            `,
-          }}
-        />
-      </head>
-      <body className="bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen">
+            })()
+          `}
+        </Script>
+        
         <GlobalBackground />
         <ScrollProvider>
           <CurrencyProvider>

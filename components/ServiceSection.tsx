@@ -3,7 +3,7 @@ import { Bot, Zap, Globe } from 'lucide-react';
 import ServiceCard from './ServiceCard';
 import { motion } from 'framer-motion';
 
-export default function ServiceSection({ dict }: { dict?: any }) {
+export default function ServiceSection({ dict, lang }: { dict?: any, lang: string }) {
   const iconMap: any = {
     'ai-agents': Bot,
     'automation': Zap,
@@ -53,6 +53,7 @@ export default function ServiceSection({ dict }: { dict?: any }) {
                 Icon={Icon} 
                 index={index}
                 deploymentLabel={content.common?.general?.deploymentLabel}
+                lang={lang}
               />
             );
           })}

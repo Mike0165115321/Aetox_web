@@ -13,7 +13,7 @@ export const workloadConfig = {
     defaultVolume: 1000,
     defaultStaff: 2,
     defaultHourlyRate: 100,
-    defaultUnitCost: 5,
+    defaultUnitCost: 2,
     defaultBotPrice: 10000,
     defaultMaint: 1000,
     icon: 'zap'
@@ -26,7 +26,7 @@ export const workloadConfig = {
     defaultVolume: 10000,
     defaultStaff: 6,
     defaultHourlyRate: 120,
-    defaultUnitCost: 25,
+    defaultUnitCost: 5,
     defaultBotPrice: 35000,
     defaultMaint: 2500,
     icon: 'layers'
@@ -39,7 +39,7 @@ export const workloadConfig = {
     defaultVolume: 50000,
     defaultStaff: 15,
     defaultHourlyRate: 150,
-    defaultUnitCost: 100,
+    defaultUnitCost: 15,
     defaultBotPrice: 75000,
     defaultMaint: 5000,
     icon: 'server'
@@ -48,10 +48,10 @@ export const workloadConfig = {
 
 interface RoiInputs {
   volume: number;
-  hourlyRate: number;
-  unitCostManual: number;
-  botPrice: number;
-  maintCost: number;
+  hourlyRateTHB: number;
+  unitCostManualTHB: number;
+  botPriceTHB: number;
+  maintCostTHB: number;
   complexity: Complexity;
   timeframe: Timeframe;
   currency: string;
@@ -61,10 +61,10 @@ interface RoiInputs {
 export function useAutomationRoi(inputs: RoiInputs) {
   const {
     volume,
-    hourlyRate,
-    unitCostManual,
-    botPrice,
-    maintCost,
+    hourlyRateTHB,
+    unitCostManualTHB,
+    botPriceTHB,
+    maintCostTHB,
     complexity,
     timeframe,
     currency,
@@ -78,33 +78,40 @@ export function useAutomationRoi(inputs: RoiInputs) {
     const botHours = (volume * c.botSeconds) / 3600;
     const savedHours = manualHours - botHours;
     const speedX = Math.round(manualHours / Math.max(botHours, 0.001));
-    const efficiency = ((savedHours / manualHours) * 100).toFixed(1);
 
-    const errRate = 0.05;
-    const errValuePerPoint = complexity === 'light' ? 50 : complexity === 'medium' ? 150 : 350;
-    const errValueConverted = currency === 'USD' ? errValuePerPoint / exchangeRate : errValuePerPoint;
+    const errRate = 0.03;
+    const errValuePerPointTHB = complexity === 'light' ? 20 : complexity === 'medium' ? 50 : 100;
     const errBefore = Math.floor(volume * errRate);
-    const errCostBefore = errBefore * errValueConverted;
+    const errCostBeforeTHB = errBefore * errValuePerPointTHB;
 
-    const laborBefore = manualHours * hourlyRate;
-    const overheadBefore = volume * unitCostManual;
-    const totalBefore = laborBefore + errCostBefore + overheadBefore;
+    const laborBeforeTHB = manualHours * hourlyRateTHB;
+    const overheadBeforeTHB = volume * unitCostManualTHB;
+    const totalBeforeTHB = laborBeforeTHB + errCostBeforeTHB + overheadBeforeTHB;
 
-    const laborAfter = botHours * (hourlyRate * 0.1);
-    const totalAfter = maintCost + laborAfter;
+    const laborAfterTHB = botHours * (hourlyRateTHB * 0.1); 
+    const totalAfterTHB = maintCostTHB + laborAfterTHB;
 
-    const monthlySaving = totalBefore - totalAfter;
+    const monthlySavingTHB = totalBeforeTHB - totalAfterTHB;
+    
+    const rate = currency === 'USD' ? 1 / exchangeRate : 1;
+    
+    const monthlySaving = monthlySavingTHB * rate;
     const annualSaving = monthlySaving * 12;
-    const paybackMonths = monthlySaving > 0 ? botPrice / monthlySaving : 999;
-    const roi = monthlySaving > 0 ? ((annualSaving - botPrice) / botPrice * 100).toFixed(0) : '0';
+    const totalBefore = totalBeforeTHB * rate;
+    const totalAfter = totalAfterTHB * rate;
+    const botPrice = botPriceTHB * rate;
+    const maintCost = maintCostTHB * rate;
 
     const costPerUnitBefore = totalBefore / Math.max(volume, 1);
     const costPerUnitAfter = totalAfter / Math.max(volume, 1);
 
+    const paybackMonths = monthlySavingTHB > 0 ? botPriceTHB / monthlySavingTHB : 999;
+    const roi = monthlySavingTHB > 0 ? (((monthlySavingTHB * 12) - botPriceTHB) / botPriceTHB * 100).toFixed(0) : '0';
+
     const projection = Array.from({ length: timeframe }, (_, i) => {
       const month = i + 1;
-      const cumSaving = monthlySaving * month;
-
+      const cumSavingTHB = monthlySavingTHB * month;
+      
       let label = "";
       if (timeframe === 6) label = `Month ${month}`;
       else if (timeframe === 12) {
@@ -120,9 +127,9 @@ export function useAutomationRoi(inputs: RoiInputs) {
 
       return {
         month,
-        label, // Default English label, can be mapped in UI
-        cumSaving,
-        breakEven: cumSaving >= botPrice,
+        label,
+        cumSaving: cumSavingTHB * rate,
+        breakEven: cumSavingTHB >= botPriceTHB,
       };
     });
 
@@ -132,14 +139,15 @@ export function useAutomationRoi(inputs: RoiInputs) {
     const totalPeriodSavings = monthlySaving * timeframe;
     const netProfitAfterInvestment = totalPeriodSavings - botPrice;
     const totalHoursSavedLongTerm = savedHours * timeframe;
-    const costReductionPct = ((costPerUnitBefore - costPerUnitAfter) / costPerUnitBefore * 100).toFixed(0);
+    const costReductionPct = ((costPerUnitBefore - costPerUnitAfter) / Math.max(costPerUnitBefore, 0.001) * 100).toFixed(0);
 
     return {
-      manualHours, botHours, savedHours, speedX, efficiency, errBefore, errCostBefore, overheadBefore,
-      laborBefore, totalBefore, laborAfter, totalAfter,
-      monthlySaving, annualSaving, paybackMonths, roi, projection, botBarPct,
-      costPerUnitBefore, costPerUnitAfter, maxProjectionValue,
+      manualHours, botHours, savedHours, speedX,
+      totalBefore, totalAfter,
+      monthlySaving, annualSaving, paybackMonths, roi, botBarPct,
+      botPrice, maintCost, projection,
+      maxProjectionValue, costPerUnitBefore, costPerUnitAfter,
       totalPeriodSavings, netProfitAfterInvestment, totalHoursSavedLongTerm, costReductionPct
     };
-  }, [volume, hourlyRate, unitCostManual, botPrice, maintCost, complexity, timeframe, currency, exchangeRate, c.botSeconds, c.humanSeconds]);
+  }, [volume, hourlyRateTHB, unitCostManualTHB, botPriceTHB, maintCostTHB, complexity, timeframe, currency, exchangeRate, c.botSeconds, c.humanSeconds]);
 }

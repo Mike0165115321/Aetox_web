@@ -22,8 +22,11 @@ export default function AcademyClient({ dict, navDict }: { dict: any, navDict: a
   ];
 
   return (
-    <main className="min-h-screen selection:bg-deep-blue/30 selection:text-white relative overflow-x-hidden">
-      <FloatingNav sections={academySections} accentColor="#3B82F6" />
+    <main className="min-h-screen bg-aetox-bg text-aetox-text-main selection:bg-aetox-accent/30 relative overflow-x-hidden">
+      {/* Global Background Elements for Academy */}
+      <div className="aetox-grid-overlay opacity-20" />
+      
+      <FloatingNav sections={academySections} />
       
       <Navbar dict={navDict.navbar} />
 
@@ -34,14 +37,14 @@ export default function AcademyClient({ dict, navDict }: { dict: any, navDict: a
       <AcademyROI dict={dict.roi} />
 
       <div className="container mx-auto">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="w-full h-px bg-aetox-border opacity-50" />
       </div>
 
       {/* Layer 3: Engagement & Logic (Skill Tree) */}
       <AcademySkillTree dict={dict.skillTree} categories={dict.categories} />
 
       <div className="container mx-auto">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="w-full h-px bg-aetox-border opacity-50" />
       </div>
 
       {/* Layer 4: Trust (Mike's Authority) */}

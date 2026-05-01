@@ -4,7 +4,7 @@ export const navigationContent = {
       { label: "Home", href: "/" },
       { label: "Services", href: "/services" },
       { label: "Authority", href: "/authority" },
-      { label: "Academy", href: "/academy" },
+      { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" }
     ],
     cta: "Consult Now",

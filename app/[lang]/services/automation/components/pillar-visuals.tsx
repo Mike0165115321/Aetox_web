@@ -10,12 +10,12 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
   ];
 
   return (
-    <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+    <div className="aetox-glass-card p-6 rounded-[32px] relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+      <div className="aetox-grid-overlay opacity-10" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" />
-            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">{dict.title}</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
+            <span className="text-fluid-label font-black text-aetox-accent tracking-widest uppercase">{dict.title}</span>
         </div>
         
         <div className="flex-1 flex flex-col gap-4 justify-center items-center">
@@ -25,18 +25,18 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
                     initial={{ x: -100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: i * 0.2, duration: 0.8, repeat: Infinity, repeatDelay: 3 }}
-                    className="w-full bg-aetox-surface-lowest/80 border border-white/5 p-4 rounded-2xl flex items-center justify-between shadow-xl"
+                    className="w-full bg-aetox-surface-lowest/80 border border-aetox-border p-4 rounded-2xl flex items-center justify-between shadow-xl"
                 >
                     <div className="flex items-center gap-3">
                         <div className={`w-2 h-2 rounded-full ${task.color} shadow-[0_0_10px_currentColor]`} />
                         <div className="space-y-1">
-                            <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">{dict.priority}</p>
-                            <p className="text-xs font-bold text-white uppercase">{task.title}</p>
+                            <p className="text-[9px] text-aetox-text-muted font-black uppercase tracking-widest">{dict.priority}</p>
+                            <p className="text-fluid-sm font-bold text-aetox-text-main uppercase">{task.title}</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20">
-                        <Activity className="w-3 h-3 text-cyber-blue animate-pulse" />
-                        <span className="text-[8px] font-bold text-cyber-blue uppercase tracking-tighter">{dict.status}</span>
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-aetox-accent/10 border border-aetox-accent/20">
+                        <Activity className="w-3 h-3 text-aetox-accent animate-pulse" />
+                        <span className="text-[9px] font-black text-aetox-accent uppercase tracking-tighter">{dict.status}</span>
                     </div>
                 </motion.div>
             ))}
@@ -48,18 +48,18 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
 
 export function ScalableBotsVisual({ dict }: { dict: any }) {
   return (
-    <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+    <div className="aetox-glass-card p-6 rounded-[32px] relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+      <div className="aetox-grid-overlay opacity-10" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
-            <span className="text-[10px] font-bold text-emerald-500 tracking-widest">{dict.title}</span>
+            <span className="text-fluid-label font-black text-emerald-500 tracking-widest uppercase">{dict.title}</span>
         </div>
 
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             <div className="grid grid-cols-2 gap-4 w-full">
                 {[1, 2, 3, 4].map((bot) => (
-                    <div key={bot} className="relative p-6 bg-aetox-surface-lowest/80 border border-emerald-500/20 rounded-3xl overflow-hidden shadow-xl">
+                    <div key={bot} className="relative p-6 bg-aetox-surface-lowest border border-aetox-border rounded-2xl overflow-hidden shadow-xl">
                         <div className="absolute inset-0 bg-emerald-500/[0.03] animate-pulse" />
                         <div className="relative z-10 space-y-4">
                             <div className="flex justify-between items-center">
@@ -68,7 +68,7 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
                             </div>
                             <div className="space-y-1">
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[8px] text-gray-500 font-bold uppercase tracking-widest">{dict.load}</span>
+                                    <span className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">{dict.load}</span>
                                     <span className="text-[10px] text-emerald-400 font-black">98.2%</span>
                                 </div>
                                 <div className="h-1 bg-white/5 rounded-full overflow-hidden">
@@ -93,22 +93,22 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
   const logs = [
     { id: 'TX-9021', time: '14:20:01', status: 'SUCCESS', color: 'text-emerald-400' },
     { id: 'TX-9022', time: '14:20:05', status: 'SUCCESS', color: 'text-emerald-400' },
-    { id: 'TX-9023', time: '14:20:12', status: 'AUDIT', color: 'text-cyber-blue' },
+    { id: 'TX-9023', time: '14:20:12', status: 'AUDIT', color: 'text-aetox-accent' },
   ];
 
   return (
-    <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
+    <div className="aetox-glass-card p-6 rounded-[32px] relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
+      <div className="aetox-grid-overlay opacity-10" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_10px_#6366F1]" />
-            <span className="text-[10px] font-bold text-indigo-400 tracking-widest">{dict.title}</span>
+            <span className="text-fluid-label font-black text-indigo-400 tracking-widest uppercase">{dict.title}</span>
         </div>
 
         <div className="flex-1 space-y-4">
-            <div className="bg-aetox-surface-lowest/90 border border-white/5 rounded-2xl p-4 shadow-xl">
-                <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
-                    <span className="text-[9px] font-black text-gray-500 uppercase tracking-[0.2em]">{dict.auditLog}</span>
+            <div className="bg-aetox-surface-lowest/90 border border-aetox-border rounded-2xl p-4 shadow-xl">
+                <div className="flex items-center justify-between mb-4 pb-2 border-b border-aetox-border">
+                    <span className="text-[9px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">{dict.auditLog}</span>
                     <div className="flex items-center gap-1.5">
                         <div className="w-1 h-1 bg-rose-500 rounded-full animate-pulse" />
                         <span className="text-[8px] font-black text-rose-500 uppercase tracking-widest">{dict.realtime}</span>
@@ -116,33 +116,33 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
                 </div>
                 <div className="space-y-3">
                     {logs.map((log, i) => (
-                        <div key={log.id} className="flex items-center justify-between text-[10px] font-mono border-b border-white/[0.03] pb-2 last:border-0">
+                        <div key={log.id} className="flex items-center justify-between text-[10px] font-mono border-b border-aetox-border/30 pb-2 last:border-0">
                             <div className="flex gap-3">
-                                <span className="text-gray-600">[{log.time}]</span>
-                                <span className="text-white">{log.id}</span>
+                                <span className="text-aetox-text-muted">[{log.time}]</span>
+                                <span className="text-aetox-text-main font-bold">{log.id}</span>
                             </div>
                             <span className={`font-black ${log.color}`}>{log.status}</span>
                         </div>
                     ))}
                     <div className="flex items-center justify-center pt-2">
-                        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-aetox-border to-transparent" />
                     </div>
                 </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-                <div className="bg-aetox-surface-lowest/80 border border-white/5 p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
+                <div className="bg-aetox-surface-lowest border border-aetox-border p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
                     <BarChart3 className="w-5 h-5 text-indigo-400 opacity-50" />
                     <div className="space-y-1">
-                        <p className="text-[8px] text-gray-500 font-bold uppercase tracking-widest">Efficiency</p>
-                        <p className="text-xl font-black text-white">+99%</p>
+                        <p className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">Efficiency</p>
+                        <p className="text-xl font-black text-aetox-text-main">+99%</p>
                     </div>
                 </div>
-                <div className="bg-aetox-surface-lowest/80 border border-white/5 p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
+                <div className="bg-aetox-surface-lowest border border-aetox-border p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
                     <Database className="w-5 h-5 text-emerald-400 opacity-50" />
                     <div className="space-y-1">
-                        <p className="text-[8px] text-gray-500 font-bold uppercase tracking-widest">Integrity</p>
-                        <p className="text-xl font-black text-white">100%</p>
+                        <p className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">Integrity</p>
+                        <p className="text-xl font-black text-aetox-text-main">100%</p>
                     </div>
                 </div>
             </div>

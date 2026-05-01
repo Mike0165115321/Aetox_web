@@ -28,7 +28,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight"
+              className="text-fluid-h2 font-black text-aetox-text-main mb-6 tracking-tight"
             >
               {hero.title}
             </motion.h2>
@@ -36,7 +36,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
+              className="text-aetox-text-soft text-lg md:text-xl max-w-2xl mx-auto font-medium"
             >
               {hero.subtitle}
             </motion.p>
@@ -50,16 +50,16 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 animate={{ opacity: 1, scale: 1 }}
                 className="glass-card rounded-3xl p-12 text-center border-cyber-blue/30 shadow-cyber-glow"
               >
-                <div className="w-20 h-20 bg-cyber-blue/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-cyber-blue/40">
-                  <CheckCircle2 className="w-10 h-10 text-cyber-blue" />
+                <div className="w-20 h-20 bg-aetox-accent/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-aetox-accent/20">
+                  <CheckCircle2 className="w-10 h-10 text-aetox-accent" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">{success.title}</h3>
-                <p className="text-gray-400 text-lg max-w-md mx-auto leading-relaxed">
+                <h3 className="text-3xl font-bold text-aetox-text-main mb-4">{success.title}</h3>
+                <p className="text-aetox-text-soft text-lg max-w-md mx-auto leading-relaxed">
                   {success.message}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
-                  className="mt-10 text-cyber-blue hover:text-white transition-colors font-bold text-sm uppercase tracking-widest"
+                  className="mt-10 text-aetox-accent hover:text-aetox-text-main transition-colors font-bold text-sm uppercase tracking-widest"
                 >
                   {success.close}
                 </button>
@@ -85,10 +85,10 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 <button 
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-6 rounded-2xl bg-white text-black font-bold text-lg md:text-xl tracking-wider hover:bg-aetox-accent hover:text-white transition-all transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 group shadow-aetox-glow"
+                  className="w-full py-6 rounded-2xl bg-aetox-accent text-white font-bold text-lg md:text-xl tracking-[0.2em] uppercase hover:bg-aetox-accent-hover transition-all transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 group shadow-aetox-glow"
                 >
                   {isLoading ? (
-                    <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
                       {form.submit}

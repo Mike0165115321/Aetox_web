@@ -49,17 +49,20 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
   ];
 
   return (
-    <main className="min-h-screen bg-ultra-dark selection:bg-deep-blue/30 selection:text-white relative pt-20 overflow-x-hidden">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-30" />
+    <main className="min-h-screen bg-aetox-bg text-aetox-text-main selection:bg-aetox-accent/30 relative pt-20 overflow-x-hidden">
+      {/* ใช้สไตล์กลางจาก aetox-final.css */}
+      <div className="aetox-grid-overlay opacity-30" />
+      <div className="aetox-aura-primary -top-[20%] -left-[10%] opacity-20" />
+      
       <Navbar dict={navDict.navbar} />
       <FloatingNav sections={sections} />
 
       {/* Layer 1: Hook (Strategic Hero) ─── */}
-      <section id="hero" className="relative min-h-[80vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
+      <section id="hero" className="relative min-h-[85vh] pt-12 pb-20 overflow-hidden scroll-mt-20">
         <div className="container mx-auto">
-          <Link href="/services" className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-deep-blue/30 transition-all mb-10 group backdrop-blur-sm">
+          <Link href="/services" className="aetox-btn-glass w-fit mb-10 group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-wide">{dict.common.labels.backToServices || 'กลับสู่หน้าบริการ'}</span>
+            <span className="text-fluid-sm tracking-wide">{dict.common.labels.backToServices || 'กลับสู่หน้าบริการ'}</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
@@ -70,15 +73,15 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
               className="lg:w-7/12 space-y-12"
             >
               <div className="space-y-6">
-                <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-deep-blue uppercase tracking-[0.2em] animate-pulse">
-                  <div className="w-1.5 h-1.5 rounded-full bg-deep-blue shadow-deep-glow" />
+                <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 text-fluid-label text-aetox-accent uppercase tracking-[0.2em]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
                   WORKFLOW AUTOMATION
                 </motion.div>
-                <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-black text-white leading-[1.2]">
+                <motion.h1 variants={itemVariants} className="text-fluid-h1 font-display leading-[1.1]">
                   {dict.hero.title.white}<br />
-                  <span className="text-deep-blue drop-shadow-deep-glow">{dict.hero.title.accent}</span>
+                  <span className="text-aetox-accent drop-shadow-aetox-glow">{dict.hero.title.accent}</span>
                 </motion.h1>
-                <motion.p variants={itemVariants} className="text-gray-400 text-xl leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                <motion.p variants={itemVariants} className="text-aetox-text-soft text-fluid-p border-l-2 border-aetox-accent/30 pl-6">
                   {dict.hero.description}
                 </motion.p>
               </div>
@@ -86,16 +89,16 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
               <motion.div variants={itemVariants} className="flex flex-wrap gap-6">
                 <button 
                   onClick={() => scrollToSection('cta-section')}
-                  className="px-10 py-5 rounded-full bg-deep-blue text-white font-black text-xl hover:shadow-deep-glow transition-all active:scale-95 flex items-center gap-4 group shadow-deep-glow/30"
+                  className="aetox-btn-main !px-10 !py-5 !text-xl group"
                 >
                   {dict.hero.cta}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                 </button>
                 <button 
                   onClick={() => scrollToSection('roi-simulator')}
-                  className="px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white font-black text-xl hover:bg-white/10 hover:border-deep-blue/40 transition-all active:scale-95 flex items-center gap-4 group backdrop-blur-xl"
+                  className="aetox-btn-glass !px-10 !py-5 !text-xl group"
                 >
-                  <TrendingUp className="w-6 h-6 text-deep-blue" />
+                  <TrendingUp className="w-6 h-6 text-aetox-accent" />
                   {dict.roi.subTitle || 'วิเคราะห์ความคุ้มค่า'}
                 </button>
               </motion.div>
@@ -108,10 +111,10 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
         </div>
       </section>
 
-      <div className="container mx-auto"><div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" /></div>
+      <div className="container mx-auto"><div className="w-full h-px bg-aetox-border" /></div>
 
       {/* ─── Pillar 1: Intelligent Queue System ─── */}
-      <section id="pillar-1" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-white/5">
+      <section id="pillar-1" className="pt-32 pb-32 relative z-10 scroll-mt-32">
         <div className="container mx-auto">
           <motion.div 
             variants={containerVariants}
@@ -123,12 +126,12 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
             <div className="lg:w-7/12 space-y-12">
               <div className="space-y-6">
                 <motion.div variants={itemVariants} className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
-                    <Layers className="w-6 h-6 text-deep-blue" />
+                  <div className="w-12 h-12 rounded-2xl bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center">
+                    <Layers className="w-6 h-6 text-aetox-accent" />
                   </div>
-                  <h2 className="text-3xl font-bold text-white uppercase tracking-wider">{dict.pillars.pillar1.title}</h2>
+                  <h2 className="text-fluid-h3 font-display text-aetox-text-main uppercase tracking-wider">{dict.pillars.pillar1.title}</h2>
                 </motion.div>
-                <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                <motion.p variants={itemVariants} className="text-aetox-text-soft text-fluid-p border-l-2 border-aetox-accent/30 pl-6">
                   {dict.pillars.pillar1.description}
                 </motion.p>
               </div>
@@ -146,7 +149,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
       </section>
 
       {/* ─── Pillar 2: Scalable Bot Fleet ─── */}
-      <section id="pillar-2" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-white/5">
+      <section id="pillar-2" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-aetox-border">
         <div className="container mx-auto">
           <motion.div 
             variants={containerVariants}
@@ -155,19 +158,19 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
             viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col lg:flex-row-reverse gap-20 items-center"
           >
-            <div className="lg:w-7/12 space-y-12">
+            <div className="lg:w-7/12 space-y-12 text-right">
               <div className="space-y-6">
-                <motion.div variants={itemVariants} className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
-                    <Rocket className="w-6 h-6 text-deep-blue" />
+                <motion.div variants={itemVariants} className="flex items-center justify-end gap-4">
+                  <h2 className="text-fluid-h3 font-display text-aetox-text-main uppercase tracking-wider">{dict.pillars.pillar2.title}</h2>
+                  <div className="w-12 h-12 rounded-2xl bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center">
+                    <Rocket className="w-6 h-6 text-aetox-accent" />
                   </div>
-                  <h2 className="text-3xl font-bold text-white uppercase tracking-wider">{dict.pillars.pillar2.title}</h2>
                 </motion.div>
-                <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed border-r-2 border-deep-blue/30 pr-6 text-right">
+                <motion.p variants={itemVariants} className="text-aetox-text-soft text-fluid-p border-r-2 border-aetox-accent/30 pr-6">
                   {dict.pillars.pillar2.description}
                 </motion.p>
               </div>
-              <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                 {dict.pillars.pillar2.features.map((f: any, i: number) => (
                   <FeatureItem key={i} title={f.title} desc={f.desc} />
                 ))}
@@ -181,7 +184,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
       </section>
 
       {/* ─── Pillar 3: Central Observability ─── */}
-      <section id="pillar-3" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-white/5">
+      <section id="pillar-3" className="pt-32 pb-32 relative z-10 scroll-mt-32 border-t border-aetox-border">
         <div className="container mx-auto">
           <motion.div 
             variants={containerVariants}
@@ -193,12 +196,12 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
             <div className="lg:w-7/12 space-y-12">
               <div className="space-y-6">
                 <motion.div variants={itemVariants} className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center">
-                    <Database className="w-6 h-6 text-deep-blue" />
+                  <div className="w-12 h-12 rounded-2xl bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center">
+                    <Database className="w-6 h-6 text-aetox-accent" />
                   </div>
-                  <h2 className="text-3xl font-bold text-white uppercase tracking-wider">{dict.pillars.pillar3.title}</h2>
+                  <h2 className="text-fluid-h3 font-display text-aetox-text-main uppercase tracking-wider">{dict.pillars.pillar3.title}</h2>
                 </motion.div>
-                <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed border-l-2 border-deep-blue/30 pl-6">
+                <motion.p variants={itemVariants} className="text-aetox-text-soft text-fluid-p border-l-2 border-aetox-accent/30 pl-6">
                   {dict.pillars.pillar3.description}
                 </motion.p>
               </div>
@@ -216,7 +219,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
       </section>
 
       {/* ─── Layer 5: Automation Simulator (Business Value) ─── */}
-      <section id="roi-simulator" className="py-32 border-t border-white/5 bg-white/[0.01] scroll-mt-32 relative z-10">
+      <section id="roi-simulator" className="py-32 border-t border-aetox-border bg-aetox-surface-lowest scroll-mt-32 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <AutomationSimulator dict={dict.roi} />
@@ -232,8 +235,6 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
           dict={ctaDict.bottom}
         />
       </section>
-
-
 
       <Footer dict={navDict.footer} />
     </main>

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, User, Mail, MessageSquare, ChevronRight } from 'lucide-react';
+import { Send, CheckCircle2, User, Mail, MessageSquare } from 'lucide-react';
 
 export default function AcademyWaitlist({ dict }: { dict: any }) {
   const [submitted, setSubmitted] = useState(false);
@@ -26,7 +26,7 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
     
     try {
       const data = {
-        type: 'academy', // คลีนข้อมูลให้เป็น academy เพื่อใช้ใน Dataset และ CRM
+        type: 'academy',
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -57,11 +57,14 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
 
   return (
     <section id="waitlist-form" className="py-32 relative overflow-hidden scroll-mt-20">
+      {/* Atmosphere effects */}
+      <div className="aetox-aura-secondary -bottom-[10%] -right-[5%] opacity-10" />
+      
       <div className="container mx-auto relative z-10">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-6xl font-black text-white">{dict.title}</h2>
-            <p className="text-gray-400 text-lg">{dict.description}</p>
+            <h2 className="text-fluid-h1 font-display text-aetox-text-main">{dict.title}</h2>
+            <p className="text-aetox-text-soft text-fluid-p">{dict.description}</p>
           </div>
 
           <AnimatePresence mode="wait">
@@ -70,18 +73,18 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                 key="success"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-8 md:p-20 rounded-[32px] md:rounded-[40px] text-center border-aetox-accent/30 shadow-aetox-glow"
+                className="aetox-card p-10 md:p-20 text-center border-emerald-500/30 shadow-aetox-glow/20"
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8 border border-emerald-500/40">
-                  <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 text-emerald-500" />
+                <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-emerald-500/40">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-3 md:mb-4">{form.success.title}</h3>
-                <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-md mx-auto">
+                <h3 className="text-fluid-h3 font-display text-aetox-text-main mb-4">{form.success.title}</h3>
+                <p className="text-aetox-text-soft text-fluid-p leading-relaxed max-w-md mx-auto">
                   {form.success.description}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
-                  className="mt-8 md:mt-10 text-aetox-accent hover:text-white transition-colors font-bold text-xs md:text-sm uppercase tracking-[0.3em]"
+                  className="mt-10 text-aetox-accent hover:text-aetox-text-main transition-colors font-black text-fluid-label uppercase tracking-[0.3em]"
                 >
                   {form.success.close}
                 </button>
@@ -92,14 +95,14 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 onSubmit={handleSubmit}
-                className="glass-card p-6 md:p-12 rounded-[32px] md:rounded-[40px] border-white/5 bg-black/40 shadow-2xl relative"
+                className="aetox-card p-8 md:p-14 shadow-2xl relative"
               >
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {/* Name Input */}
-                  <div className="space-y-2 md:space-y-3">
-                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.name.label}</label>
+                  <div className="space-y-3">
+                    <label className="text-fluid-label font-black text-aetox-text-muted uppercase tracking-[0.2em] ml-1">{form.fields.name.label}</label>
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                      <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-aetox-text-muted" />
                       <input 
                         name="name" 
                         type="text" 
@@ -107,16 +110,16 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder={form.fields.name.placeholder} 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all text-sm md:text-base" 
+                        className="w-full bg-aetox-surface-lowest border border-aetox-border rounded-2xl py-4.5 pl-14 pr-6 text-aetox-text-main focus:border-aetox-accent/50 focus:outline-none transition-all text-fluid-p" 
                       />
                     </div>
                   </div>
 
                   {/* Email Input */}
-                  <div className="space-y-2 md:space-y-3">
-                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.email.label}</label>
+                  <div className="space-y-3">
+                    <label className="text-fluid-label font-black text-aetox-text-muted uppercase tracking-[0.2em] ml-1">{form.fields.email.label}</label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                      <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-aetox-text-muted" />
                       <input 
                         name="email" 
                         type="email" 
@@ -124,16 +127,16 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder={form.fields.email.placeholder} 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all text-sm md:text-base" 
+                        className="w-full bg-aetox-surface-lowest border border-aetox-border rounded-2xl py-4.5 pl-14 pr-6 text-aetox-text-main focus:border-aetox-accent/50 focus:outline-none transition-all text-fluid-p" 
                       />
                     </div>
                   </div>
 
                   {/* Phone Input */}
-                  <div className="space-y-2 md:space-y-3">
-                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.phone.label}</label>
+                  <div className="space-y-3">
+                    <label className="text-fluid-label font-black text-aetox-text-muted uppercase tracking-[0.2em] ml-1">{form.fields.phone.label}</label>
                     <div className="relative">
-                      <Send className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                      <Send className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-aetox-text-muted" />
                       <input 
                         name="phone" 
                         type="text" 
@@ -141,42 +144,42 @@ export default function AcademyWaitlist({ dict }: { dict: any }) {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder={form.fields.phone.placeholder} 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all text-sm md:text-base" 
+                        className="w-full bg-aetox-surface-lowest border border-aetox-border rounded-2xl py-4.5 pl-14 pr-6 text-aetox-text-main focus:border-aetox-accent/50 focus:outline-none transition-all text-fluid-p" 
                       />
                     </div>
                   </div>
 
                   {/* Goals Input */}
-                  <div className="space-y-2 md:space-y-3">
-                    <label className="text-xs md:text-sm font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{form.fields.goals.label}</label>
+                  <div className="space-y-3">
+                    <label className="text-fluid-label font-black text-aetox-text-muted uppercase tracking-[0.2em] ml-1">{form.fields.goals.label}</label>
                     <div className="relative">
-                      <MessageSquare className="absolute left-4 top-4 w-4 h-4 text-gray-600" />
+                      <MessageSquare className="absolute left-5 top-5 w-4 h-4 text-aetox-text-muted" />
                       <textarea 
                         name="goals" 
                         rows={3} 
                         value={formData.goals}
                         onChange={handleChange}
                         placeholder={form.fields.goals.placeholder} 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-white focus:border-aetox-accent/50 focus:outline-none transition-all resize-none text-sm md:text-base" 
+                        className="w-full bg-aetox-surface-lowest border border-aetox-border rounded-2xl py-4.5 pl-14 pr-6 text-aetox-text-main focus:border-aetox-accent/50 focus:outline-none transition-all resize-none text-fluid-p" 
                       />
                     </div>
                   </div>
 
                   {/* Submit Button */}
-                  <div className="pt-4">
+                  <div className="pt-6">
                     <button 
                       type="submit"
                       disabled={loading}
-                      className="w-full py-4 md:py-5 rounded-xl md:rounded-2xl bg-aetox-accent text-white font-black text-base md:text-lg uppercase tracking-[0.15em] md:tracking-[0.2em] hover:shadow-aetox-glow transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
+                      className="aetox-btn-main w-full !py-5 !text-lg !rounded-2xl group disabled:opacity-50"
                     >
                       {loading ? form.submitting : form.submit}
-                      {!loading && <Send className="w-4 h-4 md:w-5 md:h-5" />}
+                      {!loading && <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                     </button>
                   </div>
                 </div>
 
-                <div className="mt-8 text-center">
-                  <p className="text-sm text-gray-600 font-bold uppercase tracking-widest">
+                <div className="mt-10 text-center">
+                  <p className="text-fluid-label text-aetox-text-muted font-bold uppercase tracking-widest opacity-60">
                     {form.privacy}
                   </p>
                 </div>

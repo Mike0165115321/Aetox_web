@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
 
-export default function FinalCTA({ dict }: { dict: any }) {
+export default function FinalCTA({ dict, lang }: { dict: any, lang: string }) {
   if (!dict) return null;
 
   return (
@@ -27,11 +27,11 @@ export default function FinalCTA({ dict }: { dict: any }) {
             {dict.description}
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-6 pt-6">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-sm transition-all shadow-aetox-glow hover:bg-aetox-accent-hover transform active:scale-95">
+            <Link href={`/${lang}/contact`} className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-sm transition-all shadow-aetox-glow hover:bg-aetox-accent-hover transform active:scale-95">
               {dict.primaryCTA}
               <ArrowRight size={16} />
             </Link>
-            <Link href="/authority" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-bold text-sm transition-all border border-aetox-border transform active:scale-95">
+            <Link href={`/${lang}/authority`} className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-aetox-surface text-aetox-text-main font-bold text-sm transition-all border border-aetox-border transform active:scale-95">
               {dict.secondaryCTA}
             </Link>
           </div>
