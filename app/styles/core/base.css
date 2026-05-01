@@ -1,0 +1,32 @@
+@layer base {
+  body {
+    @apply bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen transition-colors duration-300;
+    background-color: rgb(var(--aetox-bg-rgb));
+  }
+
+  /* Premium Selection Color */
+  ::selection {
+    background-color: rgba(10, 132, 255, 0.2);
+    color: var(--aetox-text-main);
+  }
+
+  /* Custom Scrollbar (Premium Minimalist) */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--aetox-border);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--aetox-accent);
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}

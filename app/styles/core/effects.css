@@ -1,0 +1,29 @@
+@layer components {
+  /* ── 1. Atmosphere Components ───────────────────────────── */
+  .aetox-grid-overlay {
+    @apply absolute inset-0 pointer-events-none z-0;
+    background-image: radial-gradient(var(--aetox-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    opacity: 0.15;
+  }
+
+  .aetox-aura-primary {
+    @apply absolute w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none bg-aetox-accent/20 mix-blend-screen;
+    background: radial-gradient(circle, var(--aetox-accent) 0%, transparent 70%);
+  }
+
+  .aetox-aura-secondary {
+    @apply absolute w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none bg-[#8A2BE2]/10 mix-blend-screen;
+    background: radial-gradient(circle, #8A2BE2 0%, transparent 70%);
+  }
+
+  /* ── 2. Special Animation Effects ────────────────────────── */
+  .aetox-particle {
+    @apply absolute rounded-full bg-aetox-accent/20 blur-[1px] animate-pulse pointer-events-none;
+  }
+
+  .aetox-nav-indicator {
+    @apply absolute -inset-1.5 rounded-[24px] bg-aetox-accent/30 blur-md -z-10;
+  }
+}

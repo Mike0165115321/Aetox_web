@@ -2,6 +2,8 @@
   /* ── Surfaces (RGB for Opacity Support) ────────────────── */
   --aetox-bg-rgb:            250, 247, 242;
   --aetox-surface-lowest-rgb: 255, 255, 255;
+  --aetox-surface-low-rgb:    245, 240, 232;
+  --aetox-surface-rgb:        235, 228, 216;
   
   /* ── Typography (Semantic Tokens) ──────────────────────── */
   --aetox-text-main:         #111111;
@@ -16,8 +18,4 @@
   --aetox-card-bg:           #FFFFFF;
   --aetox-card-border:       rgba(0, 0, 0, 0.06);
   --aetox-border:            rgba(0, 0, 0, 0.08);
-  
-  /* ── Legacy Support ────────────────────────────────────── */
-  --aetox-surface-low:       #F5F0E8;
-  --aetox-surface:           #EBE4D8;
 }

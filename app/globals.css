@@ -1,22 +1,28 @@
 /* ─────────────────────────────────────────────────────────────
- *  AETOX GLOBAL STYLES — Entry Point
+ *  AETOX GLOBAL ENTRY POINT
+ *  Powered by Semantic Modular Architecture
  * ───────────────────────────────────────────────────────────── */
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* 1. Theme System (Modular) */
+/* 1. Theme Configuration (The Core Soul) */
 @import "./styles/themes/light.css";
 @import "./styles/themes/dark.css";
 
-/* 2. Custom Components */
-@import "./styles/aetox-core-v2.css";
+/* 2. Core Framework Layers */
+@import "./styles/core/base.css";
+@import "./styles/core/components.css";
+@import "./styles/core/effects.css";
 
-/* 3. Base Overrides */
-@layer base {
-  body {
-    @apply bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen;
-    background-color: rgb(var(--aetox-bg-rgb)); /* Hard fallback for stability */
+/* 3. Utilities & Global Resets */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

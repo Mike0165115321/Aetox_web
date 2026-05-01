@@ -48,8 +48,8 @@ module.exports = {
         // ── Backgrounds (Surface Hierarchy) ───────────────────────────────────
         "aetox-bg":                "rgb(var(--aetox-bg-rgb) / <alpha-value>)",
         "aetox-surface-lowest":    "rgb(var(--aetox-surface-lowest-rgb) / <alpha-value>)",
-        "aetox-surface-low":       "var(--aetox-surface-low)",
-        "aetox-surface":           "var(--aetox-surface)",
+        "aetox-surface-low":       "rgb(var(--aetox-surface-low-rgb) / <alpha-value>)",
+        "aetox-surface":           "rgb(var(--aetox-surface-rgb) / <alpha-value>)",
         "aetox-surface-high":      "var(--aetox-surface-high)",
         "aetox-surface-highest":   "var(--aetox-surface-highest)",
         
