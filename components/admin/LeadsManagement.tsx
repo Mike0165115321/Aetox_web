@@ -1,20 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Search, Filter, Mail, Phone, Clock, CheckCircle, XCircle, MessageSquare, AlertCircle, RefreshCw } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Search, Mail, Phone, Clock, CheckCircle, XCircle, MessageSquare, RefreshCw, Calendar, Tag } from 'lucide-react';
+import LeadInsightDrawer from './LeadInsightDrawer';
 
 export default function LeadsManagement({ dict }: { dict: any }) {
-  const [allLeads, setAllLeads] = useState([]); // เก็บข้อมูลทั้งหมดเพื่อทำ Stats
-  const [loading, setLoading] = useState(true); // เริ่มต้นเป็น true เลย
+  const [allLeads, setAllLeads] = useState([]); 
+  const [loading, setLoading] = useState(true); 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterType, setFilterType] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLead, setSelectedLead] = useState<any>(null);
 
   const fetchLeads = React.useCallback(async (silent = false) => {
     if (silent) setIsRefreshing(true);
-    // ไม่ต้องสั่ง setLoading(true) ที่นี่ถ้าไม่ใช่การ refresh แบบเงียบ
-    // เพราะเราตั้ง default เป็น true อยู่แล้ว หรือจะเช็คตามเงื่อนไข
     
     try {
       const res = await fetch('/api/leads');
@@ -31,22 +31,18 @@ export default function LeadsManagement({ dict }: { dict: any }) {
   }, []);
 
   useEffect(() => {
-    // ใช้ Promise.resolve เพื่อเลื่อนการทำงานออกไปนิดเดียว (Microtask) 
-    // เพื่อให้ React มั่นใจว่าไม่ได้สั่ง setState ทันทีที่ Effect ทำงาน
     Promise.resolve().then(() => {
       fetchLeads();
     });
   }, [fetchLeads]);
 
-  // คำนวณ Stats จากข้อมูลดิบทั้งหมด (Global Stats)
   const stats = {
     total: allLeads.length,
     new: allLeads.filter((l: any) => l.status === 'new').length,
     project: allLeads.filter((l: any) => l.type === 'project').length,
-    academy: allLeads.filter((l: any) => l.type.includes('academy')).length, // ครอบคลุมทั้ง academy และ academy_waitlist
+    academy: allLeads.filter((l: any) => l.type.includes('academy')).length,
   };
 
-  // การกรองข้อมูลที่แสดงผล (Client-side Filter)
   const filteredLeads = allLeads.filter((l: any) => {
     const matchStatus = filterStatus === 'all' || l.status === filterStatus;
     const matchType = filterType === 'all' || 
@@ -57,16 +53,30 @@ export default function LeadsManagement({ dict }: { dict: any }) {
     return matchStatus && matchType && matchSearch;
   });
 
+  const handleLeadUpdate = (updatedLead: any) => {
+    setAllLeads(prev => prev.map((l: any) => l._id === updatedLead._id ? updatedLead : l));
+    setSelectedLead(updatedLead);
+  };
+
   const updateStatus = async (id: string, newStatus: string) => {
     try {
       const res = await fetch(`/api/leads/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
       });
       const data = await res.json();
       if (data.success) {
         setAllLeads(allLeads.map((l: any) => l._id === id ? { ...l, status: newStatus } : l));
+        
+        fetch(`/api/leads/${id}/notes`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            type: 'status_change', 
+            content: `เปลี่ยนสถานะเป็น: ${dict.filters[newStatus] || newStatus}` 
+          }),
+        });
       }
     } catch (error) {
       console.error('Error updating status:', error);
@@ -85,8 +95,9 @@ export default function LeadsManagement({ dict }: { dict: any }) {
   };
 
   return (
+    <>
     <div className="space-y-8">
-      {/* 1. Stats Overview - หัวใจของ Dataset ในอนาคต */}
+      {/* 1. Stats Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: dict.stats.total, value: stats.total, color: 'text-white' },
@@ -101,11 +112,10 @@ export default function LeadsManagement({ dict }: { dict: any }) {
         ))}
       </div>
 
-      {/* 2. Advanced Filters & Search */}
+      {/* 2. Filters & Search */}
       <div className="space-y-4 bg-zinc-900/50 p-6 rounded-[32px] border border-white/5">
         <div className="flex flex-col lg:flex-row justify-between gap-6">
           <div className="space-y-4 flex-grow">
-            {/* Type Selector (หมวดใหญ่) */}
             <div className="flex items-center gap-4">
               <span className="text-xs font-black uppercase text-zinc-600 tracking-widest">หมวดหมู่:</span>
               <div className="flex bg-black p-1.5 rounded-2xl border border-white/5">
@@ -127,7 +137,6 @@ export default function LeadsManagement({ dict }: { dict: any }) {
               </div>
             </div>
 
-            {/* Status Selector (หมวดย่อย) */}
             <div className="flex items-center gap-4">
               <span className="text-xs font-black uppercase text-zinc-600 tracking-widest">สถานะ:</span>
               <div className="flex flex-wrap gap-2">
@@ -182,13 +191,22 @@ export default function LeadsManagement({ dict }: { dict: any }) {
             <div key={lead._id} className="bg-zinc-900/50 border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-all group">
               <div className="flex flex-col lg:flex-row justify-between gap-6">
                 <div className="flex-grow space-y-5">
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
                     <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-tighter border ${getStatusColor(lead.status)}`}>
                       {dict.badges[lead.status] || lead.status}
                     </span>
                     <span className="bg-zinc-800 text-zinc-400 px-3 py-1.5 rounded-lg text-xs font-bold uppercase">
                       {dict.badges[lead.type.includes('academy') ? 'academy' : 'project']}
                     </span>
+                    
+                    {/* Preferred Method Badge */}
+                    {lead.preferredMethod && (
+                      <span className="bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-black uppercase flex items-center gap-2">
+                        <CheckCircle size={14} />
+                        ติดต่อผ่าน: {lead.preferredMethod}
+                      </span>
+                    )}
+
                     <span className="text-zinc-600 text-xs flex items-center gap-2">
                       <Clock size={14} />
                       {new Date(lead.createdAt).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' })}
@@ -196,7 +214,23 @@ export default function LeadsManagement({ dict }: { dict: any }) {
                   </div>
                   
                   <div>
-                    <h3 className="text-3xl font-black text-white mb-2 tracking-tight">{lead.name}</h3>
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-6 mb-2">
+                      <button
+                        onClick={() => setSelectedLead(lead)}
+                        className="text-3xl font-black text-white tracking-tight hover:text-blue-400 transition-all text-left"
+                      >
+                        {lead.name}
+                      </button>
+                      
+                      {/* Highlighted Contact Detail */}
+                      {lead.contactDetail && (
+                        <div className="bg-white/10 px-4 py-2 rounded-2xl border border-white/10 text-emerald-400 font-bold text-lg flex items-center gap-2">
+                          <MessageSquare size={20} />
+                          {lead.contactDetail}
+                        </div>
+                      )}
+                    </div>
+
                     <div className="flex flex-wrap gap-6 text-base text-zinc-400">
                       <a href={`mailto:${lead.email}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
                         <Mail size={18} /> {lead.email}
@@ -206,10 +240,15 @@ export default function LeadsManagement({ dict }: { dict: any }) {
                           <Phone size={18} /> {lead.phone}
                         </span>
                       )}
+                      {lead.contactTime && (
+                        <span className="flex items-center gap-2 text-zinc-500">
+                          <Clock size={18} /> สะดวกคุย: {lead.contactTime}
+                        </span>
+                      )}
                     </div>
                   </div>
 
-                  {/* ข้อมูลเฉพาะตามประเภท */}
+                  {/* Specific Details */}
                   <div className="bg-black/40 rounded-[24px] p-6 border border-white/5">
                     {lead.type === 'project' ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
@@ -233,9 +272,34 @@ export default function LeadsManagement({ dict }: { dict: any }) {
                       </div>
                     )}
                   </div>
+
+                  {/* Timeline Snippet */}
+                  <div className="flex flex-col md:flex-row gap-4">
+                    {lead.interactions && lead.interactions.length > 0 && (
+                      <div className="flex-1 flex items-start gap-3 bg-white/5 rounded-2xl p-4 border border-white/5">
+                        <MessageSquare size={16} className="text-zinc-600 mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-[10px] font-black uppercase text-zinc-600 tracking-widest mb-1">บันทึกล่าสุด</p>
+                          <p className="text-sm text-zinc-400 line-clamp-1 italic">&quot;{lead.interactions[0].content}&quot;</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {lead.nextFollowUp && (
+                      <div className="flex items-start gap-3 bg-blue-500/5 rounded-2xl p-4 border border-blue-500/10">
+                        <Calendar size={16} className="text-blue-400 mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-[10px] font-black uppercase text-blue-500/50 tracking-widest mb-1">นัดติดตามครั้งถัดไป</p>
+                          <p className="text-sm text-blue-400 font-bold">
+                            {new Date(lead.nextFollowUp).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' })}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                {/* ส่วนจัดการสถานะ (Quick CRM) */}
+                {/* Quick Actions */}
                 <div className="flex flex-col justify-between items-end gap-4 min-w-[180px]">
                   <div className="flex flex-wrap justify-end gap-2">
                     <button 
@@ -272,5 +336,14 @@ export default function LeadsManagement({ dict }: { dict: any }) {
         )}
       </div>
     </div>
+
+    {/* Lead Insight Drawer */}
+    <LeadInsightDrawer
+      lead={selectedLead}
+      isOpen={!!selectedLead}
+      onClose={() => setSelectedLead(null)}
+      onUpdate={handleLeadUpdate}
+    />
+  </>
   );
 }

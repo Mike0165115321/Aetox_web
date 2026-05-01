@@ -1,5 +1,12 @@
 import mongoose, { Schema, model, models, Model, Document } from 'mongoose';
 
+// ประวัติการติดต่อ (Timeline entry)
+export interface IInteraction {
+  type: 'note' | 'call' | 'email' | 'meeting' | 'status_change';
+  content: string;
+  createdAt: Date;
+}
+
 export interface ILead extends Document {
   type: 'project' | 'academy' | 'academy_waitlist';
   status: 'new' | 'contacted' | 'qualified' | 'rejected' | 'closed';
@@ -24,6 +31,9 @@ export interface ILead extends Document {
   // CRM Tracking
   notes?: string;
   priority: 'low' | 'medium' | 'high';
+  interactions: IInteraction[];  // Timeline ประวัติการติดต่อ
+  tags: string[];               // Tags สำหรับจัดกลุ่ม (เช่น VIP, Hot, ติดต่อยาก)
+  nextFollowUp?: Date;          // วันนัดติดตามงานครั้งถัดไป
   
   createdAt: Date;
   updatedAt: Date;
@@ -77,7 +87,17 @@ const LeadSchema = new Schema<ILead>({
     enum: ['low', 'medium', 'high'],
     default: 'medium',
     index: true,
-  }
+  },
+  interactions: {
+    type: [{
+      type: { type: String, enum: ['note', 'call', 'email', 'meeting', 'status_change'], required: true },
+      content: { type: String, required: true },
+      createdAt: { type: Date, default: Date.now }
+    }],
+    default: []
+  },
+  tags: { type: [String], default: [] },
+  nextFollowUp: { type: Date }
 }, {
   timestamps: true,
 });

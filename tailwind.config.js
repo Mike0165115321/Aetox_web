@@ -4,6 +4,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
+  // ─── Dark Mode: class-based (Toggle override + OS default via JS) ──────────
+  darkMode: "class",
+
   theme: {
     // 1. GLOBAL SCREENS — ล็อก Ultrawide ไม่ให้พัง
     screens: {
@@ -13,74 +17,127 @@ module.exports = {
       xl: "1280px",
       "2xl": "1280px", // Lock max-width at 1280px (Apple/Linear standard)
     },
-    
+
     // 2. CONTAINER — ควบคุม Margins ป้องกันเนื้อหาชิดขอบจอ
     container: {
       center: true,
       padding: {
-        DEFAULT: "1.5rem", // Mobile spacing
-        sm: "2.5rem",      // Tablet
-        md: "4rem",        // Laptop
-        lg: "6rem",        // Desktop
-        xl: "8rem",        // Ultrawide (safeguard)
+        DEFAULT: "1.5rem",
+        sm: "2.5rem",
+        md: "4rem",
+        lg: "6rem",
+        xl: "8rem",
       },
     },
-    
+
     extend: {
-      // 3. COLOR SYSTEM — Pure Black & iOS Blue
+      // 3. COLOR SYSTEM ─────────────────────────────────────────────────────────
+      //
+      //  แนวคิด: Token ชื่อเดิม (semantic) แต่ค่าสีเปลี่ยนตาม .dark / :root
+      //  → ใช้ CSS Variables เป็นตัวกลาง ทำให้ component ไม่ต้องเขียนสองชุด
+      //
+      //  วิธีใช้ใน component:
+      //    bg-aetox-bg          ← พื้นหลังหลัก
+      //    bg-aetox-surface     ← Card / Elevated
+      //    text-aetox-text-main ← ข้อความหลัก
+      //    text-aetox-text-soft ← ข้อความรอง
+      //    border-aetox-border  ← เส้นขอบ
+      //    bg-aetox-accent      ← CTA เท่านั้น
+      // ─────────────────────────────────────────────────────────────────────────
       colors: {
-        // ─── Backgrounds ───────────────────────────────────────────
-        "aetox-bg":        "#050505",  // Softer Off-Black — depth focus
-        "aetox-surface":   "#111111",  // Elevated surface (cards)
-        "aetox-surface-2": "#1A1A1A",  // Second layer (nested cards)
-        "aetox-border":    "#2A2A2A",  // Sharp 1px industrial border
 
-        // ─── Typography ────────────────────────────────────────────
-        "aetox-text-main":  "#F5F5F7", // Apple headline white — clarity
-        "aetox-text-soft":  "#86868B", // Apple secondary — readable muted
-        "aetox-text-muted": "#48484A", // Near-invisible — luxury breathing
+        // ── Backgrounds (Surface Hierarchy) ───────────────────────────────────
+        "aetox-bg":                "var(--aetox-bg)",           // พื้นหลังสุด (ลึกที่สุด)
+        "aetox-surface-lowest":    "var(--aetox-surface-lowest)",// ต่ำกว่า bg (sub-canvas)
+        "aetox-surface-low":       "var(--aetox-surface-low)",  // Layer 1
+        "aetox-surface":           "var(--aetox-surface)",      // Layer 2 — Card หลัก
+        "aetox-surface-high":      "var(--aetox-surface-high)", // Layer 3 — Nested card
+        "aetox-surface-highest":   "var(--aetox-surface-highest)", // Layer 4 — Tooltip/Popover
 
-        // ─── Accent (USE ONLY ON CTA) ──────────────────────────────
-        "aetox-accent":       "#0A84FF", // iOS Blue — trust + technology
-        "aetox-accent-hover": "#0071E3", // Apple button hover
+        // ── Borders & Dividers ────────────────────────────────────────────────
+        "aetox-border":            "var(--aetox-border)",       // เส้นขอบปกติ
+        "aetox-border-strong":     "var(--aetox-border-strong)",// เส้นขอบเน้น
+
+        // ── Typography ────────────────────────────────────────────────────────
+        "aetox-text-main":         "var(--aetox-text-main)",    // Headline / Body หลัก
+        "aetox-text-soft":         "var(--aetox-text-soft)",    // Secondary text
+        "aetox-text-muted":        "var(--aetox-text-muted)",   // Placeholder / Disabled
+
+        // ── Accent — ใช้เฉพาะ CTA, Active state, Data highlight ──────────────
+        "aetox-accent":            "var(--aetox-accent)",       // iOS Blue #0A84FF
+        "aetox-accent-hover":      "var(--aetox-accent-hover)", // Hover state
+        "aetox-accent-subtle":     "var(--aetox-accent-subtle)",// Background tint (badges)
+
+        // ── Status ────────────────────────────────────────────────────────────
+        "aetox-error":             "var(--aetox-error)",
+        "aetox-error-surface":     "var(--aetox-error-surface)",
       },
 
-      // 4. FLUID TYPOGRAPHY — สเกลตัวอักษรอัตโนมัติ ไม่ต้องทำ Breakpoint ซ้อน
+      // 4. FLUID TYPOGRAPHY ─────────────────────────────────────────────────────
       fontSize: {
-        "fluid-h1": ["clamp(2.25rem, 4vw + 1rem, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
-        "fluid-h2": ["clamp(1.75rem, 3vw + 1rem, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em", fontWeight: "600" }],
-        "fluid-h3": ["clamp(1.25rem, 2vw + 1rem, 2rem)", { lineHeight: "1.2", fontWeight: "600" }],
+        "fluid-h1": ["clamp(2.25rem, 4vw + 1rem, 4.5rem)",  { lineHeight: "1.1",  letterSpacing: "-0.02em", fontWeight: "700" }],
+        "fluid-h2": ["clamp(1.75rem, 3vw + 1rem, 3rem)",    { lineHeight: "1.15", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "fluid-h3": ["clamp(1.25rem, 2vw + 1rem, 2rem)",    { lineHeight: "1.2",  fontWeight: "600" }],
         "fluid-h4": ["clamp(1.125rem, 1.5vw + 1rem, 1.5rem)", { lineHeight: "1.4", fontWeight: "500" }],
-        "fluid-p":  ["clamp(1rem, 1vw + 0.75rem, 1.125rem)", { lineHeight: "1.6", fontWeight: "400" }],
-        "fluid-sm": ["clamp(0.875rem, 0.5vw + 0.75rem, 1rem)", { lineHeight: "1.5", fontWeight: "400" }],
+        "fluid-p":  ["clamp(1rem, 1vw + 0.75rem, 1.125rem)", { lineHeight: "1.7",  fontWeight: "400" }], // +0.1 สำหรับภาษาไทย
+        "fluid-sm": ["clamp(0.875rem, 0.5vw + 0.75rem, 1rem)", { lineHeight: "1.6", fontWeight: "400" }],
+        "fluid-label": ["0.75rem", { lineHeight: "1", fontWeight: "600", letterSpacing: "0.05em" }],
       },
 
-      // 5. EFFECTS & ANIMATIONS
+      // 5. FONT FAMILY ──────────────────────────────────────────────────────────
+      fontFamily: {
+        // Display / Heading → Lexend (อ่านง่าย, geometric, รองรับภาษาไทยได้ดี)
+        display: ["var(--font-lexend)", "var(--font-ibm-plex-thai)", "sans-serif"],
+        // Body / UI → IBM Plex Thai + Inter fallback
+        sans: ["var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
+      },
+
+      // 6. ROUNDED SYSTEM (จาก Elite Minimalism) ────────────────────────────────
+      borderRadius: {
+        sm:      "0.125rem", // 2px  — Input focus ring
+        DEFAULT: "0.25rem",  // 4px  — Button, Input
+        md:      "0.375rem", // 6px  — Small card
+        lg:      "0.5rem",   // 8px  — Card, Modal
+        xl:      "0.75rem",  // 12px — Large container
+        full:    "9999px",   // Pill — Badge, Tag
+      },
+
+      // 7. SPACING (4px baseline grid) ──────────────────────────────────────────
+      spacing: {
+        xs:     "0.5rem",  // 8px
+        sm:     "1rem",    // 16px
+        md:     "1.5rem",  // 24px
+        lg:     "2.5rem",  // 40px
+        xl:     "4rem",    // 64px
+        gutter: "1.5rem",
+        margin: "2rem",
+      },
+
+      // 8. EFFECTS & ANIMATIONS ─────────────────────────────────────────────────
       backgroundImage: {
+        // Blueprint grid — Hero section เท่านั้น
         "aetox-blueprint":
-          "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), " +
-          "linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+          "linear-gradient(var(--aetox-grid-line) 1px, transparent 1px), " +
+          "linear-gradient(90deg, var(--aetox-grid-line) 1px, transparent 1px)",
       },
       boxShadow: {
-        "aetox-card": "0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.7)",
-        "aetox-glow": "0 0 0 1px rgba(10,132,255,0.25), 0 8px 24px rgba(10,132,255,0.12)",
+        "aetox-card": "var(--aetox-shadow-card)",
+        "aetox-glow": "var(--aetox-shadow-glow)",   // CTA button เท่านั้น
+        "aetox-inset": "inset 0 1px 0 var(--aetox-border)",
       },
       animation: {
         "aetox-breathe": "aetox-breathe 4s ease-in-out infinite",
+        "aetox-fade-in": "aetox-fade-in 0.4s ease-out forwards",
       },
       keyframes: {
         "aetox-breathe": {
-          "0%, 100%": { opacity: "1", transform: "scale(1)" },
-          "50%": { opacity: "0.6", transform: "scale(0.97)" },
+          "0%, 100%": { opacity: "1",   transform: "scale(1)" },
+          "50%":      { opacity: "0.6", transform: "scale(0.97)" },
         },
-      },
-      
-      // 6. CORE TYPOGRAPHY
-      fontFamily: {
-        sans: ["var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
-      },
-      letterSpacing: {
-        widest: "0.15em",
+        "aetox-fade-in": {
+          from: { opacity: "0", transform: "translateY(8px)" },
+          to:   { opacity: "1", transform: "translateY(0)" },
+        },
       },
     },
   },
@@ -88,15 +145,83 @@ module.exports = {
 };
 
 /*
- ┌─────────────────────────────────────────────┐
- │       AETOX USAGE RULES (mandatory)         │
- ├─────────────────────────────────────────────┤
- │ 1. Layout: MUST wrap all sections in        │
- │    `<div className="container">`            │
- │ 2. Text: MUST use `text-fluid-h1`,          │
- │    `text-fluid-p` (No hardcoded text-sm/lg) │
- │ 3. bg-aetox-blueprint → Hero section ONLY   │
- │ 4. shadow-aetox-glow  → CTA button ONLY     │
- │ 5. animate-aetox-breathe → Logo / hero ONLY │
- └─────────────────────────────────────────────┘
+ ┌──────────────────────────────────────────────────────────────────┐
+ │                   AETOX CSS VARIABLES                            │
+ │   วางใน globals.css หรือ layout.tsx (required)                  │
+ ├──────────────────────────────────────────────────────────────────┤
+ │                                                                  │
+ │  :root {                          ← Light Mode (Apple-style)     │
+ │    --aetox-bg:                #FFFFFF;                           │
+ │    --aetox-surface-lowest:    #F9F9F9;                           │
+ │    --aetox-surface-low:       #F3F3F3;                           │
+ │    --aetox-surface:           #EBEBEB;                           │
+ │    --aetox-surface-high:      #E0E0E0;                           │
+ │    --aetox-surface-highest:   #D5D5D5;                           │
+ │    --aetox-border:            rgba(0,0,0,0.08);                  │
+ │    --aetox-border-strong:     rgba(0,0,0,0.18);                  │
+ │    --aetox-text-main:         #1A1A1A;                           │
+ │    --aetox-text-soft:         #555555;                           │
+ │    --aetox-text-muted:        #999999;                           │
+ │    --aetox-accent:            #0A84FF;                           │
+ │    --aetox-accent-hover:      #0071E3;                           │
+ │    --aetox-accent-subtle:     rgba(10,132,255,0.1);              │
+ │    --aetox-error:             #FF3B30;                           │
+ │    --aetox-error-surface:     rgba(255,59,48,0.1);               │
+ │    --aetox-grid-line:         rgba(0,0,0,0.04);                  │
+ │    --aetox-shadow-card:       0 1px 3px rgba(0,0,0,0.08),        │
+ │                               0 4px 16px rgba(0,0,0,0.06);       │
+ │    --aetox-shadow-glow:       0 0 0 1px rgba(10,132,255,0.3),    │
+ │                               0 8px 24px rgba(10,132,255,0.15);  │
+ │  }                                                               │
+ │                                                                  │
+ │  .dark {                          ← Dark Mode (Pure Black)       │
+ │    --aetox-bg:                #050505;                           │
+ │    --aetox-surface-lowest:    #080808;                           │
+ │    --aetox-surface-low:       #0F0F0F;                           │
+ │    --aetox-surface:           #111111;                           │
+ │    --aetox-surface-high:      #1A1A1A;                           │
+ │    --aetox-surface-highest:   #242424;                           │
+ │    --aetox-border:            rgba(255,255,255,0.06);            │
+ │    --aetox-border-strong:     rgba(255,255,255,0.12);            │
+ │    --aetox-text-main:         #F5F5F7;                           │
+ │    --aetox-text-soft:         #86868B;                           │
+ │    --aetox-text-muted:        #48484A;                           │
+ │    --aetox-accent:            #0A84FF;                           │
+ │    --aetox-accent-hover:      #0071E3;                           │
+ │    --aetox-accent-subtle:     rgba(10,132,255,0.15);             │
+ │    --aetox-error:             #FF453A;                           │
+ │    --aetox-error-surface:     rgba(255,69,58,0.15);              │
+ │    --aetox-grid-line:         rgba(255,255,255,0.018);           │
+ │    --aetox-shadow-card:       0 1px 0 rgba(255,255,255,0.04),    │
+ │                               0 8px 32px rgba(0,0,0,0.7);        │
+ │    --aetox-shadow-glow:       0 0 0 1px rgba(10,132,255,0.25),   │
+ │                               0 8px 24px rgba(10,132,255,0.12);  │
+ │  }                                                               │
+ │                                                                  │
+ ├──────────────────────────────────────────────────────────────────┤
+ │   THEME TOGGLE SCRIPT (วางใน <head> ก่อน render)                │
+ │                                                                  │
+ │  <script>                                                        │
+ │    const saved = localStorage.getItem('aetox-theme');            │
+ │    const prefersDark = window.matchMedia(                        │
+ │      '(prefers-color-scheme: dark)').matches;                    │
+ │    if (saved === 'dark' || (!saved && prefersDark)) {            │
+ │      document.documentElement.classList.add('dark');             │
+ │    }                                                             │
+ │  </script>                                                       │
+ │                                                                  │
+ ├──────────────────────────────────────────────────────────────────┤
+ │   USAGE RULES (mandatory)                                        │
+ ├──────────────────────────────────────────────────────────────────┤
+ │ 1. Layout : ทุก section ต้อง wrap ด้วย <div className="container"> │
+ │ 2. Text   : ใช้ text-fluid-h1 / text-fluid-p เท่านั้น           │
+ │             ห้าม hardcode text-sm / text-lg                       │
+ │ 3. Font   : heading → font-display / body → font-sans            │
+ │ 4. Blueprint bg → Hero section เท่านั้น                          │
+ │ 5. Glow shadow → CTA button เท่านั้น                             │
+ │ 6. Breathe animation → Logo / Hero element เท่านั้น              │
+ │ 7. Accent color → CTA, Active, Data highlight เท่านั้น           │
+ │    ห้ามใช้ accent เป็นสีพื้นหลัง section                         │
+ │ 8. Component min-height → 48px (รองรับ Thai glyph)              │
+ └──────────────────────────────────────────────────────────────────┘
 */
