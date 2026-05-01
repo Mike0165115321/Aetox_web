@@ -16,7 +16,7 @@
 @import "./styles/themes/dark.css";
 
 /* 3. Custom Utilities (Classes using @apply) */
-@import "./styles/aetox-styles.css";
+@import "./styles/aetox-final.css";
 
 /* 4. Base Overrides (Must come after all imports) */
 @layer base {

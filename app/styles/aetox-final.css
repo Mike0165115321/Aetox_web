@@ -1,0 +1,107 @@
+/*
+ * ─────────────────────────────────────────────────────────────
+ *  AETOX COMPONENT STYLES (FINAL ARCHITECTURE)
+ * ─────────────────────────────────────────────────────────────
+ */
+
+@layer utilities {
+  /* ── 1. Atmosphere & Background ─────────────────────────── */
+  /* แสงฟุ้ง (Theme-Aware Auras) */
+  .aetox-aura-primary {
+    @apply absolute w-[40vw] h-[40vw] rounded-full blur-[120px] 
+           pointer-events-none mix-blend-screen dark:mix-blend-lighten;
+    background-color: var(--aetox-aura-1);
+  }
+
+  .aetox-aura-secondary {
+    @apply absolute w-[35vw] h-[35vw] rounded-full blur-[100px] 
+           pointer-events-none;
+    background-color: var(--aetox-aura-2);
+  }
+
+  .aetox-grid-overlay {
+    @apply absolute inset-0 bg-aetox-blueprint pointer-events-none;
+    opacity: 0.5;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+
+  /* ── 2. Buttons ─────────────────────────────────────────── */
+  .aetox-btn-main {
+    @apply px-md py-sm bg-aetox-accent text-white rounded-md shadow-aetox-glow 
+           hover:bg-aetox-accent-hover transition-all transform active:scale-95 
+           flex items-center justify-center gap-3 font-bold;
+  }
+
+  .aetox-btn-glass {
+    @apply px-md py-sm border border-aetox-border text-aetox-text-soft rounded-md 
+           backdrop-blur-md transition-all transform active:scale-95 
+           flex items-center justify-center font-bold shadow-sm;
+    background-color: color-mix(in srgb, var(--aetox-surface), transparent 90%);
+    
+    &:hover {
+      background-color: color-mix(in srgb, var(--aetox-surface), transparent 70%);
+      color: var(--aetox-text-main);
+      border-color: color-mix(in srgb, var(--aetox-accent), transparent 50%);
+    }
+  }
+
+  /* ── 3. Atmospheric Particles ────────────────────────────── */
+  .aetox-particle {
+    @apply absolute rounded-full blur-[1px] pointer-events-none;
+    background-color: color-mix(in srgb, var(--aetox-accent), transparent 70%);
+    animation: float 20s infinite linear;
+  }
+
+
+
+  /* ── 4. Cards & Surfaces ────────────────────────────────── */
+  .aetox-card {
+    @apply rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
+    background-color: var(--aetox-card-bg);
+    border-color: var(--aetox-card-border);
+  }
+  
+  .aetox-card:hover {
+    background-color: var(--aetox-card-hover);
+  }
+
+  .aetox-alert-error {
+    @apply p-4 rounded-xl border transition-colors;
+    background-color: var(--aetox-alert-error-bg);
+    border-color: var(--aetox-alert-error-text);
+  }
+
+  .aetox-alert-error p:first-child {
+    color: var(--aetox-alert-error-text);
+  }
+
+  .aetox-alert-accent {
+    @apply p-4 rounded-xl border transition-colors;
+    background-color: var(--aetox-alert-accent-bg);
+    border-color: var(--aetox-alert-accent-text);
+  }
+
+  .aetox-alert-accent p:first-child {
+    color: var(--aetox-alert-accent-text);
+  }
+
+  .aetox-glass-card {
+    @apply backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
+    background-color: color-mix(in srgb, var(--aetox-surface), transparent 60%);
+  }
+
+  .aetox-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r
+           from-aetox-text-main via-aetox-accent to-aetox-text-main
+           bg-[length:200%_auto] animate-gradient-x;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  25% { opacity: 0.8; }
+  50% { transform: translateY(-100px) translateX(50px); opacity: 0.4; }
+  75% { opacity: 0.8; }
+  100% { transform: translateY(-200px) translateX(-20px); opacity: 0; }
+}

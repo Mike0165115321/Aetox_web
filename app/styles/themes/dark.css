@@ -19,6 +19,19 @@
   --aetox-border:           rgba(255, 255, 255, 0.06);
   --aetox-border-strong:    rgba(255, 255, 255, 0.12);
 
+  /* Atmosphere (Dark Mode: Deep Blue) */
+  --aetox-aura-1:           rgba(10, 132, 255, 0.15); /* Aetox Blue */
+  --aetox-aura-2:           rgba(255, 255, 255, 0.03); /* Subtle White Mist */
+
+  /* Components (Dark Mode: Glassmorphism) */
+  --aetox-card-bg:          color-mix(in srgb, var(--aetox-surface), transparent 80%);
+  --aetox-card-hover:       color-mix(in srgb, var(--aetox-surface), transparent 60%);
+  --aetox-card-border:      var(--aetox-border);
+  --aetox-alert-error-bg:   color-mix(in srgb, var(--aetox-error), transparent 95%);
+  --aetox-alert-error-text: color-mix(in srgb, var(--aetox-error), transparent 20%);
+  --aetox-alert-accent-bg:  color-mix(in srgb, var(--aetox-accent), transparent 95%);
+  --aetox-alert-accent-text:color-mix(in srgb, var(--aetox-accent), transparent 20%);
+
   /* Typography */
   --aetox-text-main:        #F5F5F7;
   --aetox-text-soft:        #86868B;

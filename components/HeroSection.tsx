@@ -1,83 +1,133 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import React, { useEffect } from 'react';
 
 export default function HeroSection({ dict }: { dict: any }) {
+  // Parallax Logic: เฉพาะหน้า Hero เท่านั้น
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { damping: 25, stiffness: 100 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+
+  const auraX = useTransform(smoothMouseX, [0, 1000], [-20, 20]);
+  const auraY = useTransform(smoothMouseY, [0, 1000], [-20, 20]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const particles = [
+    { left: '15%', top: '20%', width: '3px', animationDelay: '0s', animationDuration: '18s' },
+    { left: '70%', top: '10%', width: '2px', animationDelay: '3s', animationDuration: '22s' },
+    { left: '40%', top: '60%', width: '4px', animationDelay: '7s', animationDuration: '16s' },
+    { left: '85%', top: '45%', width: '2px', animationDelay: '5s', animationDuration: '20s' },
+    { left: '25%', top: '80%', width: '3px', animationDelay: '9s', animationDuration: '24s' },
+    { left: '55%', top: '35%', width: '5px', animationDelay: '2s', animationDuration: '19s' },
+  ];
+
   if (!dict) return null;
   const content = dict;
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden border-b border-aetox-border">
-      {/* 1. Subtle Bottom Fade for smooth transition */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-aetox-bg to-transparent pointer-events-none z-20" />
+    <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-aetox-bg border-b border-aetox-border">
       
-      <div className="relative z-10 flex flex-col items-center justify-center text-center container">
-        {/* Aetox Logo — Prestigious & Purposeful */}
+      {/* 1. แสงฟุ้ง (Auras) — อยู่แค่ที่นี่ที่เดียว ไม่ไปโผล่หน้าอื่น */}
+      <motion.div 
+        style={{ x: auraX, y: auraY }}
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
+        <div className="aetox-aura-primary top-[-10%] left-[-5%] scale-110" />
+        <div className="aetox-aura-secondary bottom-[-10%] right-[-5%] scale-110" />
+      </motion.div>
+
+      {/* 2. Grid & Atmosphere Particles */}
+      <div className="aetox-grid-overlay" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {particles.map((p, i) => (
+          <div 
+            key={i}
+            className="aetox-particle"
+            style={{
+              left: p.left,
+              top: p.top,
+              width: p.width,
+              height: p.width,
+              animationDelay: p.animationDelay,
+              animationDuration: p.animationDuration,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* 3. Main Content */}
+      <div className="container relative z-10 flex flex-col items-center text-center px-4">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="mb-16"
+          className="mb-12"
         >
           <Image 
             src="/images/logo.svg" 
             alt="Aetox Logo" 
             width={120}
             height={120}
-            className="w-24 md:w-28 h-auto mx-auto animate-aetox-breathe"
+            className="w-20 md:w-24 h-auto mx-auto animate-aetox-breathe"
             priority
           />
         </motion.div>
 
         <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-fluid-h1 text-aetox-text-main"
+          className="text-fluid-h1 font-display text-aetox-text-main leading-[1.1]"
         >
-          <span className="block mb-2">{content.headline.white}</span>
-          <span className="text-aetox-accent">
-            {content.headline.accent}
-          </span>
+          {content.headline.white}
+          <br className="hidden md:block" />
+          <span className="text-aetox-accent drop-shadow-[0_0_15px_rgba(var(--aetox-accent-rgb),0.3)]"> {content.headline.accent}</span>
         </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 text-fluid-p text-aetox-text-soft max-w-2xl font-medium"
+          className="mt-md text-fluid-p font-sans text-aetox-text-soft max-w-2xl font-medium"
         >
           {content.description}
         </motion.p>
-
+        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 flex flex-col md:flex-row justify-center gap-6 w-full md:w-auto"
+          className="mt-lg flex flex-col md:flex-row gap-6 w-full md:w-auto"
         >
-          {/* Primary CTA — Using centralized styles/aetox-styles.css */}
-          <Link href="/services" className="group aetox-btn-main">
+          <Link href="/services" className="aetox-btn-main group">
             {content.cta.primary}
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           
-          {/* Secondary CTA — Using centralized styles/aetox-styles.css */}
-          <Link href="/authority" className="aetox-btn-outline">
+          <Link href="/authority" className="aetox-btn-glass">
             {content.cta.secondary}
           </Link>
         </motion.div>
 
-        {/* Minimalist Industrial Indicator */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30 z-30"
+          animate={{ y: [0, 8, 0], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
         >
-          <span className="text-xs font-bold tracking-[0.2em] text-aetox-text-soft">{content.scrollLabel}</span>
-
+          <span className="text-[10px] font-bold tracking-[0.3em] text-aetox-text-soft uppercase">{content.scrollLabel}</span>
           <div className="w-[1px] h-10 bg-gradient-to-b from-aetox-accent to-transparent" />
         </motion.div>
       </div>

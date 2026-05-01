@@ -31,6 +31,19 @@
   --aetox-border:           initial;
   --aetox-border-strong:    initial;
 
+  /* Atmosphere & Effects */
+  --aetox-aura-1:           initial;
+  --aetox-aura-2:           initial;
+
+  /* Components */
+  --aetox-card-bg:          initial;
+  --aetox-card-hover:       initial;
+  --aetox-card-border:      initial;
+  --aetox-alert-error-bg:   initial;
+  --aetox-alert-error-text: initial;
+  --aetox-alert-accent-bg:  initial;
+  --aetox-alert-accent-text:initial;
+
   /* Typography */
   --aetox-text-main:        initial;
   --aetox-text-soft:        initial;

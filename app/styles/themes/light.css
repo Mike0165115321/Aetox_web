@@ -19,6 +19,19 @@
   --aetox-border:           rgba(0, 0, 0, 0.08);
   --aetox-border-strong:    rgba(0, 0, 0, 0.18);
 
+  /* Atmosphere (Light Mode: Warm Cream - Softened) */
+  --aetox-aura-1:           rgba(255, 253, 208, 0.15); /* Very Subtle Cream */
+  --aetox-aura-2:           rgba(253, 245, 230, 0.10); /* Softest Cream Mist */
+
+  /* Components (Light Mode: Solid & Contrast) */
+  --aetox-card-bg:          #FFFFFF; /* Solid white for high contrast */
+  --aetox-card-hover:       #F9F9F9;
+  --aetox-card-border:      var(--aetox-border);
+  --aetox-alert-error-bg:   color-mix(in srgb, var(--aetox-error), transparent 90%);
+  --aetox-alert-error-text: var(--aetox-error);
+  --aetox-alert-accent-bg:  color-mix(in srgb, var(--aetox-accent), transparent 90%);
+  --aetox-alert-accent-text:var(--aetox-accent);
+
   /* Typography */
   --aetox-text-main:        #111111;
   --aetox-text-soft:        #4B4B4B;
