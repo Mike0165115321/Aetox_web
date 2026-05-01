@@ -1,31 +1,23 @@
 :root {
-  /* Backgrounds & Surfaces (RGB) */
-  --aetox-bg-rgb-val:            250, 247, 242;
-  --aetox-surface-lowest-rgb-val: 255, 255, 255;
+  /* ── Surfaces (RGB for Opacity Support) ────────────────── */
+  --aetox-bg-rgb:            250, 247, 242;
+  --aetox-surface-lowest-rgb: 255, 255, 255;
   
-  /* Legacy/Static Values */
-  --aetox-surface-low:       #F5F0E8;
-  --aetox-surface-val:       #EBE4D8;
-  
-  /* Card System */
-  --aetox-card-bg:           #FFFFFF;
-  --aetox-card-border:       rgba(0, 0, 0, 0.06);
-  --aetox-card-hover:        #FFFFFF;
+  /* ── Typography (Semantic Tokens) ──────────────────────── */
+  --aetox-text-main:         #111111;
+  --aetox-text-soft:         #4B4B4B;
+  --aetox-text-muted:        #999999;
 
-  /* Typography */
-  --aetox-text-main-val:     #111111;
-  --aetox-text-soft-val:     #4B4B4B;
-  --aetox-text-muted-val:    #999999;
-
-  /* Accent (RGB) */
+  /* ── Accent & Status ───────────────────────────────────── */
   --aetox-accent-rgb:        10, 132, 255;
   --aetox-error-rgb:         255, 59, 48;
 
-  /* Borders & Grids */
-  --aetox-border-val:        rgba(0, 0, 0, 0.06);
-  --aetox-grid-line:         rgba(0, 0, 0, 0.04);
-
-  /* Shadows */
-  --aetox-shadow-card:       0 10px 30px -10px rgba(0, 0, 0, 0.1);
-  --aetox-shadow-glow:       0 0 0 1px rgba(10, 132, 255, 0.1), 0 8px 24px rgba(10, 132, 255, 0.1);
+  /* ── UI Components ─────────────────────────────────────── */
+  --aetox-card-bg:           #FFFFFF;
+  --aetox-card-border:       rgba(0, 0, 0, 0.06);
+  --aetox-border:            rgba(0, 0, 0, 0.08);
+  
+  /* ── Legacy Support ────────────────────────────────────── */
+  --aetox-surface-low:       #F5F0E8;
+  --aetox-surface:           #EBE4D8;
 }

@@ -1,31 +1,23 @@
-.dark {
-  /* Backgrounds & Surfaces (RGB) */
-  --aetox-bg-rgb-val:            5, 5, 5;
-  --aetox-surface-lowest-rgb-val: 8, 8, 8;
+.dark, [data-theme='dark'] {
+  /* ── Surfaces (RGB for Opacity Support) ────────────────── */
+  --aetox-bg-rgb:            5, 5, 5;
+  --aetox-surface-lowest-rgb: 8, 8, 8;
   
-  /* Legacy/Static Values */
-  --aetox-surface-low:       #0F0F0F;
-  --aetox-surface-val:       #111111;
-  
-  /* Card System */
-  --aetox-card-bg:           #0A0A0A;
-  --aetox-card-border:       rgba(255, 255, 255, 0.06);
-  --aetox-card-hover:        #0D0D0D;
+  /* ── Typography (Semantic Tokens) ──────────────────────── */
+  --aetox-text-main:         #F5F5F7;
+  --aetox-text-soft:         #86868B;
+  --aetox-text-muted:        #48484A;
 
-  /* Typography */
-  --aetox-text-main-val:     #F5F5F7;
-  --aetox-text-soft-val:     #86868B;
-  --aetox-text-muted-val:    #48484A;
-
-  /* Accent (RGB) */
+  /* ── Accent & Status ───────────────────────────────────── */
   --aetox-accent-rgb:        10, 132, 255;
   --aetox-error-rgb:         255, 69, 58;
 
-  /* Borders & Grids */
-  --aetox-border-val:        rgba(255, 255, 255, 0.08);
-  --aetox-grid-line:         rgba(255, 255, 255, 0.02);
-
-  /* Shadows */
-  --aetox-shadow-card:       0 20px 40px -10px rgba(0, 0, 0, 0.5);
-  --aetox-shadow-glow:       0 0 0 1px rgba(10, 132, 255, 0.2), 0 12px 32px rgba(10, 132, 255, 0.15);
+  /* ── UI Components ─────────────────────────────────────── */
+  --aetox-card-bg:           #0A0A0A;
+  --aetox-card-border:       rgba(255, 255, 255, 0.06);
+  --aetox-border:            rgba(255, 255, 255, 0.1);
+  
+  /* ── Legacy Support ────────────────────────────────────── */
+  --aetox-surface-low:       #0F0F0F;
+  --aetox-surface:           #111111;
 }

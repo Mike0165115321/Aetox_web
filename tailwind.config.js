@@ -63,10 +63,9 @@ module.exports = {
         "aetox-border-strong":     "var(--aetox-border-strong)",
 
         // ── Typography ────────────────────────────────────────────────────────
-        "aetox-text-main":         "rgb(var(--aetox-accent-rgb) / <alpha-value>)", // Fallback if main fails
-        "aetox-text-main":         "var(--aetox-text-main-val)",
-        "aetox-text-soft":         "var(--aetox-text-soft-val)",
-        "aetox-text-muted":        "var(--aetox-text-muted-val)",
+        "aetox-text-main":         "var(--aetox-text-main)",
+        "aetox-text-soft":         "var(--aetox-text-soft)",
+        "aetox-text-muted":        "var(--aetox-text-muted)",
 
         // ── Accent & Status (With Opacity Support) ─────────────────────────────
         "aetox-accent":            "rgb(var(--aetox-accent-rgb) / <alpha-value>)",

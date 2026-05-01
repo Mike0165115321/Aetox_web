@@ -1,26 +1,22 @@
 /* ─────────────────────────────────────────────────────────────
  *  AETOX GLOBAL STYLES — Entry Point
- *
- *  IMPORTANT: All @import statements must appear at the top.
- * ─────────────────────────────────────────────────────────────
- */
+ * ───────────────────────────────────────────────────────────── */
 
-/* 1. Tailwind Base System */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* 2. Theme System (Tokens & Theme Values) */
-@import "./styles/tokens.css";
+/* 1. Theme System (Modular) */
 @import "./styles/themes/light.css";
 @import "./styles/themes/dark.css";
 
-/* 3. Custom Utilities (Classes using @apply) */
+/* 2. Custom Components */
 @import "./styles/aetox-core-v2.css";
 
-/* 4. Base Overrides (Must come after all imports) */
+/* 3. Base Overrides */
 @layer base {
   body {
     @apply bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen;
+    background-color: rgb(var(--aetox-bg-rgb)); /* Hard fallback for stability */
   }
 }
