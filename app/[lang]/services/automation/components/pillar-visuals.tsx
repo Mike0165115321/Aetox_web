@@ -25,7 +25,7 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
                     initial={{ x: -100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: i * 0.2, duration: 0.8, repeat: Infinity, repeatDelay: 3 }}
-                    className="w-full bg-[#0A0F1C]/80 border border-white/5 p-4 rounded-2xl flex items-center justify-between shadow-xl"
+                    className="w-full bg-aetox-surface-lowest/80 border border-white/5 p-4 rounded-2xl flex items-center justify-between shadow-xl"
                 >
                     <div className="flex items-center gap-3">
                         <div className={`w-2 h-2 rounded-full ${task.color} shadow-[0_0_10px_currentColor]`} />
@@ -59,7 +59,7 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             <div className="grid grid-cols-2 gap-4 w-full">
                 {[1, 2, 3, 4].map((bot) => (
-                    <div key={bot} className="relative p-6 bg-[#0A0F1C]/80 border border-emerald-500/20 rounded-3xl overflow-hidden shadow-xl">
+                    <div key={bot} className="relative p-6 bg-aetox-surface-lowest/80 border border-emerald-500/20 rounded-3xl overflow-hidden shadow-xl">
                         <div className="absolute inset-0 bg-emerald-500/[0.03] animate-pulse" />
                         <div className="relative z-10 space-y-4">
                             <div className="flex justify-between items-center">
@@ -106,7 +106,7 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
         </div>
 
         <div className="flex-1 space-y-4">
-            <div className="bg-[#0A0F1C]/90 border border-white/5 rounded-2xl p-4 shadow-xl">
+            <div className="bg-aetox-surface-lowest/90 border border-white/5 rounded-2xl p-4 shadow-xl">
                 <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
                     <span className="text-[9px] font-black text-gray-500 uppercase tracking-[0.2em]">{dict.auditLog}</span>
                     <div className="flex items-center gap-1.5">
@@ -131,14 +131,14 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-                <div className="bg-[#0A0F1C]/80 border border-white/5 p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
+                <div className="bg-aetox-surface-lowest/80 border border-white/5 p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
                     <BarChart3 className="w-5 h-5 text-indigo-400 opacity-50" />
                     <div className="space-y-1">
                         <p className="text-[8px] text-gray-500 font-bold uppercase tracking-widest">Efficiency</p>
                         <p className="text-xl font-black text-white">+99%</p>
                     </div>
                 </div>
-                <div className="bg-[#0A0F1C]/80 border border-white/5 p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
+                <div className="bg-aetox-surface-lowest/80 border border-white/5 p-4 rounded-2xl flex flex-col justify-between min-h-[100px]">
                     <Database className="w-5 h-5 text-emerald-400 opacity-50" />
                     <div className="space-y-1">
                         <p className="text-[8px] text-gray-500 font-bold uppercase tracking-widest">Integrity</p>

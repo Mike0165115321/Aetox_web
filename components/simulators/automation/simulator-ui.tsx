@@ -32,9 +32,9 @@ export function KpiCard({
           <button onMouseEnter={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} onClick={() => setShowInfo(!showInfo)} className="p-1 -m-1 focus:outline-none">
             <HelpCircle size={16} className={`${showInfo ? 'text-emerald-400' : 'text-gray-600'} hover:text-emerald-400 cursor-help transition-colors`} />
           </button>
-          <div className={`absolute right-0 top-7 w-64 p-4 bg-[#1A1F2E] border border-white/10 rounded-xl shadow-2xl transition-all duration-300 z-50 text-[11px] leading-relaxed text-gray-300 font-medium ${showInfo ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+          <div className={`absolute right-0 top-7 w-64 p-4 bg-aetox-surface-high border border-aetox-border rounded-xl shadow-2xl transition-all duration-300 z-50 text-[11px] leading-relaxed text-aetox-text-soft font-medium ${showInfo ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
             {detail}
-            <div className="absolute -top-1 right-1.5 w-2 h-2 bg-[#1A1F2E] rotate-45 border-t border-l border-white/10" />
+            <div className="absolute -top-1 right-1.5 w-2 h-2 bg-aetox-surface-high rotate-45 border-t border-l border-aetox-border" />
           </div>
         </div>
       </div>

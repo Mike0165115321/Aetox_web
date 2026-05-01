@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Check, X, Shield, Cpu, Zap, Activity, Layers } from 'lucide-react';
+import { Check, X, Shield, Cpu, Zap, Activity, Layers, Network, Maximize } from 'lucide-react';
 
 export default function ArchitectureComparison({ dict }: { dict: any }) {
   // Mapping icons based on type string in dictionary
@@ -13,10 +13,13 @@ export default function ArchitectureComparison({ dict }: { dict: any }) {
 
   return (
     <section id="comparison" className="py-16 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
-      {/* Optimized Minimal Background Architectural Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-        <div className="absolute -top-10 -left-10 text-aetox-accent/[0.03]">
-          <Layers size={400} strokeWidth={1} />
+      {/* Integrated Architectural Patterns — The Flowchart Legacy */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-10 -right-20 text-aetox-accent/[0.02] transform rotate-12">
+          <Network size={600} strokeWidth={0.5} />
+        </div>
+        <div className="absolute bottom-20 -left-20 text-aetox-accent/[0.02] transform -rotate-12">
+          <Maximize size={500} strokeWidth={0.5} />
         </div>
       </div>
 

@@ -1,5 +1,11 @@
-import { IBM_Plex_Sans_Thai, Inter } from "next/font/google";
+import { IBM_Plex_Sans_Thai, Inter, Lexend } from "next/font/google";
 import "../globals.css";
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend",
+  display: "swap",
+});
 
 const ibmPlexThai = IBM_Plex_Sans_Thai({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -37,7 +43,25 @@ export default async function RootLayout({
   const { lang = 'th' } = await params;
 
   return (
-    <html lang={lang} className={`${ibmPlexThai.variable} ${inter.variable}`}>
+    <html lang={lang} className={`${lexend.variable} ${ibmPlexThai.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const saved = localStorage.getItem('aetox-theme');
+                if (saved === 'light') {
+                  document.documentElement.classList.remove('dark');
+                } else {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (e) {
+                document.documentElement.classList.add('dark');
+              }
+            `,
+          }}
+        />
+      </head>
       <body className="bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen">
         <GlobalBackground />
         <ScrollProvider>

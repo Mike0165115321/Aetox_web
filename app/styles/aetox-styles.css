@@ -1,0 +1,55 @@
+/*
+ * ─────────────────────────────────────────────────────────────
+ *  AETOX COMPONENT STYLES (Modular & Persistent)
+ * ─────────────────────────────────────────────────────────────
+ */
+
+@layer utilities {
+  /* ── 1. Atmosphere & Background ─────────────────────────── */
+  
+  /* แสงฟุ้ง (CSS Blurred Orbs) */
+  .aetox-hero-aura-blue {
+    @apply absolute w-[40vw] h-[40vw] rounded-full bg-aetox-accent opacity-20 blur-[120px] 
+           pointer-events-none mix-blend-screen dark:mix-blend-lighten;
+  }
+
+  .aetox-hero-aura-dark {
+    @apply absolute w-[35vw] h-[35vw] rounded-full bg-aetox-text-main opacity-5 blur-[100px] 
+           pointer-events-none;
+  }
+
+  /* ตาราง Blueprint พร้อม Fade Bottom */
+  .aetox-grid-overlay {
+    @apply absolute inset-0 bg-aetox-blueprint pointer-events-none opacity-50;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+
+  /* ── 2. Buttons ─────────────────────────────────────────── */
+
+  /* ปุ่มหลัก - Vibrant Blue */
+  .aetox-btn-main {
+    @apply px-md py-sm bg-aetox-accent text-white rounded-md shadow-aetox-glow 
+           hover:bg-aetox-accent-hover transition-all transform active:scale-95 
+           flex items-center justify-center gap-3 font-bold;
+  }
+
+  /* ปุ่มรอง - Outline Ghost */
+  .aetox-btn-outline {
+    @apply px-md py-sm border border-aetox-border-strong text-aetox-text-main rounded-md 
+           hover:bg-aetox-surface-low transition-all transform active:scale-95 
+           flex items-center justify-center font-bold;
+  }
+
+  /* ── 3. Cards & Surfaces ────────────────────────────────── */
+  .aetox-glass-card {
+    background-color: color-mix(in srgb, var(--aetox-surface), transparent 60%);
+    @apply backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
+  }
+
+  .aetox-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r
+           from-aetox-text-main via-aetox-accent to-aetox-text-main
+           bg-[length:200%_auto] animate-gradient-x;
+  }
+}

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Globe, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from '../ThemeToggle';
 
 export default function NavbarDesktop({ 
   menuItems, 
@@ -49,6 +50,9 @@ export default function NavbarDesktop({
 
       {/* Right: Actions */}
       <div className="flex-1 flex justify-end items-center gap-4 xl:gap-6">
+        {/* Theme Toggle */}
+        <ThemeToggle />
+
         {/* Language Selector */}
         <div className="relative hidden md:block" ref={langRef}>
           <button 

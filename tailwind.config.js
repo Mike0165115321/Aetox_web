@@ -71,6 +71,12 @@ module.exports = {
         // ── Status ────────────────────────────────────────────────────────────
         "aetox-error":             "var(--aetox-error)",
         "aetox-error-surface":     "var(--aetox-error-surface)",
+
+        // ── Legacy aliases (backward compat) ──────────────────────────────────
+        // ใช้ใน component เก่าที่ยังไม่ได้ migrate
+        "cyber-blue":              "#06B6D4",
+        "ultra-dark":              "#050505",
+        "deep-blue":               "#0066CC",
       },
 
       // 4. FLUID TYPOGRAPHY ─────────────────────────────────────────────────────
@@ -88,8 +94,8 @@ module.exports = {
       fontFamily: {
         // Display / Heading → Lexend (อ่านง่าย, geometric, รองรับภาษาไทยได้ดี)
         display: ["var(--font-lexend)", "var(--font-ibm-plex-thai)", "sans-serif"],
-        // Body / UI → IBM Plex Thai + Inter fallback
-        sans: ["var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
+        // Body / UI — ใช้ Lexend เป็นหลัก + IBM Plex Thai รองรับภาษาไทย
+        sans: ["var(--font-lexend)", "var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
       },
 
       // 6. ROUNDED SYSTEM (จาก Elite Minimalism) ────────────────────────────────

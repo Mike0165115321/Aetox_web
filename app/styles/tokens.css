@@ -1,0 +1,52 @@
+/*
+ * ─────────────────────────────────────────────────────────────
+ *  AETOX DESIGN TOKENS — Schema Declaration
+ *
+ *  Purpose: ประกาศรายการ CSS Variable ทั้งหมดที่ระบบใช้
+ *           ไม่มีการกำหนดค่า — ค่าถูก assign ใน themes/
+ *
+ *  Import order:
+ *    1. tokens.css  ← (this file) schema declaration
+ *    2. themes/light.css  ← :root values
+ *    3. themes/dark.css   ← .dark values
+ *    4. utilities.css     ← classes that consume tokens
+ *
+ *  ถ้าต้องการเพิ่ม token ใหม่:
+ *    1. เพิ่ม --aetox-xxx: initial; ที่นี่ก่อน
+ *    2. กำหนดค่าใน themes/light.css และ themes/dark.css
+ *    3. เพิ่ม color ใน tailwind.config.js → colors
+ * ─────────────────────────────────────────────────────────────
+ */
+
+:root {
+  /* Backgrounds */
+  --aetox-bg:               initial;
+  --aetox-surface-lowest:   initial;
+  --aetox-surface-low:      initial;
+  --aetox-surface:          initial;
+  --aetox-surface-high:     initial;
+  --aetox-surface-highest:  initial;
+
+  /* Borders */
+  --aetox-border:           initial;
+  --aetox-border-strong:    initial;
+
+  /* Typography */
+  --aetox-text-main:        initial;
+  --aetox-text-soft:        initial;
+  --aetox-text-muted:       initial;
+
+  /* Accent */
+  --aetox-accent:           initial;
+  --aetox-accent-hover:     initial;
+  --aetox-accent-subtle:    initial;
+
+  /* Status */
+  --aetox-error:            initial;
+  --aetox-error-surface:    initial;
+
+  /* Grid & Shadow */
+  --aetox-grid-line:        initial;
+  --aetox-shadow-card:      initial;
+  --aetox-shadow-glow:      initial;
+}

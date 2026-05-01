@@ -278,9 +278,9 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                 disabled={isBuilding}
                 className="w-full appearance-none bg-black/40 border border-white/10 text-white text-sm font-bold rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-cyber-blue disabled:opacity-50 cursor-pointer transition-all"
               >
-                <option value="none" className="bg-[#0A0F1C] text-white">-- เลือกประเภทธุรกิจ --</option>
+                <option value="none" className="bg-aetox-bg text-aetox-text-main">-- เลือกประเภทธุรกิจ --</option>
                 {dict.businessTypes.map((opt: any) => (
-                  <option key={opt.id} value={opt.id} className="bg-[#0A0F1C] text-white">{opt.label}</option>
+                  <option key={opt.id} value={opt.id} className="bg-aetox-bg text-aetox-text-main">{opt.label}</option>
                 ))}
               </select>
               <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />

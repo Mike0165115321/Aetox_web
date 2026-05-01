@@ -1,107 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ─────────────────────────────────────────────────────────────
+ *  AETOX GLOBAL STYLES — Entry Point
+ *
+ *  IMPORTANT: All @import statements must appear at the top.
+ * ─────────────────────────────────────────────────────────────
+ */
 
+/* 1. Tailwind Base System */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* 2. Theme System (Tokens & Theme Values) */
+@import "./styles/tokens.css";
+@import "./styles/themes/light.css";
+@import "./styles/themes/dark.css";
+
+/* 3. Custom Utilities (Classes using @apply) */
+@import "./styles/aetox-styles.css";
+
+/* 4. Base Overrides (Must come after all imports) */
 @layer base {
   body {
     @apply bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen;
   }
 }
-
-@layer utilities {
-  .glass-card {
-    @apply bg-aetox-surface/40 backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
-  }
-  
-  .glass-card-hover {
-    @apply hover:border-aetox-accent/30 hover:bg-aetox-surface/60 transition-all duration-500 hover:-translate-y-1;
-  }
-  
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-aetox-text-main via-aetox-accent to-aetox-text-main bg-[length:200%_auto] animate-gradient-x;
-  }
-
-  /* Industrial Form Utilities */
-  .form-input-cyber, .form-select-cyber, .form-textarea-cyber {
-    @apply w-full bg-aetox-surface border border-aetox-border rounded-2xl p-4 text-aetox-text-main placeholder-aetox-text-muted 
-           focus:outline-none focus:border-aetox-accent/50 focus:ring-1 focus:ring-aetox-accent/20 transition-all;
-  }
-
-  .form-select-cyber {
-    @apply appearance-none cursor-pointer;
-  }
-
-  .form-textarea-cyber {
-    @apply resize-none;
-  }
-
-  /* Premium Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #000000;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #0A84FF;
-  }
-
-  /* Signature Aetox Atmosphere — Stronger Blue Ambient Glow */
-  .bg-aetox-atmosphere {
-    position: relative;
-    background-color: #050505;
-    overflow: hidden;
-  }
-
-  .bg-aetox-atmosphere::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 65%;
-    height: 65%;
-    background: radial-gradient(
-      circle at center,
-      rgba(10, 132, 255, 0.15) 0%,
-      rgba(10, 132, 255, 0.05) 40%,
-      transparent 70%
-    );
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .bg-aetox-atmosphere::after {
-    content: '';
-    position: absolute;
-    bottom: -15%;
-    left: -15%;
-    width: 65%;
-    height: 65%;
-    background: radial-gradient(
-      circle at center,
-      rgba(10, 132, 255, 0.1) 0%,
-      rgba(10, 132, 255, 0.04) 40%,
-      transparent 70%
-    );
-    filter: blur(100px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* For Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.1) #000000;
-  }
-}
-

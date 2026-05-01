@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from '../ThemeToggle';
 
 export default function NavbarMobile({ 
   menuItems, 
@@ -52,6 +53,11 @@ export default function NavbarMobile({
 
             {/* Bottom Action Zone */}
             <div className="mt-auto flex flex-col gap-6">
+              <div className="flex items-center justify-between px-2">
+                <span className="text-[10px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">Theme Mode</span>
+                <ThemeToggle />
+              </div>
+
               <div className="p-1 bg-aetox-surface rounded-2xl border border-aetox-border flex items-center gap-1">
                 <button 
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all text-xs font-bold tracking-wider ${

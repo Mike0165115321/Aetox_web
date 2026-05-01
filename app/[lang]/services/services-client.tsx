@@ -79,7 +79,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
                              >
                                <HelpCircle className="w-4 h-4 text-gray-600 group-hover/info:text-cyber-blue transition-colors" />
                              </button>
-                             <div className="absolute right-0 top-10 w-80 p-5 rounded-2xl bg-[#0F172A]/95 backdrop-blur-3xl border border-white/10 opacity-0 group-hover/info:opacity-100 pointer-events-none transition-all transform translate-y-2 group-hover/info:translate-y-0 z-50 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                             <div className="absolute right-0 top-10 w-80 p-5 rounded-2xl bg-aetox-surface-highest/95 backdrop-blur-3xl border border-white/10 opacity-0 group-hover/info:opacity-100 pointer-events-none transition-all transform translate-y-2 group-hover/info:translate-y-0 z-50 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                                 <div className="flex items-center gap-2 mb-3">
                                   <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-cyber-glow" />
                                   <p className="text-[11px] font-black text-cyber-blue uppercase tracking-widest">{dict.technicalLabel}</p>

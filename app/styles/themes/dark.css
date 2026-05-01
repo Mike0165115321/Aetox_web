@@ -1,0 +1,44 @@
+/*
+ * ─────────────────────────────────────────────────────────────
+ *  AETOX DARK THEME
+ *  Assigns values to all CSS Variables declared in tokens.css
+ *  Scope: .dark (toggled via JS on <html> element)
+ * ─────────────────────────────────────────────────────────────
+ */
+
+.dark {
+  /* Backgrounds (Surface Hierarchy) - Deepened for Atmosphere */
+  --aetox-bg:               #030303;
+  --aetox-surface-lowest:   #050505;
+  --aetox-surface-low:      #080808;
+  --aetox-surface:          #0A0A0A;
+  --aetox-surface-high:     #121212;
+  --aetox-surface-highest:  #1A1A1A;
+
+  /* Borders */
+  --aetox-border:           rgba(255, 255, 255, 0.06);
+  --aetox-border-strong:    rgba(255, 255, 255, 0.12);
+
+  /* Typography */
+  --aetox-text-main:        #F5F5F7;
+  --aetox-text-soft:        #86868B;
+  --aetox-text-muted:       #48484A;
+
+  /* Accent (iOS Blue — same as light) */
+  --aetox-accent:           #0A84FF;
+  --aetox-accent-hover:     #0071E3;
+  --aetox-accent-subtle:    rgba(10, 132, 255, 0.15);
+
+  /* Status */
+  --aetox-error:            #FF453A;
+  --aetox-error-surface:    rgba(255, 69, 58, 0.15);
+
+  /* Grid */
+  --aetox-grid-line:        rgba(255, 255, 255, 0.018);
+
+  /* Shadows */
+  --aetox-shadow-card:      0 1px 0 rgba(255, 255, 255, 0.04),
+                            0 8px 32px rgba(0, 0, 0, 0.70);
+  --aetox-shadow-glow:      0 0 0 1px rgba(10, 132, 255, 0.25),
+                            0 8px 24px rgba(10, 132, 255, 0.12);
+}

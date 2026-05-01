@@ -9,7 +9,7 @@ import { useAutomationRoi, workloadConfig, type Complexity, type Timeframe } fro
 import { KpiCard, SliderGroup, SimulatorIcon } from '@/components/simulators/automation/simulator-ui';
 
 const theme = {
-  primary: 'text-[#06B6D4]',
+  primary: 'text-aetox-accent',
   success: 'text-emerald-400',
   error: 'text-rose-400',
   botGrad: 'linear-gradient(to right,#059669,#34d399)',
@@ -98,11 +98,11 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
     <div className="w-full max-w-6xl mx-auto space-y-8 pb-20">
 
       {/* PART 1: SIMULATOR & PARAMETERS */}
-      <div className="bg-[#0A0F1C] text-white rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
+      <div className="bg-aetox-surface-highest text-white rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
         <div className="px-6 sm:px-8 py-6 border-b border-white/5 bg-white/[0.02]">
           <div className="text-center md:text-left">
             <h2 className="text-fluid-h3 leading-none mb-1 text-white">
-              {dict.title.split(' — ')[0]} — <span className="text-[#06B6D4]">Automation Simulator</span>
+              {dict.title.split(' — ')[0]} — <span className="text-aetox-accent">Automation Simulator</span>
             </h2>
             <p className="text-fluid-sm text-gray-500 uppercase tracking-[0.2em] opacity-70">{dict.subTitle}</p>
           </div>
@@ -120,7 +120,7 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
             </div>
             
             <section className="space-y-5">
-              <h3 className="text-fluid-sm text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">{dict.workloadTitle}</h3>
+              <h3 className="text-fluid-sm text-gray-400 border-l-4 border-aetox-accent pl-4 uppercase tracking-widest">{dict.workloadTitle}</h3>
               <div className="flex flex-col gap-3">
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
@@ -128,8 +128,8 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
                   const dictLevel = dict.levels.find((l: any) => l.id === lvl);
                   return (
                     <button key={lvl} onClick={() => updateComplexity(lvl)}
-                      className={`flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all duration-300 border text-left active:scale-95 ${active ? 'bg-white/10 text-white border-[#06B6D4]/40 shadow-[0_0_20px_rgba(6,182,212,0.05)]' : 'text-gray-400 border-transparent bg-white/[0.01]'}`}>
-                      <span className={active ? 'text-[#06B6D4]' : ''}><SimulatorIcon name={cfg.icon} size={20} /></span>
+                      className={`flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all duration-300 border text-left active:scale-95 ${active ? 'bg-white/10 text-white border-aetox-accent/40 shadow-[0_0_20px_rgba(6,182,212,0.05)]' : 'text-gray-400 border-transparent bg-white/[0.01]'}`}>
+                      <span className={active ? 'text-aetox-accent' : ''}><SimulatorIcon name={cfg.icon} size={20} /></span>
                       <div className="flex-1">
                         <p className="font-bold mb-0.5">{dictLevel?.label || cfg.label}</p>
                         <p className="text-[10px] opacity-50 font-medium uppercase">{dictLevel?.sublabel || cfg.sublabel}</p>
@@ -141,13 +141,13 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
             </section>
 
             <section className="space-y-6">
-              <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-[#06B6D4] pl-4 uppercase tracking-widest">{dict.params.title}</h3>
+              <h3 className="text-xs sm:text-sm font-bold text-gray-400 border-l-4 border-aetox-accent pl-4 uppercase tracking-widest">{dict.params.title}</h3>
               <div className="grid grid-cols-1 gap-7">
-                <SliderGroup label={dict.params.volume} min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-[#06B6D4]" displayValue={volume.toLocaleString()} />
+                <SliderGroup label={dict.params.volume} min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
                 <SliderGroup label={dict.params.staff} min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
                 <SliderGroup label={dict.params.hourlyRate} min={50} max={500} step={10} value={hourlyRate} onChange={setHourlyRate} accent="accent-rose-400" displayValue={formatMoney(hourlyRate)} />
                 <SliderGroup label={dict.params.unitCost} min={0} max={500} step={5} value={unitCostManual} onChange={setUnitCostManual} accent="accent-amber-400" displayValue={formatMoney(unitCostManual)} />
-                <SliderGroup label={dict.params.botPrice} min={7500} max={120000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-[#06B6D4]" displayValue={formatMoney(botPrice)} />
+                <SliderGroup label={dict.params.botPrice} min={7500} max={120000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-aetox-accent" displayValue={formatMoney(botPrice)} />
                 <SliderGroup label={dict.params.maintCost} min={500} max={15000} step={100} value={maintCost} onChange={setMaintCost} accent="accent-amber-400" displayValue={formatMoney(maintCost)} />
               </div>
             </section>
@@ -190,7 +190,7 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
               </div>
             </div>
 
-            <div className="bg-[#0D1321] border border-white/5 rounded-3xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
+            <div className="bg-aetox-surface border border-white/5 rounded-3xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity"><Zap size={100} /></div>
               <p className="text-[11px] sm:text-xs font-extrabold text-gray-300 border-b border-white/5 pb-4 tracking-wide">{dict.benchmark.title}</p>
               <div className="space-y-6">
@@ -213,16 +213,16 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
       </div>
 
       {/* PART 2: PROJECTION & STRATEGIC INSIGHTS */}
-      <div className="bg-[#0A0F1C] text-white rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
-        <div className="bg-[#0D1321]/80 p-8 sm:p-10">
+      <div className="bg-aetox-surface-highest text-white rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
+        <div className="bg-aetox-surface/80 p-8 sm:p-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
             <div>
-              <p className="text-fluid-h3 text-white flex items-center gap-3 mb-1"><TrendingUp size={24} className="text-[#06B6D4]" /> {dict.title}</p>
+              <p className="text-fluid-h3 text-white flex items-center gap-3 mb-1"><TrendingUp size={24} className="text-aetox-accent" /> {dict.title}</p>
               <p className="text-fluid-sm text-gray-500 ml-9 uppercase tracking-widest font-bold">{dict.projectionDesc.replace('{timeframe}', timeframe.toString())}</p>
             </div>
             <div className="bg-black/40 p-1.5 rounded-2xl border border-white/10 flex items-center gap-1 w-full sm:w-auto shadow-inner">
               {[{ val: 6, label: dict.timeframes.m6 }, { val: 12, label: dict.timeframes.y1 }, { val: 36, label: dict.timeframes.y3 }].map((t) => (
-                <button key={t.val} onClick={() => setTimeframe(t.val as Timeframe)} className={`flex-1 sm:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all ${timeframe === t.val ? 'bg-[#06B6D4] text-white shadow-lg' : 'text-gray-500 hover:text-gray-300'}`}>{t.label}</button>
+                <button key={t.val} onClick={() => setTimeframe(t.val as Timeframe)} className={`flex-1 sm:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all ${timeframe === t.val ? 'bg-aetox-accent text-white shadow-lg' : 'text-gray-500 hover:text-gray-300'}`}>{t.label}</button>
               ))}
             </div>
           </div>
@@ -236,8 +236,8 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
                 ))}
               </div>
 
-              <div className="flex flex-col justify-between text-[11px] font-extrabold text-gray-500 py-6 h-[400px] border-r border-white/10 pr-6 sticky left-0 bg-[#0D1321]/95 z-30">
-                <div className="text-white bg-[#06B6D4]/30 px-3 py-1.5 rounded-lg border border-[#06B6D4]/40 shadow-glow whitespace-nowrap">{formatMoney(calc.maxProjectionValue, true, true)}</div>
+              <div className="flex flex-col justify-between text-[11px] font-extrabold text-gray-500 py-6 h-[400px] border-r border-white/10 pr-6 sticky left-0 bg-aetox-surface/95 z-30">
+                <div className="text-white bg-aetox-accent/30 px-3 py-1.5 rounded-lg border border-aetox-accent/40 shadow-glow whitespace-nowrap">{formatMoney(calc.maxProjectionValue, true, true)}</div>
                 <div className="whitespace-nowrap">{formatMoney(calc.maxProjectionValue * 0.75, true, true)}</div>
                 <div className="whitespace-nowrap">{formatMoney(calc.maxProjectionValue * 0.5, true, true)}</div>
                 <div className="whitespace-nowrap">{formatMoney(calc.maxProjectionValue * 0.25, true, true)}</div>
@@ -295,12 +295,12 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
             <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 space-y-6 hover:bg-white/[0.04] transition-all group relative overflow-hidden">
               <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-all"><Wallet size={120} /></div>
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#06B6D4]/10 flex items-center justify-center text-[#06B6D4] group-hover:scale-110 transition-transform shadow-inner"><Wallet size={28} /></div>
+                <div className="w-14 h-14 rounded-2xl bg-aetox-accent-subtle flex items-center justify-center text-aetox-accent group-hover:scale-110 transition-transform shadow-inner"><Wallet size={28} /></div>
                 <div><p className="text-base font-bold text-white">{dict.summary.longTermTitle}</p><p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{dict.summary.longTermSub}</p></div>
               </div>
               <div className="space-y-5 pt-4">
                 <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-gray-400 text-xs font-medium">{dict.summary.netProfitLong.replace('{time}', timeframe.toString())}</span><span className="text-2xl font-bold text-white tabular-nums">{formatMoney(calc.netProfitAfterInvestment)}</span></div>
-                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">{dict.summary.costReduction}</span><span className="text-lg font-bold text-[#06B6D4] tabular-nums">{calc.costReductionPct}%</span></div>
+                <div className="flex justify-between items-end"><span className="text-gray-400 text-xs font-medium">{dict.summary.costReduction}</span><span className="text-lg font-bold text-aetox-accent tabular-nums">{calc.costReductionPct}%</span></div>
               </div>
             </div>
 

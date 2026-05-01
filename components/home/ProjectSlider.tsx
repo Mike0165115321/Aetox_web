@@ -23,7 +23,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
   const prev = () => setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
 
   return (
-    <div className="relative w-full aspect-[4/5] md:aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden bg-[#050505] border border-white/10 shadow-2xl">
+    <div className="relative w-full aspect-[4/5] md:aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden bg-aetox-bg border border-aetox-border shadow-2xl">
       <AnimatePresence mode="wait">
         <motion.div
           key={projects[current].id}

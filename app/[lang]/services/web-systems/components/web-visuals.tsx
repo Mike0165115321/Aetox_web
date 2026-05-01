@@ -25,7 +25,7 @@ export function StackArchitectureVisual({ dict }: { dict: any }) {
                   initial={{ rotateX: 60, rotateZ: -35 }}
                   animate={{ y: [50, 60, 50] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-                  className="absolute w-[220px] h-[140px] bg-[#0A0F1C]/80 border border-white/5 rounded-[32px] backdrop-blur-2xl flex items-center justify-center shadow-[0_40px_60px_-20px_rgba(0,0,0,0.8)] z-10"
+                  className="absolute w-[220px] h-[140px] bg-aetox-surface-lowest/80 border border-white/5 rounded-[32px] backdrop-blur-2xl flex items-center justify-center shadow-[0_40px_60px_-20px_rgba(0,0,0,0.8)] z-10"
                 >
                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent rounded-[32px]" />
                    <Globe className="w-10 h-10 text-gray-600 opacity-40" />
@@ -103,7 +103,7 @@ export function DataPipelineVisual({ dict }: { dict: any }) {
             </div>
 
             <div className="relative w-[200px] h-[200px]">
-                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-[#0A0F1C] border border-white/10 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
+                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-aetox-surface-lowest border border-white/10 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
                    <Search className="w-5 h-5 text-gray-400" />
                    <div className="absolute -top-6 text-[8px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">{dict.queries}</div>
                 </motion.div>
@@ -111,19 +111,19 @@ export function DataPipelineVisual({ dict }: { dict: any }) {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute -inset-6 border border-dashed border-cyber-blue/30 rounded-full" />
                    <motion.div animate={{ rotate: -360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute -inset-3 border border-white/5 rounded-full" />
-                   <div className="w-16 h-16 bg-[#0A0F1C] border border-cyber-blue/50 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-[0_0_40px_rgba(6,182,212,0.3)] relative overflow-hidden">
+                   <div className="w-16 h-16 bg-aetox-surface-lowest border border-cyber-blue/50 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-[0_0_40px_rgba(6,182,212,0.3)] relative overflow-hidden">
                       <div className="absolute inset-0 bg-cyber-blue/10 animate-pulse" />
                       <Database className="w-7 h-7 text-cyber-blue relative z-10 drop-shadow-lg" />
                    </div>
                    <div className="absolute -right-16 top-1/2 -translate-y-1/2 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.schema}</div>
                 </div>
 
-                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} className="absolute bottom-0 left-2 w-12 h-12 bg-[#0A0F1C] border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
+                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} className="absolute bottom-0 left-2 w-12 h-12 bg-aetox-surface-lowest border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
                    <Globe className="w-5 h-5 text-cyber-blue drop-shadow-[0_0_5px_#06B6D4]" />
                    <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.analytics}</div>
                 </motion.div>
 
-                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="absolute bottom-0 right-2 w-12 h-12 bg-[#0A0F1C] border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
+                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="absolute bottom-0 right-2 w-12 h-12 bg-aetox-surface-lowest border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
                    <Bot className="w-5 h-5 text-cyber-blue drop-shadow-[0_0_5px_#06B6D4]" />
                    <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.aiReady}</div>
                 </motion.div>
@@ -151,11 +151,11 @@ export function SecurityShieldVisual({ dict }: { dict: any }) {
                <motion.div animate={{ x: [110, 70, 110], opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} className="absolute right-1/2 top-[30%] w-2 h-2 bg-red-500 rounded-full shadow-[0_0_15px_red]" />
                <motion.div animate={{ y: [110, 70, 110], opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }} transition={{ duration: 2.2, repeat: Infinity, delay: 0.2 }} className="absolute bottom-1/2 left-[40%] w-2 h-2 bg-red-500 rounded-full shadow-[0_0_15px_red]" />
                <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute inset-10 border-[2px] border-cyber-blue/40 rounded-full flex items-center justify-center shadow-[inset_0_0_20px_rgba(6,182,212,0.1)]">
-                  <div className="absolute top-0 -mt-1.5 w-3 h-3 bg-[#0A0F1C] border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
-                  <div className="absolute bottom-0 -mb-1.5 w-3 h-3 bg-[#0A0F1C] border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
-                  <div className="absolute left-0 -ml-1.5 w-3 h-3 bg-[#0A0F1C] border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
+                  <div className="absolute top-0 -mt-1.5 w-3 h-3 bg-aetox-surface-lowest border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
+                  <div className="absolute bottom-0 -mb-1.5 w-3 h-3 bg-aetox-surface-lowest border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
+                  <div className="absolute left-0 -ml-1.5 w-3 h-3 bg-aetox-surface-lowest border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
                </motion.div>
-               <div className="absolute inset-[65px] bg-[#0A0F1C] border border-emerald-500/50 rounded-full backdrop-blur-2xl flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.3)] overflow-hidden z-10">
+               <div className="absolute inset-[65px] bg-aetox-surface-lowest border border-emerald-500/50 rounded-full backdrop-blur-2xl flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.3)] overflow-hidden z-10">
                   <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute inset-1.5 border border-dashed border-emerald-500/30 rounded-full flex items-center justify-center">
                      <span className="absolute -top-1 text-[5px] text-emerald-500/70 font-mono tracking-widest">0101</span>
                      <span className="absolute -bottom-1 text-[5px] text-emerald-500/70 font-mono tracking-widest">1010</span>
@@ -163,18 +163,18 @@ export function SecurityShieldVisual({ dict }: { dict: any }) {
                   <motion.div animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 2, repeat: Infinity }} className="absolute inset-0 bg-emerald-500/20 rounded-full" />
                   <div className="relative z-10 flex items-center justify-center">
                      <Shield className="w-10 h-10 text-emerald-400 drop-shadow-[0_0_10px_#10B981]" />
-                     <Lock className="w-4 h-4 text-[#0A0F1C] absolute fill-emerald-400" />
+                     <Lock className="w-4 h-4 text-aetox-surface-lowest absolute fill-emerald-400" />
                   </div>
                </div>
             </div>
             <div className="absolute bottom-0 flex flex-wrap justify-center gap-2 px-2 w-full z-30">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0A0F1C] border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.rbac}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0A0F1C] border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.encryption}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0A0F1C] border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.threatShield}
               </div>
             </div>

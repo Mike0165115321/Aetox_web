@@ -31,8 +31,8 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
   if (!dict || !dict.levels) {
     return (
-      <div className="w-full p-20 text-center bg-[#080B14]/40 backdrop-blur-xl rounded-[40px] border border-white/10">
-        <p className="text-gray-500 animate-pulse font-bold tracking-widest uppercase">Initializing Simulator...</p>
+      <div className="w-full p-20 text-center bg-aetox-surface-lowest/80 backdrop-blur-xl rounded-[40px] border border-aetox-border">
+        <p className="text-aetox-text-soft animate-pulse font-bold tracking-widest uppercase">Initializing Simulator...</p>
       </div>
     );
   }
@@ -69,15 +69,15 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
   };
 
   return (
-    <div className="w-full bg-[#080B14]/40 backdrop-blur-xl rounded-[24px] md:rounded-[40px] border border-white/10 overflow-hidden shadow-2xl">
+    <div className="w-full bg-aetox-surface-lowest/80 backdrop-blur-xl rounded-[24px] md:rounded-[40px] border border-aetox-border overflow-hidden shadow-2xl">
       {/* Header */}
-      <div className="px-5 md:px-8 py-5 md:py-6 border-b border-white/5 bg-white/[0.02] flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="px-5 md:px-8 py-5 md:py-6 border-b border-aetox-border bg-aetox-surface-low/50 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="text-center md:text-left">
-          <h3 className="text-lg md:text-xl font-bold text-white flex items-center justify-center md:justify-start gap-3">
-            <TrendingUp size={20} className="text-[#06B6D4]" />
+          <h3 className="text-lg md:text-xl font-bold text-aetox-text-main flex items-center justify-center md:justify-start gap-3">
+            <TrendingUp size={20} className="text-aetox-accent" />
             {dict.title}
           </h3>
-          <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest mt-1">{dict.subTitle}</p>
+          <p className="text-[10px] md:text-xs text-aetox-text-soft uppercase tracking-widest mt-1">{dict.subTitle}</p>
         </div>
         <div className="flex items-center gap-3">
           <CurrencySwitcher />
@@ -91,7 +91,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
         {/* Left: Inputs */}
         <div className="lg:w-[42%] p-5 md:p-8 border-b lg:border-b-0 lg:border-r border-white/5 space-y-8 md:space-y-10">
           <section className="space-y-4">
-            <h4 className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] border-l-4 border-[#06B6D4] pl-4">
+            <h4 className="text-[10px] md:text-[11px] font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
               {dict.workloadTitle}
             </h4>
             <div className="grid grid-cols-1 gap-2">
@@ -103,9 +103,9 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                   <button 
                     key={lvl} 
                     onClick={() => updateComplexity(lvl)}
-                    className={`flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl text-left transition-all border ${active ? 'bg-[#06B6D4]/10 border-[#06B6D4]/40 text-white' : 'bg-white/[0.02] border-transparent text-gray-500 hover:bg-white/[0.05]'}`}
+                    className={`flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl text-left transition-all border ${active ? 'bg-aetox-accent-subtle border-aetox-accent/40 text-aetox-text-main' : 'bg-aetox-surface border-transparent text-aetox-text-soft hover:bg-aetox-surface-high'}`}
                   >
-                    <span className={active ? 'text-[#06B6D4]' : ''}><SimulatorIcon name={cfg.icon} size={18} /></span>
+                    <span className={active ? 'text-aetox-accent' : ''}><SimulatorIcon name={cfg.icon} size={18} /></span>
                     <div>
                       <p className="text-sm font-bold">{d?.label || cfg.label}</p>
                       <p className="text-[10px] opacity-50 uppercase tracking-tight">{d?.sublabel || cfg.sublabel}</p>
@@ -117,14 +117,14 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           </section>
 
           <section className="space-y-6">
-            <h4 className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] border-l-4 border-[#06B6D4] pl-4">
+            <h4 className="text-[10px] md:text-[11px] font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
               {dict.params.title}
             </h4>
             <div className="space-y-6 md:space-y-8">
-              <SliderGroup label={dict.params.volume} min={100} max={50000} step={100} value={volume} onChange={setVolume} accent="accent-[#06B6D4]" displayValue={volume.toLocaleString()} />
+              <SliderGroup label={dict.params.volume} min={100} max={50000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
               <SliderGroup label={dict.params.staff} min={1} max={20} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
               <SliderGroup label={dict.params.hourlyRate} min={50} max={500} step={10} value={hourlyRate} onChange={setHourlyRate} accent="accent-rose-400" displayValue={formatMoney(hourlyRate)} />
-              <SliderGroup label={dict.params.botPrice} min={5000} max={100000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-[#06B6D4]" displayValue={formatMoney(botPrice)} />
+              <SliderGroup label={dict.params.botPrice} min={5000} max={100000} step={500} value={botPrice} onChange={setBotPrice} accent="accent-aetox-accent" displayValue={formatMoney(botPrice)} />
             </div>
           </section>
         </div>
