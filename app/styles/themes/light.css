@@ -1,21 +1,32 @@
 :root {
   /* ── Surfaces (RGB for Opacity Support) ────────────────── */
-  --aetox-bg-rgb:            250, 247, 242;
-  --aetox-surface-lowest-rgb: 255, 255, 255;
-  --aetox-surface-low-rgb:    245, 240, 232;
-  --aetox-surface-rgb:        235, 228, 216;
+  --aetox-bg-rgb:             255, 255, 255;
+  --aetox-surface-lowest-rgb:  249, 249, 249;
+  --aetox-surface-low-rgb:     243, 243, 243;
+  --aetox-surface-rgb:         235, 235, 235;
+  --aetox-surface-high-rgb:    224, 224, 224;
+  --aetox-surface-highest-rgb: 213, 213, 213;
   
-  /* ── Typography (Semantic Tokens) ──────────────────────── */
-  --aetox-text-main:         #111111;
-  --aetox-text-soft:         #4B4B4B;
-  --aetox-text-muted:        #999999;
+  /* ── Typography (RGB for Opacity Support) ──────────────── */
+  --aetox-text-main-rgb:      26, 26, 26;
+  --aetox-text-soft-rgb:      85, 85, 85;
+  --aetox-text-muted-rgb:     153, 153, 153;
 
   /* ── Accent & Status ───────────────────────────────────── */
-  --aetox-accent-rgb:        10, 132, 255;
-  --aetox-error-rgb:         255, 59, 48;
+  --aetox-accent-rgb:         10, 132, 255;
+  --aetox-error-rgb:          255, 59, 48;
 
-  /* ── UI Components ─────────────────────────────────────── */
-  --aetox-card-bg:           #FFFFFF;
-  --aetox-card-border:       rgba(0, 0, 0, 0.06);
-  --aetox-border:            rgba(0, 0, 0, 0.08);
+  /* ── Borders & Special ─────────────────────────────────── */
+  --aetox-border-rgb:         0, 0, 0;
+  --aetox-border-strong-rgb:  0, 0, 0;
+  --aetox-grid-line-rgb:      0, 0, 0;
+
+  /* ── UI Components (Legacy/Specific) ───────────────────── */
+  --aetox-card-bg:            #FFFFFF;
+  --aetox-card-border:        rgba(0, 0, 0, 0.06);
+  --aetox-border:             rgba(0, 0, 0, 0.08);
+
+  /* ── Shadows ───────────────────────────────────────────── */
+  --aetox-shadow-card:        0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --aetox-shadow-glow:        0 0 0 1px rgba(10,132,255,0.3), 0 8px 24px rgba(10,132,255,0.15);
 }

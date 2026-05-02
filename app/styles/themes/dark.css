@@ -1,21 +1,32 @@
 .dark, [data-theme='dark'] {
   /* ── Surfaces (RGB for Opacity Support) ────────────────── */
-  --aetox-bg-rgb:            5, 5, 5;
-  --aetox-surface-lowest-rgb: 8, 8, 8;
-  --aetox-surface-low-rgb:    15, 15, 15;
-  --aetox-surface-rgb:        17, 17, 17;
+  --aetox-bg-rgb:             5, 5, 5;
+  --aetox-surface-lowest-rgb:  8, 8, 8;
+  --aetox-surface-low-rgb:     15, 15, 15;
+  --aetox-surface-rgb:         17, 17, 17;
+  --aetox-surface-high-rgb:    26, 26, 26;
+  --aetox-surface-highest-rgb: 36, 36, 36;
   
-  /* ── Typography (Semantic Tokens) ──────────────────────── */
-  --aetox-text-main:         #F5F5F7;
-  --aetox-text-soft:         #86868B;
-  --aetox-text-muted:        #48484A;
+  /* ── Typography (RGB for Opacity Support) ──────────────── */
+  --aetox-text-main-rgb:      245, 245, 247;
+  --aetox-text-soft-rgb:      134, 134, 139;
+  --aetox-text-muted-rgb:     72, 72, 74;
 
   /* ── Accent & Status ───────────────────────────────────── */
-  --aetox-accent-rgb:        10, 132, 255;
-  --aetox-error-rgb:         255, 69, 58;
+  --aetox-accent-rgb:         10, 132, 255;
+  --aetox-error-rgb:          255, 69, 58;
 
-  /* ── UI Components ─────────────────────────────────────── */
-  --aetox-card-bg:           #0A0A0A;
-  --aetox-card-border:       rgba(255, 255, 255, 0.06);
-  --aetox-border:            rgba(255, 255, 255, 0.1);
+  /* ── Borders & Special ─────────────────────────────────── */
+  --aetox-border-rgb:         255, 255, 255;
+  --aetox-border-strong-rgb:  255, 255, 255;
+  --aetox-grid-line-rgb:      255, 255, 255;
+
+  /* ── UI Components (Legacy/Specific) ───────────────────── */
+  --aetox-card-bg:            #0A0A0A;
+  --aetox-card-border:        rgba(255, 255, 255, 0.06);
+  --aetox-border:             rgba(255, 255, 255, 0.1);
+
+  /* ── Shadows ───────────────────────────────────────────── */
+  --aetox-shadow-card:        0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.7);
+  --aetox-shadow-glow:        0 0 0 1px rgba(10,132,255,0.25), 0 8px 24px rgba(10,132,255,0.12);
 }
