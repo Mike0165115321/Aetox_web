@@ -2,8 +2,9 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Cpu, Orbit } from 'lucide-react';
 import React, { useEffect } from 'react';
+import BackgroundIcon from './visuals/BackgroundIcon';
 
 export default function HeroSection({ dict, lang }: { dict: any, lang: string }) {
   // Parallax Logic: เฉพาะหน้า Hero เท่านั้น
@@ -39,15 +40,8 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
 
   return (
     <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-aetox-bg">
-      
-      {/* 1. แสงฟุ้ง (Auras) — อยู่แค่ที่นี่ที่เดียว ไม่ไปโผล่หน้าอื่น */}
-      <motion.div 
-        style={{ x: auraX, y: auraY }}
-        className="absolute inset-0 z-0 pointer-events-none"
-      >
-        <div className="aetox-aura-primary top-[-10%] left-[-5%] scale-110" />
-        <div className="aetox-aura-secondary bottom-[-10%] right-[-5%] scale-110" />
-      </motion.div>
+      <BackgroundIcon Icon={Cpu} position="top-left" size={550} />
+      <BackgroundIcon Icon={Orbit} position="bottom-right" size={550} opacity={0.06} />
 
       {/* 2. Grid & Atmosphere Particles */}
       <div className="aetox-grid-overlay" />

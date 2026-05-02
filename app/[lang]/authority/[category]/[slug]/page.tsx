@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { getDictionary } from '@/data/dictionaries';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, ShieldCheck, Code2 } from 'lucide-react';
+import BackgroundIcon from '@/components/visuals/BackgroundIcon';
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ lang: string, category: string, slug: string }> }) {
   const { lang = 'th', category, slug } = await params;
@@ -23,10 +24,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
   return (
     <main className="min-h-screen bg-aetox-bg text-aetox-text-main selection:bg-aetox-accent/30 selection:text-white relative overflow-hidden">
+      <BackgroundIcon Icon={ShieldCheck} position="top-right" />
+      <BackgroundIcon Icon={Code2} position="bottom-left" size={500} opacity={0.06} />
       {/* Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="aetox-grid-overlay" />
-        <div className="aetox-aura-primary -top-[10%] -right-[5%] opacity-10" />
       </div>
       
       <Navbar dict={navDict.navbar} />

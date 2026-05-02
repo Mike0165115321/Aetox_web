@@ -1,49 +1,49 @@
 :root {
-  /* ── Surfaces (Space-separated for Tailwind Opacity) ──── */
-  --aetox-bg-rgb:             255 255 255;
-  --aetox-surface-lowest-rgb:  242 242 247;
-  --aetox-surface-low-rgb:     235 235 240;
-  --aetox-surface-rgb:         225 225 230;
-  --aetox-surface-high-rgb:    215 215 220;
-  --aetox-surface-highest-rgb: 200 200 205;
-  
-  --aetox-text-main-rgb:      20 20 20;
-  --aetox-text-soft-rgb:      80 80 85;
-  --aetox-text-muted-rgb:     140 140 145;
+  /* ── Surfaces ──────────────────────────────────────────── */
+  --aetox-bg-rgb:              250 249 247;
+  --aetox-surface-lowest-rgb:  244 242 239;
+  --aetox-surface-low-rgb:     237 234 230;
+  --aetox-surface-rgb:         230 227 222;
+  --aetox-surface-high-rgb:    222 218 212;
+  --aetox-surface-highest-rgb: 212 208 201;
 
-  --aetox-accent-rgb:         10 132 255;
-  --aetox-error-rgb:          255 59 48;
-  --aetox-border-rgb:         0 0 0;
+  --aetox-text-main-rgb:       26 25 23;
+  --aetox-text-soft-rgb:       92 90 86;
+  --aetox-text-muted-rgb:      156 154 150;
 
-  /* ── Semantic Colors (Solid for Fallback) ─────────────── */
-  --aetox-bg:                 #F9FAFB;
-  --aetox-surface-lowest:     #F2F2F7;
-  --aetox-surface-low:        #EBEBF0;
-  --aetox-surface:            #E1E1E6;
-  --aetox-surface-high:       #D7D7DC;
-  --aetox-surface-highest:    #C8C8CD;
-  
-  --aetox-text-main:          #141414;
-  --aetox-text-soft:          #505055;
-  --aetox-text-muted:         #8C8C91;
+  --aetox-accent-rgb:          10 132 255;
+  --aetox-error-rgb:           217 48 37;
+  --aetox-border-rgb:          60 55 50;
 
-  --aetox-accent:             #0A84FF;
-  --aetox-accent-hover:       #0071E3;
-  --aetox-accent-subtle:      rgba(10, 132, 255, 0.08);
-  
-  --aetox-error:              #FF3B30;
-  --aetox-error-surface:      rgba(255, 59, 48, 0.05);
+  /* ── Semantic Colors ───────────────────────────────────── */
+  --aetox-bg:                  #FAF9F7;
+  --aetox-surface-lowest:      #F4F2EF;
+  --aetox-surface-low:         #EDEAE6;
+  --aetox-surface:             #E6E3DE;
+  --aetox-surface-high:        #DEDAD4;
+  --aetox-surface-highest:     #D4D0C9;
 
-  --aetox-border:             rgba(0, 0, 0, 0.1);
-  --aetox-border-strong:      rgba(0, 0, 0, 0.2);
-  --aetox-grid-line:          rgba(0, 0, 0, 0.04);
+  --aetox-text-main:           #1A1917;
+  --aetox-text-soft:           #5C5A56;
+  --aetox-text-muted:          #9C9A96;
 
-  /* ── UI Components (Specific) ──────────────────────────── */
-  --aetox-card-bg:            #FFFFFF;
-  --aetox-card-border:        rgba(0, 0, 0, 0.08);
-  --aetox-card-hover:         #FDFDFD;
+  --aetox-accent:              #0A84FF;
+  --aetox-accent-hover:        #0071E3;
+  --aetox-accent-subtle:       rgba(10, 132, 255, 0.10);
+
+  --aetox-error:               #D93025;
+  --aetox-error-surface:       rgba(217, 48, 37, 0.08);
+
+  --aetox-border:              rgba(60, 55, 50, 0.08);
+  --aetox-border-strong:       rgba(60, 55, 50, 0.15);
+  --aetox-grid-line:           rgba(60, 55, 50, 0.04);
+
+  /* ── UI Components ─────────────────────────────────────── */
+  --aetox-card-bg:             #FFFFFF;
+  --aetox-card-border:         rgba(60, 55, 50, 0.08);
+  --aetox-card-hover:          #FDFCFB;
 
   /* ── Shadows ───────────────────────────────────────────── */
-  --aetox-shadow-card:        0 2px 8px rgba(0,0,0,0.05), 0 12px 40px rgba(0,0,0,0.1);
-  --aetox-shadow-glow:        0 0 0 1px rgba(10,132,255,0.4), 0 10px 32px rgba(10,132,255,0.25);
+  --aetox-shadow-card:         0 1px 3px rgba(60,55,50,0.06), 0 8px 24px rgba(60,55,50,0.10);
+  --aetox-shadow-glow:         0 0 0 1px rgba(10,132,255,0.30), 0 8px 24px rgba(10,132,255,0.18);
 }

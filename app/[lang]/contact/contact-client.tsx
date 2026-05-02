@@ -134,15 +134,15 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
                     transition={{ duration: 0.8, delay: idx * 0.2 }}
                     className="relative group"
                   >
-                    <div className="glass-card p-8 lg:p-10 rounded-[32px] border-aetox-border hover:border-aetox-accent/30 transition-all duration-500 hover:bg-aetox-accent/[0.02] flex flex-col items-center text-center space-y-6 h-full relative overflow-hidden">
+                    <div className="glass-card p-8 lg:p-10 rounded-[32px] border-aetox-border hover:border-aetox-accent/40 transition-all duration-500 hover:bg-aetox-accent/[0.04] flex flex-col items-center text-center space-y-6 h-full relative overflow-hidden shadow-2xl">
                       {/* Step Number Badge */}
-                      <div className="absolute top-6 right-8 text-[40px] font-black text-white/[0.03] pointer-events-none group-hover:text-aetox-accent/[0.05] transition-colors italic">
+                      <div className="absolute top-6 right-8 text-[56px] font-black text-aetox-text-main/15 pointer-events-none group-hover:text-aetox-accent/20 transition-colors italic leading-none tracking-tighter">
                         0{item.n}
                       </div>
 
                       {/* Icon Container */}
-                      <div className="w-20 h-20 rounded-2xl bg-aetox-surface border border-white/5 flex items-center justify-center relative shadow-2xl group-hover:shadow-aetox-glow/20 transition-all duration-500 group-hover:-translate-y-1">
-                        <div className="absolute inset-0 rounded-2xl bg-aetox-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="w-20 h-20 rounded-2xl bg-aetox-surface-high border border-aetox-border/30 flex items-center justify-center relative shadow-2xl group-hover:shadow-aetox-glow/30 transition-all duration-500 group-hover:-translate-y-1">
+                        <div className="absolute inset-0 rounded-2xl bg-aetox-accent/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="text-aetox-accent relative z-10">
                           {icons[idx]}
                         </div>
@@ -150,13 +150,13 @@ export default function ContactClient({ dict, navDict, contactSections }: { dict
                         <motion.div 
                           animate={{ rotate: 360 }}
                           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                          className="absolute -inset-1 rounded-2xl border border-dashed border-aetox-accent/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute -inset-1 rounded-2xl border border-dashed border-aetox-accent/20 opacity-0 group-hover:opacity-100 transition-opacity"
                         />
                       </div>
 
                       <div className="space-y-3 relative z-10">
                         <h4 className="text-aetox-text-main font-bold text-xl tracking-tight group-hover:text-aetox-accent transition-colors">{item.t}</h4>
-                        <p className="text-aetox-text-soft text-[13px] leading-relaxed font-medium">
+                        <p className="text-aetox-text-main/90 text-[14px] leading-relaxed font-medium">
                           {item.d}
                         </p>
                       </div>

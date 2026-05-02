@@ -1,13 +1,16 @@
 'use client';
 import { motion } from 'framer-motion';
+import { Trophy, ShieldCheck } from 'lucide-react';
+import BackgroundIcon from '@/components/visuals/BackgroundIcon';
 
 export default function AuthorityHero({ content }: { content: any }) {
   return (
     <section className="pt-40 pb-20 relative overflow-hidden bg-aetox-bg">
+      <BackgroundIcon Icon={Trophy} position="top-left" size={500} />
+      <BackgroundIcon Icon={ShieldCheck} position="bottom-right" size={500} opacity={0.06} />
       {/* Atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="aetox-grid-overlay" />
-        <div className="aetox-aura-primary -top-[10%] -left-[5%] opacity-10" />
       </div>
 
       <div className="container mx-auto relative z-10">

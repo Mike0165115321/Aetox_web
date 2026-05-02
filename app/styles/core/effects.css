@@ -8,17 +8,7 @@
     opacity: 0.15;
   }
 
-  .aetox-aura-primary {
-    @apply absolute w-[600px] h-[600px] rounded-full blur-[80px] pointer-events-none bg-aetox-accent/15 mix-blend-screen;
-    background: radial-gradient(circle, rgb(var(--aetox-accent-rgb)) 0%, transparent 70%);
-    will-change: transform;
-  }
-
-  .aetox-aura-secondary {
-    @apply absolute w-[500px] h-[500px] rounded-full blur-[60px] pointer-events-none mix-blend-screen;
-    background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
-    will-change: transform;
-  }
+  /* Aura effects removed in favor of BackgroundIcon system */
 
   /* ── 2. Special Animation Effects ────────────────────────── */
   .aetox-particle {

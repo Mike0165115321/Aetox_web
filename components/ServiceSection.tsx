@@ -1,7 +1,8 @@
 'use client';
-import { Bot, Zap, Globe } from 'lucide-react';
+import { Bot, Zap, Globe, Boxes, Component } from 'lucide-react';
 import ServiceCard from './ServiceCard';
 import { motion } from 'framer-motion';
+import BackgroundIcon from './visuals/BackgroundIcon';
 
 export default function ServiceSection({ dict, lang }: { dict?: any, lang: string }) {
   const iconMap: any = {
@@ -16,11 +17,8 @@ export default function ServiceSection({ dict, lang }: { dict?: any, lang: strin
   return (
     <section id="services" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       {/* Optimized Background Architectural Elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-10">
-        <div className="absolute -top-10 -right-20 text-aetox-accent/[0.03]">
-          <Bot size={500} strokeWidth={1} />
-        </div>
-      </div>
+      <BackgroundIcon Icon={Boxes} position="top-left" size={500} opacity={0.06} />
+      <BackgroundIcon Icon={Component} position="bottom-right" size={500} opacity={0.06} />
 
       <div className="container relative z-10">
         <div className="max-w-4xl mb-20">

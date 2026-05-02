@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { AlertTriangle, Clock, TrendingDown, ArrowRight } from 'lucide-react';
 import { scrollToSection } from '@/lib/scroll-utils';
+import BackgroundIcon from '../visuals/BackgroundIcon';
 
 interface PainItemProps {
   id: string;
@@ -58,19 +59,8 @@ export default function PainSection({ dict }: { dict: any }) {
   return (
     <section id="pain" className="py-32 relative overflow-hidden scroll-mt-20">
       {/* Premium Atmosphere Integration */}
-      <div className="aetox-grid-overlay opacity-30" />
-      <div className="aetox-aura-primary -top-[20%] -left-[10%] opacity-10" />
-      <div className="aetox-aura-secondary top-[40%] -right-[10%] opacity-5" />
-
-      {/* Decorative Icons Layout */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03]">
-        <div className="absolute -top-10 -left-20 text-aetox-accent">
-          <Clock size={400} strokeWidth={1} />
-        </div>
-        <div className="absolute top-1/2 -right-20 text-aetox-accent">
-          <TrendingDown size={450} strokeWidth={1} />
-        </div>
-      </div>
+      <BackgroundIcon Icon={AlertTriangle} position="top-left" size={500} opacity={0.06} />
+      <BackgroundIcon Icon={TrendingDown} position="bottom-right" size={500} opacity={0.06} />
 
       <div className="container relative z-10">
         <div className="max-w-4xl mb-24">

@@ -5,7 +5,7 @@ import ServiceSection from '@/components/ServiceSection';
 import Footer from '@/components/Footer';
 import PainSection from '@/components/home/PainSection';
 import ROIPreview from '@/components/home/ROIPreview';
-import { Sparkles, AlertTriangle, LayoutGrid, TrendingUp } from 'lucide-react';
+import { Sparkles, AlertTriangle, LayoutGrid, TrendingUp, MessageSquare } from 'lucide-react';
 import { getDictionary } from '@/data/dictionaries';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
 
@@ -19,6 +19,7 @@ export default async function Home({ params }: { params: Promise<{ lang: 'th' | 
     { id: 'pain', label: dict.navigation[1].label, num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
     { id: 'services', label: dict.navigation[5].label, num: '06', icon: <LayoutGrid size={18} />, offset: 70 },
     { id: 'roi', label: dict.navigation[6].label, num: '07', icon: <TrendingUp size={18} />, offset: 10 },
+    { id: 'contact', label: dict.navigation[7]?.label || 'Contact', num: '08', icon: <MessageSquare size={18} />, offset: 0 },
   ];
 
   return (
@@ -47,7 +48,9 @@ export default async function Home({ params }: { params: Promise<{ lang: 'th' | 
       </div>
 
       {/* 9. Final Close */}
-      <FinalCTA dict={dict.about} lang={lang} />
+      <div id="contact" className="scroll-mt-20">
+        <FinalCTA dict={dict.about} lang={lang} />
+      </div>
 
       <Footer dict={dict.common.navigation.footer} />
     </main>
