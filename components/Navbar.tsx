@@ -25,7 +25,7 @@ export default function Navbar({ dict }: { dict?: any }) {
         isMobileMenuOpen 
           ? 'bg-transparent' 
           : isScrolled 
-            ? 'bg-aetox-bg/80 backdrop-blur-md border-b border-aetox-border py-3 shadow-2xl' 
+            ? 'bg-aetox-bg/80 backdrop-blur-md py-3' 
             : 'bg-transparent py-6'
       }`}
     >

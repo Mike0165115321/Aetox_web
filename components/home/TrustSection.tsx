@@ -14,8 +14,8 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
 
   return (
     <section id="trust" className="py-12 md:py-20 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:80px_80px]" />
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,rgba(var(--aetox-text-muted-rgb),0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(var(--aetox-text-muted-rgb),0.2)_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
       
       <div className="container relative z-10">

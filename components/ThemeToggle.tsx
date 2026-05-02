@@ -42,7 +42,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative w-10 h-10 rounded-full border border-aetox-border bg-aetox-surface/20 hover:bg-aetox-surface/40 transition-colors flex items-center justify-center overflow-hidden group"
+      className="relative w-11 h-11 rounded-full border border-aetox-border bg-aetox-surface-lowest shadow-sm hover:shadow-md transition-all flex items-center justify-center overflow-hidden group"
       aria-label="Toggle theme"
     >
       <AnimatePresence mode="wait" initial={false}>

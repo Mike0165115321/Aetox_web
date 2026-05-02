@@ -35,7 +35,7 @@ module.exports = {
         "aetox-card-border":       "var(--aetox-card-border)",
         "aetox-card-hover":        "var(--aetox-card-hover)",
         "aetox-border":            "rgb(var(--aetox-border-rgb) / <alpha-value>)",
-        "aetox-border-strong":     "rgb(var(--aetox-border-strong-rgb) / <alpha-value>)",
+        "aetox-border-strong":     "rgb(var(--aetox-border-rgb) / 0.2)",
         "aetox-text-main":         "rgb(var(--aetox-text-main-rgb) / <alpha-value>)",
         "aetox-text-soft":         "rgb(var(--aetox-text-soft-rgb) / <alpha-value>)",
         "aetox-text-muted":        "rgb(var(--aetox-text-muted-rgb) / <alpha-value>)",
@@ -45,7 +45,7 @@ module.exports = {
         "aetox-error":             "rgb(var(--aetox-error-rgb) / <alpha-value>)",
         "aetox-error-surface":     "rgb(var(--aetox-error-rgb) / 0.1)",
         "aetox-aura-1":            "rgb(var(--aetox-accent-rgb) / <alpha-value>)",
-        "aetox-grid-line":         "rgb(var(--aetox-grid-line-rgb) / <alpha-value>)",
+        "aetox-grid-line":         "rgb(var(--aetox-border-rgb) / 0.05)",
       },
       fontSize: {
         "fluid-h1": ["clamp(2.25rem, 4vw + 1rem, 4.5rem)",  { lineHeight: "1.1",  letterSpacing: "-0.02em", fontWeight: "700" }],

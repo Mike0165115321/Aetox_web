@@ -25,7 +25,7 @@ export default function NavbarDesktop({
             alt="Aetox Logo" 
             width={48} 
             height={48} 
-            className="h-10 w-auto animate-aetox-breathe" 
+            className="h-10 w-auto animate-aetox-breathe dark:brightness-0 dark:invert" 
             priority 
           />
           <span className="text-2xl font-bold tracking-tighter text-aetox-text-main">

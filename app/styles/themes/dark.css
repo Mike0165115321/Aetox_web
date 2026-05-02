@@ -1,32 +1,49 @@
 .dark, [data-theme='dark'] {
-  /* ── Surfaces (RGB for Opacity Support) ────────────────── */
-  --aetox-bg-rgb:             5, 5, 5;
-  --aetox-surface-lowest-rgb:  8, 8, 8;
-  --aetox-surface-low-rgb:     15, 15, 15;
-  --aetox-surface-rgb:         17, 17, 17;
-  --aetox-surface-high-rgb:    26, 26, 26;
-  --aetox-surface-highest-rgb: 36, 36, 36;
+  /* ── Surfaces (Space-separated for Tailwind Opacity) ──── */
+  --aetox-bg-rgb:             5 5 5;
+  --aetox-surface-lowest-rgb:  8 8 8;
+  --aetox-surface-low-rgb:     15 15 15;
+  --aetox-surface-rgb:         17 17 17;
+  --aetox-surface-high-rgb:    26 26 26;
+  --aetox-surface-highest-rgb: 36 36 36;
   
-  /* ── Typography (RGB for Opacity Support) ──────────────── */
-  --aetox-text-main-rgb:      245, 245, 247;
-  --aetox-text-soft-rgb:      134, 134, 139;
-  --aetox-text-muted-rgb:     72, 72, 74;
+  --aetox-text-main-rgb:      245 245 247;
+  --aetox-text-soft-rgb:      134 134 139;
+  --aetox-text-muted-rgb:     72 72 74;
 
-  /* ── Accent & Status ───────────────────────────────────── */
-  --aetox-accent-rgb:         10, 132, 255;
-  --aetox-error-rgb:          255, 69, 58;
+  --aetox-accent-rgb:         10 132 255;
+  --aetox-error-rgb:          255 69 58;
+  --aetox-border-rgb:         255 255 255;
 
-  /* ── Borders & Special ─────────────────────────────────── */
-  --aetox-border-rgb:         255, 255, 255;
-  --aetox-border-strong-rgb:  255, 255, 255;
-  --aetox-grid-line-rgb:      255, 255, 255;
+  /* ── Semantic Colors (Solid for Fallback) ─────────────── */
+  --aetox-bg:                 #050505;
+  --aetox-surface-lowest:     #080808;
+  --aetox-surface-low:        #0F0F0F;
+  --aetox-surface:            #111111;
+  --aetox-surface-high:       #1A1A1A;
+  --aetox-surface-highest:    #242424;
+  
+  --aetox-text-main:          #F5F5F7;
+  --aetox-text-soft:          #86868B;
+  --aetox-text-muted:         #48484A;
 
-  /* ── UI Components (Legacy/Specific) ───────────────────── */
+  --aetox-accent:             #0A84FF;
+  --aetox-accent-hover:       #0071E3;
+  --aetox-accent-subtle:      rgba(10, 132, 255, 0.15);
+  
+  --aetox-error:              #FF453A;
+  --aetox-error-surface:      rgba(255, 69, 58, 0.1);
+
+  --aetox-border:             rgba(255, 255, 255, 0.1);
+  --aetox-border-strong:      rgba(255, 255, 255, 0.2);
+  --aetox-grid-line:          rgba(255, 255, 255, 0.05);
+
+  /* ── UI Components (Specific) ──────────────────────────── */
   --aetox-card-bg:            #0A0A0A;
   --aetox-card-border:        rgba(255, 255, 255, 0.06);
-  --aetox-border:             rgba(255, 255, 255, 0.1);
+  --aetox-card-hover:         #0C0C0C;
 
   /* ── Shadows ───────────────────────────────────────────── */
   --aetox-shadow-card:        0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.7);
-  --aetox-shadow-glow:        0 0 0 1px rgba(10,132,255,0.25), 0 8px 24px rgba(10,132,255,0.12);
+  --aetox-shadow-glow:        0 0 0 1px rgba(10,132,255,0.3), 0 10px 32px rgba(10,132,255,0.2);
 }

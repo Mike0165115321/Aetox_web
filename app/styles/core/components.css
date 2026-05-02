@@ -50,7 +50,7 @@
 
   /* ── 4. Navigation ──────────────────────────────────────── */
   .aetox-nav-container {
-    @apply flex flex-col gap-4 p-2.5 rounded-[32px] bg-aetox-surface-lowest/40 backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
+    @apply flex flex-col gap-4 p-2.5 rounded-[32px] bg-aetox-surface-lowest/80 dark:bg-aetox-surface-lowest/40 backdrop-blur-2xl border border-aetox-border shadow-aetox-card;
   }
 
   .aetox-nav-item {
@@ -64,5 +64,13 @@
 
   .aetox-nav-tooltip {
     @apply px-5 py-2.5 rounded-[20px] bg-aetox-surface-lowest backdrop-blur-3xl border border-aetox-border shadow-aetox-card;
+  }
+  /* ── 5. Alerts & Special Containers ────────────────────── */
+  .aetox-alert-error {
+    @apply p-4 md:p-5 rounded-2xl bg-aetox-error/5 border border-aetox-error/20;
+  }
+  
+  .aetox-alert-accent {
+    @apply p-4 md:p-5 rounded-2xl bg-aetox-accent/5 border border-aetox-accent/20;
   }
 }

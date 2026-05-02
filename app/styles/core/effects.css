@@ -10,12 +10,12 @@
 
   .aetox-aura-primary {
     @apply absolute w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none bg-aetox-accent/20 mix-blend-screen;
-    background: radial-gradient(circle, var(--aetox-accent) 0%, transparent 70%);
+    background: radial-gradient(circle, rgb(var(--aetox-accent-rgb)) 0%, transparent 70%);
   }
 
   .aetox-aura-secondary {
-    @apply absolute w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none bg-[#8A2BE2]/10 mix-blend-screen;
-    background: radial-gradient(circle, #8A2BE2 0%, transparent 70%);
+    @apply absolute w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none mix-blend-screen;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
   }
 
   /* ── 2. Special Animation Effects ────────────────────────── */

@@ -74,7 +74,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
       <div className="flex flex-col lg:flex-row">
         {/* Left: Inputs */}
-        <div className="lg:w-[42%] p-5 md:p-8 border-b lg:border-b-0 lg:border-r border-white/5 space-y-8 md:space-y-10">
+        <div className="lg:w-[42%] p-5 md:p-8 border-b lg:border-b-0 lg:border-r border-aetox-border space-y-8 md:space-y-10">
           <section className="space-y-4">
             <h4 className="text-fluid-label font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
               {dict.workloadTitle}
@@ -108,14 +108,14 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
             <div className="space-y-6 md:space-y-8">
               {/* Slider ทุตัวใช้หน่วย THB เสมอเพื่อให้ค่าไม่กระโดดตอนสลับสกุลเงิน */}
               <SliderGroup label={dict.params.volume} min={100} max={50000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
-              <SliderGroup label={dict.params.staff} min={1} max={20} step={1} value={staffCount} onChange={setStaffCount} accent="accent-indigo-400" displayValue={staffCount.toString()} />
+              <SliderGroup label={dict.params.staff} min={1} max={20} step={1} value={staffCount} onChange={setStaffCount} accent="accent-aetox-accent" displayValue={staffCount.toString()} />
               
               <SliderGroup 
                 label={dict.params.hourlyRate} 
                 min={50} max={500} step={10} 
                 value={hourlyRateTHB} 
                 onChange={setHourlyRateTHB} 
-                accent="accent-rose-400" 
+                accent="accent-aetox-accent" 
                 displayValue={formatMoney(toCurrentDisplay(hourlyRateTHB))} 
               />
               

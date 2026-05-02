@@ -13,7 +13,7 @@ export default function Footer({ dict }: { dict?: any }) {
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <Image src="/images/logo.svg" alt="Aetox Logo" width={32} height={32} className="h-8 w-auto" />
+              <Image src="/images/logo.svg" alt="Aetox Logo" width={32} height={32} className="h-8 w-auto dark:brightness-0 dark:invert" />
               <span className="text-xl font-bold tracking-tighter text-aetox-text-main">
                 AETO<span className="text-aetox-accent">X</span>
               </span>

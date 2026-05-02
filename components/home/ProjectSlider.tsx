@@ -43,7 +43,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               className="object-cover opacity-40 transition-transform duration-[5000ms] scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-aetox-bg via-aetox-bg/60 to-transparent" />
           </div>
 
           {/* Content Overlay - Simple & Robust Structure */}
@@ -54,16 +54,16 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
                 <span className="px-4 py-1.5 rounded-full bg-aetox-accent text-white text-fluid-label font-bold tracking-[0.2em] uppercase shadow-aetox-glow">
                   {projects[current].category}
                 </span>
-                <div className="h-px w-16 bg-white/20" />
+                <div className="h-px w-16 bg-aetox-border" />
               </div>
 
               {/* Title - Large & Readable */}
-              <h3 className="text-fluid-h1 font-bold text-white leading-tight tracking-tight py-2">
+              <h3 className="text-fluid-h1 font-bold text-aetox-text-main leading-tight tracking-tight py-2">
                 {projects[current].title}
               </h3>
 
               {/* Description - Scaled Up */}
-              <p className="text-fluid-p text-white/80 font-medium leading-relaxed max-w-3xl line-clamp-3">
+              <p className="text-fluid-p text-aetox-text-soft font-medium leading-relaxed max-w-3xl line-clamp-3">
                 {projects[current].description}
               </p>
 
@@ -71,11 +71,11 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
               <div className="pt-6 md:pt-10 flex flex-wrap items-center gap-10">
                 <Link 
                   href={`/authority/${projects[current].category}/${projects[current].slug}`}
-                  className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-white text-black font-bold text-fluid-p overflow-hidden transition-all active:scale-95 shadow-2xl"
+                  className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-fluid-p overflow-hidden transition-all active:scale-95 shadow-2xl"
                 >
                   <span className="relative z-10">{viewDetailsLabel || 'ดูรายละเอียด'}</span>
                   <ArrowRight size={22} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                  <div className="absolute inset-0 bg-aetox-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-aetox-accent-hover translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </Link>
 
                 {/* Progress Indicators */}
@@ -84,7 +84,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
                     <div 
                       key={i}
                       className={`h-1.5 rounded-full transition-all duration-700 ${
-                        i === current ? 'w-16 bg-aetox-accent' : 'w-4 bg-white/20'
+                        i === current ? 'w-16 bg-aetox-accent' : 'w-4 bg-aetox-border'
                       }`}
                     />
                   ))}

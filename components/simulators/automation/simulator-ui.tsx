@@ -20,7 +20,7 @@ export function KpiCard({
   currency, 
   formatMoney, 
   accent = false, 
-  color = 'text-white',
+  color = 'text-aetox-text-main',
   unitLabel
 }: KpiCardProps) {
   const [showInfo, setShowInfo] = useState(false);

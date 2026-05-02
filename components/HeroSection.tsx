@@ -38,7 +38,7 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
   const content = dict;
 
   return (
-    <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-aetox-bg border-b border-aetox-border">
+    <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-aetox-bg">
       
       {/* 1. แสงฟุ้ง (Auras) — อยู่แค่ที่นี่ที่เดียว ไม่ไปโผล่หน้าอื่น */}
       <motion.div 
@@ -81,7 +81,7 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
             alt="Aetox Logo" 
             width={120}
             height={120}
-            className="w-20 md:w-24 h-auto mx-auto animate-aetox-breathe"
+            className="w-20 md:w-24 h-auto mx-auto animate-aetox-breathe dark:brightness-0 dark:invert"
             priority
           />
         </motion.div>
