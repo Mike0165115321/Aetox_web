@@ -42,7 +42,6 @@ export default async function RootLayout({
   return (
     <html lang={lang} className={`${ibmPlexThai.variable} ${ibmPlexSans.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="">
-        {/* ใช้ next/script พร้อม strategy="beforeInteractive" เพื่อให้รันก่อน React Hydrate */}
         <Script id="theme-initializer" strategy="beforeInteractive">
           {`
             (function() {

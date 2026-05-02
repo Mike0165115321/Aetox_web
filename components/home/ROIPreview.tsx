@@ -49,7 +49,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
         {/* Footer CTA */}
         <div className="mt-16 text-center">
           <button 
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="aetox-btn-main shadow-aetox-glow active:scale-95 text-fluid-p"
           >
             {dict.cta}

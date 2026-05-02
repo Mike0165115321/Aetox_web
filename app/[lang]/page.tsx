@@ -19,7 +19,7 @@ export default async function Home({ params }: { params: Promise<{ lang: 'th' | 
     { id: 'pain', label: dict.navigation[1].label, num: '02', icon: <AlertTriangle size={18} />, offset: 40 },
     { id: 'services', label: dict.navigation[5].label, num: '06', icon: <LayoutGrid size={18} />, offset: 70 },
     { id: 'roi', label: dict.navigation[6].label, num: '07', icon: <TrendingUp size={18} />, offset: 10 },
-    { id: 'contact', label: dict.navigation[7]?.label || 'Contact', num: '08', icon: <MessageSquare size={18} />, offset: 0 },
+    { id: 'contact', label: dict.navigation[8]?.label || 'Contact', num: '09', icon: <MessageSquare size={18} />, offset: 0 },
   ];
 
   return (
