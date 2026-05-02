@@ -25,4 +25,8 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .aetox-typography {
+    font-family: var(--font-ibm-plex-thai), var(--font-ibm-plex-sans), sans-serif !important;
+  }
 }

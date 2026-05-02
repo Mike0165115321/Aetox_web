@@ -1,23 +1,18 @@
-import { IBM_Plex_Sans_Thai, Inter, Lexend } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Sans_Thai } from "next/font/google";
 import "../globals.css";
 import Script from "next/script"; // นำเข้า Script จาก next/script
 
-const lexend = Lexend({
+const ibmPlexSans = IBM_Plex_Sans({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-lexend",
+  variable: "--font-ibm-plex-sans",
   display: "swap",
 });
 
 const ibmPlexThai = IBM_Plex_Sans_Thai({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["thai", "latin"],
   variable: "--font-ibm-plex-thai",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
   display: "swap",
 });
 
@@ -45,7 +40,7 @@ export default async function RootLayout({
   const lang = resolvedParams?.lang || 'th';
 
   return (
-    <html lang={lang} className={`${lexend.variable} ${ibmPlexThai.variable} ${inter.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
+    <html lang={lang} className={`${ibmPlexThai.variable} ${ibmPlexSans.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="">
         {/* ใช้ next/script พร้อม strategy="beforeInteractive" เพื่อให้รันก่อน React Hydrate */}
         <Script id="theme-initializer" strategy="beforeInteractive">

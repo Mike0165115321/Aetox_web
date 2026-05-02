@@ -57,8 +57,8 @@ module.exports = {
         "fluid-label": ["0.75rem", { lineHeight: "1", fontWeight: "600", letterSpacing: "0.05em" }],
       },
       fontFamily: {
-        display: ["var(--font-lexend)", "var(--font-ibm-plex-thai)", "sans-serif"],
-        sans: ["var(--font-lexend)", "var(--font-ibm-plex-thai)", "var(--font-inter)", "sans-serif"],
+        display: ["var(--font-ibm-plex-thai)", "var(--font-ibm-plex-sans)", "sans-serif"],
+        sans: ["var(--font-ibm-plex-thai)", "var(--font-ibm-plex-sans)", "sans-serif"],
       },
       borderRadius: {
         sm:      "0.125rem",

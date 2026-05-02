@@ -71,15 +71,15 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6"
             >
-              <div className="glass-card p-6 rounded-3xl border-white/10 bg-black/40">
-                <p className="text-cyber-blue font-black text-[10px] uppercase tracking-widest mb-4">Strategic Question</p>
-                <h3 className="text-xl font-bold text-white mb-8 leading-tight">{dict.question}</h3>
+              <div className="aetox-card p-6 rounded-3xl border-aetox-border bg-aetox-surface-lowest/50">
+                <p className="text-aetox-accent font-black text-[10px] uppercase tracking-widest mb-4">Strategic Question</p>
+                <h3 className="text-xl font-bold text-aetox-text-main mb-8 leading-tight">{dict.question}</h3>
                 <div className="space-y-3">
                   {dict.businessTypes.map((opt: any) => (
                     <button
                       key={opt.id}
                       onClick={() => handleStartBuild(opt.id)}
-                      className="w-full p-5 rounded-2xl border border-white/5 bg-white/5 text-left text-sm font-bold text-gray-300 hover:border-cyber-blue hover:bg-cyber-blue/10 transition-all active:scale-[0.98]"
+                      className="w-full p-5 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 text-left text-sm font-bold text-aetox-text-soft hover:border-aetox-accent hover:bg-aetox-accent-subtle transition-all active:scale-[0.98]"
                     >
                       {opt.label}
                     </button>
@@ -95,12 +95,12 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
               className="space-y-4"
             >
               {/* Strategic Result Badge */}
-              <div className="bg-cyber-blue/10 border border-cyber-blue/30 p-4 rounded-2xl flex items-center justify-between gap-3">
+              <div className="bg-aetox-accent-subtle border border-aetox-accent/30 p-4 rounded-2xl flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <ShieldCheck className="text-cyber-blue" size={24} />
+                  <ShieldCheck className="text-aetox-accent" size={24} />
                   <div>
-                    <p className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">Architecture</p>
-                    <p className="text-white font-bold">{activeConfig?.title}</p>
+                    <p className="text-[10px] font-black text-aetox-accent uppercase tracking-widest">Architecture</p>
+                    <p className="text-aetox-text-main font-bold">{activeConfig?.title}</p>
                   </div>
                 </div>
                 {isBuilding && (
@@ -112,13 +112,13 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
               </div>
 
               {/* Stack Detail */}
-              <div className="glass-card p-6 rounded-3xl border-white/10 bg-black/60 space-y-4">
+              <div className="aetox-card p-6 rounded-3xl border-aetox-border bg-aetox-surface-lowest/80 space-y-4">
                 <AnimatePresence>
                   {buildStep === 5 && (
                     <motion.p 
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
-                      className="text-emerald-400 text-xs leading-relaxed font-bold mb-4"
+                      className="text-emerald-500 text-xs leading-relaxed font-bold mb-4"
                     >
                       {`"${activeConfig?.impact}"`}
                     </motion.p>
@@ -141,9 +141,9 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                       >
                         <Icon size={16} className={colors.color} />
                         <div className="flex-1">
-                          <span className="text-[11px] font-bold text-gray-300">{layer.name}</span>
+                          <span className="text-[11px] font-bold text-aetox-text-soft">{layer.name}</span>
                         </div>
-                        <span className="text-[8px] text-gray-500 font-bold uppercase">Layer 0{idx + 1}</span>
+                        <span className="text-[8px] text-aetox-text-muted font-bold uppercase">Layer 0{idx + 1}</span>
                       </motion.div>
                     );
                   })}
@@ -152,7 +152,7 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                 <button 
                   onClick={() => setSelectedSystem('none')}
                   disabled={isBuilding}
-                  className="w-full mt-6 py-3 rounded-xl border border-white/10 text-[11px] font-black text-gray-500 uppercase tracking-widest disabled:opacity-30"
+                  className="w-full mt-6 py-3 rounded-xl border border-aetox-border text-[11px] font-black text-aetox-text-muted uppercase tracking-widest disabled:opacity-30"
                 >
                   {dict.resetLabel}
                 </button>
@@ -162,23 +162,23 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
         </AnimatePresence>
       </div>
 
-      {/* ─── Desktop View (Preserved) ─── */}
-      <div className={`hidden md:block w-full overflow-hidden ${compact ? '' : 'glass-card rounded-[24px] border border-white/10 shadow-2xl bg-black/40'}`}>
+       {/* ─── Desktop View (Preserved) ─── */}
+      <div className={`hidden md:block w-full overflow-hidden ${compact ? '' : 'aetox-card rounded-[24px] border border-aetox-border shadow-2xl bg-aetox-surface-lowest/50'}`}>
         
         {/* 1. Header (Status Bar) */}
         {!compact && (
-          <div className="bg-ultra-dark/90 px-6 py-5 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="bg-aetox-surface-lowest/90 px-6 py-5 border-b border-aetox-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20">
-                <Cpu className="text-cyber-blue" size={20} />
+              <div className="p-2 rounded-lg bg-aetox-accent-subtle border border-aetox-accent/20">
+                <Cpu className="text-aetox-accent" size={20} />
               </div>
-              <h2 className="text-sm font-bold text-white uppercase tracking-wider">{dict.title}</h2>
+              <h2 className="text-sm font-bold text-aetox-text-main uppercase tracking-wider">{dict.title}</h2>
             </div>
             
             <div className="flex gap-6 text-[10px] font-bold">
               <div className="flex flex-col gap-1">
-                <span className="text-gray-500 uppercase tracking-widest">ARCHITECTURE</span>
-                <span className="text-white">{activeConfig ? activeConfig.title : 'N/A'}</span>
+                <span className="text-aetox-text-muted uppercase tracking-widest">ARCHITECTURE</span>
+                <span className="text-aetox-text-main">{activeConfig ? activeConfig.title : 'N/A'}</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-gray-500 uppercase tracking-widest">STATUS</span>
@@ -190,18 +190,18 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
           </div>
         )}
 
-        {/* 2. Main Builder Display */}
-        <div className={`relative p-6 md:p-10 min-h-[520px] flex flex-col bg-gradient-to-b from-transparent to-black/20 ${compact ? 'rounded-[40px] border border-white/10' : ''}`}>
-          <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-5 pointer-events-none" />
+         {/* 2. Main Builder Display */}
+        <div className={`relative p-6 md:p-10 min-h-[520px] flex flex-col bg-gradient-to-b from-transparent to-aetox-surface-lowest/20 ${compact ? 'rounded-[40px] border border-aetox-border' : ''}`}>
+          <div className="absolute inset-0 bg-aetox-grid-overlay opacity-5 pointer-events-none" />
           
           {selectedSystem === 'none' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 animate-float">
-                <Terminal size={28} className="text-gray-500" />
+              <div className="w-16 h-16 rounded-2xl bg-aetox-surface-lowest flex items-center justify-center border border-aetox-border animate-float">
+                <Terminal size={28} className="text-aetox-text-muted" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white">{dict.title}</h3>
-                <p className="text-sm text-gray-500 max-w-xs font-medium leading-relaxed">{dict.question}</p>
+                <h3 className="text-lg font-bold text-aetox-text-main">{dict.title}</h3>
+                <p className="text-sm text-aetox-text-muted max-w-xs font-medium leading-relaxed">{dict.question}</p>
               </div>
             </div>
           )}
@@ -218,7 +218,7 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                   <h4 className="text-[10px] font-bold text-emerald-400 mb-2 uppercase tracking-[0.2em] flex items-center gap-2">
                     <CheckCircle2 size={12} /> {dict.impactLabel} (Impact)
                   </h4>
-                  <p className="text-sm md:text-[15px] font-bold text-white leading-relaxed">
+                  <p className="text-sm md:text-[15px] font-bold text-aetox-text-main leading-relaxed">
                     {activeConfig.impact}
                   </p>
                 </motion.div>
@@ -248,15 +248,15 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                       <div className={`flex items-center gap-4 p-4 rounded-xl border backdrop-blur-md transition-all duration-500 ${
                         isVisible ? `${colors.bg} ${colors.border} shadow-lg` : 'border-transparent'
                       }`}>
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border bg-ultra-dark ${colors.border}`}>
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border bg-aetox-surface-lowest ${colors.border}`}>
                           <Icon className={colors.color} size={20} />
                         </div>
                         <div className="flex-1">
                           <div className="flex justify-between items-center mb-0.5">
                             <h4 className={`text-sm font-bold ${colors.color}`}>{layer.name}</h4>
-                            <span className="text-[9px] text-gray-500 font-bold uppercase tracking-wider">Layer 0{index + 1}</span>
+                            <span className="text-[9px] text-aetox-text-muted font-bold uppercase tracking-wider">Layer 0{index + 1}</span>
                           </div>
-                          <p className="text-[11px] text-gray-400 font-medium leading-tight">{layer.desc}</p>
+                          <p className="text-[11px] text-aetox-text-soft font-medium leading-tight">{layer.desc}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -268,29 +268,29 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
         </div>
 
         {/* 5. Footer Controls */}
-        <div className="bg-ultra-dark/95 px-6 py-6 border-t border-white/5 flex flex-col md:flex-row items-center gap-4 justify-between">
+        <div className="bg-aetox-surface-lowest px-6 py-6 border-t border-aetox-border flex flex-col md:flex-row items-center gap-4 justify-between">
           <div className="flex items-center gap-4 w-full md:w-auto">
-            <span className="text-[11px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">Domain</span>
+            <span className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-widest whitespace-nowrap">Domain</span>
             <div className="relative w-full md:w-72">
               <select 
                 value={selectedSystem}
                 onChange={(e) => handleStartBuild(e.target.value as SystemType)}
                 disabled={isBuilding}
-                className="w-full appearance-none bg-black/40 border border-white/10 text-white text-sm font-bold rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-cyber-blue disabled:opacity-50 cursor-pointer transition-all"
+                className="w-full appearance-none bg-aetox-surface-lowest/50 border border-aetox-border text-aetox-text-main text-sm font-bold rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-aetox-accent disabled:opacity-50 cursor-pointer transition-all"
               >
                 <option value="none" className="bg-aetox-bg text-aetox-text-main">-- เลือกประเภทธุรกิจ --</option>
                 {dict.businessTypes.map((opt: any) => (
                   <option key={opt.id} value={opt.id} className="bg-aetox-bg text-aetox-text-main">{opt.label}</option>
                 ))}
               </select>
-              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-aetox-text-muted pointer-events-none" />
             </div>
           </div>
 
           <button 
             onClick={() => handleStartBuild(selectedSystem)}
             disabled={selectedSystem === 'none' || isBuilding}
-            className="w-full md:w-auto px-10 py-3 bg-cyber-blue/10 hover:bg-cyber-blue/20 text-cyber-blue text-sm font-bold rounded-xl border border-cyber-blue/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 flex items-center justify-center gap-2"
+            className="w-full md:w-auto px-10 py-3 bg-aetox-accent-subtle hover:bg-aetox-accent/20 text-aetox-accent text-sm font-bold rounded-xl border border-aetox-accent/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 flex items-center justify-center gap-2"
           >
             {isBuilding ? (
               <>

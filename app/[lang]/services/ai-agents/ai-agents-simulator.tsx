@@ -19,25 +19,25 @@ const TIERS = [
   {
     id: 'personal',
     icon: User,
-    color: 'text-sky-400',
-    glow: 'shadow-sky-500/20',
-    border: 'border-sky-500/30',
-    bg: 'bg-sky-500/10',
+    color: 'text-aetox-accent',
+    glow: 'shadow-aetox-glow',
+    border: 'border-aetox-accent/30',
+    bg: 'bg-aetox-accent-subtle',
     preset: { queriesPerDay: 50, avgSalary: 25000, staffCount: 1, minutesPerCase: 10, valuePerCase: 200, aiMonthlyFee: 5000, setupCost: 15000 },
   },
   {
     id: 'early',
     icon: Rocket,
-    color: 'text-cyber-blue',
-    glow: 'shadow-cyber-glow/20',
-    border: 'border-cyber-blue/30',
-    bg: 'bg-cyber-blue/10',
+    color: 'text-aetox-accent',
+    glow: 'shadow-aetox-glow',
+    border: 'border-aetox-accent/30',
+    bg: 'bg-aetox-accent-subtle',
     preset: { queriesPerDay: 500, avgSalary: 30000, staffCount: 3, minutesPerCase: 15, valuePerCase: 800, aiMonthlyFee: 15000, setupCost: 45000 },
   },
   {
     id: 'growth',
     icon: TrendingUp,
-    color: 'text-emerald-400',
+    color: 'text-emerald-500',
     glow: 'shadow-emerald-500/20',
     border: 'border-emerald-500/30',
     bg: 'bg-emerald-500/10',
@@ -46,7 +46,7 @@ const TIERS = [
   {
     id: 'enterprise',
     icon: Building2,
-    color: 'text-violet-400',
+    color: 'text-violet-500',
     glow: 'shadow-violet-500/20',
     border: 'border-violet-500/30',
     bg: 'bg-violet-500/10',
@@ -90,16 +90,16 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
       <div className="space-y-8">
         {/* Header */}
         {!compact && (
-          <div className="space-y-3">
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
-              {simulator.title.white} <span className="text-cyber-blue">{simulator.title.accent}</span>
+          <div className="space-y-3 font-sans">
+            <h2 className="text-3xl md:text-4xl font-bold text-aetox-text-main leading-tight tracking-tight">
+              {simulator.title.white} <span className="text-aetox-accent drop-shadow-aetox-glow">{simulator.title.accent}</span>
             </h2>
-            <p className="text-gray-500 max-w-xl text-base font-medium">{simulator.description}</p>
+            <p className="text-aetox-text-soft max-w-xl text-base font-medium leading-relaxed border-l-2 border-aetox-accent/30 pl-5">{simulator.description}</p>
           </div>
         )}
 
         {/* ─── Tier Selector ─── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 font-sans">
           {TIERS.map((tier) => {
             const Icon = tier.icon;
             const active = tierId === tier.id;
@@ -108,20 +108,20 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
               <motion.button
                 key={tier.id}
                 onClick={() => setTierId(tier.id)}
-                whileHover={{ y: -1 }}
+                whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className={`relative flex items-center gap-4 p-4 rounded-2xl border transition-all text-left ${
                   active
-                    ? `${tier.bg} ${tier.border} shadow-md ${tier.glow}`
-                    : 'bg-white/[0.02] border-white/5 hover:border-white/10'
+                    ? `${tier.bg} ${tier.border} shadow-lg ${tier.glow}`
+                    : 'bg-aetox-surface-lowest/50 border-aetox-border hover:border-aetox-accent/40'
                 }`}
               >
-                <div className={`p-2 rounded-xl ${active ? tier.bg : 'bg-white/5'} ${active ? tier.color : 'text-gray-500'}`}>
+                <div className={`p-2 rounded-xl ${active ? tier.bg : 'bg-aetox-surface-low'} ${active ? tier.color : 'text-aetox-text-muted'}`}>
                   <Icon size={18} />
                 </div>
-                <div>
-                  <p className={`text-sm font-bold ${active ? 'text-white' : 'text-gray-400'}`}>{dictTierItem?.label || tier.id}</p>
-                  <p className={`text-[11px] font-medium ${active ? tier.color : 'text-gray-600'}`}>{dictTierItem?.sublabel || dictTierItem?.sub || tier.id}</p>
+                <div className="flex-1 min-w-0">
+                  <p className={`text-sm font-bold truncate ${active ? 'text-aetox-text-main' : 'text-aetox-text-soft'}`}>{dictTierItem?.label || tier.id}</p>
+                  <p className={`text-[10px] font-bold uppercase tracking-tight ${active ? tier.color : 'text-aetox-text-muted'}`}>{dictTierItem?.sublabel || dictTierItem?.sub || tier.id}</p>
                 </div>
               </motion.button>
             );
@@ -130,16 +130,16 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
 
         {/* ─── Main Grid ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Controls Panel */}
-          <div className="lg:col-span-4 glass-card p-6 rounded-3xl border border-white/10 space-y-6 bg-black/40">
-            <div className="flex justify-between items-center pb-4 border-b border-white/5">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Currency</span>
+           {/* Controls Panel */}
+          <div className="lg:col-span-4 aetox-card p-6 rounded-3xl border border-aetox-border space-y-6 bg-aetox-surface-lowest/50 font-sans shadow-xl">
+            <div className="flex justify-between items-center pb-4 border-b border-aetox-border">
+              <span className="text-[10px] font-bold text-aetox-text-muted uppercase tracking-widest">Currency Setting</span>
               <CurrencySwitcher />
             </div>
             
             <div className="space-y-5">
-              <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                <span className="text-xs font-bold text-gray-400 tracking-wide uppercase">{simulator.labels.info}</span>
+              <div className="flex items-center justify-between pb-2 border-b border-aetox-border">
+                <span className="text-[10px] font-bold text-aetox-text-muted tracking-widest uppercase">{simulator.labels.info}</span>
                 <Plus size={12} className={activeTier.color + ' opacity-50'} />
               </div>
 
@@ -168,7 +168,7 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
               />
             </div>
 
-            <div className="pt-5 border-t border-white/5 space-y-5">
+            <div className="pt-5 border-t border-aetox-border space-y-5">
               <div className={`flex items-center justify-between mb-2 ${activeTier.color}`}>
                 <span className="text-[10px] font-bold uppercase tracking-wider">{simulator.labels.aetoxBudget}</span>
                 <Zap size={12} />
@@ -229,41 +229,43 @@ export default function AiAgentsSimulator({ dict, compact = false }: { dict: any
               border="border-violet-500/20"
             />
 
-            {/* Hero card: Yearly Saving */}
-            <div className={`md:col-span-3 glass-card p-8 rounded-3xl border ${activeTier.border} bg-gradient-to-br ${activeTier.bg.replace('bg-', 'from-').replace('/10', '/[0.03]')} to-transparent relative overflow-hidden`}>
-              <div className="absolute top-0 right-0 p-6 opacity-5">
-                <ShieldCheck size={100} className={activeTier.color} />
+             {/* Hero card: Yearly Saving */}
+            <div className={`md:col-span-3 aetox-card p-8 rounded-[32px] border ${activeTier.border} bg-gradient-to-br ${activeTier.bg.replace('bg-', 'from-').replace('/10', '/[0.05]')} to-transparent relative overflow-hidden font-sans shadow-2xl transition-all hover:scale-[1.01]`}>
+              <div className="absolute top-0 right-0 p-8 opacity-10">
+                <ShieldCheck size={120} className={activeTier.color} />
               </div>
               <div className="relative z-10">
-                <p className={`${activeTier.color} text-sm font-bold mb-3`}>{simulator.labels.yearlySaving}</p>
+                <p className={`${activeTier.color} text-xs font-bold mb-3 uppercase tracking-widest`}>{simulator.labels.yearlySaving}</p>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-5xl font-bold text-white tracking-tight">
+                  <span className="text-6xl font-bold text-aetox-text-main tracking-tighter">
                     {formatCurrency(calc.totalYearlySaving).replace('฿', '').replace('$', '')}
                   </span>
-                  <span className={`text-xl font-bold ${activeTier.color}`}>
+                  <span className={`text-2xl font-bold ${activeTier.color}`}>
                     {currency === 'THB' ? '฿ / ปี' : 'USD / Year'}
                   </span>
                 </div>
-                <p className="text-gray-500 font-medium text-sm">{simulator.labels.yearlySavingDesc}</p>
+                <p className="text-aetox-text-soft font-medium text-sm border-l-2 border-aetox-accent/20 pl-4">{simulator.labels.yearlySavingDesc}</p>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-3 gap-6">
+              <div className="mt-8 pt-8 border-t border-aetox-border/50 grid grid-cols-3 gap-6">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.breakEvenLabel}</span>
-                  <div className="text-2xl font-bold text-white">
+                  <span className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-wider">{simulator.labels.breakEvenLabel}</span>
+                  <div className="text-2xl font-bold text-aetox-text-main tracking-tight">
                     {calc.breakEvenMonth > 0 ? `${calc.breakEvenMonth.toFixed(1)}` : (simulator.labels.instantly || 'ทันที')}
-                    <span className="text-xs text-gray-400 font-bold ml-1">{calc.breakEvenMonth > 0 ? (simulator.labels.unitMonth || 'เดือน') : ''}</span>
+                    <span className="text-xs text-aetox-text-muted font-bold ml-1 uppercase">{calc.breakEvenMonth > 0 ? (simulator.labels.unitMonth || 'เดือน') : ''}</span>
                   </div>
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.roiPerYear || 'ROI ต่อปี'}</span>
-                  <div className="text-2xl font-bold text-emerald-400">
+                 <div className="space-y-1">
+                  <span className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-wider">{simulator.labels.roiPerYear || 'ROI ต่อปี'}</span>
+                  <div className="text-2xl font-bold text-emerald-400 tracking-tight">
                     {Math.round(calc.roi).toLocaleString()}%
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase">{simulator.labels.status || 'สถานะ'}</span>
-                  <div className="text-2xl font-bold text-white">24/7</div>
+                  <span className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-wider">{simulator.labels.status || 'สถานะ'}</span>
+                  <div className="text-2xl font-bold text-aetox-text-main tracking-tight flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> 24/7
+                  </div>
                 </div>
               </div>
             </div>
