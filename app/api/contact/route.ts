@@ -1,7 +1,5 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
-import connectToDatabase from '@/lib/mongodb';
-import Lead from '@/models/Lead';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -27,56 +25,51 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: 'Name and Email are required' }, { status: 400 });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ success: false, error: 'Invalid email format' }, { status: 400 });
-    }
-
-    // 2. Connect to DB
-    await connectToDatabase();
-
-    // 3. Save/Update DB (Upsert Strategy - Focus on Project)
-    const leadData = {
-      type: 'project',
-      name,
-      phone,
-      company,
-      preferredMethod,
-      contactDetail,
-      contactTime,
-      category,
-      budget,
-      timeline,
-      challenge,
-    };
-
-    const lead = await Lead.findOneAndUpdate(
-      { email: email.toLowerCase(), type: 'project' },
-      { $set: leadData, $setOnInsert: { status: 'new' } },
-      { upsert: true, new: true, runValidators: true }
-    );
-
-    // 4. Try sending email (Side Effect)
-    try {
-      await resend.emails.send({
-        from: 'Aetox System <onboarding@resend.dev>',
-        to: 'phrmsawanachyphl@gmail.com',
-        subject: `🚀 [Project] ${lead.upsertedId ? 'New' : 'Updated'} Lead: ${name}`,
-        html: `
-          <div style="font-family: sans-serif; color: white; background: #050505; padding: 20px;">
-            <h2>มีการติดต่อเข้ามาใหม่ (จ้างทำโปรเจกต์)</h2>
-            <p><strong>ชื่อ:</strong> ${name}</p>
-            <p><strong>อีเมล:</strong> ${email}</p>
-            <p><strong>หัวข้อ:</strong> ${category}</p>
-            <p>ไปที่ Admin เพื่อดูรายละเอียด: <a href="https://aetox.dev/th/aetox-hq-admin" style="color: #0A84FF;">Admin Panel</a></p>
+    // 2. Send email via Resend (The only source of truth now)
+    const { data, error } = await resend.emails.send({
+      from: 'Aetox System <onboarding@resend.dev>',
+      to: 'phrmsawanachyphl@gmail.com',
+      subject: `🚀 [Project Inquiry] New Lead: ${name}`,
+      html: `
+        <div style="font-family: sans-serif; color: #ffffff; background: #050505; padding: 40px; border-radius: 20px; border: 1px solid #1a1a1a;">
+          <h2 style="color: #0A84FF; margin-bottom: 24px; font-size: 24px;">🚀 มีคนติดต่อจ้างงานใหม่เข้ามา!</h2>
+          
+          <div style="background: #111; padding: 24px; border-radius: 16px; margin-bottom: 24px;">
+            <p style="margin: 8px 0;"><strong>👤 ชื่อ:</strong> ${name}</p>
+            <p style="margin: 8px 0;"><strong>📧 อีเมล:</strong> ${email}</p>
+            <p style="margin: 8px 0;"><strong>📞 เบอร์โทร:</strong> ${phone || '-'}</p>
+            <p style="margin: 8px 0;"><strong>🏢 บริษัท:</strong> ${company || '-'}</p>
           </div>
-        `
-      });
-    } catch (emailError) {
-      console.error('Email side-effect failed:', emailError);
+
+          <div style="background: #111; padding: 24px; border-radius: 16px; margin-bottom: 24px;">
+            <p style="margin: 8px 0; color: #0A84FF;"><strong>🛠️ รายละเอียดโปรเจกต์:</strong></p>
+            <p style="margin: 8px 0;"><strong>หมวดหมู่:</strong> ${category}</p>
+            <p style="margin: 8px 0;"><strong>งบประมาณ:</strong> ${budget}</p>
+            <p style="margin: 8px 0;"><strong>ระยะเวลา:</strong> ${timeline}</p>
+            <p style="margin: 16px 0; padding: 16px; background: #1a1a1a; border-radius: 12px; font-style: italic;">
+              "${challenge}"
+            </p>
+          </div>
+
+          <div style="background: #111; padding: 24px; border-radius: 16px;">
+            <p style="margin: 8px 0; color: #0A84FF;"><strong>🕒 ข้อมูลการติดต่อกลับ:</strong></p>
+            <p style="margin: 8px 0;"><strong>ช่องทางที่สะดวก:</strong> ${preferredMethod} (${contactDetail})</p>
+            <p style="margin: 8px 0;"><strong>เวลาที่สะดวก:</strong> ${contactTime}</p>
+          </div>
+
+          <p style="margin-top: 40px; font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 2px;">
+            AETO<span style="color: #0A84FF;">X</span> ENGINE — SECURE DATA STREAM
+          </p>
+        </div>
+      `
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json({ success: false, error: error.message }, { status: 400 });
     }
 
-    return NextResponse.json({ success: true, id: lead._id }, { status: 201 });
+    return NextResponse.json({ success: true, id: data?.id }, { status: 201 });
   } catch (error: any) {
     console.error('Lead submission failed:', error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });

@@ -4,30 +4,17 @@ import Footer from '@/components/Footer';
 import AuthorityHero from './components/AuthorityHero';
 import ProjectShowcase from './components/ProjectShowcase';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
-import { Layout, Rocket, Award } from 'lucide-react';
-import connectToDatabase from '@/lib/mongodb';
-import Project from '@/models/Project';
+import { Rocket, Award } from 'lucide-react';
+import { projectsContent } from '@/data/content/th/projects';
 
 export default async function AuthorityPage({ params }: { params: Promise<{ lang: 'th' | 'en' }> }) {
   const { lang = 'th' } = await params;
   const dict = await getDictionary(lang, 'projects');
   
-  // Fetch dynamic projects from MongoDB
-  let dbProjects = [];
-  try {
-    await connectToDatabase();
-    dbProjects = await Project.find({ status: 'published' }).sort({ order: 1, createdAt: -1 }).lean();
-    
-    // Convert Mongo object to plain JS object for serializability
-    dbProjects = JSON.parse(JSON.stringify(dbProjects));
-  } catch (error) {
-    console.error('Error fetching projects from DB:', error);
-  }
-  
+  // Use static data from files for maximum performance
   const content = {
     ...dict,
-    // Use DB projects if available, otherwise fallback to static dictionary items
-    items: dbProjects.length > 0 ? dbProjects : dict.items
+    items: projectsContent.items
   };
   
   const authoritySections: NavSection[] = [
@@ -36,7 +23,7 @@ export default async function AuthorityPage({ params }: { params: Promise<{ lang
   ];
 
   return (
-    <main className="min-h-screen selection:bg-cyber-blue/30 selection:text-white relative">
+    <main className="min-h-screen selection:bg-aetox-accent/30 selection:text-white relative">
       <FloatingNav sections={authoritySections} />
 
       <Navbar dict={dict.common.navigation.navbar} />

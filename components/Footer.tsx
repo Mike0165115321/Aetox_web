@@ -1,7 +1,13 @@
+'use client';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 export default function Footer({ dict }: { dict?: any }) {
+  const params = useParams();
+  const lang = params?.lang || 'th';
+
   const footerData = dict || {
     founder: { name: "", title: "", location: "" },
     sections: { contact: "", social: "" },
@@ -57,8 +63,10 @@ export default function Footer({ dict }: { dict?: any }) {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-aetox-border text-center text-aetox-text-muted text-[10px] font-black uppercase tracking-[0.2em] opacity-60">
-          <p>© {new Date().getFullYear()} AETOX.DEV — {footerData.rights}</p>
+        <div className="pt-8 border-t border-aetox-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-aetox-text-muted text-[10px] font-black uppercase tracking-[0.2em] opacity-60">
+            © {new Date().getFullYear()} AETOX.DEV — {footerData.rights}
+          </p>
         </div>
       </div>
     </footer>

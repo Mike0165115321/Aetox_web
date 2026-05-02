@@ -10,12 +10,12 @@ export default function CaseStudyList({ dict }: { dict?: any }) {
   };
 
   return (
-    <section className="py-24 relative border-t border-white/5">
-      <div className="container mx-auto">
+    <section className="py-24 relative border-t border-aetox-border">
+      <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">{content.hero.title}</h2>
-            <p className="text-gray-400 max-w-2xl">
+            <h2 className="text-fluid-h2 font-bold text-aetox-text-main mb-4">{content.hero.title}</h2>
+            <p className="text-aetox-text-soft max-w-2xl text-fluid-p font-medium">
               {content.hero.description}
             </p>
           </div>
@@ -25,26 +25,26 @@ export default function CaseStudyList({ dict }: { dict?: any }) {
           {content.caseStudies.map((study: any) => {
             const Icon = iconMap[study.id] || ShieldCheck;
             return (
-              <div key={study.id} className="glass-card group p-8 md:p-10 rounded-2xl relative overflow-hidden flex flex-col items-start">
+              <div key={study.id} className="aetox-card group p-8 md:p-10 relative overflow-hidden flex flex-col items-start !rounded-[32px]">
                 <div className="flex items-start gap-6 mb-6">
-                  <div className="w-16 h-16 shrink-0 rounded-full bg-deep-blue/10 border border-deep-blue/20 flex items-center justify-center group-hover:bg-deep-blue/20 transition-colors duration-300">
-                    <Icon className="w-8 h-8 text-deep-blue" />
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <Icon className="w-8 h-8 text-aetox-accent" />
                   </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{study.title}</h3>
-                  <p className="text-cyber-blue text-sm font-semibold tracking-wider uppercase">{study.role}</p>
+                  <h3 className="text-fluid-h3 font-bold text-aetox-text-main mb-2">{study.title}</h3>
+                  <p className="text-aetox-accent text-fluid-label font-bold tracking-widest uppercase">{study.role}</p>
                 </div>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6 flex-grow">
+              <p className="text-aetox-text-soft text-fluid-p font-medium leading-relaxed mb-6 flex-grow">
                 {study.desc}
               </p>
-              <div className="flex flex-wrap gap-4 mt-auto pt-4 border-t border-white/10 w-full text-xs text-gray-400">
+              <div className="flex flex-wrap gap-4 mt-auto pt-6 border-t border-aetox-border w-full text-fluid-label text-aetox-text-muted font-bold uppercase tracking-widest">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-deep-blue" />
+                  <MapPin className="w-3.5 h-3.5 text-aetox-accent" />
                   <span>{study.location}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-deep-blue" />
+                  <Clock className="w-3.5 h-3.5 text-aetox-accent" />
                   <span>{study.duration}</span>
                 </div>
               </div>
