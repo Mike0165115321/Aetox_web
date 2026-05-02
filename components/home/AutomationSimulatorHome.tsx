@@ -62,12 +62,12 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
             <TrendingUp size={20} className="text-aetox-accent" />
             {dict.title}
           </h3>
-          <p className="text-[10px] md:text-xs text-aetox-text-soft uppercase tracking-widest mt-1">{dict.subTitle}</p>
+          <p className="text-fluid-label text-aetox-text-soft uppercase tracking-widest mt-1">{dict.subTitle}</p>
         </div>
         <div className="flex items-center gap-3">
           <CurrencySwitcher />
-          <button onClick={() => updateComplexity('medium')} className="p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-            <RotateCcw size={14} className="text-gray-400" />
+          <button onClick={() => updateComplexity('medium')} className="p-2 bg-aetox-surface border border-aetox-border hover:bg-aetox-surface-high rounded-xl transition-all">
+            <RotateCcw size={14} className="text-aetox-text-muted" />
           </button>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
         {/* Left: Inputs */}
         <div className="lg:w-[42%] p-5 md:p-8 border-b lg:border-b-0 lg:border-r border-white/5 space-y-8 md:space-y-10">
           <section className="space-y-4">
-            <h4 className="text-[10px] md:text-[11px] font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
+            <h4 className="text-fluid-label font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
               {dict.workloadTitle}
             </h4>
             <div className="grid grid-cols-1 gap-2">
@@ -92,8 +92,8 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                   >
                     <span className={active ? 'text-aetox-accent' : ''}><SimulatorIcon name={cfg.icon} size={18} /></span>
                     <div>
-                      <p className="text-sm font-bold">{d?.label || cfg.label}</p>
-                      <p className="text-[10px] opacity-50 uppercase tracking-tight">{d?.sublabel || cfg.sublabel}</p>
+                      <p className="text-fluid-sm font-bold">{d?.label || cfg.label}</p>
+                      <p className="text-fluid-label opacity-50 uppercase tracking-tight">{d?.sublabel || cfg.sublabel}</p>
                     </div>
                   </button>
                 );
@@ -102,7 +102,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           </section>
 
           <section className="space-y-6">
-            <h4 className="text-[10px] md:text-[11px] font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
+            <h4 className="text-fluid-label font-bold text-aetox-text-soft uppercase tracking-[0.2em] border-l-4 border-aetox-accent pl-4">
               {dict.params.title}
             </h4>
             <div className="space-y-6 md:space-y-8">
@@ -132,7 +132,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
         </div>
 
         {/* Right: Results */}
-        <div className="lg:w-[58%] p-5 md:p-8 bg-black/20 space-y-6 md:space-y-8">
+        <div className="lg:w-[58%] p-5 md:p-8 bg-aetox-surface-lowest/50 space-y-6 md:space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             <KpiCard 
               label={dict.kpis.monthlySaving} 
@@ -144,44 +144,44 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
               formatMoney={formatMoney} 
               unitLabel="ประหยัดได้" 
             />
-            <div className="p-5 md:p-6 rounded-2xl border border-white/10 bg-white/[0.03] flex flex-col justify-between">
-              <p className="text-[10px] md:text-[11px] text-gray-500 font-bold mb-2 md:mb-3 tracking-wide uppercase">{dict.kpis.payback}</p>
+            <div className="p-5 md:p-6 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 flex flex-col justify-between">
+              <p className="text-fluid-label text-aetox-text-muted font-bold mb-2 md:mb-3 tracking-wide uppercase">{dict.kpis.payback}</p>
               <div className="space-y-1">
                 <p className="text-3xl md:text-4xl font-bold text-emerald-400">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
-                <p className="text-[11px] md:text-sm text-gray-500 font-bold uppercase">{dict.kpis.paybackUnit}</p>
+                <p className="text-fluid-sm text-aetox-text-muted font-bold uppercase">{dict.kpis.paybackUnit}</p>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-rose-500/5 border border-rose-500/10 space-y-3 md:space-y-4 shadow-sm">
-              <p className="text-[10px] md:text-xs font-bold text-rose-400 uppercase tracking-widest">{dict.comparison.manual}</p>
+            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-aetox-error-surface border border-aetox-error/20 space-y-3 md:space-y-4 shadow-sm">
+              <p className="text-fluid-label font-bold text-aetox-error uppercase tracking-widest">{dict.comparison.manual}</p>
               <div className="space-y-2 md:space-y-3">
-                <div className="flex justify-between text-xs md:text-sm"><span className="text-gray-500">{dict.comparison.totalHours}</span><span className="text-white font-bold">{calc.manualHours.toFixed(0)} ชม.</span></div>
-                <div className="flex justify-between text-xs md:text-sm border-t border-white/5 pt-2 md:pt-3"><span className="text-gray-500">{dict.comparison.totalCost}</span><span className="text-rose-400 font-bold">{formatMoney(calc.totalBefore)}</span></div>
+                <div className="flex justify-between text-fluid-sm"><span className="text-aetox-text-muted">{dict.comparison.totalHours}</span><span className="text-aetox-text-main font-bold">{calc.manualHours.toFixed(0)} ชม.</span></div>
+                <div className="flex justify-between text-fluid-sm border-t border-aetox-border pt-2 md:pt-3"><span className="text-aetox-text-muted">{dict.comparison.totalCost}</span><span className="text-aetox-error font-bold">{formatMoney(calc.totalBefore)}</span></div>
               </div>
             </div>
-            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-emerald-500/5 border border-emerald-500/10 space-y-3 md:space-y-4 shadow-sm">
-              <p className="text-[10px] md:text-xs font-bold text-emerald-400 uppercase tracking-widest">{dict.comparison.bot}</p>
+            <div className="p-5 md:p-6 rounded-[24px] md:rounded-3xl bg-aetox-accent-subtle border border-aetox-accent/20 space-y-3 md:space-y-4 shadow-sm">
+              <p className="text-fluid-label font-bold text-aetox-accent uppercase tracking-widest">{dict.comparison.bot}</p>
               <div className="space-y-2 md:space-y-3">
-                <div className="flex justify-between text-xs md:text-sm"><span className="text-gray-500">{dict.comparison.invest}</span><span className="text-white font-bold">{formatMoney(calc.botPrice)}</span></div>
-                <div className="flex justify-between text-xs md:text-sm border-t border-white/5 pt-2 md:pt-3"><span className="text-gray-500">{dict.comparison.maint}</span><span className="text-emerald-400 font-bold">{formatMoney(calc.maintCost)}/ด.</span></div>
+                <div className="flex justify-between text-fluid-sm"><span className="text-aetox-text-muted">{dict.comparison.invest}</span><span className="text-aetox-text-main font-bold">{formatMoney(calc.botPrice)}</span></div>
+                <div className="flex justify-between text-fluid-sm border-t border-aetox-border pt-2 md:pt-3"><span className="text-aetox-text-muted">{dict.comparison.maint}</span><span className="text-aetox-accent font-bold">{formatMoney(calc.maintCost)}/ด.</span></div>
               </div>
             </div>
           </div>
 
           {/* Benchmark */}
-          <div className="p-6 md:p-8 rounded-[24px] md:rounded-3xl bg-white/[0.03] border border-white/5 space-y-5 md:space-y-6 relative overflow-hidden shadow-sm">
+          <div className="p-6 md:p-8 rounded-[24px] md:rounded-3xl bg-aetox-surface-lowest/50 border border-aetox-border space-y-5 md:space-y-6 relative overflow-hidden shadow-sm">
             <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none text-aetox-accent"><Zap size={80} /></div>
-            <h4 className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-white/5 pb-3 md:pb-4">{dict.benchmark.title}</h4>
+            <h4 className="text-fluid-label font-bold text-aetox-text-muted uppercase tracking-widest border-b border-aetox-border pb-3 md:pb-4">{dict.benchmark.title}</h4>
             <div className="space-y-5 md:space-y-6">
               <div className="space-y-2">
-                <div className="flex justify-between items-end text-xs md:text-sm"><span className="font-bold text-white uppercase tracking-widest">{dict.benchmark.botLabel}</span><span className="font-bold text-emerald-400">{calc.botHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
-                <div className="w-full h-2.5 md:h-3 bg-white/5 rounded-full overflow-hidden"><div className="h-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all duration-1000" style={{ width: `${calc.botBarPct}%` }} /></div>
+                <div className="flex justify-between items-end text-fluid-sm"><span className="font-bold text-aetox-text-main uppercase tracking-widest">{dict.benchmark.botLabel}</span><span className="font-bold text-aetox-accent">{calc.botHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
+                <div className="w-full h-2.5 md:h-3 bg-aetox-surface-high rounded-full overflow-hidden"><div className="h-full bg-aetox-accent shadow-aetox-glow transition-all duration-1000" style={{ width: `${calc.botBarPct}%` }} /></div>
               </div>
               <div className="space-y-2">
-                <div className="flex justify-between items-end text-xs md:text-sm"><span className="font-bold text-gray-500 uppercase tracking-widest">{dict.benchmark.manualLabel}</span><span className="font-bold text-rose-400">{calc.manualHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
-                <div className="w-full h-2.5 md:h-3 bg-white/5 rounded-full overflow-hidden"><div className="h-full w-full bg-rose-500/50" /></div>
+                <div className="flex justify-between items-end text-fluid-sm"><span className="font-bold text-aetox-text-muted uppercase tracking-widest">{dict.benchmark.manualLabel}</span><span className="font-bold text-aetox-error">{calc.manualHours.toFixed(1)} {dict.benchmark.unitTime}</span></div>
+                <div className="w-full h-2.5 md:h-3 bg-aetox-surface-high rounded-full overflow-hidden"><div className="h-full w-full bg-aetox-error" /></div>
               </div>
             </div>
           </div>

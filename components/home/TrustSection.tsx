@@ -40,30 +40,30 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-aetox-bg via-transparent to-transparent opacity-90" />
                 <div className="absolute bottom-4 left-5 right-5 md:bottom-5 md:left-6 md:right-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-[10px] font-black tracking-widest uppercase mb-1.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-fluid-label font-black tracking-widest uppercase mb-1.5">
                     <Star size={10} className="fill-yellow-500" /> {founder.accolade}
                   </div>
-                  <h4 className="text-aetox-text-main font-bold text-xs md:text-sm tracking-wide">{trust.recognition}</h4>
+                  <h4 className="text-aetox-text-main font-bold text-fluid-sm tracking-wide">{trust.recognition}</h4>
                 </div>
               </div>
 
               <div className="space-y-4 md:space-y-6 flex-1">
                 <div>
-                  <h2 className="text-2xl md:text-4xl font-bold text-aetox-text-main leading-tight mb-2 tracking-tight">
+                  <h2 className="text-fluid-h2 font-bold text-aetox-text-main leading-tight mb-2 tracking-tight">
                     {founder.name}
                   </h2>
-                  <p className="text-aetox-accent font-bold tracking-wide text-xs md:text-sm uppercase">
+                  <p className="text-aetox-accent font-bold tracking-wide text-fluid-sm uppercase">
                     {founder.title}
                   </p>
                 </div>
                 
-                <p className="text-sm md:text-base text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-6 opacity-90 whitespace-pre-line">
+                <p className="text-fluid-p text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-6 opacity-90 whitespace-pre-line">
                   &quot;{founder.description}&quot;
                 </p>
 
                 <div className="grid grid-cols-1 gap-3 md:gap-3.5 pt-2">
                   {standards.map((std: string, i: number) => (
-                    <div key={i} className="flex items-center gap-3 md:gap-3.5 text-aetox-text-main font-bold text-[12px] md:text-[13px]">
+                    <div key={i} className="flex items-center gap-3 md:gap-3.5 text-aetox-text-main font-bold text-fluid-sm">
                       <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
                       {std}
                     </div>
@@ -90,9 +90,9 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
               <div className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 border-b border-aetox-border">
                 <div className="flex items-center gap-3 md:gap-4">
                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
-                   <h3 className="text-aetox-text-main font-bold text-sm md:text-base tracking-tight uppercase">{trust.portfolio}</h3>
+                   <h3 className="text-aetox-text-main font-bold text-fluid-sm tracking-tight uppercase">{trust.portfolio}</h3>
                 </div>
-                <Link href="/authority" className="text-aetox-text-muted hover:text-aetox-text-main text-xs md:text-sm font-bold tracking-widest uppercase transition-colors">
+                <Link href="/authority" className="text-aetox-text-muted hover:text-aetox-text-main text-fluid-sm font-bold tracking-widest uppercase transition-colors">
                   {trust.viewFull}
                 </Link>
               </div>
@@ -116,8 +116,8 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                     className="aetox-card p-6 md:p-10 !rounded-[32px] group flex flex-col justify-center transition-all duration-500"
                   >
                     <Icon className="text-aetox-accent mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 w-7 h-7 md:w-8 md:h-8" />
-                    <h4 className="text-aetox-text-main font-bold text-sm md:text-lg tracking-tight mb-2 md:mb-3">{item.title}</h4>
-                    <p className="text-aetox-text-soft text-[12px] md:text-sm font-medium leading-relaxed">{item.desc}</p>
+                    <h4 className="text-aetox-text-main font-bold text-fluid-h4 tracking-tight mb-2 md:mb-3">{item.title}</h4>
+                    <p className="text-aetox-text-soft text-fluid-p font-medium leading-relaxed">{item.desc}</p>
                   </motion.div>
                 );
               })}

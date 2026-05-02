@@ -17,7 +17,7 @@ export default function CurrencySwitcher() {
         <button
           key={item.id}
           onClick={() => setCurrency(item.id as 'THB' | 'USD')}
-          className={`relative z-10 flex-1 px-5 py-2.5 text-xs font-black transition-all duration-300 rounded-xl ${
+          className={`relative z-10 flex-1 px-5 py-2.5 text-fluid-sm font-black transition-all duration-300 rounded-xl ${
             currency === item.id ? 'text-white' : 'text-aetox-text-muted hover:text-aetox-text-main'
           }`}
         >

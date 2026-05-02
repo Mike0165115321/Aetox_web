@@ -65,55 +65,55 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initialData, isEditing = fals
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900/50 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+    <form onSubmit={handleSubmit} className="space-y-6 bg-aetox-surface-lowest/50 p-8 rounded-2xl border border-aetox-border backdrop-blur-sm">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">ชื่อโปรเจกต์</label>
+          <label className="aetox-label">ชื่อโปรเจกต์</label>
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
             required
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-input"
             placeholder="เช่น BookMind: AI Knowledge Architect"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">Slug (URL)</label>
+          <label className="aetox-label">Slug (URL)</label>
           <input
             type="text"
             name="slug"
             value={formData.slug}
             onChange={handleChange}
             required
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-input"
             placeholder="เช่น bookmind-ai"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-400 mb-2">คำอธิบาย</label>
+        <label className="aetox-label">คำอธิบาย</label>
         <textarea
           name="description"
           value={formData.description}
           onChange={handleChange}
           required
           rows={4}
-          className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
+          className="aetox-input resize-none"
           placeholder="รายละเอียดของโปรเจกต์..."
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">หมวดหมู่</label>
+          <label className="aetox-label">หมวดหมู่</label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-select"
           >
             <option value="intelligence">Intelligence</option>
             <option value="execution">Execution</option>
@@ -123,74 +123,74 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initialData, isEditing = fals
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">ลูกค้า</label>
+          <label className="aetox-label">ลูกค้า</label>
           <input
             type="text"
             name="client"
             value={formData.client}
             onChange={handleChange}
             required
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-input"
             placeholder="เช่น Private Client"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">ปี</label>
+          <label className="aetox-label">ปี</label>
           <input
             type="text"
             name="year"
             value={formData.year}
             onChange={handleChange}
             required
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-input"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-400 mb-2">Cover Image URL</label>
+        <label className="aetox-label">Cover Image URL</label>
         <input
           type="text"
           name="image"
           value={formData.image}
           onChange={handleChange}
           required
-          className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+          className="aetox-input"
           placeholder="https://..."
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">GitHub URL (Optional)</label>
+          <label className="aetox-label">GitHub URL (Optional)</label>
           <input
             type="text"
             name="githubUrl"
             value={formData.githubUrl}
             onChange={handleChange}
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-input"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-400 mb-2">Live URL (Optional)</label>
+          <label className="aetox-label">Live URL (Optional)</label>
           <input
             type="text"
             name="liveUrl"
             value={formData.liveUrl}
             onChange={handleChange}
-            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="aetox-input"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-400 mb-2">Tags (คั่นด้วยเครื่องหมายคอมม่า)</label>
+        <label className="aetox-label">Tags (คั่นด้วยเครื่องหมายคอมม่า)</label>
         <input
           type="text"
           name="tags"
           value={formData.tags}
           onChange={handleChange}
-          className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+          className="aetox-input"
           placeholder="AI, Next.js, Automation"
         />
       </div>
@@ -199,7 +199,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initialData, isEditing = fals
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/20 transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+          className="w-full aetox-btn-main disabled:opacity-50"
         >
           {loading ? 'กำลังบันทึก...' : isEditing ? 'อัปเดตโปรเจกต์' : 'สร้างโปรเจกต์ใหม่'}
         </button>

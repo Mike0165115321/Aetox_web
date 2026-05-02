@@ -45,7 +45,7 @@ export default async function RootLayout({
   const lang = resolvedParams?.lang || 'th';
 
   return (
-    <html lang={lang} className={`${lexend.variable} ${ibmPlexThai.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang={lang} className={`${lexend.variable} ${ibmPlexThai.variable} ${inter.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="bg-aetox-bg text-aetox-text-main font-sans antialiased overflow-x-hidden min-h-screen">
         {/* ใช้ next/script พร้อม strategy="beforeInteractive" เพื่อให้รันก่อน React Hydrate */}
         <Script id="theme-initializer" strategy="beforeInteractive">

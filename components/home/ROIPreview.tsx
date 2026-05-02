@@ -26,7 +26,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
             <div className="inline-flex items-center gap-2 text-aetox-accent font-bold text-xs tracking-[0.2em] uppercase mb-6">
               <Calculator size={14} /> {dict.title}
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tighter mb-6">
+            <h2 className="text-fluid-h1 font-bold text-aetox-text-main leading-tight tracking-tighter mb-6">
               {dict.roiHeadline.white} <br />
               <span className="text-aetox-accent">{dict.roiHeadline.accent}</span>
             </h2>
@@ -50,7 +50,7 @@ export default function ROIPreview({ dict }: { dict: any }) {
         <div className="mt-16 text-center">
           <button 
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-10 py-5 rounded-2xl bg-white text-black font-bold text-sm md:text-base hover:bg-aetox-accent hover:text-white transition-all shadow-aetox-glow active:scale-95"
+            className="aetox-btn-main shadow-aetox-glow active:scale-95 text-fluid-p"
           >
             {dict.cta}
           </button>

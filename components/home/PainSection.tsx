@@ -32,19 +32,19 @@ const PainCard = ({ title, impact, cost, index, observationLabel, costLabel }: P
       </div>
 
       <div className="space-y-6 flex-1">
-        <h3 className="text-xl md:text-2xl font-bold text-aetox-text-main tracking-tight">
+        <h3 className="text-fluid-h3 font-bold text-aetox-text-main tracking-tight">
           {title}
         </h3>
         
         <div className="space-y-4">
           <div className="aetox-alert-error">
-            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">{observationLabel}</p>
-            <p className="text-aetox-text-main text-sm md:text-base font-bold leading-relaxed">{impact}</p>
+            <p className="text-fluid-label font-bold uppercase tracking-widest mb-1">{observationLabel}</p>
+            <p className="text-aetox-text-main text-fluid-p font-bold leading-relaxed">{impact}</p>
           </div>
           
           <div className="aetox-alert-accent">
-            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">{costLabel}</p>
-            <p className="text-aetox-text-soft text-sm md:text-base font-medium leading-relaxed italic">{cost}</p>
+            <p className="text-fluid-label font-bold uppercase tracking-widest mb-1">{costLabel}</p>
+            <p className="text-aetox-text-soft text-fluid-p font-medium leading-relaxed italic">{cost}</p>
           </div>
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function PainSection({ dict }: { dict: any }) {
         >
           <div className="p-8 aetox-card flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full">
             <div className="flex-1 text-center md:text-left">
-              <p className="text-aetox-text-main font-bold text-xl md:text-2xl tracking-tight">{dict.footerTitle}</p>
+              <p className="text-aetox-text-main font-bold text-fluid-h3 tracking-tight">{dict.footerTitle}</p>
               <p className="text-aetox-text-soft text-sm mt-2 font-medium tracking-wide">
                 {dict.footerDesc}
               </p>

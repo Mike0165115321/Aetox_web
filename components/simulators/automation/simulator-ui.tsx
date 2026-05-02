@@ -26,11 +26,11 @@ export function KpiCard({
   const [showInfo, setShowInfo] = useState(false);
 
   return (
-    <div className={`p-5 sm:p-6 rounded-2xl border transition-all duration-500 min-h-[140px] flex flex-col justify-between relative group ${accent ? 'bg-emerald-500/5 border-emerald-500/20 shadow-[0_0_30px_rgba(52,185,129,0.05)]' : 'bg-white/[0.03] border-white/10 hover:border-white/20'}`}>
+    <div className={`p-5 sm:p-6 rounded-2xl border transition-all duration-500 min-h-[140px] flex flex-col justify-between relative group ${accent ? 'bg-aetox-accent-subtle border-aetox-accent/20 shadow-aetox-glow' : 'bg-aetox-surface-lowest/50 border-aetox-border hover:border-aetox-border-strong'}`}>
       <div className="absolute top-4 right-4 z-20">
         <div className="relative group/tooltip">
           <button onMouseEnter={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} onClick={() => setShowInfo(!showInfo)} className="p-1 -m-1 focus:outline-none">
-            <HelpCircle size={16} className={`${showInfo ? 'text-emerald-400' : 'text-gray-600'} hover:text-emerald-400 cursor-help transition-colors`} />
+            <HelpCircle size={16} className={`${showInfo ? 'text-aetox-accent' : 'text-aetox-text-muted'} hover:text-aetox-accent cursor-help transition-colors`} />
           </button>
           <div className={`absolute right-0 top-7 w-64 p-4 bg-aetox-surface-high border border-aetox-border rounded-xl shadow-2xl transition-all duration-300 z-50 text-[11px] leading-relaxed text-aetox-text-soft font-medium ${showInfo ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
             {detail}
@@ -39,10 +39,10 @@ export function KpiCard({
         </div>
       </div>
       <div>
-        <p className="text-[11px] text-gray-500 font-bold mb-3 tracking-wide">{label}</p>
+        <p className="text-fluid-label text-aetox-text-muted font-bold mb-3 tracking-wide">{label}</p>
         <div className="space-y-2">
-          <p className={`text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none ${color}`}>{formatMoney(valInCurrency, false)}</p>
-          <p className={`text-[14px] font-bold ${color} opacity-70 tracking-wide`}>{unitLabel || 'Unit'}: {currency === 'THB' ? 'บาท (THB)' : 'USD'}</p>
+          <p className={`text-fluid-h2 font-bold tabular-nums leading-none ${color}`}>{formatMoney(valInCurrency, false)}</p>
+          <p className={`text-fluid-sm font-bold ${color} opacity-70 tracking-wide`}>{unitLabel || 'Unit'}: {currency === 'THB' ? 'บาท (THB)' : 'USD'}</p>
         </div>
       </div>
     </div>
@@ -73,8 +73,8 @@ export function SliderGroup({
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <label className="text-[11px] text-gray-500 uppercase tracking-widest font-bold">{label}</label>
-        <span className="text-sm font-bold text-white tabular-nums">{displayValue}</span>
+        <label className="text-fluid-label text-aetox-text-muted uppercase tracking-widest font-bold">{label}</label>
+        <span className="text-fluid-sm font-bold text-aetox-text-main tabular-nums">{displayValue}</span>
       </div>
       <input 
         type="range" 
@@ -83,7 +83,7 @@ export function SliderGroup({
         step={step} 
         value={value} 
         onChange={(e) => onChange(Number(e.target.value))} 
-        className={`w-full h-1.5 rounded-full cursor-pointer bg-white/10 ${accent}`} 
+        className={`w-full h-1.5 rounded-full cursor-pointer bg-aetox-surface-high ${accent}`} 
       />
     </div>
   );

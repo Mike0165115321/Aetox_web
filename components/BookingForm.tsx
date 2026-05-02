@@ -48,18 +48,18 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 key="success"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass-card rounded-3xl p-12 text-center border-cyber-blue/30 shadow-cyber-glow"
+                className="aetox-card p-12 text-center border-aetox-accent/30 shadow-aetox-glow"
               >
                 <div className="w-20 h-20 bg-aetox-accent/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-aetox-accent/20">
                   <CheckCircle2 className="w-10 h-10 text-aetox-accent" />
                 </div>
                 <h3 className="text-3xl font-bold text-aetox-text-main mb-4">{success.title}</h3>
-                <p className="text-aetox-text-soft text-lg max-w-md mx-auto leading-relaxed">
+                <p className="text-fluid-p text-aetox-text-soft max-w-md mx-auto leading-relaxed">
                   {success.message}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
-                  className="mt-10 text-aetox-accent hover:text-aetox-text-main transition-colors font-bold text-sm uppercase tracking-widest"
+                  className="mt-10 text-aetox-accent hover:text-aetox-text-main transition-colors font-bold text-fluid-sm uppercase tracking-[0.2em]"
                 >
                   {success.close}
                 </button>
@@ -85,7 +85,7 @@ export default function BookingForm({ dict }: { dict?: any }) {
                 <button 
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-6 rounded-2xl bg-aetox-accent text-white font-bold text-lg md:text-xl tracking-[0.2em] uppercase hover:bg-aetox-accent-hover transition-all transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 group shadow-aetox-glow"
+                  className="w-full py-6 aetox-btn-main group disabled:opacity-50 text-fluid-p"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />

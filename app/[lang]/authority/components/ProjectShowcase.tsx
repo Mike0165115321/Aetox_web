@@ -39,7 +39,7 @@ export default function ProjectShowcase({ content }: { content: any }) {
                 `}
               >
                 <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-aetox-accent'}`} />
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em]">{cat.label}</span>
+                <span className="text-fluid-label font-bold uppercase tracking-[0.2em]">{cat.label}</span>
               </button>
             );
           })}
@@ -65,7 +65,7 @@ export default function ProjectShowcase({ content }: { content: any }) {
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-32 border border-dashed border-aetox-border rounded-[40px] bg-aetox-surface-lowest/50">
-            <p className="text-aetox-text-muted font-bold uppercase tracking-[0.3em] text-xs">
+            <p className="text-aetox-text-muted font-bold uppercase tracking-[0.3em] text-fluid-sm">
               {content.noItems || "Coming Soon..."}
             </p>
           </div>

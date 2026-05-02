@@ -37,7 +37,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 text-aetox-accent font-bold text-xs tracking-[0.3em] uppercase mb-6"
+              className="inline-flex items-center gap-2 text-aetox-accent font-bold text-fluid-label tracking-[0.3em] uppercase mb-6"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
               Service Architecture
@@ -54,7 +54,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-aetox-text-soft text-xl leading-relaxed max-w-2xl font-medium"
+              className="text-fluid-p text-aetox-text-soft leading-relaxed max-w-2xl font-medium"
             >
               {dict.hero.description}
             </motion.p>
@@ -87,9 +87,9 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
                              <div className="absolute right-0 top-10 w-80 p-6 rounded-[32px] bg-aetox-surface-highest/95 backdrop-blur-3xl border border-aetox-border opacity-0 group-hover/info:opacity-100 pointer-events-none transition-all transform translate-y-2 group-hover/info:translate-y-0 z-50 shadow-aetox-card">
                                 <div className="flex items-center gap-2 mb-4">
                                   <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
-                                  <p className="text-aetox-accent text-[11px] font-black uppercase tracking-widest">{dict.technicalLabel}</p>
+                                  <p className="text-aetox-accent text-fluid-label font-black uppercase tracking-widest">{dict.technicalLabel}</p>
                                 </div>
-                                <p className="text-aetox-text-main text-xs leading-relaxed font-bold">
+                                <p className="text-aetox-text-main text-fluid-sm leading-relaxed font-bold">
                                    {service.highlight}
                                 </p>
                              </div>
@@ -100,7 +100,7 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
                           <Icon className="w-8 h-8 text-aetox-accent" />
                         </div>
                         
-                        <div className="text-aetox-accent text-xs font-bold uppercase tracking-[0.2em] mb-4">
+                        <div className="text-aetox-accent text-fluid-label font-bold uppercase tracking-[0.2em] mb-4">
                           {service.tag}
                         </div>
                         
@@ -109,22 +109,22 @@ export default function ServicesClient({ dict, navDict }: { dict: any, navDict: 
                             <h2 className="text-fluid-h3 font-black text-aetox-text-main mb-4 group-hover:text-aetox-accent transition-colors tracking-tight">
                               {service.title}
                             </h2>
-                            <p className="text-aetox-text-soft text-sm md:text-base leading-relaxed font-medium">
+                            <p className="text-fluid-p text-aetox-text-soft leading-relaxed font-medium">
                               {service.desc}
                             </p>
                           </div>
 
                           <div className="p-8 rounded-[32px] bg-aetox-accent/5 border border-aetox-accent/10 relative overflow-hidden group/benefit group-hover:bg-aetox-accent/10 transition-colors duration-500">
                              <div className="absolute left-0 top-0 bottom-0 w-1 bg-aetox-accent shadow-aetox-glow" />
-                             <p className="text-aetox-accent text-[11px] font-bold uppercase tracking-[0.3em] mb-4 opacity-80">{dict.benefitLabel}</p>
-                             <p className="text-aetox-text-main text-base font-bold leading-relaxed italic tracking-tight">
+                             <p className="text-aetox-accent text-fluid-label font-bold uppercase tracking-[0.3em] mb-4 opacity-80">{dict.benefitLabel}</p>
+                             <p className="text-fluid-p text-aetox-text-main font-bold leading-relaxed italic tracking-tight">
                                 &quot;{service.benefit}&quot;
                              </p>
                           </div>
                         </div>
                         
                         <div className="mt-12">
-                          <div className="w-full py-5 px-8 rounded-2xl bg-aetox-surface-lowest border border-aetox-border flex items-center justify-center gap-3 text-aetox-text-main font-bold text-sm tracking-widest uppercase transition-all duration-300 group-hover:bg-aetox-accent group-hover:text-white group-hover:border-aetox-accent group-hover:shadow-aetox-glow">
+                          <div className="w-full py-5 px-8 rounded-2xl bg-aetox-surface-lowest border border-aetox-border flex items-center justify-center gap-3 text-aetox-text-main font-bold text-fluid-sm tracking-widest uppercase transition-all duration-300 group-hover:bg-aetox-accent group-hover:text-white group-hover:border-aetox-accent group-hover:shadow-aetox-glow">
                             {dict.ctaLabel} 
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                           </div>

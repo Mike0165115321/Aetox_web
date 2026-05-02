@@ -32,7 +32,7 @@ export default function ServiceCard({ id, title, description, features, relatedP
       {features && (
         <ul className="space-y-4 mb-10 flex-grow">
           {features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-3 text-[11px] font-bold text-aetox-text-soft uppercase tracking-widest leading-tight">
+            <li key={i} className="flex items-start gap-3 text-fluid-label font-bold text-aetox-text-soft uppercase tracking-widest leading-tight">
               <Check className="w-3.5 h-3.5 text-aetox-accent mt-0.5 shrink-0" />
               <span>{feature}</span>
             </li>
@@ -42,10 +42,10 @@ export default function ServiceCard({ id, title, description, features, relatedP
 
       {relatedProjects && relatedProjects.length > 0 && (
         <div className="mt-auto pt-8 border-t border-aetox-border/50 w-full">
-          <p className="text-xs text-aetox-text-muted mb-4 font-bold tracking-wide">{deploymentLabel || 'Enterprise Deployment'}</p>
+          <p className="text-fluid-label text-aetox-text-muted mb-4 font-bold tracking-wide">{deploymentLabel || 'Enterprise Deployment'}</p>
           <ul className="space-y-3">
             {relatedProjects.map((project, i) => (
-              <li key={i} className="flex items-center gap-3 text-xs md:text-sm font-bold text-aetox-text-soft hover:text-aetox-text-main transition-colors cursor-pointer tracking-tight">
+              <li key={i} className="flex items-center gap-3 text-fluid-sm font-bold text-aetox-text-soft hover:text-aetox-text-main transition-colors cursor-pointer tracking-tight">
                 <LinkIcon className="w-3 h-3 text-aetox-accent" />
                 <span>{project}</span>
               </li>

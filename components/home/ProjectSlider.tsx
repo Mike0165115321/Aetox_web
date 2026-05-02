@@ -51,19 +51,19 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
             <div className="max-w-4xl space-y-6 md:space-y-8">
               {/* Category */}
               <div className="flex items-center gap-4">
-                <span className="px-4 py-1.5 rounded-full bg-aetox-accent text-white text-[11px] md:text-sm font-bold tracking-[0.2em] uppercase shadow-aetox-glow">
+                <span className="px-4 py-1.5 rounded-full bg-aetox-accent text-white text-fluid-label font-bold tracking-[0.2em] uppercase shadow-aetox-glow">
                   {projects[current].category}
                 </span>
                 <div className="h-px w-16 bg-white/20" />
               </div>
 
               {/* Title - Large & Readable */}
-              <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.4] md:leading-[1.2] tracking-tight py-2">
+              <h3 className="text-fluid-h1 font-bold text-white leading-tight tracking-tight py-2">
                 {projects[current].title}
               </h3>
 
               {/* Description - Scaled Up */}
-              <p className="text-aetox-text-soft text-base md:text-xl font-medium leading-relaxed max-w-3xl opacity-90 line-clamp-3">
+              <p className="text-fluid-p text-white/80 font-medium leading-relaxed max-w-3xl line-clamp-3">
                 {projects[current].description}
               </p>
 
@@ -71,7 +71,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
               <div className="pt-6 md:pt-10 flex flex-wrap items-center gap-10">
                 <Link 
                   href={`/authority/${projects[current].category}/${projects[current].slug}`}
-                  className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-white text-black font-bold text-base md:text-lg overflow-hidden transition-all active:scale-95 shadow-2xl"
+                  className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-white text-black font-bold text-fluid-p overflow-hidden transition-all active:scale-95 shadow-2xl"
                 >
                   <span className="relative z-10">{viewDetailsLabel || 'ดูรายละเอียด'}</span>
                   <ArrowRight size={22} className="relative z-10 group-hover:translate-x-1 transition-transform" />
@@ -99,13 +99,13 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
       <div className="absolute top-10 right-10 z-30 flex gap-3">
         <button 
           onClick={prev}
-          className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent transition-all active:scale-90"
+          className="w-14 h-14 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent hover:text-white transition-all active:scale-90"
         >
           <ArrowLeft size={24} />
         </button>
         <button 
           onClick={next}
-          className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-aetox-accent transition-all active:scale-90"
+          className="w-14 h-14 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent hover:text-white transition-all active:scale-90"
         >
           <ArrowRight size={24} />
         </button>

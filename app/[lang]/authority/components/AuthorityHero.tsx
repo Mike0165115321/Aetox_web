@@ -18,7 +18,7 @@ export default function AuthorityHero({ content }: { content: any }) {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 mb-8"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
-            <span className="text-[11px] font-bold text-aetox-accent uppercase tracking-[0.2em]">{content.hero.badge}</span>
+            <span className="text-fluid-label font-bold text-aetox-accent uppercase tracking-[0.2em]">{content.hero.badge}</span>
           </motion.div>
           
           <motion.h1 
