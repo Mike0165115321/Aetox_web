@@ -17,12 +17,12 @@ export default function ServiceVisualCard({
   minHeight = "min-h-[450px]" 
 }: ServiceVisualCardProps) {
   return (
-    <div className={`glass-card p-5 lg:p-6 rounded-[32px] border border-white/10 relative flex flex-col shadow-2xl bg-black/40 ${minHeight} ${className}`}>
-      {/* Centralized Grid Pattern - No more double grids! */}
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-10 pointer-events-none" />
+    <div className={`aetox-card p-8 lg:p-10 relative flex flex-col overflow-hidden ${minHeight} ${className}`}>
+      {/* Centralized Grid Pattern using new Design System */}
+      <div className="aetox-grid-overlay opacity-20" />
       
       {/* Content Container */}
-      <div className="relative z-10 flex flex-col h-full">
+      <div className="relative z-10 flex flex-col h-full font-sans">
         {children}
       </div>
     </div>

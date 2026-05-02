@@ -55,60 +55,65 @@ export function OrchestratorVisual({ dict, labels }: { dict: any; labels: any })
   const phaseData = dict.phases;
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Bot className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] rotate-12 pointer-events-none" />
+      
+      <div className="flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-aetox-accent" />
-          <span 
-            style={{ fontFamily: 'var(--font-ibm-plex-thai), sans-serif' }} 
-            className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest"
-          >
+          <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">
             {labels.orchestration}
           </span>
         </div>
         <div className="text-[9px] font-mono text-aetox-text-muted bg-aetox-surface-low px-2 py-0.5 rounded border border-aetox-border font-sans">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[280px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
-            <motion.div key="decomp" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} className="w-full space-y-3">
-              <div className="p-3 rounded-xl bg-aetox-surface-low border border-aetox-border">
-                <div className="text-[8px] font-bold text-aetox-text-muted mb-1">{dict.complexQuery}</div>
-                <div className="text-[11px] text-aetox-text-main">{dict.energyRisk}</div>
+            <motion.div key="decomp" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} className="w-full space-y-6">
+              <div className="w-full max-w-[340px] mx-auto p-6 rounded-2xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border shadow-2xl relative group">
+                <div className="text-[9px] font-bold text-aetox-text-muted uppercase mb-2 tracking-widest">{dict.complexQuery}</div>
+                <div className="text-[11px] font-medium text-aetox-text-main line-clamp-1">{dict.energyRisk}</div>
               </div>
-              <div className="flex justify-center"><div className="px-2 py-0.5 rounded-full bg-aetox-accent/10 border border-aetox-accent/30 text-[8px] font-bold text-aetox-accent">{dict.subTasks}</div></div>
+              <div className="flex justify-center"><div className="px-4 py-1.5 rounded-full bg-aetox-accent/10 border border-aetox-accent/30 text-[9px] font-bold text-aetox-accent uppercase tracking-widest">{dict.subTasks}</div></div>
 
-              <div className="grid grid-cols-2 gap-2">
-                {[dict.marketTrends, dict.financials].map((q, i) => (
-                  <div key={i} className="p-2 rounded-lg bg-aetox-surface-low/30 border border-aetox-border text-[9px] text-aetox-text-soft truncate text-center">{q}</div>
+              <div className="grid grid-cols-2 gap-4">
+                {[dict.marketTrends, dict.financials, dict.riskAnalysis, dict.competitors].map((q, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, x: i % 2 === 0 ? -10 : 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-4 rounded-xl bg-aetox-surface-low/50 border border-aetox-border text-[10px] text-aetox-text-soft text-center group-hover:border-aetox-accent/30 transition-colors"
+                  >
+                    {q || 'Processing...'}
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
           )}
           {phase === 1 && (
             <motion.div key="parallel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex items-center justify-around relative">
-              {/* Central Connection Beam */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-px bg-aetox-accent/10">
                 <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }} className="w-20 h-full bg-gradient-to-r from-transparent via-aetox-accent to-transparent" />
               </div>
 
               {[1,2,3].map((a) => (
-                <div key={a} className="flex flex-col items-center gap-3 relative z-10">
+                <div key={a} className="flex flex-col items-center gap-4 relative z-10">
                   <div className="relative group">
                     <motion.div 
                       animate={{ rotate: 360, borderColor: ['rgba(10,132,255,0.1)', 'rgba(16,185,129,0.4)', 'rgba(10,132,255,0.1)'] }} 
                       transition={{ duration: 4, repeat: Infinity, ease: 'linear' }} 
-                      className="w-14 h-14 rounded-full border border-dashed flex items-center justify-center bg-black/40 backdrop-blur-sm"
+                      className="w-16 h-16 rounded-full border border-dashed flex items-center justify-center bg-aetox-surface-lowest/50 backdrop-blur-md"
                     />
                     <motion.div 
                       animate={{ opacity: [0.3, 0.6, 0.3] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute inset-0 rounded-full bg-aetox-accent/5 shadow-[0_0_20px_rgba(10,132,255,0.1)]"
+                      className="absolute inset-0 rounded-full bg-aetox-accent/5"
                     />
-                    <Bot className="absolute inset-0 m-auto w-6 h-6 text-aetox-accent" />
-                    
-                    {/* Status Dot */}
-                    <div className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-black shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                    <Bot className="absolute inset-0 m-auto w-7 h-7 text-aetox-accent" />
+                    <div className="absolute top-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-aetox-surface-lowest" />
                   </div>
                   
                   <div className="text-center space-y-1 font-sans">
@@ -116,7 +121,7 @@ export function OrchestratorVisual({ dict, labels }: { dict: any; labels: any })
                     <motion.div 
                       animate={{ color: ['#86868B', '#0A84FF', '#86868B'] }}
                       transition={{ duration: 2, repeat: Infinity, delay: a * 0.3 }}
-                      className="text-[9px] font-mono font-bold tabular-nums"
+                      className="text-[10px] font-mono font-bold tabular-nums"
                     >
                       {(85 + a * 4).toFixed(1)}%
                     </motion.div>
@@ -126,31 +131,30 @@ export function OrchestratorVisual({ dict, labels }: { dict: any; labels: any })
             </motion.div>
           )}
           {phase === 2 && (
-            <motion.div key="synthesis" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.1 }} className="w-full space-y-4 font-sans">
-              <div className="flex justify-center -space-x-2">
-                {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-lg bg-aetox-surface-low border border-aetox-border flex items-center justify-center"><FileText className="w-4 h-4 text-aetox-text-muted" /></div>)}
+            <motion.div key="synthesis" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.1 }} className="w-full space-y-6 font-sans">
+              <div className="flex justify-center -space-x-3">
+                {[1,2,3].map(i => <div key={i} className="w-10 h-10 rounded-xl bg-aetox-surface-low border border-aetox-border flex items-center justify-center shadow-lg"><FileText className="w-5 h-5 text-aetox-text-muted" /></div>)}
               </div>
-              <div className="p-4 rounded-xl bg-aetox-accent/10 border border-aetox-accent/40 shadow-aetox-glow">
-                <div className="text-[9px] font-bold text-aetox-accent uppercase mb-1.5">{dict.consolidatedReport}</div>
-
-                <div className="space-y-1">
-                  {[1,2].map(i => <div key={i} className="h-1 bg-aetox-accent/30 rounded-full" style={{ width: `${100-i*20}%` }} />)}
+              <div className="p-6 rounded-2xl bg-aetox-accent/5 border border-aetox-accent/20 backdrop-blur-sm">
+                <div className="text-[9px] font-bold text-aetox-accent uppercase mb-3 tracking-widest">{dict.consolidatedReport}</div>
+                <div className="space-y-2">
+                  {[1,2].map(i => <div key={i} className="h-1.5 bg-aetox-accent/20 rounded-full" style={{ width: `${100-i*20}%` }} />)}
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-      <div className="mt-4 p-4 h-[90px] rounded-2xl bg-aetox-surface-low/30 border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
+      <div className="mt-6 p-6 h-[100px] rounded-2xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
         <div className="absolute top-0 left-0 w-1 h-full bg-aetox-accent opacity-30" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1 font-sans">
-            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight">{phaseData[phase].title}</div>
+            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight uppercase">{phaseData[phase].title}</div>
             <div className="text-[9px] text-aetox-text-soft leading-relaxed font-medium">{phaseData[phase].desc}</div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-2 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
-          <motion.div key={`or-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent shadow-aetox-glow" />
+        <div className="mt-4 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
+          <motion.div key={`or-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent" />
         </div>
       </div>
     </div>
@@ -168,106 +172,103 @@ export function HybridRetrievalVisual({ dict, labels }: { dict: any; labels: any
   const phaseData = dict.phases;
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Search className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] -rotate-12 pointer-events-none" />
+      
+      <div className="flex items-center justify-between mb-6 relative z-10">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-aetox-accent" />
           <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest font-sans">{labels.hybridRetrieval}</span>
         </div>
         <div className="text-[9px] font-mono text-aetox-text-muted bg-aetox-surface-low px-2 py-0.5 rounded border border-aetox-border">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[280px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
-            <motion.div key="hyde" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col items-center gap-4">
-              <div className="w-full px-4 py-2 rounded-xl bg-aetox-surface-low border border-aetox-border flex items-center gap-3">
+            <motion.div key="hyde" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col items-center gap-6">
+              <div className="w-full px-6 py-4 rounded-2xl bg-aetox-surface-low/50 backdrop-blur border border-aetox-border flex items-center gap-4">
                 <div className="text-[8px] font-bold text-aetox-text-muted uppercase w-12 shrink-0">{dict.query}</div>
-                <div className="flex-1 h-1.5 bg-aetox-surface-lowest rounded-full" />
+                <div className="flex-1 h-2 bg-aetox-surface-lowest rounded-full" />
               </div>
-              <div className="flex flex-col items-center gap-0.5">
-                <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-aetox-accent/40 text-sm">↓</motion.div>
-                <span className="text-[8px] font-bold text-aetox-accent uppercase bg-aetox-accent/10 border border-aetox-accent/20 px-2 py-0.5 rounded-full">{dict.hypothetical}</span>
-                <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="text-aetox-accent/40 text-sm">↓</motion.div>
+              <div className="flex flex-col items-center gap-1">
+                <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-aetox-accent/40 text-lg">↓</motion.div>
+                <span className="text-[8px] font-bold text-aetox-accent uppercase bg-aetox-accent/10 border border-aetox-accent/20 px-3 py-1 rounded-full">{dict.hypothetical}</span>
+                <motion.div animate={{ scaleY: [0.8, 1.2, 0.8] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="text-aetox-accent/40 text-lg">↓</motion.div>
               </div>
-              <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="w-full px-4 py-3 rounded-xl bg-aetox-accent/10 border border-aetox-accent/40 shadow-[0_0_30px_rgba(10,132,255,0.15)]">
-                <div className="flex justify-between items-center mb-2">
+              <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="w-full px-6 py-5 rounded-2xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border">
+                <div className="flex justify-between items-center mb-4">
                   <div className="text-[8px] font-bold text-aetox-text-main uppercase tracking-widest">{dict.vector}</div>
-                  <div className="text-[7px] font-mono text-emerald-400 font-bold">INDEX_ACTIVE_99.2%</div>
+                  <div className="text-[7px] font-mono text-emerald-400 font-bold">99.2%</div>
                 </div>
-
-                <div className="flex gap-1.5 h-16 items-end">
+                <div className="flex gap-2 h-16 items-end">
                   {[60, 85, 45, 90, 70, 55, 80, 40, 65, 50].map((h, i) => (
-                    <motion.div 
-                      key={i} 
-                      animate={{ 
-                        height: [`${h * 0.15}px`, `${h * 0.22}px`, `${h * 0.15}px`],
-                        backgroundColor: i % 3 === 0 ? 'rgba(16,185,129,0.5)' : 'rgba(10,132,255,0.5)'
-                      }} 
-                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }} 
-                      className="flex-1 rounded-sm shadow-aetox-glow/10" 
-                    />
+                    <motion.div key={i} animate={{ height: [`${h * 0.15}px`, `${h * 0.25}px`, `${h * 0.15}px`] }} transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }} className="flex-1 bg-aetox-accent/40 rounded-t-sm" />
                   ))}
                 </div>
               </motion.div>
             </motion.div>
           )}
           {phase === 1 && (
-            <motion.div key="hybrid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-3 font-sans">
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-1.5"><div className="px-1.5 py-0.5 rounded bg-aetox-accent/20 border border-aetox-accent/30 text-[7px] font-bold text-aetox-accent uppercase">Semantic GPU</div><div className="flex-1 h-px bg-aetox-surface-low" /></div>
-                <div className="relative h-6 rounded-lg bg-aetox-surface-low border border-aetox-accent/20 overflow-hidden">
-                  <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-aetox-accent/30 to-transparent" />
-                  <div className="absolute inset-0 flex items-center px-3 gap-1">
-                    {[1, 0.6, 0.9, 0.4, 0.8].map((v, i) => (
-                      <motion.div key={i} className="flex-1 bg-aetox-accent/60" style={{ height: `${v * 12}px` }} />
-                    ))}
-                  </div>
+            <motion.div key="hybrid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-8 font-sans px-8 py-10">
+              {/* Semantic Map Visual */}
+              <div className="relative h-24 mb-6">
+                <div className="absolute inset-0 bg-aetox-accent/5 rounded-full blur-3xl" />
+                <div className="flex items-center justify-around h-full">
+                  {[1,2,3,4,5,6].map(i => (
+                    <motion.div 
+                      key={i} 
+                      animate={{ 
+                        scale: [1, 1.2, 1], 
+                        opacity: [0.3, 0.7, 0.3],
+                        y: [0, i % 2 === 0 ? 10 : -10, 0]
+                      }} 
+                      transition={{ duration: 3, delay: i * 0.2, repeat: Infinity }}
+                      className="w-2 h-2 rounded-full bg-aetox-accent shadow-[0_0_8px_rgba(10,132,255,0.8)]" 
+                    />
+                  ))}
                 </div>
               </div>
+              
               <div className="relative">
-                <div className="flex items-center gap-2 mb-1.5"><div className="px-1.5 py-0.5 rounded bg-aetox-text-muted/20 border border-aetox-border text-[7px] font-bold text-aetox-text-soft uppercase">Keyword Match</div><div className="flex-1 h-px bg-aetox-surface-low" /></div>
-                <div className="relative h-6 rounded-lg bg-aetox-surface-low border border-aetox-border overflow-hidden">
-                  <div className="absolute inset-0 flex items-center px-3 gap-2">
-                    {['vc', 'ai', 'q4'].map((kw, i) => (
-                      <div key={i} className="text-[7px] font-mono text-aetox-text-soft bg-aetox-surface-lowest px-1 rounded border border-aetox-border">{kw}</div>
-                    ))}
+                <div className="flex items-center gap-2 mb-3"><div className="px-2 py-0.5 rounded bg-aetox-accent/10 border border-aetox-accent/30 text-[7px] font-bold text-aetox-accent uppercase tracking-widest">Semantic Vector</div><div className="flex-1 h-px bg-aetox-border" /></div>
+                <div className="relative h-12 rounded-2xl bg-aetox-surface-low/50 backdrop-blur border border-aetox-accent/20 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center px-6 gap-3">
+                    {[1, 0.6, 0.9, 0.4, 0.8, 0.7, 1].map((v, i) => <motion.div key={i} className="flex-1 bg-aetox-accent/40" style={{ height: `${v * 32}px` }} />)}
                   </div>
                 </div>
               </div>
             </motion.div>
           )}
           {phase === 2 && (
-            <motion.div key="rerank" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-2 font-sans">
+            <motion.div key="rerank" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-4 font-sans">
               {[{ label: 'Doc A', score: 0.94, skip: true }, { label: 'Doc B', score: 0.61, skip: false }].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="text-[8px] font-bold text-aetox-text-muted w-8">{item.label}</div>
-                  <div className="flex-1 h-3 rounded bg-aetox-surface-low border border-aetox-border overflow-hidden relative">
-                    <motion.div animate={{ width: `${item.score * 100}%` }} className={`h-full ${item.score >= 0.7 ? 'bg-aetox-accent/50' : 'bg-aetox-text-muted/20'} rounded`} />
+                <div key={i} className="flex items-center gap-4">
+                  <div className="text-[9px] font-bold text-aetox-text-muted w-10 uppercase">{item.label}</div>
+                  <div className="flex-1 h-4 rounded-lg bg-aetox-surface-low border border-aetox-border overflow-hidden">
+                    <motion.div animate={{ width: `${item.score * 100}%` }} className={`h-full ${item.score >= 0.7 ? 'bg-aetox-accent/40' : 'bg-aetox-text-muted/20'}`} />
                   </div>
-                  <div className={`text-[8px] font-bold w-6 text-right ${item.score >= 0.7 ? 'text-aetox-accent' : 'text-aetox-text-muted'}`}>{item.score}</div>
-                  <div className={`text-[6px] font-bold px-1 py-0.5 rounded ${item.skip ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-500' : 'bg-aetox-surface-low text-aetox-text-muted'}`}>
-                    {item.skip ? labels.skip : labels.rank}
-                  </div>
+                  <div className={`text-[9px] font-bold w-8 text-right ${item.score >= 0.7 ? 'text-aetox-accent' : 'text-aetox-text-muted'}`}>{item.score}</div>
                 </div>
               ))}
-              <div className="mt-2 flex items-center justify-center gap-2 px-3 py-1 rounded-xl bg-aetox-accent/5 border border-aetox-accent/20">
-                <Zap className="w-2.5 h-2.5 text-aetox-accent" />
+              <div className="mt-6 flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-aetox-accent/5 border border-aetox-accent/20">
+                <Zap className="w-3 h-3 text-aetox-accent" />
                 <span className="text-[8px] font-bold text-aetox-text-main uppercase tracking-widest">{dict.threshold}</span>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-      <div className="mt-4 p-4 h-[90px] rounded-2xl bg-aetox-surface-low/30 border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
+      <div className="mt-6 p-6 h-[100px] rounded-2xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
         <div className="absolute top-0 left-0 w-1 h-full bg-aetox-accent opacity-30" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1 font-sans">
-            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight">{phaseData[phase].title}</div>
+            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight uppercase">{phaseData[phase].title}</div>
             <div className="text-[9px] text-aetox-text-soft leading-relaxed font-medium">{phaseData[phase].desc}</div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-2 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
-          <motion.div key={`hr-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent shadow-aetox-glow" />
+        <div className="mt-4 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
+          <motion.div key={`hr-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent" />
         </div>
       </div>
     </div>
@@ -285,92 +286,82 @@ export function SelfCorrectionVisual({ dict, labels }: { dict: any; labels: any 
   const phaseData = dict.phases;
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <ShieldCheck className="absolute -bottom-12 -right-12 w-64 h-64 text-emerald-500 opacity-[0.03] rotate-12 pointer-events-none" />
+      
+      <div className="flex items-center justify-between mb-6 relative z-10">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-aetox-accent" />
           <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest font-sans">{labels.selfCorrection}</span>
         </div>
         <div className="text-[9px] font-mono text-aetox-text-muted bg-aetox-surface-low px-2 py-0.5 rounded border border-aetox-border">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[280px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
-            <motion.div key="check" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-4 w-full font-sans">
-              <div className="relative w-20 h-20">
+            <motion.div key="check" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-6 w-full font-sans">
+              <div className="relative w-24 h-24">
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-aetox-surface-low" />
-                  <motion.circle cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="220" initial={{ strokeDashoffset: 220 }} animate={{ strokeDashoffset: 130 }} transition={{ duration: 1.5 }} className="text-red-500" />
+                  <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="6" fill="transparent" className="text-aetox-surface-low" />
+                  <motion.circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="6" fill="transparent" strokeDasharray="251" initial={{ strokeDashoffset: 251 }} animate={{ strokeDashoffset: 145 }} transition={{ duration: 1.5 }} className="text-red-500" />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-lg font-bold text-red-500">42%</span>
-                  <span className="text-[6px] font-bold text-aetox-text-muted uppercase tracking-widest">{dict.confidence}</span>
+                  <span className="text-xl font-bold text-red-500">42%</span>
+                  <span className="text-[7px] font-bold text-aetox-text-muted uppercase tracking-widest">{dict.confidence}</span>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[8px] font-bold text-red-500 uppercase tracking-widest animate-pulse">{dict.lowPrecision}</div>
+              <div className="px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-[9px] font-bold text-red-500 uppercase tracking-widest">{dict.lowPrecision}</div>
             </motion.div>
           )}
           {phase === 1 && (
-            <motion.div key="loop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-4 w-full font-sans">
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 rounded-xl bg-aetox-surface-low border border-aetox-border flex items-center justify-center opacity-50 relative">
-                  <Database className="w-6 h-6 text-aetox-text-muted" />
-                </div>
-                <motion.div animate={{ rotate: -360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="text-aetox-accent relative">
-                  <RefreshCw className="w-8 h-8" />
-                  <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1, repeat: Infinity }} className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-aetox-accent shadow-aetox-glow" />
-                </motion.div>
-                <div className="w-12 h-12 rounded-xl bg-aetox-accent/10 border border-aetox-accent/30 flex items-center justify-center shadow-aetox-glow relative">
-                  <Search className="w-6 h-6 text-aetox-accent" />
-                </div>
+            <motion.div key="loop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-8 w-full font-sans">
+              <div className="flex items-center gap-8">
+                <div className="w-16 h-16 rounded-2xl bg-aetox-surface-low border border-aetox-border flex items-center justify-center opacity-50"><Database className="w-8 h-8 text-aetox-text-muted" /></div>
+                <motion.div animate={{ rotate: -360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="text-aetox-accent"><RefreshCw className="w-10 h-10" /></motion.div>
+                <div className="w-16 h-16 rounded-2xl bg-aetox-accent/10 border border-aetox-accent/30 flex items-center justify-center"><Search className="w-8 h-8 text-aetox-accent" /></div>
               </div>
-              
-              <div className="w-full max-w-[200px] space-y-2">
-                <div className="flex justify-between items-center text-[7px] font-bold text-aetox-accent/70 uppercase tracking-widest">
+              <div className="w-full max-w-[240px] space-y-3">
+                <div className="flex justify-between text-[8px] font-bold text-aetox-accent/70 uppercase tracking-widest">
                   <span>{dict.requerying}</span>
                   <motion.span animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.5, repeat: Infinity }}>SYNCING...</motion.span>
                 </div>
-                <div className="h-1.5 w-full bg-aetox-surface-low rounded-full overflow-hidden border border-aetox-border">
-                  <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }} className="w-1/2 h-full bg-gradient-to-r from-transparent via-aetox-accent to-transparent" />
-                </div>
-                <div className="flex flex-col gap-1 pt-1">
-                  {[1, 2].map(i => (
-                    <div key={i} className="flex justify-between items-center text-[6px] font-mono text-aetox-text-muted">
-                      <span>LOG_FIX_ID_{4820 + i}</span>
-                      <span className="text-emerald-500/60 font-bold">REPAIRED</span>
-                    </div>
-                  ))}
+                <div className="h-2 w-full bg-aetox-surface-low rounded-full overflow-hidden border border-aetox-border">
+                  <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }} className="w-1/2 h-full bg-aetox-accent" />
                 </div>
               </div>
             </motion.div>
           )}
           {phase === 2 && (
-            <motion.div key="optimized" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-4 w-full font-sans">
-              <div className="relative w-20 h-20">
+            <motion.div key="optimized" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center gap-6 w-full font-sans">
+              <div className="relative w-32 h-32">
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-aetox-surface-low" />
-                  <motion.circle cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="220" initial={{ strokeDashoffset: 220 }} animate={{ strokeDashoffset: 10 }} transition={{ duration: 1.5 }} className="text-emerald-500" />
+                  <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-aetox-surface-low" />
+                  <motion.circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="8" fill="transparent" strokeDasharray="351" initial={{ strokeDashoffset: 351 }} animate={{ strokeDashoffset: 14 }} transition={{ duration: 1.5 }} className="text-emerald-500" />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-lg font-bold text-emerald-500">96%</span>
-                  <span className="text-[6px] font-bold text-aetox-text-muted uppercase tracking-widest">{dict.confidence}</span>
+                  <motion.span initial={{ scale: 0.5 }} animate={{ scale: 1 }} className="text-3xl font-bold text-emerald-500">96%</motion.span>
+                  <span className="text-[8px] font-bold text-aetox-text-muted uppercase tracking-widest">{dict.confidence}</span>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[8px] font-bold text-emerald-500 uppercase tracking-widest">{dict.optimized}</div>
+              <div className="flex gap-2">
+                {[1,2,3,4,5].map(i => <motion.div key={i} animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1, delay: i * 0.1, repeat: Infinity }} className="w-1.5 h-1.5 rounded-full bg-emerald-500" />)}
+              </div>
+              <div className="px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-500 uppercase tracking-widest">{dict.optimized}</div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-      <div className="mt-4 p-4 h-[90px] rounded-2xl bg-aetox-surface-low/30 border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
+      <div className="mt-6 p-6 h-[100px] rounded-2xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
         <div className="absolute top-0 left-0 w-1 h-full bg-aetox-accent opacity-30" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1 font-sans">
-            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight">{phaseData[phase].title}</div>
+            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight uppercase">{phaseData[phase].title}</div>
             <div className="text-[9px] text-aetox-text-soft leading-relaxed font-medium">{phaseData[phase].desc}</div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-2 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
-          <motion.div key={`sc-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent shadow-aetox-glow" />
+        <div className="mt-4 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
+          <motion.div key={`sc-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent" />
         </div>
       </div>
     </div>
@@ -388,66 +379,72 @@ export function StrategicOutputVisual({ dict, labels }: { dict: any; labels: any
   const phaseData = dict.phases;
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Zap className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] -rotate-12 pointer-events-none" />
+      
+      <div className="flex items-center justify-between mb-6 relative z-10">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-aetox-accent" />
           <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest font-sans">{labels.strategicGen}</span>
         </div>
         <div className="text-[9px] font-mono text-aetox-text-muted bg-aetox-surface-low px-2 py-0.5 rounded border border-aetox-border">{phaseData[phase].tag}</div>
       </div>
-      <div className="flex-1 flex items-center justify-center relative min-h-[240px]">
+      <div className="flex-1 flex items-center justify-center relative min-h-[280px]">
         <AnimatePresence mode="wait">
           {phase === 0 && (
-            <motion.div key="roles" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-3 font-sans">
+            <motion.div key="roles" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full space-y-4 font-sans">
               {[labels.planner, labels.analyst].map((r, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-aetox-surface-low border border-aetox-border relative group overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-aetox-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-8 h-8 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center text-aetox-accent shadow-aetox-glow/20">
-                      <Bot size={16} />
+                <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-aetox-surface-low/50 backdrop-blur border border-aetox-border">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center text-aetox-accent">
+                      <Bot size={20} />
                     </div>
-                    <div className="space-y-0.5">
+                    <div className="space-y-1">
                       <div className="text-[9px] font-bold text-aetox-text-main uppercase tracking-widest">{r}</div>
-                      <div className="flex gap-0.5">
-                        {[1,2,3,4,5].map(b => (
-                          <motion.div key={b} animate={{ height: [2, 6, 2] }} transition={{ duration: 0.5 + b*0.1, repeat: Infinity }} className="w-0.5 bg-aetox-accent/40" />
-                        ))}
-                      </div>
+                      <div className="flex gap-1">{[1,2,3,4,5].map(b => <motion.div key={b} animate={{ height: [4, 10, 4] }} transition={{ duration: 0.5 + b*0.1, repeat: Infinity }} className="w-1 bg-aetox-accent/40 rounded-full" />)}</div>
                     </div>
                   </div>
-                  <div className="text-[7px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 relative z-10 uppercase">Active</div>
+                  <div className="text-[8px] font-bold text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 uppercase">Active</div>
                 </div>
               ))}
             </motion.div>
           )}
           {phase === 1 && (
-            <motion.div key="synthesis" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-4 font-sans">
-              <div className="relative">
-                <motion.div animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="w-16 h-16 rounded-full border border-dashed border-aetox-accent/20" />
-                <Cpu className="absolute inset-0 m-auto w-6 h-6 text-aetox-accent opacity-50" />
+            <motion.div key="synthesis" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-6 font-sans">
+              <div className="relative w-20 h-20 flex items-center justify-center">
+                <motion.div animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="w-full h-full rounded-full border border-dashed border-aetox-accent/30" />
+                <Cpu className="absolute w-8 h-8 text-aetox-accent" />
               </div>
-              <div className="space-y-1.5"><div className="w-16 h-1 bg-aetox-accent/30 rounded-full" /><div className="w-24 h-1 bg-aetox-surface-low rounded-full" /></div>
+              <div className="space-y-3"><div className="w-24 h-2 bg-aetox-accent/30 rounded-full" /><div className="w-32 h-2 bg-aetox-surface-low rounded-full" /></div>
             </motion.div>
           )}
           {phase === 2 && (
-            <motion.div key="output" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full p-4 rounded-xl bg-aetox-surface-low border border-aetox-border font-mono text-[9px] text-aetox-text-soft">
-              <span className="text-aetox-accent">{dict.suggestion}</span> {dict.liquidity}
+            <motion.div key="output" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full p-8 rounded-3xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border font-mono text-[11px] md:text-sm text-aetox-text-soft leading-relaxed shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity"><Zap className="w-6 h-6 text-aetox-accent" /></div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-2 h-2 rounded-full bg-aetox-accent animate-ping" />
+                <span className="text-aetox-accent font-bold uppercase tracking-widest text-[10px]">{dict.suggestion}</span>
+              </div>
+              <p className="text-aetox-text-main font-medium italic">&quot;{dict.liquidity}&quot;</p>
+              <div className="mt-4 pt-4 border-t border-aetox-border flex justify-between items-center text-[9px] uppercase tracking-tighter text-aetox-text-muted">
+                <span>Enterprise Strategy Engine</span>
+                <span className="text-emerald-500">READY</span>
+              </div>
             </motion.div>
           )}
-
         </AnimatePresence>
       </div>
-      <div className="mt-4 p-4 h-[90px] rounded-2xl bg-aetox-surface-low/30 border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
+      <div className="mt-6 p-6 h-[100px] rounded-2xl bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border relative overflow-hidden flex flex-col justify-center font-sans">
         <div className="absolute top-0 left-0 w-1 h-full bg-aetox-accent opacity-30" />
         <AnimatePresence mode="wait">
           <motion.div key={phase} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="space-y-1 font-sans">
-            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight">{phaseData[phase].title}</div>
+            <div className="text-[10px] font-bold text-aetox-text-main tracking-tight uppercase">{phaseData[phase].title}</div>
             <div className="text-[9px] text-aetox-text-soft leading-relaxed font-medium">{phaseData[phase].desc}</div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-2 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
-          <motion.div key={`sg-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent shadow-aetox-glow" />
+        <div className="mt-4 h-0.5 w-full bg-aetox-surface-low rounded-full overflow-hidden">
+          <motion.div key={`sg-${phase}`} initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="h-full bg-aetox-accent" />
         </div>
       </div>
     </div>
@@ -470,37 +467,47 @@ export function RealTimeStreamVisual({ dict, labels }: { dict: any; labels: any 
   }, [fullText]);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-6">
+    <div className="flex flex-col h-full relative overflow-hidden">
+      {/* Big Background Icon */}
+      <RefreshCw className="absolute -bottom-12 -right-12 w-64 h-64 text-emerald-500 opacity-[0.03] rotate-45 pointer-events-none" />
+
+      <div className="flex items-center justify-between mb-6 relative z-10">
         <div className="flex items-center gap-2">
           <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-aetox-accent" />
           <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{labels.streamInterface}</span>
         </div>
         <div className="text-[9px] font-mono text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-widest">Live SSE</div>
       </div>
-      <div className="flex-1 flex items-center justify-center h-[220px] font-sans">
-        <div className="w-full p-5 rounded-2xl bg-black/60 border border-aetox-border font-mono text-[11px] leading-relaxed text-aetox-text-soft relative overflow-hidden group h-full shadow-inner">
-          <div className="absolute inset-0 bg-aetox-surface-low/5 bg-[length:20px_20px] opacity-[0.03]" />
-          <div className="absolute top-0 right-0 p-3 opacity-20"><Zap className="w-5 h-5 text-aetox-accent shadow-aetox-glow" /></div>
-          <div className="relative z-10">
-            <span className="text-aetox-accent mr-2 tracking-tighter opacity-70 font-bold"># inference_output_{">"}</span>
+      <div className="flex-1 flex flex-col justify-center gap-6">
+        <div className="p-8 rounded-3xl bg-aetox-surface-low/60 backdrop-blur-lg border border-aetox-border relative overflow-hidden group shadow-2xl">
+          <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
+            <Zap className="w-8 h-8 text-aetox-accent" />
+          </div>
+          <div className="relative z-10 font-mono text-[10px] md:text-xs leading-relaxed">
+            <span className="text-aetox-accent mr-2 font-bold tracking-tighter"># inference_output_{">"}</span>
             <span className="text-aetox-text-main drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">{streamText}</span>
             <motion.span 
               animate={{ opacity: [0, 1, 0] }} 
               transition={{ duration: 0.8, repeat: Infinity }} 
-              className="inline-block w-2 h-4 bg-aetox-accent ml-1 align-middle shadow-[0_0_10px_rgba(10,132,255,0.8)]" 
+              className="inline-block w-2 h-4 bg-aetox-accent ml-1 align-middle" 
             />
           </div>
         </div>
       </div>
-      <div className="mt-4 p-4 h-[90px] flex items-center justify-between px-2 bg-aetox-surface-low/30 border border-aetox-border rounded-2xl font-sans">
-        <div className="flex gap-4">
-          <div className="space-y-1"><div className="text-[7px] text-aetox-text-muted font-bold uppercase">{dict.latency}</div><div className="text-[10px] font-mono text-aetox-text-main">42ms</div></div>
-          <div className="space-y-1"><div className="text-[7px] text-aetox-text-muted font-bold uppercase">{dict.throughput}</div><div className="text-[10px] font-mono text-aetox-text-main">124 t/s</div></div>
+      <div className="mt-6 p-6 h-[100px] flex items-center justify-between px-6 bg-aetox-surface-lowest/40 backdrop-blur-xl border border-aetox-border rounded-2xl font-sans">
+        <div className="flex gap-8">
+          <div className="space-y-1.5">
+            <div className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">{dict.latency}</div>
+            <div className="text-xs font-mono text-aetox-text-main font-bold">42ms</div>
+          </div>
+          <div className="space-y-1.5">
+            <div className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">{dict.throughput}</div>
+            <div className="text-xs font-mono text-aetox-text-main font-bold">124 t/s</div>
+          </div>
         </div>
-        <div className="flex items-center gap-2 text-[8px] font-bold text-emerald-500 uppercase tracking-widest">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-emerald-glow animate-pulse" />
-          {dict.synchronized}
+        <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/5 border border-emerald-500/20">
+          <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+          <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">{dict.synchronized}</span>
         </div>
       </div>
     </div>
@@ -523,39 +530,58 @@ export function AiShowcase({ dict }: { dict: any }) {
   ];
 
   return (
-    <div className="space-y-6">
-      <ServiceVisualCard minHeight="h-[560px] lg:h-[620px]">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div 
-            key={activeStep} 
-            initial={{ opacity: 0, x: 20 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            exit={{ opacity: 0, x: -20 }} 
-            transition={{ duration: 0.3 }}
-            className="relative z-10 w-full flex flex-col"
-          >
-            <div className="flex-1 bg-gradient-to-b from-transparent to-black/40 relative">
-              {visuals[activeStep % visuals.length]}
-            </div>
-            <div className="mt-6 p-6 md:p-8 bg-aetox-surface-lowest/90 backdrop-blur-3xl border border-aetox-border space-y-3 shrink-0 rounded-[32px] h-auto min-h-[160px] flex flex-col justify-center font-sans shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-1 h-full bg-aetox-accent opacity-50 group-hover:opacity-100 transition-opacity" />
-              <div className="space-y-1">
-                <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 0.8, y: 0 }} className="text-aetox-accent text-[10px] font-bold uppercase tracking-widest block mb-1 font-sans">
-                  {steps[activeStep]?.subtitle || 'Aetox AI'}
-                </motion.span>
-                <motion.h3 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-2xl lg:text-3xl font-bold text-aetox-text-main leading-tight tracking-tight font-sans">
-                  {steps[activeStep]?.title || 'Loading...'}
-                </motion.h3>
+    <div className="space-y-8 font-sans">
+        
+        <ServiceVisualCard minHeight="h-[540px] lg:h-[620px]" className="relative z-10 overflow-hidden !p-0">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div 
+              key={activeStep} 
+              initial={{ opacity: 0, scale: 0.98 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              exit={{ opacity: 0, scale: 1.02 }} 
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="relative z-10 w-full h-full flex flex-col"
+            >
+              {/* Visual Area with Big Icon Background */}
+              <div className="flex-1 relative overflow-hidden p-8 lg:p-10">
+                {visuals[activeStep % visuals.length]}
               </div>
-              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-aetox-text-soft text-sm md:text-base leading-relaxed font-medium">
-                {steps[activeStep]?.desc || '...'}
-              </motion.p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </ServiceVisualCard>
 
-      <div className="relative flex items-center justify-between h-12 mt-4 font-sans">
+              {/* Integrated Info Panel - Refined Spacing */}
+              <div className="relative mt-auto">
+                <div className="absolute inset-0 bg-aetox-surface-lowest/90 backdrop-blur-xl border-t border-aetox-border" />
+                <div className="relative p-10 lg:p-12 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="px-4 py-1.5 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 text-[10px] font-bold text-aetox-accent uppercase tracking-[0.2em]">
+                      Step 0{activeStep + 1}
+                    </div>
+                    <div className="h-px flex-1 bg-aetox-border/50" />
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="text-2xl lg:text-3xl font-bold text-aetox-text-main tracking-tight leading-tight"
+                    >
+                      {steps[activeStep]?.title}
+                    </motion.h3>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      transition={{ delay: 0.1 }}
+                      className="text-aetox-text-soft text-sm md:text-base leading-relaxed max-w-[90%] font-medium"
+                    >
+                      {steps[activeStep]?.desc}
+                    </motion.p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </ServiceVisualCard>
+
+      <div className="relative flex items-center justify-between h-14 px-2 font-sans">
         <div className="flex gap-2">
           {steps.map((_: any, i: number) => (
             <button 
@@ -565,9 +591,19 @@ export function AiShowcase({ dict }: { dict: any }) {
             />
           ))}
         </div>
-        <div className="flex gap-2">
-          <button onClick={() => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length)} className="w-10 h-10 rounded-full border border-aetox-border flex items-center justify-center text-aetox-text-main hover:bg-aetox-surface-low transition-all active:scale-75 hover:scale-105">←</button>
-          <button onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} className="w-10 h-10 rounded-full border border-aetox-border bg-aetox-surface-low flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent/20 transition-all active:scale-75 hover:scale-105">→</button>
+        <div className="flex gap-3">
+          <button 
+            onClick={() => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length)} 
+            className="w-12 h-12 rounded-full border border-aetox-border bg-aetox-surface-low/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent/10 hover:border-aetox-accent/30 transition-all active:scale-90 group"
+          >
+            <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
+          </button>
+          <button 
+            onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)} 
+            className="w-12 h-12 rounded-full border border-aetox-border bg-aetox-surface-low/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent/10 hover:border-aetox-accent/30 transition-all active:scale-90 group"
+          >
+            <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+          </button>
         </div>
       </div>
     </div>

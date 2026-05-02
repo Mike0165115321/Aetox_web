@@ -10,13 +10,16 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
   ];
 
   return (
-    <div className="aetox-glass-card p-6 rounded-[32px] relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
-      <div className="aetox-grid-overlay opacity-10" />
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center gap-2 mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
-            <span className="text-fluid-label font-black text-aetox-accent tracking-widest uppercase">{dict.title}</span>
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Layers className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] rotate-12 pointer-events-none" />
+      
+      <div className="flex items-center justify-between mb-8 relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
+          <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{dict.title}</span>
         </div>
+      </div>
         
         <div className="flex-1 flex flex-col gap-4 justify-center items-center">
             {tasks.map((task, i) => (
@@ -41,20 +44,22 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
                 </motion.div>
             ))}
         </div>
-      </div>
     </div>
   );
 }
 
 export function ScalableBotsVisual({ dict }: { dict: any }) {
   return (
-    <div className="aetox-glass-card p-6 rounded-[32px] relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
-      <div className="aetox-grid-overlay opacity-10" />
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center gap-2 mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
-            <span className="text-fluid-label font-black text-emerald-500 tracking-widest uppercase">{dict.title}</span>
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Rocket className="absolute -bottom-12 -right-12 w-64 h-64 text-emerald-500 opacity-[0.03] -rotate-12 pointer-events-none" />
+
+      <div className="flex items-center justify-between mb-8 relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
+          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">{dict.title}</span>
         </div>
+      </div>
 
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             <div className="grid grid-cols-2 gap-4 w-full">
@@ -84,7 +89,6 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
                 ))}
             </div>
         </div>
-      </div>
     </div>
   );
 }
@@ -97,13 +101,16 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
   ];
 
   return (
-    <div className="aetox-glass-card p-6 rounded-[32px] relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl">
-      <div className="aetox-grid-overlay opacity-10" />
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center gap-2 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_10px_#6366F1]" />
-            <span className="text-fluid-label font-black text-indigo-400 tracking-widest uppercase">{dict.title}</span>
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Activity className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] rotate-12 pointer-events-none" />
+
+      <div className="flex items-center justify-between mb-6 relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_10px_#6366F1]" />
+          <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">{dict.title}</span>
         </div>
+      </div>
 
         <div className="flex-1 space-y-4">
             <div className="bg-aetox-surface-lowest/90 border border-aetox-border rounded-2xl p-4 shadow-xl">
@@ -147,7 +154,6 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
                 </div>
             </div>
         </div>
-      </div>
     </div>
   );
 }

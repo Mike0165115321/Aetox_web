@@ -7,7 +7,7 @@ export const iconMap: any = {
 };
 
 export const colorMap: any = {
-  'ai-agents': { color: 'text-cyber-blue', bg: 'bg-cyber-blue/10', border: 'border-cyber-blue/20' },
-  'automation': { color: 'text-deep-blue', bg: 'bg-deep-blue/10', border: 'border-deep-blue/20' },
-  'web-systems': { color: 'text-cyber-blue', bg: 'bg-cyber-blue/10', border: 'border-cyber-blue/20' }
+  'ai-agents': { color: 'text-aetox-accent', bg: 'bg-aetox-accent/10', border: 'border-aetox-accent/20' },
+  'automation': { color: 'text-aetox-accent', bg: 'bg-aetox-accent/10', border: 'border-aetox-accent/20' },
+  'web-systems': { color: 'text-aetox-accent', bg: 'bg-aetox-accent/10', border: 'border-aetox-accent/20' }
 };

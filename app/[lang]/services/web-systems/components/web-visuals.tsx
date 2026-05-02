@@ -4,20 +4,23 @@ import { Globe, Database, Layout, Search, Bot, Shield, Lock } from 'lucide-react
 
 export function StackArchitectureVisual({ dict }: { dict: any }) {
   return (
-    <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center gap-2 mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" />
-            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">{dict.title}</span>
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Globe className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] rotate-12 pointer-events-none" />
+      
+      <div className="flex items-center justify-between mb-8 relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
+          <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{dict.title}</span>
         </div>
+      </div>
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             <div className="relative w-full h-[320px] flex items-center justify-center" style={{ perspective: '2000px' }}>
                 
                 {/* Core Data Beam */}
                 <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
-                   <div className="w-[1px] h-[80%] bg-gradient-to-b from-transparent via-cyber-blue/30 to-transparent" />
-                   <motion.div animate={{ y: [-120, 120], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }} className="absolute w-[3px] h-[40px] bg-cyber-blue shadow-[0_0_15px_#06B6D4] rounded-full blur-[1px]" />
+                   <div className="w-[1px] h-[80%] bg-gradient-to-b from-transparent via-aetox-accent/30 to-transparent" />
+                   <motion.div animate={{ y: [-120, 120], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }} className="absolute w-[3px] h-[40px] bg-aetox-accent shadow-[0_0_15px_#0a84ff] rounded-full blur-[1px]" />
                 </div>
 
                 {/* Layer 3: Cloud Infrastructure (Bottom) */}
@@ -40,18 +43,18 @@ export function StackArchitectureVisual({ dict }: { dict: any }) {
                   initial={{ rotateX: 60, rotateZ: -35 }}
                   animate={{ y: [-10, 0, -10] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                  className="absolute w-[220px] h-[140px] bg-cyber-blue/10 border border-cyber-blue/30 rounded-[32px] backdrop-blur-2xl flex items-center justify-center shadow-[0_20px_40px_rgba(6,182,212,0.15)] z-20"
+                  className="absolute w-[220px] h-[140px] bg-aetox-accent/10 border border-aetox-accent/30 rounded-[32px] backdrop-blur-2xl flex items-center justify-center shadow-[0_20px_40px_rgba(10,132,255,0.15)] z-20"
                 >
-                   <div className="absolute inset-0 bg-gradient-to-tr from-cyber-blue/10 to-transparent rounded-[32px]" />
-                   <div className="w-12 h-12 border border-cyber-blue/50 rounded-2xl flex items-center justify-center bg-cyber-blue/5 shadow-[inset_0_0_20px_rgba(6,182,212,0.2)]">
-                      <span className="text-cyber-blue font-black text-lg tracking-tighter">TS</span>
-                   </div>
-                   <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center">
-                     <span className="text-[10px] font-black text-cyber-blue uppercase tracking-widest">{dict.core}</span>
-                     <div className="flex gap-1">
-                       {[1,2,3].map(i => <div key={i} className="w-1 h-1 bg-cyber-blue rounded-full" />)}
-                     </div>
-                   </div>
+                   <div className="absolute inset-0 bg-gradient-to-tr from-aetox-accent/10 to-transparent rounded-[32px]" />
+                    <div className="w-12 h-12 border border-aetox-accent/50 rounded-2xl flex items-center justify-center bg-aetox-accent/5 shadow-[inset_0_0_20px_rgba(10,132,255,0.2)]">
+                       <span className="text-aetox-accent font-black text-lg tracking-tighter">TS</span>
+                    </div>
+                    <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center">
+                      <span className="text-[10px] font-black text-aetox-accent uppercase tracking-widest">{dict.core}</span>
+                      <div className="flex gap-1">
+                        {[1,2,3].map(i => <div key={i} className="w-1 h-1 bg-aetox-accent rounded-full" />)}
+                      </div>
+                    </div>
                 </motion.div>
 
                 {/* Layer 1: Modern App Router (Top) */}
@@ -65,41 +68,43 @@ export function StackArchitectureVisual({ dict }: { dict: any }) {
                    <Layout className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
                    <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center">
                      <span className="text-[10px] font-black text-white uppercase tracking-widest">{dict.router}</span>
-                     <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-cyber-blue/20 text-cyber-blue border border-cyber-blue/30">V14</span>
+                     <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-aetox-accent/20 text-aetox-accent border border-aetox-accent/30">V14</span>
                    </div>
                 </motion.div>
                 
             </div>
         </div>
-      </div>
     </div>
   );
 }
 
 export function DataPipelineVisual({ dict }: { dict: any }) {
   return (
-    <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center gap-2 mb-4 z-20 relative">
-            <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" />
-            <span className="text-[10px] font-bold text-cyber-blue tracking-widest">{dict.title}</span>
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Database className="absolute -bottom-12 -right-12 w-64 h-64 text-aetox-accent opacity-[0.03] -rotate-12 pointer-events-none" />
+
+      <div className="flex items-center justify-between mb-4 relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
+          <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{dict.title}</span>
         </div>
+      </div>
         <div className="flex-1 flex flex-col justify-center items-center w-full relative">
             
             {/* Connecting Network Lines */}
             <div className="absolute inset-0 flex justify-center items-center opacity-60">
                <svg className="w-full h-full absolute top-0 left-0" viewBox="0 0 200 200" preserveAspectRatio="none">
                  <path d="M 100 20 L 100 100" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-                 <path d="M 100 100 L 40 160" stroke="rgba(6,182,212,0.2)" strokeWidth="2" fill="none" />
-                 <path d="M 100 100 L 160 160" stroke="rgba(6,182,212,0.2)" strokeWidth="2" fill="none" />
+                 <path d="M 100 100 L 40 160" stroke="rgba(10,132,255,0.2)" strokeWidth="2" fill="none" />
+                 <path d="M 100 100 L 160 160" stroke="rgba(10,132,255,0.2)" strokeWidth="2" fill="none" />
                </svg>
             </div>
             
             <div className="absolute inset-0 w-[200px] h-[200px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                 <motion.div animate={{ top: ['10%', '50%'], opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }} className="absolute left-[calc(50%-2px)] w-1 h-1 bg-white rounded-full shadow-cyber-glow" />
-                <motion.div animate={{ top: ['50%', '80%'], left: ['50%', '20%'], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5, ease: "linear" }} className="absolute w-1.5 h-1.5 bg-cyber-blue rounded-full shadow-cyber-glow" />
-                <motion.div animate={{ top: ['50%', '80%'], left: ['50%', '80%'], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 1, ease: "linear" }} className="absolute w-1.5 h-1.5 bg-cyber-blue rounded-full shadow-cyber-glow" />
+                <motion.div animate={{ top: ['50%', '80%'], left: ['50%', '20%'], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5, ease: "linear" }} className="absolute w-1.5 h-1.5 bg-aetox-accent rounded-full shadow-cyber-glow" />
+                <motion.div animate={{ top: ['50%', '80%'], left: ['50%', '80%'], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 1, ease: "linear" }} className="absolute w-1.5 h-1.5 bg-aetox-accent rounded-full shadow-cyber-glow" />
             </div>
 
             <div className="relative w-[200px] h-[200px]">
@@ -109,51 +114,53 @@ export function DataPipelineVisual({ dict }: { dict: any }) {
                 </motion.div>
 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                   <motion.div animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute -inset-6 border border-dashed border-cyber-blue/30 rounded-full" />
+                   <motion.div animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute -inset-6 border border-dashed border-aetox-accent/30 rounded-full" />
                    <motion.div animate={{ rotate: -360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute -inset-3 border border-white/5 rounded-full" />
-                   <div className="w-16 h-16 bg-aetox-surface-lowest border border-cyber-blue/50 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-[0_0_40px_rgba(6,182,212,0.3)] relative overflow-hidden">
-                      <div className="absolute inset-0 bg-cyber-blue/10 animate-pulse" />
-                      <Database className="w-7 h-7 text-cyber-blue relative z-10 drop-shadow-lg" />
+                   <div className="w-16 h-16 bg-aetox-surface-lowest border border-aetox-accent/50 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-[0_0_40px_rgba(10,132,255,0.3)] relative overflow-hidden">
+                      <div className="absolute inset-0 bg-aetox-accent/10 animate-pulse" />
+                      <Database className="w-7 h-7 text-aetox-accent relative z-10 drop-shadow-lg" />
                    </div>
-                   <div className="absolute -right-16 top-1/2 -translate-y-1/2 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.schema}</div>
+                   <div className="absolute -right-16 top-1/2 -translate-y-1/2 text-[8px] font-bold text-aetox-accent uppercase tracking-widest whitespace-nowrap">{dict.schema}</div>
                 </div>
 
-                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} className="absolute bottom-0 left-2 w-12 h-12 bg-aetox-surface-lowest border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
-                   <Globe className="w-5 h-5 text-cyber-blue drop-shadow-[0_0_5px_#06B6D4]" />
-                   <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.analytics}</div>
+                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} className="absolute bottom-0 left-2 w-12 h-12 bg-aetox-surface-lowest border border-aetox-accent/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
+                   <Globe className="w-5 h-5 text-aetox-accent drop-shadow-[0_0_5px_#0a84ff]" />
+                   <div className="absolute -bottom-6 text-[8px] font-bold text-aetox-accent uppercase tracking-widest whitespace-nowrap">{dict.analytics}</div>
                 </motion.div>
 
-                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="absolute bottom-0 right-2 w-12 h-12 bg-aetox-surface-lowest border border-cyber-blue/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
-                   <Bot className="w-5 h-5 text-cyber-blue drop-shadow-[0_0_5px_#06B6D4]" />
-                   <div className="absolute -bottom-6 text-[8px] font-bold text-cyber-blue uppercase tracking-widest whitespace-nowrap">{dict.aiReady}</div>
+                <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="absolute bottom-0 right-2 w-12 h-12 bg-aetox-surface-lowest border border-aetox-accent/30 rounded-2xl backdrop-blur-xl flex items-center justify-center shadow-xl z-10">
+                   <Bot className="w-5 h-5 text-aetox-accent drop-shadow-[0_0_5px_#0a84ff]" />
+                   <div className="absolute -bottom-6 text-[8px] font-bold text-aetox-accent uppercase tracking-widest whitespace-nowrap">{dict.aiReady}</div>
                 </motion.div>
             </div>
         </div>
-      </div>
     </div>
   );
 }
 
 export function SecurityShieldVisual({ dict }: { dict: any }) {
   return (
-    <div className="glass-card p-6 rounded-[24px] border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-between shadow-2xl bg-black/20">
-      <div className="absolute inset-0 bg-cyber-grid bg-[length:20px_20px] opacity-10" />
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center gap-2 mb-2 z-20 relative">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
-            <span className="text-[10px] font-bold text-emerald-500 tracking-widest">{dict.title}</span>
+    <div className="flex flex-col h-full font-sans relative overflow-hidden">
+      {/* Big Background Icon */}
+      <Shield className="absolute -bottom-12 -right-12 w-64 h-64 text-emerald-500 opacity-[0.03] rotate-12 pointer-events-none" />
+
+      <div className="flex items-center justify-between mb-2 relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
+          <span className="text-[10px] font-bold text-emerald-500 tracking-widest">{dict.title}</span>
         </div>
+      </div>
         <div className="flex-1 flex flex-col items-center justify-center relative w-full scale-90">
             <div className="relative w-[220px] h-[220px] flex items-center justify-center">
-               <motion.div animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full opacity-30" style={{ background: 'conic-gradient(from 0deg, transparent 0%, rgba(6,182,212,0.4) 10%, transparent 40%)' }} />
+               <motion.div animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full opacity-30" style={{ background: 'conic-gradient(from 0deg, transparent 0%, rgba(10,132,255,0.4) 10%, transparent 40%)' }} />
                <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute inset-0 border-[2px] border-dashed border-red-500/30 rounded-full" />
                <motion.div animate={{ x: [-110, -70, -110], opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute left-1/2 top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_15px_red]" />
                <motion.div animate={{ x: [110, 70, 110], opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} className="absolute right-1/2 top-[30%] w-2 h-2 bg-red-500 rounded-full shadow-[0_0_15px_red]" />
                <motion.div animate={{ y: [110, 70, 110], opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }} transition={{ duration: 2.2, repeat: Infinity, delay: 0.2 }} className="absolute bottom-1/2 left-[40%] w-2 h-2 bg-red-500 rounded-full shadow-[0_0_15px_red]" />
-               <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute inset-10 border-[2px] border-cyber-blue/40 rounded-full flex items-center justify-center shadow-[inset_0_0_20px_rgba(6,182,212,0.1)]">
-                  <div className="absolute top-0 -mt-1.5 w-3 h-3 bg-aetox-surface-lowest border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
-                  <div className="absolute bottom-0 -mb-1.5 w-3 h-3 bg-aetox-surface-lowest border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
-                  <div className="absolute left-0 -ml-1.5 w-3 h-3 bg-aetox-surface-lowest border border-cyber-blue rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-cyber-blue rounded-full" /></div>
+               <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute inset-10 border-[2px] border-aetox-accent/40 rounded-full flex items-center justify-center shadow-[inset_0_0_20px_rgba(10,132,255,0.1)]">
+                  <div className="absolute top-0 -mt-1.5 w-3 h-3 bg-aetox-surface-lowest border border-aetox-accent rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-aetox-accent rounded-full" /></div>
+                  <div className="absolute bottom-0 -mb-1.5 w-3 h-3 bg-aetox-surface-lowest border border-aetox-accent rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-aetox-accent rounded-full" /></div>
+                  <div className="absolute left-0 -ml-1.5 w-3 h-3 bg-aetox-surface-lowest border border-aetox-accent rounded-full shadow-cyber-glow flex items-center justify-center"><div className="w-1 h-1 bg-aetox-accent rounded-full" /></div>
                </motion.div>
                <div className="absolute inset-[65px] bg-aetox-surface-lowest border border-emerald-500/50 rounded-full backdrop-blur-2xl flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.3)] overflow-hidden z-10">
                   <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute inset-1.5 border border-dashed border-emerald-500/30 rounded-full flex items-center justify-center">
@@ -168,18 +175,17 @@ export function SecurityShieldVisual({ dict }: { dict: any }) {
                </div>
             </div>
             <div className="absolute bottom-0 flex flex-wrap justify-center gap-2 px-2 w-full z-30">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-aetox-border rounded-lg text-[9px] font-bold text-aetox-text-soft uppercase shadow-xl backdrop-blur-md">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.rbac}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-aetox-border rounded-lg text-[9px] font-bold text-aetox-text-soft uppercase shadow-xl backdrop-blur-md">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.encryption}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-white/10 rounded-lg text-[9px] font-bold text-gray-300 uppercase shadow-xl backdrop-blur-md">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-aetox-surface-lowest border border-aetox-border rounded-lg text-[9px] font-bold text-aetox-text-soft uppercase shadow-xl backdrop-blur-md">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_#10B981]" /> {dict.threatShield}
               </div>
             </div>
         </div>
-      </div>
     </div>
   );
 }
