@@ -3,9 +3,8 @@ import { motion } from 'framer-motion';
 import { Award, Shield, CheckCircle2, ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import ProjectSlider from './ProjectSlider';
 
-export default function TrustSection({ dict, projects }: { dict: any, projects: any[] }) {
+export default function TrustSection({ dict }: { dict: any }) {
   if (!dict) return null;
   
   const trust = dict.trust || dict;
@@ -61,14 +60,7 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                   &quot;{founder.description}&quot;
                 </p>
 
-                <div className="grid grid-cols-1 gap-3 md:gap-3.5 pt-2">
-                  {standards.map((std: string, i: number) => (
-                    <div key={i} className="flex items-center gap-3 md:gap-3.5 text-aetox-text-main font-bold text-fluid-sm">
-                      <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow" />
-                      {std}
-                    </div>
-                  ))}
-                </div>
+
               </div>
 
               <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-aetox-border">
@@ -81,29 +73,23 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
 
           {/* Right: Portfolio & Balanced Content */}
           <div className="lg:col-span-7 space-y-4 md:space-y-8">
-            {/* Elite Portfolio Section */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="aetox-card p-1 !rounded-[40px] overflow-hidden transition-all duration-500 shadow-xl"
-            >
-              <div className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 border-b border-aetox-border">
-                <div className="flex items-center gap-3 md:gap-4">
-                   <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-aetox-accent shadow-aetox-glow animate-pulse" />
-                   <h3 className="text-aetox-text-main font-bold text-fluid-sm tracking-tight uppercase">{trust.portfolio}</h3>
-                </div>
-                <Link href="/authority" className="text-aetox-text-muted hover:text-aetox-text-main text-fluid-sm font-bold tracking-widest uppercase transition-colors">
-                  {trust.viewFull}
-                </Link>
-              </div>
-
-              <div className="overflow-hidden">
-                <ProjectSlider projects={projects} viewDetailsLabel={dict.common?.labels?.viewDetails} />
-              </div>
-            </motion.div>
-
             {/* Strategic Value Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {/* Engineering Standards as Cards */}
+              {standards.map((std: string, idx: number) => (
+                <motion.div
+                  key={`std-${idx}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="aetox-card p-5 md:p-8 !rounded-[32px] bg-aetox-accent/5 border-aetox-accent/10 flex items-center gap-4 group"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow group-hover:scale-150 transition-transform" />
+                  <p className="text-aetox-text-main font-bold text-fluid-sm leading-snug">{std}</p>
+                </motion.div>
+              ))}
+
+              {/* Strategic Value Grid Items */}
               {(trust.values || []).map((item: any, idx: number) => {
                 const icons = [Shield, ShieldCheck];
                 const Icon = icons[idx % icons.length];
@@ -112,8 +98,8 @@ export default function TrustSection({ dict, projects }: { dict: any, projects: 
                     key={item.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + idx * 0.1 }}
-                    className="aetox-card p-6 md:p-10 !rounded-[32px] group flex flex-col justify-center transition-all duration-500"
+                    transition={{ delay: 0.3 + idx * 0.1 }}
+                    className="aetox-card p-6 md:p-10 !rounded-[32px] group flex flex-col justify-center transition-all duration-500 md:col-span-2"
                   >
                     <Icon className="text-aetox-accent mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 w-7 h-7 md:w-8 md:h-8" />
                     <h4 className="text-aetox-text-main font-bold text-fluid-h4 tracking-tight mb-2 md:mb-3">{item.title}</h4>

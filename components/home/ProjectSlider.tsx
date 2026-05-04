@@ -23,7 +23,7 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
   const prev = () => setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
 
   return (
-    <div className="relative w-full aspect-[4/5] md:aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden bg-aetox-bg border border-aetox-border shadow-2xl">
+    <div className="relative w-full aspect-[4/3] md:aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden bg-aetox-bg border border-aetox-border shadow-2xl">
       <AnimatePresence mode="wait">
         <motion.div
           key={projects[current].id}
@@ -47,8 +47,8 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
           </div>
 
           {/* Content Overlay - Simple & Robust Structure */}
-          <div className="absolute inset-0 z-10 p-8 md:p-14 lg:p-20 flex flex-col justify-end">
-            <div className="max-w-4xl space-y-6 md:space-y-8">
+          <div className="absolute inset-0 z-10 p-6 md:p-10 lg:p-12 flex flex-col justify-end">
+            <div className="max-w-4xl space-y-4 md:space-y-6">
               {/* Category */}
               <div className="flex items-center gap-4">
                 <span className="px-4 py-1.5 rounded-full bg-aetox-accent text-white text-fluid-label font-bold tracking-[0.2em] uppercase shadow-aetox-glow">
@@ -58,12 +58,12 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
               </div>
 
               {/* Title - Large & Readable */}
-              <h3 className="text-fluid-h1 font-bold text-aetox-text-main leading-tight tracking-tight py-2">
+              <h3 className="text-fluid-h3 font-bold text-aetox-text-main leading-tight tracking-tight py-1">
                 {projects[current].title}
               </h3>
 
               {/* Description - Scaled Up */}
-              <p className="text-fluid-p text-aetox-text-soft font-medium leading-relaxed max-w-3xl line-clamp-3">
+              <p className="text-fluid-sm text-aetox-text-soft font-medium leading-relaxed max-w-3xl line-clamp-3">
                 {projects[current].description}
               </p>
 
@@ -71,10 +71,10 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
               <div className="pt-6 md:pt-10 flex flex-wrap items-center gap-10">
                 <Link 
                   href={`/authority/${projects[current].category}/${projects[current].slug}`}
-                  className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-aetox-accent text-white font-bold text-fluid-p overflow-hidden transition-all active:scale-95 shadow-2xl"
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-aetox-accent text-white font-bold text-fluid-sm overflow-hidden transition-all active:scale-95 shadow-2xl"
                 >
                   <span className="relative z-10">{viewDetailsLabel || 'ดูรายละเอียด'}</span>
-                  <ArrowRight size={22} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
                   <div className="absolute inset-0 bg-aetox-accent-hover translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </Link>
 
@@ -96,18 +96,18 @@ export default function ProjectSlider({ projects, viewDetailsLabel }: { projects
       </AnimatePresence>
 
       {/* Navigation Controls */}
-      <div className="absolute top-10 right-10 z-30 flex gap-3">
+      <div className="absolute top-6 right-6 z-30 flex gap-2">
         <button 
           onClick={prev}
-          className="w-14 h-14 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent hover:text-white transition-all active:scale-90"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-xl border border-aetox-border bg-aetox-surface-lowest/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent hover:text-white transition-all active:scale-90"
         >
-          <ArrowLeft size={24} />
+          <ArrowLeft size={20} />
         </button>
         <button 
           onClick={next}
-          className="w-14 h-14 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent hover:text-white transition-all active:scale-90"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-xl border border-aetox-border bg-aetox-surface-lowest/50 backdrop-blur-xl flex items-center justify-center text-aetox-text-main hover:bg-aetox-accent hover:text-white transition-all active:scale-90"
         >
-          <ArrowRight size={24} />
+          <ArrowRight size={20} />
         </button>
       </div>
     </div>

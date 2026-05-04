@@ -5,13 +5,13 @@ import SystemSimulation from '@/components/home/SystemSimulation';
 import TrustSection from '@/components/home/TrustSection';
 import SecurityBlock from '@/components/home/SecurityBlock';
 
-export default function AboutClient({ dict, projects }: { dict: any, projects: any[] }) {
+export default function AboutClient({ dict }: { dict: any }) {
   return (
     <main className="min-h-screen bg-aetox-bg pt-20">
       
       {/* 01. Trust Section */}
       <div id="trust" className="scroll-mt-20">
-        <TrustSection dict={dict} projects={projects} />
+        <TrustSection dict={dict} />
       </div>
 
       {/* 02. Architecture Comparison */}

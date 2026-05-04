@@ -2,7 +2,6 @@ import { getDictionary } from '@/data/dictionaries';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AboutClient from './about-client';
-import { bookmind, robotGuide, treesBot } from '@/data/content/th/projects/items';
 import FloatingNav, { NavSection } from '@/components/FloatingNav';
 import { Cpu, Award, LayoutGrid, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -22,11 +21,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: 't
   // โหลดเฉพาะข้อมูล About ของตัวเอง (ไม่ต้องพึ่งหน้า Home แล้ว)
   const dict = await getDictionary(lang, 'about');
 
-  const featuredProjects = [
-    { id: bookmind.id, title: bookmind.title, description: bookmind.description, image: bookmind.image, slug: bookmind.slug, category: bookmind.category },
-    { id: robotGuide.id, title: robotGuide.title, description: robotGuide.description, image: robotGuide.image, slug: robotGuide.slug, category: robotGuide.category },
-    { id: treesBot.id, title: treesBot.title, description: treesBot.description, image: treesBot.image, slug: treesBot.slug, category: treesBot.category },
-  ];
+
 
   // ไอคอนที่แมปตามลำดับ 01-04 ของหน้า About
   const icons = [
@@ -48,7 +43,6 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: 't
       <Navbar dict={dict.common.navigation.navbar} />
       <AboutClient 
         dict={dict} 
-        projects={featuredProjects}
       />
       <Footer dict={dict.common.navigation.footer} />
     </main>

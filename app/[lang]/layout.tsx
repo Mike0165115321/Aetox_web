@@ -41,7 +41,7 @@ export default async function RootLayout({
 
   return (
     <html lang={lang} className={`${ibmPlexThai.variable} ${ibmPlexSans.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className="">
+      <head>
         <Script id="theme-initializer" strategy="beforeInteractive">
           {`
             (function() {
@@ -58,6 +58,8 @@ export default async function RootLayout({
             })()
           `}
         </Script>
+      </head>
+      <body className="">
         
         <GlobalBackground />
         <ScrollProvider>
