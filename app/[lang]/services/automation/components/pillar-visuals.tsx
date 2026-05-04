@@ -2,11 +2,11 @@
 import { motion } from 'framer-motion';
 import { Layers, Rocket, Shield, Activity, BarChart3, Database } from 'lucide-react';
 
-export function PriorityQueueVisual({ dict }: { dict: any }) {
+export function PriorityQueueVisual({ dict = {} }: { dict: any }) {
   const tasks = [
-    { title: dict.labels.urgent, priority: 'urgent', color: 'bg-rose-500' },
-    { title: dict.labels.high, priority: 'high', color: 'bg-amber-500' },
-    { title: dict.labels.normal, priority: 'normal', color: 'bg-emerald-500' },
+    { title: dict?.labels?.urgent || 'Urgent', priority: 'urgent', color: 'bg-rose-500' },
+    { title: dict?.labels?.high || 'High', priority: 'high', color: 'bg-amber-500' },
+    { title: dict?.labels?.normal || 'Normal', priority: 'normal', color: 'bg-emerald-500' },
   ];
 
   return (
@@ -17,7 +17,7 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-8 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse" />
-          <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{dict.title}</span>
+          <span className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{dict?.title}</span>
         </div>
       </div>
         
@@ -33,13 +33,13 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
                     <div className="flex items-center gap-3">
                         <div className={`w-2 h-2 rounded-full ${task.color} shadow-[0_0_10px_currentColor]`} />
                         <div className="space-y-1">
-                            <p className="text-[9px] text-aetox-text-muted font-black uppercase tracking-widest">{dict.priority}</p>
+                            <p className="text-[9px] text-aetox-text-muted font-black uppercase tracking-widest">{dict?.priority}</p>
                             <p className="text-fluid-sm font-bold text-aetox-text-main uppercase">{task.title}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-aetox-accent/10 border border-aetox-accent/20">
                         <Activity className="w-3 h-3 text-aetox-accent animate-pulse" />
-                        <span className="text-[9px] font-black text-aetox-accent uppercase tracking-tighter">{dict.status}</span>
+                        <span className="text-[9px] font-black text-aetox-accent uppercase tracking-tighter">{dict?.status}</span>
                     </div>
                 </motion.div>
             ))}
@@ -48,7 +48,7 @@ export function PriorityQueueVisual({ dict }: { dict: any }) {
   );
 }
 
-export function ScalableBotsVisual({ dict }: { dict: any }) {
+export function ScalableBotsVisual({ dict = {} }: { dict: any }) {
   return (
     <div className="flex flex-col h-full font-sans relative overflow-hidden">
       {/* Big Background Icon */}
@@ -57,7 +57,7 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-8 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10B981]" />
-          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">{dict.title}</span>
+          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">{dict?.title}</span>
         </div>
       </div>
 
@@ -73,7 +73,7 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
                             </div>
                             <div className="space-y-1">
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">{dict.load}</span>
+                                    <span className="text-[8px] text-aetox-text-muted font-bold uppercase tracking-widest">{dict?.load}</span>
                                     <span className="text-[10px] text-emerald-400 font-black">98.2%</span>
                                 </div>
                                 <div className="h-1 bg-white/5 rounded-full overflow-hidden">
@@ -82,7 +82,7 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
                             </div>
                             <div className="flex items-center gap-1.5 text-[7px] text-emerald-400/80 font-bold uppercase">
                                 <div className="w-1 h-1 bg-emerald-500 rounded-full animate-ping" />
-                                {dict.status}
+                                {dict?.status}
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ export function ScalableBotsVisual({ dict }: { dict: any }) {
   );
 }
 
-export function ObservabilityVisual({ dict }: { dict: any }) {
+export function ObservabilityVisual({ dict = {} }: { dict: any }) {
   const logs = [
     { id: 'TX-9021', time: '14:20:01', status: 'SUCCESS', color: 'text-emerald-400' },
     { id: 'TX-9022', time: '14:20:05', status: 'SUCCESS', color: 'text-emerald-400' },
@@ -108,17 +108,17 @@ export function ObservabilityVisual({ dict }: { dict: any }) {
       <div className="flex items-center justify-between mb-6 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_10px_#6366F1]" />
-          <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">{dict.title}</span>
+          <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">{dict?.title}</span>
         </div>
       </div>
 
         <div className="flex-1 space-y-4">
             <div className="bg-aetox-surface-lowest/90 border border-aetox-border rounded-2xl p-4 shadow-xl">
                 <div className="flex items-center justify-between mb-4 pb-2 border-b border-aetox-border">
-                    <span className="text-[9px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">{dict.auditLog}</span>
+                    <span className="text-[9px] font-black text-aetox-text-muted uppercase tracking-[0.2em]">{dict?.auditLog}</span>
                     <div className="flex items-center gap-1.5">
                         <div className="w-1 h-1 bg-rose-500 rounded-full animate-pulse" />
-                        <span className="text-[8px] font-black text-rose-500 uppercase tracking-widest">{dict.realtime}</span>
+                        <span className="text-[8px] font-black text-rose-500 uppercase tracking-widest">{dict?.realtime}</span>
                     </div>
                 </div>
                 <div className="space-y-3">

@@ -19,20 +19,20 @@ import { PriorityQueueVisual, ScalableBotsVisual, ObservabilityVisual } from './
 import AutomationShowcase from './components/automation-showcase';
 import ServiceVisualCard from '@/components/ServiceVisualCard';
 
-export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any, navDict: any, ctaDict: any }) {
+export default function AutomationClient({ dict = {}, navDict = {}, ctaDict = {} }: { dict: any, navDict: any, ctaDict: any }) {
   const sections: NavSection[] = [
-    { id: 'hero', label: dict.hero.badge, num: 'INT', icon: <Zap size={16} />, offset: 60 },
-    { id: 'sim', label: dict.simulator.title, num: 'SIM', icon: <Laptop size={16} />, offset: 0 },
-    { id: 'queue', label: dict.pillars.pillar1.title, num: '01', icon: <Target size={16} />, offset: 120 },
-    { id: 'scaling', label: dict.pillars.pillar2.title, num: '02', icon: <Rocket size={16} />, offset: 120 },
-    { id: 'audit', label: dict.pillars.pillar3.title, num: '03', icon: <Shield size={16} />, offset: 120 },
-    { id: 'cta-section', label: ctaDict.bottom.label || 'ติดต่อเรา', num: 'END', icon: <ArrowRight size={16} />, offset: 60 },
+    { id: 'hero', label: dict?.hero?.badge, num: 'INT', icon: <Zap size={16} />, offset: 60 },
+    { id: 'sim', label: dict?.simulator?.title, num: 'SIM', icon: <Laptop size={16} />, offset: 0 },
+    { id: 'queue', label: dict?.pillars?.pillar1?.title, num: '01', icon: <Target size={16} />, offset: 120 },
+    { id: 'scaling', label: dict?.pillars?.pillar2?.title, num: '02', icon: <Rocket size={16} />, offset: 120 },
+    { id: 'audit', label: dict?.pillars?.pillar3?.title, num: '03', icon: <Shield size={16} />, offset: 120 },
+    { id: 'cta-section', label: ctaDict?.bottom?.label || 'ติดต่อเรา', num: 'END', icon: <ArrowRight size={16} />, offset: 60 },
   ];
 
   return (
     <main className="min-h-screen bg-ultra-dark selection:bg-aetox-accent/30 selection:text-white relative pt-20 overflow-x-hidden font-sans">
       <div className="absolute inset-0 bg-cyber-grid bg-[length:50px_50px] pointer-events-none opacity-20" />
-      <Navbar dict={navDict.navbar} />
+      <Navbar dict={navDict?.navbar} />
       <FloatingNav sections={sections} />
 
       {/* Hero Section */}
@@ -40,7 +40,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
         <div className="container mx-auto px-6">
           <Link href="/services" className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-aetox-surface-low/50 border border-aetox-border text-aetox-text-soft hover:text-aetox-text-main hover:bg-aetox-surface-high hover:border-aetox-accent/30 transition-all mb-12 group backdrop-blur-xl">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-wide">{dict.common.labels.backToServices || 'กลับสู่หน้าบริการ'}</span>
+            <span className="text-sm font-bold tracking-wide">{dict?.common?.labels?.backToServices || 'กลับสู่หน้าบริการ'}</span>
           </Link>
 
           <div className="flex flex-col lg:flex-row items-center gap-20">
@@ -48,14 +48,14 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
               <div className="space-y-8">
                 <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-aetox-accent/5 border border-aetox-accent/20 text-[10px] font-bold text-aetox-accent uppercase tracking-[0.2em]">
                   <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent animate-pulse shadow-aetox-glow" />
-                  {dict.hero.badge}
+                  {dict?.hero?.badge}
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold text-aetox-text-main leading-[1.1] tracking-tight">
-                  {dict.hero.title.white}<br />
-                  <span className="text-aetox-accent">{dict.hero.title.accent}</span>
+                  {dict?.hero?.title?.white}<br />
+                  <span className="text-aetox-accent">{dict?.hero?.title?.accent}</span>
                 </h1>
                 <p className="text-aetox-text-soft text-xl leading-relaxed border-l-2 border-aetox-accent/30 pl-8 font-medium max-w-xl">
-                  {dict.hero.description}
+                  {dict?.hero?.description}
                 </p>
               </div>
 
@@ -64,18 +64,18 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
                   onClick={() => scrollToSection('cta-section')}
                   className="px-10 py-5 rounded-full bg-aetox-accent text-aetox-surface-lowest font-black text-xl hover:shadow-aetox-glow transition-all active:scale-95 flex items-center gap-4 group"
                 >
-                  {dict.hero.cta}
+                  {dict?.hero?.cta}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                 </button>
                 <button 
                   onClick={() => scrollToSection('sim')}
                   className="px-10 py-5 rounded-full bg-aetox-surface-low/50 border border-aetox-border text-aetox-text-main font-black text-xl hover:bg-aetox-surface-high transition-all active:scale-95 flex items-center gap-4 group backdrop-blur-xl"
                 >
-                  {dict.hero.viewExample || 'เริ่มการจำลอง'}
+                  {dict?.hero?.viewExample || 'เริ่มการจำลอง'}
                 </button>
               </motion.div>
             </motion.div>
-            <div className="lg:w-5/12 w-full"><AutomationShowcase steps={dict.showcase} dict={dict} /></div>
+            <div className="lg:w-5/12 w-full"><AutomationShowcase steps={dict?.showcase || []} dict={dict?.simulator} /></div>
           </div>
         </div>
       </section>
@@ -83,11 +83,11 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
       {/* Simulator Section */}
       <section id="sim" className="pt-40 pb-40 relative z-10 overflow-hidden scroll-mt-32 border-t border-aetox-border bg-aetox-surface-lowest/30">
         <div className="container mx-auto px-6 text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-black text-aetox-text-main mb-6 uppercase tracking-tight">{dict.simulator.title}</h2>
-            <p className="text-aetox-text-soft text-xl font-medium max-w-2xl mx-auto">{dict.simulator.description}</p>
+            <h2 className="text-4xl md:text-6xl font-black text-aetox-text-main mb-6 uppercase tracking-tight">{dict?.simulator?.title}</h2>
+            <p className="text-aetox-text-soft text-xl font-medium max-w-2xl mx-auto">{dict?.simulator?.description}</p>
         </div>
         <div className="container mx-auto px-6">
-          <AutomationSimulator dict={dict.simulator} />
+          <AutomationSimulator dict={dict?.simulator} />
         </div>
       </section>
 
@@ -101,21 +101,21 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
                   <div className="w-12 h-12 rounded-2xl bg-aetox-accent/10 border border-aetox-accent/20 flex items-center justify-center">
                     <Target className="w-6 h-6 text-aetox-accent" />
                   </div>
-                  <h2 className="text-3xl font-bold text-aetox-text-main uppercase tracking-widest">{dict.pillars.pillar1.title}</h2>
+                  <h2 className="text-3xl font-bold text-aetox-text-main uppercase tracking-widest">{dict?.pillars?.pillar1?.title}</h2>
                 </div>
                 <p className="text-aetox-text-soft leading-relaxed border-l-2 border-aetox-accent/30 pl-8 font-medium text-lg">
-                  {dict.pillars.pillar1.description}
+                  {dict?.pillars?.pillar1?.description}
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {dict.pillars.pillar1.features.map((f: any, i: number) => (
-                  <FeatureItem key={i} title={f.title} desc={f.desc} />
+                {dict?.pillars?.pillar1?.features?.map((f: any, i: number) => (
+                  <FeatureItem key={i} title={f?.title} desc={f?.desc} />
                 ))}
               </div>
             </div>
             <div className="lg:w-5/12 w-full">
               <ServiceVisualCard>
-                <PriorityQueueVisual dict={dict.visuals.pillar1} />
+                <PriorityQueueVisual dict={dict?.visuals?.pillar1} />
               </ServiceVisualCard>
             </div>
           </div>
@@ -132,21 +132,21 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
                   <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                     <Rocket className="w-6 h-6 text-emerald-500" />
                   </div>
-                  <h2 className="text-3xl font-bold text-aetox-text-main uppercase tracking-widest">{dict.pillars.pillar2.title}</h2>
+                  <h2 className="text-3xl font-bold text-aetox-text-main uppercase tracking-widest">{dict?.pillars?.pillar2?.title}</h2>
                 </div>
                 <p className="text-aetox-text-soft leading-relaxed border-l-2 border-emerald-500/30 pl-8 font-medium text-lg">
-                  {dict.pillars.pillar2.description}
+                  {dict?.pillars?.pillar2?.description}
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {dict.pillars.pillar2.features.map((f: any, i: number) => (
-                  <FeatureItem key={i} title={f.title} desc={f.desc} />
+                {dict?.pillars?.pillar2?.features?.map((f: any, i: number) => (
+                  <FeatureItem key={i} title={f?.title} desc={f?.desc} />
                 ))}
               </div>
             </div>
             <div className="lg:w-5/12 w-full">
               <ServiceVisualCard>
-                <ScalableBotsVisual dict={dict.visuals.pillar2} />
+                <ScalableBotsVisual dict={dict?.visuals?.pillar2} />
               </ServiceVisualCard>
             </div>
           </div>
@@ -163,21 +163,21 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
                   <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
                     <Activity className="w-6 h-6 text-indigo-400" />
                   </div>
-                  <h2 className="text-3xl font-bold text-aetox-text-main uppercase tracking-widest">{dict.pillars.pillar3.title}</h2>
+                  <h2 className="text-3xl font-bold text-aetox-text-main uppercase tracking-widest">{dict?.pillars?.pillar3?.title}</h2>
                 </div>
                 <p className="text-aetox-text-soft leading-relaxed border-l-2 border-indigo-500/30 pl-8 font-medium text-lg">
-                  {dict.pillars.pillar3.description}
+                  {dict?.pillars?.pillar3?.description}
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {dict.pillars.pillar3.features.map((f: any, i: number) => (
-                  <FeatureItem key={i} title={f.title} desc={f.desc} />
+                {dict?.pillars?.pillar3?.features?.map((f: any, i: number) => (
+                  <FeatureItem key={i} title={f?.title} desc={f?.desc} />
                 ))}
               </div>
             </div>
             <div className="lg:w-5/12 w-full">
               <ServiceVisualCard>
-                <ObservabilityVisual dict={dict.visuals.pillar3} />
+                <ObservabilityVisual dict={dict?.visuals?.pillar3} />
               </ServiceVisualCard>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
       {/* Applied In Section */}
       <section className="py-24 border-t border-aetox-border relative z-10 bg-aetox-surface-lowest/50 backdrop-blur-3xl">
         <div className="container mx-auto px-6">
-          <AppliedIn items={dict.appliedIn} label={dict.appliedInLabel || 'ใช้งานจริงใน'} />
+          <AppliedIn items={dict?.appliedIn || []} label={dict?.appliedInLabel || 'ใช้งานจริงใน'} />
         </div>
       </section>
 
@@ -196,11 +196,12 @@ export default function AutomationClient({ dict, navDict, ctaDict }: { dict: any
         <ServiceBottomCTA 
           serviceId="automation" 
           serviceName="Business Automation" 
-          dict={ctaDict.bottom}
+          dict={ctaDict?.bottom}
         />
       </section>
 
-      <Footer dict={navDict.footer} />
+      <Footer dict={navDict?.footer} />
+
     </main>
   );
 }

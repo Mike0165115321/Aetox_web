@@ -1,11 +1,13 @@
 export const automationContent = {
   hero: {
+    badge: "Smart Automation",
     title: {
       white: "Workflow",
       accent: "Automation Systems"
     },
     description: "We build automation systems that replace entire administrative processes. From data extraction and file conversion to updating tens of thousands of database records, our bots work 24/7 with system-level precision.",
-    cta: "Start Designing Automation"
+    cta: "Start Designing Automation",
+    viewExample: "Start Simulator"
   },
   showcase: [
     {
@@ -58,8 +60,9 @@ export const automationContent = {
     }
   },
 
-  roi: {
+  simulator: {
     title: 'Automation ROI Projection',
+    description: 'Analyze the cost-effectiveness and ROI of implementing automation in your business.',
     subTitle: 'Cost Analysis & System Parameters',
     workloadTitle: 'Select Workload Type',
     unitHours: 'hrs/mo',
@@ -176,6 +179,7 @@ export const automationContent = {
     ]
   },
 
+  appliedInLabel: "Deployed In",
   appliedIn: [
     { name: 'PDF Invoice Extraction to DatabasePlatform', link: '#' },
     { name: 'Cross-platform Inventory Synchronization', link: '#' },

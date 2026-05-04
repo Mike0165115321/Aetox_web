@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, CheckCircle2, Users, Zap, AlertTriangle, TrendingUp, Bot, ArrowLeft } from 'lucide-react';
 import ServiceVisualCard from '@/components/ServiceVisualCard';
 
-export default function AutomationShowcase({ steps, dict }: { steps: any[], dict: any }) {
+export default function AutomationShowcase({ steps = [], dict = {} }: { steps: any[], dict: any }) {
   const [activeStep, setActiveStep] = useState(0);
   
   const visuals = [
@@ -44,7 +44,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
                </div>
             </div>
           </div>
-          <p className="mt-8 text-[10px] text-aetox-text-muted font-bold uppercase tracking-[0.2em]">{dict.labels.processedToday}: 98,240</p>
+          <p className="mt-8 text-[10px] text-aetox-text-muted font-bold uppercase tracking-[0.2em]">{dict?.labels?.processedToday || 'Processed'}: 98,240</p>
         </div>
       </div>
     ),
@@ -114,7 +114,7 @@ export default function AutomationShowcase({ steps, dict }: { steps: any[], dict
               </div>
            </div>
            <div className="mt-12 text-center">
-              <p className="text-[10px] font-bold text-aetox-text-muted uppercase tracking-[0.3em] mb-2">{dict.benchmark.savedHours}</p>
+              <p className="text-[10px] font-bold text-aetox-text-muted uppercase tracking-[0.3em] mb-2">{dict?.benchmark?.savedHours || 'Time Saved'}</p>
               <h4 className="text-5xl font-black text-aetox-text-main tracking-tighter">340<span className="text-xl text-aetox-accent ml-1">hrs</span></h4>
            </div>
         </div>

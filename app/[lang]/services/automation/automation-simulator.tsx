@@ -8,7 +8,7 @@ import CurrencySwitcher from '@/components/CurrencySwitcher';
 import { useAutomationRoi, workloadConfig, type Complexity, type Timeframe } from './hooks/use-automation-roi';
 import { KpiCard, SliderGroup, SimulatorIcon } from '@/components/simulators/automation/simulator-ui';
 
-export default function AutomationSimulator({ dict }: { dict: any }) {
+export default function AutomationSimulator({ dict = {} }: { dict: any }) {
   const { currency, exchangeRate } = useCurrency();
   const [complexity, setComplexity] = useState<Complexity>('medium');
   const [timeframe, setTimeframe] = useState<Timeframe>(6);
@@ -69,7 +69,7 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
           <div>
             <h2 className="text-sm md:text-base font-bold text-aetox-text-main uppercase tracking-tight flex items-center gap-2">
               <TrendingUp size={18} className="text-aetox-accent" />
-              {dict.title.split(' — ')[0]} <span className="text-aetox-accent">Simulator</span>
+              {(dict?.title || '').split(' — ')[0]} <span className="text-aetox-accent">Simulator</span>
             </h2>
           </div>
           <div className="flex items-center gap-3">
@@ -84,12 +84,12 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
           {/* Left: Inputs - High Density */}
           <div className="lg:w-[32%] p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-aetox-border space-y-6 bg-aetox-surface-lowest/50">
             <section className="space-y-3">
-              <p className="text-[11px] font-black text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.workloadTitle}</p>
+              <p className="text-[11px] font-black text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict?.workloadTitle}</p>
               <div className="grid grid-cols-1 gap-2">
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
                   const cfg = workloadConfig[lvl];
-                  const d = dict.levels.find((l: any) => l.id === lvl);
+                  const d = dict?.levels?.find((l: any) => l.id === lvl);
                   return (
                     <button key={lvl} onClick={() => updateComplexity(lvl)}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all border ${active ? 'bg-aetox-accent text-white border-aetox-accent shadow-lg shadow-aetox-accent/20' : 'bg-aetox-surface border-aetox-border text-aetox-text-soft hover:bg-aetox-surface-high'}`}>
@@ -105,14 +105,14 @@ export default function AutomationSimulator({ dict }: { dict: any }) {
             </section>
 
             <section className="space-y-5 pt-2">
-              <p className="text-[11px] font-black text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.params.title}</p>
+              <p className="text-[11px] font-black text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict?.params?.title}</p>
               <div className="space-y-6">
-                <SliderGroup label={dict.params.volume} min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
-                <SliderGroup label={dict.params.staff} min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-aetox-accent" displayValue={staffCount.toString()} />
-                <SliderGroup label={dict.params.hourlyRate} min={50} max={500} step={10} value={hourlyRateTHB} onChange={setHourlyRateTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(hourlyRateTHB))} />
-                <SliderGroup label={dict.params.unitCost} min={0} max={500} step={5} value={unitCostManualTHB} onChange={setUnitCostManualTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(unitCostManualTHB))} />
-                <SliderGroup label={dict.params.botPrice} min={7500} max={150000} step={500} value={botPriceTHB} onChange={setBotPriceTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(botPriceTHB))} />
-                <SliderGroup label={dict.params.maintCost} min={500} max={15000} step={100} value={maintCostTHB} onChange={setMaintCostTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(maintCostTHB))} />
+                <SliderGroup label={dict?.params?.volume} min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
+                <SliderGroup label={dict?.params?.staff} min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-aetox-accent" displayValue={staffCount.toString()} />
+                <SliderGroup label={dict?.params?.hourlyRate} min={50} max={500} step={10} value={hourlyRateTHB} onChange={setHourlyRateTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(hourlyRateTHB))} />
+                <SliderGroup label={dict?.params?.unitCost} min={0} max={500} step={5} value={unitCostManualTHB} onChange={setUnitCostManualTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(unitCostManualTHB))} />
+                <SliderGroup label={dict?.params?.botPrice} min={7500} max={150000} step={500} value={botPriceTHB} onChange={setBotPriceTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(botPriceTHB))} />
+                <SliderGroup label={dict?.params?.maintCost} min={500} max={15000} step={100} value={maintCostTHB} onChange={setMaintCostTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(maintCostTHB))} />
               </div>
             </section>
           </div>
