@@ -47,8 +47,8 @@ export default function NavbarDesktop({
         ))}
       </div>
 
-      {/* Right: Actions */}
-      <div className="flex-1 flex justify-end items-center gap-4 xl:gap-6">
+      {/* Right: Actions - Hidden on Mobile to prevent overlap with Hamburger */}
+      <div className="hidden lg:flex flex-1 justify-end items-center gap-4 xl:gap-6">
         {/* Theme Toggle */}
         <ThemeToggle />
 
