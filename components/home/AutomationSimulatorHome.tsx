@@ -62,19 +62,19 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
   const fmt = (n: number) => (n || 0).toLocaleString('th-TH', { maximumFractionDigits: 0 });
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-6">
-      <div className="bg-aetox-surface-lowest/90 backdrop-blur-2xl rounded-2xl md:rounded-[32px] border border-aetox-border overflow-hidden shadow-2xl transition-all duration-500">
+    <div className="w-full max-w-6xl mx-auto px-4 md:px-0 space-y-6">
+      <div className="bg-aetox-surface-lowest/90 backdrop-blur-2xl rounded-2xl md:rounded-[32px] border border-white/10 overflow-hidden shadow-2xl transition-all duration-500">
         {/* Mini Header */}
-        <div className="px-4 md:px-5 py-3 md:py-4 border-b border-aetox-border bg-aetox-surface-low/30 flex justify-between items-center font-sans">
-          <div>
-            <h2 className="text-sm md:text-base font-bold text-aetox-text-main uppercase tracking-tight flex items-center gap-2">
-              <TrendingUp size={18} className="text-aetox-accent" />
+        <div className="px-4 md:px-5 py-3 md:py-4 border-b border-white/5 bg-aetox-surface-low/30 flex flex-col sm:flex-row justify-between items-center gap-4 font-sans">
+          <div className="w-full sm:w-auto">
+            <h2 className="text-xs md:text-base font-bold text-aetox-text-main uppercase tracking-tight flex items-center justify-center sm:justify-start gap-2">
+              <TrendingUp size={16} className="text-aetox-accent" />
               {dict.title.split(' — ')[0]} <span className="text-aetox-accent">Simulator</span>
             </h2>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center sm:justify-end gap-3 w-full sm:w-auto">
             <CurrencySwitcher />
-            <button onClick={() => updateComplexity('medium')} className="p-2 bg-aetox-surface border border-aetox-border hover:bg-aetox-surface-high rounded-xl transition-all">
+            <button onClick={() => updateComplexity('medium')} className="p-2 bg-aetox-surface border border-white/10 hover:bg-aetox-surface-high rounded-xl transition-all shrink-0">
               <RotateCcw size={14} className="text-aetox-text-muted" />
             </button>
           </div>
@@ -82,9 +82,9 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
         <div className="flex flex-col lg:flex-row">
           {/* Left: Inputs - High Density */}
-          <div className="lg:w-[32%] p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-aetox-border space-y-6 bg-aetox-surface-lowest/50">
+          <div className="lg:w-[32%] p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-white/5 space-y-6 bg-aetox-surface-lowest/50">
             <section className="space-y-3 font-sans">
-              <p className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.workloadTitle}</p>
+              <p className="text-xs font-bold text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.workloadTitle}</p>
               <div className="grid grid-cols-1 gap-1.5 md:gap-2">
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
@@ -92,11 +92,11 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                   const d = dict.levels.find((l: any) => l.id === lvl);
                   return (
                     <button key={lvl} onClick={() => updateComplexity(lvl)}
-                      className={`flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl text-left transition-all border ${active ? 'bg-aetox-accent text-white border-aetox-accent shadow-lg shadow-aetox-accent/20' : 'bg-aetox-surface border-aetox-border text-aetox-text-soft hover:bg-aetox-surface-high'}`}>
+                      className={`flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl text-left transition-all border ${active ? 'bg-aetox-accent text-white border-aetox-accent shadow-lg shadow-aetox-accent/20' : 'bg-aetox-surface border-white/10 text-aetox-text-soft hover:bg-aetox-surface-high'}`}>
                       <SimulatorIcon name={cfg.icon} size={14} />
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] md:text-[11px] font-bold truncate leading-none mb-0.5 md:mb-1">{d?.label || cfg.label}</p>
-                        <p className={`text-[8px] md:text-[9px] font-bold uppercase tracking-tighter opacity-60 ${active ? 'text-white' : ''}`}>{d?.sublabel || cfg.sublabel}</p>
+                        <p className="text-xs md:text-[11px] font-bold truncate leading-none mb-0.5 md:mb-1">{d?.label || cfg.label}</p>
+                        <p className={`text-[11px] md:text-[9px] font-bold uppercase tracking-tighter opacity-60 ${active ? 'text-white' : ''}`}>{d?.sublabel || cfg.sublabel}</p>
                       </div>
                     </button>
                   );
@@ -104,9 +104,9 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
               </div>
             </section>
 
-            <section className="space-y-5 pt-2 font-sans">
-              <p className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.params.title}</p>
-              <div className="space-y-6">
+            <section className="space-y-6 pt-4 font-sans border-t border-aetox-border/30">
+              <p className="text-xs font-black text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.params.title}</p>
+              <div className="space-y-8">
                 <SliderGroup label={dict.params.volume} min={100} max={100000} step={100} value={volume} onChange={setVolume} accent="accent-aetox-accent" displayValue={volume.toLocaleString()} />
                 <SliderGroup label={dict.params.staff} min={1} max={30} step={1} value={staffCount} onChange={setStaffCount} accent="accent-aetox-accent" displayValue={staffCount.toString()} />
                 <SliderGroup label={dict.params.hourlyRate} min={50} max={500} step={10} value={hourlyRateTHB} onChange={setHourlyRateTHB} accent="accent-aetox-accent" displayValue={formatMoney(toCurrentDisplay(hourlyRateTHB))} />
@@ -120,27 +120,27 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
             {/* Top KPI Grid - Balanced Size */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-2 font-sans">
               <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
-                <p className="text-[9px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ต้นทุนที่ลดได้</p>
+                <p className="text-[11px] md:text-xs font-bold text-aetox-value mb-1">ต้นทุนที่ลดได้</p>
                 <p className="text-lg md:text-3xl font-bold text-aetox-text-main leading-none">{calc.costReductionPct}%</p>
               </div>
               <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
-                <p className="text-[9px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ROI ปีแรก</p>
+                <p className="text-[11px] md:text-xs font-bold text-aetox-value mb-1">ROI ปีแรก</p>
                 <p className="text-lg md:text-3xl font-bold text-aetox-text-main leading-none">{calc.roi}%</p>
               </div>
               <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-emerald-500/10 border border-emerald-500/20 text-center shadow-sm transition-all hover:border-emerald-500/40">
-                <p className="text-[9px] md:text-[10px] font-bold text-emerald-500 uppercase tracking-widest mb-1">{dict.kpis?.monthlySaving || 'ประหยัดได้/เดือน'}</p>
+                <p className="text-xs font-bold text-emerald-500 mb-1">{dict.kpis?.monthlySaving || 'ประหยัดได้/เดือน'}</p>
                 <p className="text-base md:text-2xl font-bold text-emerald-500 tracking-tight">{formatMoney(calc.monthlySaving)}</p>
               </div>
               <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-accent/10 border border-aetox-accent/20 text-center shadow-sm transition-all hover:border-aetox-accent/40">
-                <p className="text-[9px] md:text-[10px] font-bold text-aetox-accent uppercase tracking-widest mb-1">{dict.kpis?.payback || 'ระยะเวลาคืนทุน'}</p>
+                <p className="text-xs font-bold text-aetox-accent mb-1">{dict.kpis?.payback || 'ระยะเวลาคืนทุน'}</p>
                 <p className="text-base md:text-2xl font-bold text-aetox-accent tracking-tight">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
-                <p className="text-[8px] md:text-[9px] font-bold text-aetox-accent/70 uppercase">{dict.kpis?.paybackUnit || 'เดือน (Payback)'}</p>
+                <p className="text-[10px] font-bold text-aetox-accent/70">{dict.kpis?.paybackUnit || 'เดือน (Payback)'}</p>
               </div>
             </div>
 
             {/* Direct Comparison Table */}
-            <div className="bg-white/[0.03] border border-aetox-border rounded-2xl overflow-hidden flex flex-col font-sans">
-              <div className="px-5 py-4 border-b border-aetox-border flex justify-between items-center bg-white/[0.02]">
+            <div className="bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden flex flex-col font-sans">
+              <div className="px-5 py-4 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                 <h4 className="text-sm font-semibold text-aetox-text-main flex items-center gap-2">
                   <BarChart3 size={16} className="text-aetox-accent" />
                   การวัดผลประสิทธิภาพ <span className="text-aetox-text-muted text-xs ml-1 tracking-tight font-medium">(Efficiency Benchmark)</span>

@@ -12,12 +12,12 @@ export default function CurrencySwitcher() {
   ];
 
   return (
-    <div className="flex p-1.5 bg-aetox-surface/20 backdrop-blur-2xl border border-aetox-border rounded-2xl relative shadow-2xl min-w-[200px]">
+    <div className="flex p-1 bg-aetox-surface/20 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-2xl relative shadow-2xl">
       {currencies.map((item) => (
         <button
           key={item.id}
           onClick={() => setCurrency(item.id as 'THB' | 'USD')}
-          className={`relative z-10 flex-1 px-5 py-2.5 text-fluid-sm font-black transition-all duration-300 rounded-xl ${
+          className={`relative z-10 flex-1 px-3 md:px-5 py-2 md:py-2.5 text-[10px] md:text-fluid-sm font-black transition-all duration-300 rounded-lg md:rounded-xl ${
             currency === item.id ? 'text-white' : 'text-aetox-text-muted hover:text-aetox-text-main'
           }`}
         >

@@ -52,7 +52,7 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
             className={`flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 border active:scale-95 ${
               useCase === type.id 
                 ? 'bg-aetox-accent-subtle text-aetox-accent border-aetox-accent/40 shadow-aetox-glow' 
-                : 'bg-aetox-surface-lowest/50 text-aetox-text-soft hover:bg-aetox-surface-low/80 border-aetox-border'
+                : 'bg-aetox-surface-lowest/50 text-aetox-text-soft hover:bg-aetox-surface-low/80 border-white/5'
             }`}
           >
             {iconMap[type.id] || <HelpCircle size={18} />}
@@ -62,11 +62,11 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
       </div>
 
       {/* Chat Window */}
-      <div className="aetox-card rounded-[24px] md:rounded-[32px] border border-aetox-border flex flex-col overflow-hidden shadow-2xl bg-aetox-surface-lowest/50 min-h-[500px] md:min-h-[600px] relative">
+      <div className="aetox-card rounded-[24px] md:rounded-[32px] border border-white/10 flex flex-col overflow-hidden shadow-2xl bg-aetox-surface-lowest/50 min-h-[500px] md:min-h-[600px] relative">
         <div className="absolute inset-0 bg-aetox-grid-overlay opacity-10 pointer-events-none" />
         
         {/* Header */}
-        <div className="bg-aetox-surface-lowest/40 px-5 md:px-8 py-4 md:py-6 border-b border-aetox-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10 font-sans">
+        <div className="bg-aetox-surface-lowest/40 px-5 md:px-8 py-4 md:py-6 border-b border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10 font-sans">
           <div className="flex items-center gap-3 md:gap-4">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-tr from-aetox-accent to-blue-600 flex items-center justify-center shadow-aetox-glow flex-shrink-0">
               <Search size={18} className="text-white md:hidden" />
@@ -76,12 +76,12 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
               <p className="text-base md:text-lg font-bold text-aetox-text-main tracking-tight flex items-center gap-2 leading-none mb-1">
                 Aetox AI <Sparkles size={14} className="text-aetox-accent" />
               </p>
-              <p className="text-[10px] md:text-[11px] text-emerald-400 flex items-center uppercase tracking-widest font-bold">
+              <p className="text-[10px] md:text-[11px] text-emerald-400 flex items-center tracking-tight font-black">
                 <CheckCircle2 size={10} className="mr-1 md:mr-1.5" /> {dict.labels.activeKnowledge}
               </p>
             </div>
           </div>
-          <div className="px-3 py-1 bg-aetox-surface-low rounded-full text-[10px] text-aetox-text-muted font-mono border border-aetox-border">
+          <div className="px-3 py-1 bg-aetox-surface-low rounded-full text-[10px] text-aetox-text-muted font-mono border border-white/10">
             RAG Engine v2.4
           </div>
         </div>
@@ -127,7 +127,7 @@ export function RagChatSimulator({ dict, compact = false }: { dict: any, compact
                   {/* Citation Button */}
                   <div className={`inline-flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[10px] md:text-[11px] font-bold border transition-all hover:scale-105 active:scale-95 ${currentStyle.bgAlert} ${currentStyle.color} shadow-sm`}>
                     <FileText size={14} className="md:w-4 md:h-4" />
-                    <span className="uppercase tracking-widest">{dict.labels.citation}: {current.citation}</span>
+                    <span className="tracking-tight">{dict.labels.citation}: {current.citation}</span>
                     <ArrowRight size={12} className="ml-0.5 md:ml-1 opacity-70" />
                   </div>
                 </motion.div>

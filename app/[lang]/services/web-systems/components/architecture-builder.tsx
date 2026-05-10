@@ -71,15 +71,15 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6"
             >
-              <div className="aetox-card p-6 rounded-3xl border-aetox-border bg-aetox-surface-lowest/50">
-                <p className="text-aetox-accent font-black text-[10px] uppercase tracking-widest mb-4">Strategic Question</p>
+              <div className="aetox-card p-6 rounded-3xl border border-white/10 bg-aetox-surface-lowest/50">
+                <p className="text-aetox-accent font-black text-[10px] tracking-tight mb-4">Strategic Question</p>
                 <h3 className="text-xl font-bold text-aetox-text-main mb-8 leading-tight">{dict.question}</h3>
                 <div className="space-y-3">
                   {dict.businessTypes.map((opt: any) => (
                     <button
                       key={opt.id}
                       onClick={() => handleStartBuild(opt.id)}
-                      className="w-full p-5 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 text-left text-sm font-bold text-aetox-text-soft hover:border-aetox-accent hover:bg-aetox-accent-subtle transition-all active:scale-[0.98]"
+                      className="w-full p-5 rounded-2xl border border-white/10 bg-aetox-surface-lowest/50 text-left text-sm font-bold text-aetox-text-soft hover:border-aetox-accent hover:bg-aetox-accent-subtle transition-all active:scale-[0.98]"
                     >
                       {opt.label}
                     </button>
@@ -99,20 +99,20 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                 <div className="flex items-center gap-3">
                   <ShieldCheck className="text-aetox-accent" size={24} />
                   <div>
-                    <p className="text-[10px] font-black text-aetox-accent uppercase tracking-widest">Architecture</p>
+                    <p className="text-[10px] font-black text-aetox-accent tracking-tight">Architecture</p>
                     <p className="text-aetox-text-main font-bold">{activeConfig?.title}</p>
                   </div>
                 </div>
                 {isBuilding && (
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
                     <Zap size={12} className="text-amber-400 animate-pulse" />
-                    <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">{dict.status.building.split('...')[0]}</span>
+                    <span className="text-[10px] font-black text-amber-400 tracking-tight">{dict.status.building.split('...')[0]}</span>
                   </div>
                 )}
               </div>
 
               {/* Stack Detail */}
-              <div className="aetox-card p-6 rounded-3xl border-aetox-border bg-aetox-surface-lowest/80 space-y-4">
+              <div className="aetox-card p-6 rounded-3xl border border-white/10 bg-aetox-surface-lowest/80 space-y-4">
                 <AnimatePresence>
                   {buildStep === 5 && (
                     <motion.p 
@@ -143,7 +143,7 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                         <div className="flex-1">
                           <span className="text-[11px] font-bold text-aetox-text-soft">{layer.name}</span>
                         </div>
-                        <span className="text-[8px] text-aetox-text-muted font-bold uppercase">Layer 0{idx + 1}</span>
+                        <span className="text-[8px] text-aetox-text-muted font-bold">Layer 0{idx + 1}</span>
                       </motion.div>
                     );
                   })}
@@ -152,7 +152,7 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                 <button 
                   onClick={() => setSelectedSystem('none')}
                   disabled={isBuilding}
-                  className="w-full mt-6 py-3 rounded-xl border border-aetox-border text-[11px] font-black text-aetox-text-muted uppercase tracking-widest disabled:opacity-30"
+                  className="w-full mt-6 py-3 rounded-xl border border-white/10 text-[11px] font-black text-aetox-text-muted tracking-tight disabled:opacity-30"
                 >
                   {dict.resetLabel}
                 </button>
@@ -163,16 +163,16 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
       </div>
 
        {/* ─── Desktop View (Preserved) ─── */}
-      <div className={`hidden md:block w-full overflow-hidden ${compact ? '' : 'aetox-card rounded-[24px] border border-aetox-border shadow-2xl bg-aetox-surface-lowest/50'}`}>
+      <div className={`hidden md:block w-full overflow-hidden ${compact ? '' : 'aetox-card rounded-[24px] border border-white/10 shadow-2xl bg-aetox-surface-lowest/50'}`}>
         
         {/* 1. Header (Status Bar) */}
         {!compact && (
-          <div className="bg-aetox-surface-lowest/90 px-6 py-5 border-b border-aetox-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="bg-aetox-surface-lowest/90 px-6 py-5 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-aetox-accent-subtle border border-aetox-accent/20">
                 <Cpu className="text-aetox-accent" size={20} />
               </div>
-              <h2 className="text-sm font-bold text-aetox-text-main uppercase tracking-wider">{dict.title}</h2>
+              <h2 className="text-sm font-bold text-aetox-text-main tracking-tight">{dict.title}</h2>
             </div>
             
             <div className="flex gap-6 text-[10px] font-bold">
@@ -191,12 +191,12 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
         )}
 
          {/* 2. Main Builder Display */}
-        <div className={`relative p-6 md:p-10 min-h-[520px] flex flex-col bg-gradient-to-b from-transparent to-aetox-surface-lowest/20 ${compact ? 'rounded-[40px] border border-aetox-border' : ''}`}>
+        <div className={`relative p-6 md:p-10 min-h-[520px] flex flex-col bg-gradient-to-b from-transparent to-aetox-surface-lowest/20 ${compact ? 'rounded-[40px] border border-white/10' : ''}`}>
           <div className="absolute inset-0 bg-aetox-grid-overlay opacity-5 pointer-events-none" />
           
           {selectedSystem === 'none' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-aetox-surface-lowest flex items-center justify-center border border-aetox-border animate-float">
+              <div className="w-16 h-16 rounded-2xl bg-aetox-surface-lowest flex items-center justify-center border border-white/10 animate-float">
                 <Terminal size={28} className="text-aetox-text-muted" />
               </div>
               <div className="space-y-2">
@@ -268,7 +268,7 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
         </div>
 
         {/* 5. Footer Controls */}
-        <div className="bg-aetox-surface-lowest px-6 py-6 border-t border-aetox-border flex flex-col md:flex-row items-center gap-4 justify-between">
+        <div className="bg-aetox-surface-lowest px-6 py-6 border-t border-white/5 flex flex-col md:flex-row items-center gap-4 justify-between">
           <div className="flex items-center gap-4 w-full md:w-auto">
             <span className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-widest whitespace-nowrap">Domain</span>
             <div className="relative w-full md:w-72">
@@ -276,7 +276,7 @@ export default function ArchitectureBuilder({ dict, compact = false }: { dict: a
                 value={selectedSystem}
                 onChange={(e) => handleStartBuild(e.target.value as SystemType)}
                 disabled={isBuilding}
-                className="w-full appearance-none bg-aetox-surface-lowest/50 border border-aetox-border text-aetox-text-main text-sm font-bold rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-aetox-accent disabled:opacity-50 cursor-pointer transition-all"
+                className="w-full appearance-none bg-aetox-surface-lowest/50 border border-white/10 text-aetox-text-main text-sm font-bold rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-aetox-accent disabled:opacity-50 cursor-pointer transition-all"
               >
                 <option value="none" className="bg-aetox-bg text-aetox-text-main">-- เลือกประเภทธุรกิจ --</option>
                 {dict.businessTypes.map((opt: any) => (

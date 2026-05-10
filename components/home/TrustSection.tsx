@@ -12,7 +12,7 @@ export default function TrustSection({ dict }: { dict: any }) {
   const standards = trust?.standards || [];
 
   return (
-    <section id="trust" className="py-12 md:py-20 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+    <section id="trust" className="py-12 md:py-24 relative overflow-hidden border-t border-white/5 scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,rgba(var(--aetox-text-muted-rgb),0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(var(--aetox-text-muted-rgb),0.2)_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
@@ -25,10 +25,10 @@ export default function TrustSection({ dict }: { dict: any }) {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="aetox-card relative p-6 md:p-10 !rounded-[40px] overflow-hidden flex flex-col h-full shadow-xl transition-all duration-500"
+              className="aetox-card relative p-5 md:p-8 !rounded-3xl overflow-hidden flex flex-col h-full shadow-xl transition-all duration-500 border border-white/10"
             >
               {/* Award Image - Feature */}
-              <div className="mb-6 md:mb-8 relative h-36 md:h-48 w-full rounded-2xl md:rounded-3xl overflow-hidden border border-aetox-border group/award">
+              <div className="mb-6 md:mb-8 relative h-36 md:h-48 w-full rounded-2xl overflow-hidden border border-white/5 group/award">
                 <Image 
                    src="/images/home/architecture.jpg"
                    alt="National AI Gold Medalist"
@@ -39,31 +39,31 @@ export default function TrustSection({ dict }: { dict: any }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-aetox-bg via-transparent to-transparent opacity-90" />
                 <div className="absolute bottom-4 left-5 right-5 md:bottom-5 md:left-6 md:right-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-fluid-label font-black tracking-widest uppercase mb-1.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 text-xs font-black tracking-tight mb-1.5">
                     <Star size={10} className="fill-yellow-500" /> {founder.accolade}
                   </div>
-                  <h4 className="text-aetox-text-main font-bold text-fluid-sm tracking-wide">{trust.recognition}</h4>
+                  <h4 className="text-aetox-text-main font-bold text-sm tracking-wide">{trust.recognition}</h4>
                 </div>
               </div>
 
               <div className="space-y-4 md:space-y-6 flex-1">
                 <div>
-                  <h2 className="text-fluid-h2 font-bold text-aetox-text-main leading-tight mb-2 tracking-tight">
+                  <h2 className="text-2xl font-bold text-aetox-text-main leading-tight mb-2 tracking-tight">
                     {founder.name}
                   </h2>
-                  <p className="text-aetox-accent font-bold tracking-wide text-fluid-sm uppercase">
+                  <p className="text-aetox-accent font-bold tracking-tight text-xs">
                     {founder.title}
                   </p>
                 </div>
                 
-                <p className="text-fluid-p text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-6 opacity-90 whitespace-pre-line">
+                <p className="text-sm text-aetox-text-soft font-medium leading-relaxed italic border-l-2 border-aetox-accent/30 pl-4 md:pl-6 opacity-90 whitespace-pre-line">
                   &quot;{founder.description}&quot;
                 </p>
 
 
               </div>
 
-              <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-aetox-border">
+              <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-white/5">
                 <Link href="/contact" className="group flex items-center justify-between text-aetox-text-main font-bold text-sm hover:text-aetox-accent transition-all">
                   {dict.common?.labels?.consultUs} <ArrowRight className="group-hover:translate-x-3 transition-transform w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </Link>
@@ -76,16 +76,17 @@ export default function TrustSection({ dict }: { dict: any }) {
             {/* Strategic Value Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {/* Engineering Standards as Cards */}
-              {standards.map((std: string, idx: number) => (
-                <motion.div
-                  key={`std-${idx}`}
-                  initial={{ opacity: 0, y: 20 }}
+              {standards.map((std: string, index: number) => (
+                  <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="aetox-card p-5 md:p-8 !rounded-[32px] bg-aetox-accent/5 border-aetox-accent/10 flex items-center gap-4 group"
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  className="aetox-card group p-6 md:p-8 !rounded-3xl transition-all duration-500 hover:-translate-y-2 shadow-xl flex items-center gap-4 border border-white/10"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-aetox-accent shadow-aetox-glow group-hover:scale-150 transition-transform" />
-                  <p className="text-aetox-text-main font-bold text-fluid-sm leading-snug">{std}</p>
+                  <p className="text-aetox-text-main font-bold text-sm leading-relaxed">{std}</p>
                 </motion.div>
               ))}
 
@@ -99,7 +100,7 @@ export default function TrustSection({ dict }: { dict: any }) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + idx * 0.1 }}
-                    className="aetox-card p-6 md:p-10 !rounded-[32px] group flex flex-col justify-center transition-all duration-500 md:col-span-2"
+                    className="aetox-card p-6 md:p-10 !rounded-3xl md:rounded-[32px] group flex flex-col justify-center transition-all duration-500 md:col-span-2 border border-white/10 shadow-2xl"
                   >
                     <Icon className="text-aetox-accent mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 w-7 h-7 md:w-8 md:h-8" />
                     <h4 className="text-aetox-text-main font-bold text-fluid-h4 tracking-tight mb-2 md:mb-3">{item.title}</h4>

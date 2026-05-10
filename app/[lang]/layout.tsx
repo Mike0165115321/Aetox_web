@@ -59,7 +59,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className="" suppressHydrationWarning>
+      <body className="font-sans aetox-typography" suppressHydrationWarning>
         
         <GlobalBackground />
         <ScrollProvider>

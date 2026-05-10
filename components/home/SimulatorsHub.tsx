@@ -35,8 +35,8 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
 
   return (
     <div className="w-full space-y-12">
-      {/* Tab Switcher: เปลี่ยนมาใช้ aetox-card สไตล์ที่บางลง */}
-      <div className="flex flex-wrap justify-center gap-2 p-2 bg-aetox-card-bg border border-aetox-border backdrop-blur-3xl rounded-[24px] max-w-fit mx-auto shadow-xl transition-all duration-500">
+      {/* Tab Switcher: Optimized Grid for Mobile */}
+      <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-1.5 md:gap-2 p-1.5 md:p-2 bg-aetox-card-bg/40 border border-white/5 backdrop-blur-3xl rounded-[28px] max-w-full md:max-w-fit mx-auto shadow-2xl transition-all duration-500">
         {tabs.map((tab) => {
           const active = activeTab === tab.id;
           const Icon = tab.icon;
@@ -44,19 +44,19 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative flex items-center gap-2 md:gap-3 px-3 md:px-7 py-2.5 md:py-4 rounded-[18px] text-[10px] md:text-xs font-black tracking-widest uppercase transition-all duration-500 group ${
-                active ? 'text-aetox-text-main' : 'text-aetox-text-muted hover:text-aetox-text-soft'
+              className={`relative flex items-center gap-2 md:gap-3 px-4 md:px-7 py-2.5 md:py-4 rounded-[22px] text-[11px] md:text-xs font-bold transition-all duration-500 group overflow-hidden ${
+                active ? 'text-aetox-text-main shadow-lg' : 'text-aetox-text-muted hover:text-aetox-text-soft'
               }`}
             >
               {active && (
                 <motion.div 
                   layoutId="activeTabGlow"
-                  className="absolute inset-0 bg-aetox-accent/10 border border-aetox-accent/20 rounded-[18px] shadow-sm"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  className="absolute inset-0 bg-aetox-accent/10 border border-aetox-accent/20 rounded-[22px] shadow-sm"
+                  transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
-              <Icon size={16} className={`relative z-10 transition-colors duration-500 ${active ? tab.color : 'group-hover:text-aetox-text-soft'}`} />
-              <span className="relative z-10">{tab.label}</span>
+              <Icon size={14} className={`relative z-10 transition-colors duration-500 ${active ? tab.color : 'group-hover:text-aetox-text-soft'}`} />
+              <span className="relative z-10 tracking-tight">{tab.label}</span>
             </button>
           );
         })}

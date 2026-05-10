@@ -13,7 +13,7 @@ export default function SystemSimulation({ dict }: { dict: any }) {
   };
 
   return (
-    <section id="simulation" className="py-16 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+    <section id="simulation" className="py-12 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
         <div className="absolute -top-40 -left-40 text-aetox-accent/[0.03]">
           <Cpu size={600} strokeWidth={1} />
@@ -55,7 +55,7 @@ export default function SystemSimulation({ dict }: { dict: any }) {
                       0{step.id}
                     </div>
                   </div>
-                  <p className="text-xs md:text-sm font-bold text-aetox-text-main tracking-wide text-center mb-2 uppercase">
+                  <p className="text-xs md:text-sm font-bold text-aetox-text-main tracking-tight text-center mb-2">
                     {step.label}
                   </p>
                   <div className="w-1.5 h-1.5 rounded-full bg-aetox-border group-hover:bg-aetox-accent transition-colors shadow-sm" />
@@ -71,11 +71,9 @@ export default function SystemSimulation({ dict }: { dict: any }) {
             transition={{ delay: 0.5 }}
             className="mt-12 md:mt-20 p-6 md:p-8 aetox-card !rounded-[32px] border-aetox-accent/10 bg-aetox-accent/[0.02] max-w-2xl mx-auto text-center shadow-xl"
           >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="px-4 py-2 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 text-aetox-accent text-[10px] font-black tracking-widest uppercase">
+              <div className="px-4 py-2 rounded-full bg-aetox-accent/10 border border-aetox-accent/20 text-aetox-accent text-xs font-black mb-4">
                 {dict.caseLabel}
               </div>
-            </div>
             <p className="text-aetox-text-soft text-xs md:text-sm italic font-medium leading-relaxed tracking-wide">
               &quot;{dict.caseDescription}&quot;
             </p>

@@ -23,7 +23,7 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
             </div>
             <h3 className="text-2xl font-bold text-aetox-text-main tracking-tight">Enterprise RAG Technology</h3>
           </div>
-          <p className="text-[10px] font-bold text-aetox-text-muted uppercase tracking-widest">Architecture & Capabilities</p>
+          <p className="text-[10px] font-bold text-aetox-text-muted tracking-tight">Architecture & Capabilities</p>
         </div>
 
         <div className="space-y-6">
@@ -35,7 +35,7 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
               transition={{ delay: idx * 0.1 }}
               className="flex gap-6 group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-aetox-surface-lowest border border-aetox-border flex items-center justify-center shrink-0 group-hover:border-aetox-accent/40 group-hover:bg-aetox-accent-subtle transition-all shadow-lg group-hover:shadow-aetox-glow">
+              <div className="w-12 h-12 rounded-2xl bg-aetox-surface-lowest border border-white/10 flex items-center justify-center shrink-0 group-hover:border-aetox-accent/40 group-hover:bg-aetox-accent-subtle transition-all shadow-lg group-hover:shadow-aetox-glow">
                 {iconMap[feature.icon] || <CheckCircle2 size={16} />}
               </div>
               <div className="space-y-1">
@@ -49,21 +49,21 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
 
       {/* Right: Comparison Table */}
       <div className="lg:col-span-7">
-        <div className="aetox-card rounded-[32px] border border-aetox-border overflow-hidden shadow-2xl bg-aetox-surface-lowest/50 relative group">
+        <div className="aetox-card rounded-[32px] border border-white/10 overflow-hidden shadow-2xl bg-aetox-surface-lowest/50 relative group">
           <div className="absolute inset-0 bg-aetox-grid-overlay opacity-10" />
           
           <div className="relative overflow-x-auto">
             <table className="w-full text-left border-collapse font-sans">
               <thead>
-                <tr className="border-b border-aetox-border bg-aetox-surface-lowest/40">
-                  <th className="px-8 py-6 text-xs font-bold text-aetox-text-muted uppercase tracking-widest">Features</th>
-                  <th className="px-8 py-6 text-xs font-bold text-aetox-text-muted uppercase tracking-widest text-center">General AI</th>
-                  <th className="px-8 py-6 text-xs font-bold text-aetox-accent uppercase tracking-widest text-center">
+                <tr className="border-b border-white/5 bg-aetox-surface-lowest/40">
+                  <th className="px-8 py-6 text-xs font-bold text-aetox-text-muted tracking-tight">Features</th>
+                  <th className="px-8 py-6 text-xs font-bold text-aetox-text-muted tracking-tight text-center">General AI</th>
+                  <th className="px-8 py-6 text-xs font-bold text-aetox-accent tracking-tight text-center">
                     AETOX RAG
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-aetox-border text-aetox-text-soft">
+              <tbody className="divide-y divide-white/5 text-aetox-text-soft">
                 {comparisonRows.map((row: any, idx: number) => (
                   <tr key={idx} className="hover:bg-aetox-surface-lowest/40 transition-colors group/row">
                     <td className="px-8 py-7 text-aetox-text-main font-bold text-base">{row.label}</td>
@@ -88,7 +88,7 @@ export function FeaturesDashboard({ features, comparisonRows }: { features: any[
             </table>
           </div>
         </div>
-        <div className="mt-6 flex items-center gap-2 text-xs text-aetox-text-muted font-mono uppercase tracking-widest justify-end">
+        <div className="mt-6 flex items-center gap-2 text-xs text-aetox-text-muted font-mono tracking-tight justify-end">
           <div className="p-1 rounded bg-aetox-accent-subtle"><Info size={12} className="text-aetox-accent" /></div> Comparison based on enterprise standards
         </div>
       </div>
@@ -109,7 +109,7 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
     <div className="relative font-sans">
       <div className="text-center space-y-4 mb-20">
         <h3 className="text-4xl font-bold text-aetox-text-main tracking-tight">{pipeline.title}</h3>
-        <p className="text-aetox-accent font-bold uppercase tracking-widest text-sm">{pipeline.subtitle}</p>
+        <p className="text-aetox-accent font-bold tracking-tight text-sm">{pipeline.subtitle}</p>
         <p className="max-w-2xl mx-auto text-aetox-text-soft leading-relaxed text-lg font-medium">
           {pipeline.description}
         </p>
@@ -132,7 +132,7 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
               <div className="md:hidden absolute top-24 left-1/2 -translate-x-1/2 w-[1px] h-12 bg-gradient-to-b from-cyber-blue/30 to-transparent z-0" />
             )}
 
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-aetox-surface-lowest border border-aetox-border mx-auto flex items-center justify-center relative shadow-2xl group-hover:border-aetox-accent/40 transition-all group-hover:-translate-y-2 duration-500">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-aetox-surface-lowest border border-white/10 mx-auto flex items-center justify-center relative shadow-2xl group-hover:border-aetox-accent/40 transition-all group-hover:-translate-y-2 duration-500">
                <div className="absolute inset-0 bg-aetox-accent-subtle opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
                <div className="text-aetox-text-muted group-hover:text-aetox-accent transition-colors group-hover:scale-110 duration-500">
                  {iconMap[idx]}
@@ -144,7 +144,7 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
             
             <div className="space-y-4 px-2 font-sans">
               <div className="space-y-2">
-                <div className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest">{step.step}</div>
+                <div className="text-[10px] font-bold text-aetox-accent tracking-tight">{step.step}</div>
                 <h4 className="text-lg font-bold text-aetox-text-main group-hover:text-aetox-accent transition-colors">{step.title}</h4>
                 <p className="text-aetox-text-soft text-xs leading-relaxed font-medium">{step.desc}</p>
               </div>
@@ -153,7 +153,7 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
               {step.tags && (
                 <div className="flex flex-wrap justify-center gap-2 pt-2">
                   {step.tags.map((tag: string, i: number) => (
-                    <span key={i} className="px-2 py-1 rounded bg-aetox-surface-lowest border border-aetox-border text-[9px] text-aetox-text-muted font-mono">
+                    <span key={i} className="px-2 py-1 rounded bg-aetox-surface-lowest border border-white/10 text-[9px] text-aetox-text-muted font-mono">
                       {tag}
                     </span>
                   ))}
@@ -198,7 +198,7 @@ export function KnowledgePipeline({ pipeline }: { pipeline: any }) {
       </div>
       
       {pipeline.footerNote && (
-        <div className="mt-16 max-w-4xl mx-auto p-6 rounded-2xl border border-aetox-border bg-aetox-surface-lowest/50 text-center">
+        <div className="mt-16 max-w-4xl mx-auto p-6 rounded-2xl border border-white/10 bg-aetox-surface-lowest/50 text-center">
           <p className="text-sm text-aetox-text-soft leading-relaxed italic">
             {"\""}{pipeline.footerNote}{"\""}
           </p>

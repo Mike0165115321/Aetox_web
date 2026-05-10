@@ -6,7 +6,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="security" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+    <section id="security" className="py-16 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
         <div className="absolute -top-40 -right-20 text-aetox-accent/[0.03]">
           <Lock size={600} strokeWidth={1} />
@@ -24,11 +24,11 @@ export default function SecurityBlock({ dict }: { dict: any }) {
             <ShieldCheck size={14} className="shadow-aetox-glow" /> {dict.title}
           </motion.div>
           
-          <h2 className="text-fluid-h1 font-bold text-aetox-text-main mb-6 uppercase">
+          <h2 className="text-2xl md:text-fluid-h1 font-bold text-aetox-text-main mb-6 uppercase">
             {dict.headline.white} <span className="text-aetox-accent">{dict.headline.accent}</span>
           </h2>
           
-          <p className="text-fluid-p text-aetox-text-soft font-bold uppercase tracking-[0.2em] leading-relaxed max-w-2xl mx-auto opacity-80">
+          <p className="text-fluid-p text-aetox-text-soft font-bold leading-relaxed max-w-2xl mx-auto opacity-80">
             {dict.description}
           </p>
         </div>
@@ -39,14 +39,14 @@ export default function SecurityBlock({ dict }: { dict: any }) {
             const Icon = icons[index % icons.length];
             
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="aetox-card group p-10 md:p-12 !rounded-[48px] transition-all duration-500 hover:-translate-y-2 shadow-xl"
-              >
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  className="aetox-card group p-6 md:p-12 !rounded-3xl md:rounded-[48px] transition-all duration-500 hover:-translate-y-2 shadow-xl"
+                >
                 <div className="w-16 h-16 rounded-2xl bg-aetox-card-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
                   <Icon size={32} />
                 </div>
@@ -59,11 +59,11 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                   {feature.desc}
                 </p>
 
-                <div className="mt-10 pt-8 border-t border-aetox-border">
-                  <div className="flex items-center gap-3 text-[10px] font-black text-aetox-text-muted tracking-widest uppercase">
-                    <ShieldCheck size={14} className="text-aetox-accent" /> {dict.compliance}
+                  <div className="mt-10 pt-8 border-t border-aetox-border">
+                    <div className="flex items-center gap-3 text-xs font-black text-aetox-text-muted">
+                      <ShieldCheck size={14} className="text-aetox-accent" /> {dict.compliance}
+                    </div>
                   </div>
-                </div>
               </motion.div>
             );
           })}
