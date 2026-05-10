@@ -6,7 +6,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="security" className="py-16 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+    <section id="security" className="py-16 md:py-32 relative overflow-hidden scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
         <div className="absolute -top-40 -right-20 text-aetox-accent/[0.03]">
           <Lock size={600} strokeWidth={1} />
@@ -19,7 +19,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-card-bg border border-aetox-border text-aetox-accent text-[10px] font-black tracking-widest uppercase mb-8 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aetox-card-bg text-aetox-accent text-[10px] font-black tracking-widest mb-8 shadow-sm"
           >
             <ShieldCheck size={14} className="shadow-aetox-glow" /> {dict.title}
           </motion.div>
@@ -47,7 +47,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                   transition={{ delay: index * 0.15 }}
                   className="aetox-card group p-6 md:p-12 !rounded-3xl md:rounded-[48px] transition-all duration-500 hover:-translate-y-2 shadow-xl"
                 >
-                <div className="w-16 h-16 rounded-2xl bg-aetox-card-bg border border-aetox-border flex items-center justify-center mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
+                <div className="w-16 h-16 rounded-2xl bg-aetox-card-bg flex items-center justify-center mb-10 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
                   <Icon size={32} />
                 </div>
                 
@@ -59,7 +59,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
                   {feature.desc}
                 </p>
 
-                  <div className="mt-10 pt-8 border-t border-aetox-border">
+                  <div className="mt-10 pt-8">
                     <div className="flex items-center gap-3 text-xs font-black text-aetox-text-muted">
                       <ShieldCheck size={14} className="text-aetox-accent" /> {dict.compliance}
                     </div>
@@ -80,7 +80,7 @@ export default function SecurityBlock({ dict }: { dict: any }) {
               transition={{ delay: 0.5 + idx * 0.1 }}
               className="flex items-center gap-4 opacity-30 hover:opacity-100 transition-all duration-700 cursor-default group"
             >
-              <div className="w-10 h-10 rounded-full border border-aetox-border bg-aetox-card-bg flex items-center justify-center font-black text-[10px] text-aetox-text-main group-hover:border-aetox-accent group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
+              <div className="w-10 h-10 rounded-full bg-aetox-card-bg flex items-center justify-center font-black text-[10px] text-aetox-text-main group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
                 {badge.label}
               </div>
               <span className="font-black text-aetox-text-main text-[10px] tracking-[0.3em] uppercase group-hover:text-aetox-text-main transition-colors">{badge.desc}</span>

@@ -34,7 +34,7 @@ module.exports = {
         "aetox-card-bg":           "var(--aetox-card-bg)",
         "aetox-card-border":       "var(--aetox-card-border)",
         "aetox-card-hover":        "var(--aetox-card-hover)",
-        "aetox-border":            "rgb(var(--aetox-border-rgb) / <alpha-value>)",
+        "aetox-border":            "rgb(var(--aetox-border-rgb) / 0.1)",
         "aetox-border-strong":     "rgb(var(--aetox-border-rgb) / 0.2)",
         "aetox-text-main":         "rgb(var(--aetox-text-main-rgb) / <alpha-value>)",
         "aetox-text-soft":         "rgb(var(--aetox-text-soft-rgb) / <alpha-value>)",
