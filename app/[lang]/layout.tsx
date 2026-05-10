@@ -59,7 +59,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className="">
+      <body className="" suppressHydrationWarning>
         
         <GlobalBackground />
         <ScrollProvider>

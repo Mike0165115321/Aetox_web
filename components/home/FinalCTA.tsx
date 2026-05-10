@@ -7,7 +7,7 @@ export default function FinalCTA({ dict, lang }: { dict: any, lang: string }) {
   if (!dict) return null;
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+    <section id="about" className="py-16 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       {/* Optimized Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <div className="absolute top-0 -left-10 text-aetox-accent/[0.03]">

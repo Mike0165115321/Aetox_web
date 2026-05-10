@@ -24,9 +24,9 @@ const PainCard = ({ title, impact, cost, index, observationLabel, costLabel }: P
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="aetox-card group p-10 flex flex-col h-full"
+      className="aetox-card group p-6 md:p-10 flex flex-col h-full"
     >
-      <div className="mb-10">
+      <div className="mb-6 md:mb-10">
         <div className="w-14 h-14 rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center text-aetox-text-muted group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500">
           <Icon size={28} />
         </div>
@@ -57,7 +57,7 @@ export default function PainSection({ dict }: { dict: any }) {
   if (!dict) return null;
 
   return (
-    <section id="pain" className="py-32 relative overflow-hidden scroll-mt-20">
+    <section id="pain" className="py-16 md:py-32 relative overflow-hidden scroll-mt-20">
       {/* Premium Atmosphere Integration */}
       <BackgroundIcon Icon={AlertTriangle} position="top-left" size={500} opacity={0.06} />
       <BackgroundIcon Icon={TrendingDown} position="bottom-right" size={500} opacity={0.06} />

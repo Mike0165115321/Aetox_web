@@ -1,52 +1,52 @@
 .dark, [data-theme='dark'] {
-            /* ── Surfaces (Midnight Slate) ─────────────────────────── */
-            --aetox-bg-rgb:              15 23 42;    /* #0F172A */
-            --aetox-surface-lowest-rgb:  30 41 59;    /* #1E293B */
-            --aetox-surface-low-rgb:     51 65 85;    /* #334155 */
-            --aetox-surface-rgb:         71 85 105;   /* #475569 */
-            --aetox-surface-high-rgb:    100 116 139; /* #64748B */
-            --aetox-surface-highest-rgb: 148 163 184; /* #94A3B8 */
+            /* ── Surfaces (Neutral Carbon - Cutting out the blue base) ── */
+            --aetox-bg-rgb:              9 9 11;      /* #09090B - Deep Zinc */
+            --aetox-surface-lowest-rgb:  18 18 21;    /* #121215 */
+            --aetox-surface-low-rgb:     24 24 27;    /* #18181B */
+            --aetox-surface-rgb:         39 39 42;    /* #27272A */
+            --aetox-surface-high-rgb:    63 63 70;    /* #3F3F46 */
+            --aetox-surface-highest-rgb: 113 113 122; /* #71717A */
 
-            /* ── Typography (Slate Tinted) ─────────────────────────── */
-            --aetox-text-main-rgb:       248 250 252; /* #F8FAFC */
-            --aetox-text-soft-rgb:       148 163 184; /* #94A3B8 */
-            --aetox-text-muted-rgb:      100 116 139; /* #64748B */
+            /* ── Typography (Neutral Zinc) ─────────────────────────── */
+            --aetox-text-main-rgb:       250 250 250; /* #FAFAFA */
+            --aetox-text-soft-rgb:       161 161 170; /* #A1A1AA */
+            --aetox-text-muted-rgb:      82 82 91;    /* #52525B */
 
-            /* ── Accents & States ──────────────────────────────────── */
-            --aetox-accent-rgb:          59 130 246;  /* #3B82F6 */
-            --aetox-error-rgb:           239 68 68;   /* #EF4444 */
+            /* ── Accents & States (Vibrant Emerald for AI/Automation) ─ */
+            --aetox-accent-rgb:          16 185 129;  /* #10B981 - Emerald 500 */
+            --aetox-error-rgb:           244 63 94;   /* #F43F5E - Rose 500 */
             --aetox-border-rgb:          255 255 255; 
 
             /* ── Semantic Colors ───────────────────────────────────── */
-            --aetox-bg:                  #0F172A;
-            --aetox-surface-lowest:      #1E293B;
-            --aetox-surface-low:         #334155;
-            --aetox-surface:             #475569;
-            --aetox-surface-high:        #64748B;
-            --aetox-surface-highest:     #94A3B8;
+            --aetox-bg:                  #09090B;
+            --aetox-surface-lowest:      #121215;
+            --aetox-surface-low:         #18181B;
+            --aetox-surface:             #27272A;
+            --aetox-surface-high:        #3F3F46;
+            --aetox-surface-highest:     #71717A;
 
-            --aetox-text-main:           #F8FAFC;
-            --aetox-text-soft:           #94A3B8;
-            --aetox-text-muted:          #64748B;
+            --aetox-text-main:           #FAFAFA;
+            --aetox-text-soft:           #A1A1AA;
+            --aetox-text-muted:          #52525B;
 
-            --aetox-accent:              #3B82F6;
-            --aetox-accent-hover:        #2563EB;
-            --aetox-accent-subtle:       rgba(59, 130, 246, 0.15);
+            --aetox-accent:              #10B981;
+            --aetox-accent-hover:        #059669;
+            --aetox-accent-subtle:       rgba(16, 185, 129, 0.1);
 
-            --aetox-error:               #EF4444;
-            --aetox-error-surface:       rgba(239, 68, 68, 0.1);
+            --aetox-error:               #F43F5E;
+            --aetox-error-surface:       rgba(244, 63, 94, 0.1);
 
-            /* Minimalist Borders (Reduced Opacity) */
-            --aetox-border:              rgba(255, 255, 255, 0.08);
-            --aetox-border-strong:       rgba(255, 255, 255, 0.15);
-            --aetox-grid-line:           rgba(255, 255, 255, 0.03);
+            /* Minimalist Borders (Neutral) */
+            --aetox-border:              rgba(255, 255, 255, 0.06);
+            --aetox-border-strong:       rgba(255, 255, 255, 0.12);
+            --aetox-grid-line:           rgba(255, 255, 255, 0.02);
 
             /* ── UI Components ─────────────────────────────────────── */
-            --aetox-card-bg:             rgba(30, 41, 59, 0.7); /* Translucent lowest surface */
-            --aetox-card-border:         rgba(255, 255, 255, 0.06);
-            --aetox-card-hover:          rgba(51, 65, 85, 0.8);
+            --aetox-card-bg:             rgba(18, 18, 21, 0.8);
+            --aetox-card-border:         rgba(255, 255, 255, 0.04);
+            --aetox-card-hover:          rgba(24, 24, 27, 0.9);
 
-            /* ── Shadows (Blue-tinted shadows instead of pure black) ─ */
-            --aetox-shadow-card:         0 4px 6px -1px rgba(2, 6, 23, 0.3), 0 2px 4px -2px rgba(2, 6, 23, 0.3);
-            --aetox-shadow-glow:         0 0 15px rgba(59, 130, 246, 0.2);
+            /* ── Shadows (Keep subtle blue tint as requested for depth) ─ */
+            --aetox-shadow-card:         0 10px 30px -10px rgba(10, 132, 255, 0.15), 0 4px 10px -5px rgba(10, 132, 255, 0.1);
+            --aetox-shadow-glow:         0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(10, 132, 255, 0.1);
         }

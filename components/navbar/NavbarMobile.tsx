@@ -17,18 +17,18 @@ export default function NavbarMobile({
     <AnimatePresence mode="wait">
       {isMobileMenuOpen && (
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[1000] bg-aetox-bg lg:hidden flex flex-col"
+          initial={{ opacity: 0, x: '100%' }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: '100%', opacity: 0 }}
+          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+          className="fixed inset-0 z-[1000] bg-aetox-bg/95 backdrop-blur-3xl lg:hidden flex flex-col"
         >
           {/* Subtle Blueprint Grid */}
           <div className="absolute inset-0 bg-aetox-blueprint bg-[length:40px_40px] opacity-20 pointer-events-none" />
           
-          <div className="flex-1 flex flex-col pt-32 px-8 pb-12 relative z-10 overflow-y-auto">
+          <div className="flex-1 flex flex-col pt-24 px-6 pb-8 relative z-10 overflow-y-auto">
             {/* Menu Links */}
-            <div className="flex flex-col gap-4 mb-12">
+            <div className="flex flex-col gap-2 mb-8">
               {menuItems.map((item: any, index: number) => (
                 <motion.div
                   key={item.href}
@@ -39,7 +39,7 @@ export default function NavbarMobile({
                   <Link 
                     href={`/${currentLang.toLowerCase()}${item.href}`} 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="group flex items-center justify-between text-2xl font-bold text-aetox-text-soft hover:text-aetox-text-main transition-all py-4 border-b border-aetox-border"
+                    className="group flex items-center justify-between text-xl font-bold text-aetox-text-soft hover:text-aetox-text-main transition-all py-3.5 border-b border-aetox-border/50"
                   >
                     <span className="flex items-center gap-4">
                       <span className="text-xs font-bold text-aetox-accent/50 group-hover:text-aetox-accent">0{index + 1}</span>
@@ -80,10 +80,10 @@ export default function NavbarMobile({
               <Link 
                 href={`/${currentLang.toLowerCase()}/contact`} 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-aetox-accent text-white text-lg font-bold shadow-aetox-glow transition-all active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-aetox-accent text-white text-base font-bold shadow-aetox-glow transition-all active:scale-[0.98]"
               >
                 <span>{ctaLabel}</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

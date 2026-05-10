@@ -68,7 +68,7 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="mb-12"
+          className="mb-8 md:mb-12"
         >
           <Image 
             src="/images/logo.svg" 
@@ -104,14 +104,14 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-lg flex flex-col md:flex-row gap-6 w-full md:w-auto"
+          className="mt-8 md:mt-lg flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto"
         >
-          <Link href={`/${lang}/services`} className="aetox-btn-main group">
+          <Link href={`/${lang}/services`} className="aetox-btn-main group w-full sm:w-auto">
             {content.cta.primary}
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           
-          <Link href={`/${lang}/authority`} className="aetox-btn-glass">
+          <Link href={`/${lang}/authority`} className="aetox-btn-glass w-full sm:w-auto">
             {content.cta.secondary}
           </Link>
         </motion.div>

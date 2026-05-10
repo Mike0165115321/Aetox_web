@@ -1,16 +1,16 @@
 @layer components {
   /* ── 1. Buttons ─────────────────────────────────────────── */
   .aetox-btn-main {
-    @apply inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl 
-           bg-aetox-accent text-white font-bold text-sm tracking-widest uppercase
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3.5 md:px-8 md:py-4 rounded-2xl 
+           bg-aetox-accent text-white font-bold text-[11px] md:text-sm tracking-widest uppercase
            transition-all duration-300 shadow-aetox-glow hover:bg-aetox-accent/80 
            hover:scale-[1.02] active:scale-95;
   }
 
   .aetox-btn-glass {
-    @apply inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl 
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3.5 md:px-8 md:py-4 rounded-2xl 
            bg-aetox-surface-lowest/50 border border-aetox-border text-aetox-text-main 
-           font-bold text-sm tracking-widest uppercase transition-all duration-300 
+           font-bold text-[11px] md:text-sm tracking-widest uppercase transition-all duration-300 
            hover:bg-aetox-surface-low/80 active:scale-95 backdrop-blur-md;
   }
 
@@ -39,7 +39,7 @@
 
   /* ── 3. Cards & Surfaces ────────────────────────────────── */
   .aetox-card {
-    @apply rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
+    @apply rounded-[32px] md:rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
     background-color: var(--aetox-card-bg);
     border-color: var(--aetox-card-border);
   }

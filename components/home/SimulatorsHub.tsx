@@ -44,7 +44,7 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative flex items-center gap-2 md:gap-3 px-5 md:px-7 py-3 md:py-4 rounded-[18px] text-[11px] md:text-xs font-black tracking-widest uppercase transition-all duration-500 group ${
+              className={`relative flex items-center gap-2 md:gap-3 px-3 md:px-7 py-2.5 md:py-4 rounded-[18px] text-[10px] md:text-xs font-black tracking-widest uppercase transition-all duration-500 group ${
                 active ? 'text-aetox-text-main' : 'text-aetox-text-muted hover:text-aetox-text-soft'
               }`}
             >

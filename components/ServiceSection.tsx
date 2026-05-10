@@ -15,7 +15,7 @@ export default function ServiceSection({ dict, lang }: { dict?: any, lang: strin
   const content = dict;
 
   return (
-    <section id="services" className="py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
+    <section id="services" className="py-16 md:py-32 relative overflow-hidden border-t border-aetox-border scroll-mt-20">
       {/* Optimized Background Architectural Elements */}
       <BackgroundIcon Icon={Boxes} position="top-left" size={500} opacity={0.06} />
       <BackgroundIcon Icon={Component} position="bottom-right" size={500} opacity={0.06} />

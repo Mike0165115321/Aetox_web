@@ -116,7 +116,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           </div>
 
           {/* Right: Dashboard Area */}
-          <div className="lg:w-[68%] p-5 md:p-8 flex flex-col justify-between space-y-6 bg-aetox-surface-lowest/20">
+          <div className="lg:w-[68%] p-4 md:p-8 flex flex-col justify-between space-y-4 md:space-y-6 bg-aetox-surface-lowest/20">
             {/* Top KPI Grid - Balanced Size */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-2 font-sans">
               <div className="p-4 md:p-5 rounded-[24px] bg-emerald-500/10 border border-emerald-500/20 text-center shadow-sm transition-all hover:border-emerald-500/40">
@@ -152,65 +152,65 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
               <div className="p-2 space-y-3">
                 {/* AI Row - Upscaled */}
-                <div className="flex items-center justify-between p-6 bg-aetox-surface-lowest rounded-[24px] border border-aetox-border transition-all hover:border-aetox-accent/50 group hover:shadow-xl hover:shadow-aetox-accent/5">
-                  <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 rounded-2xl bg-aetox-accent-subtle flex items-center justify-center text-aetox-accent font-bold text-xl shadow-sm group-hover:scale-110 transition-transform">AI</div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-6 bg-aetox-surface-lowest rounded-[24px] border border-aetox-border transition-all hover:border-aetox-accent/50 group hover:shadow-xl hover:shadow-aetox-accent/5 gap-4">
+                  <div className="flex items-center gap-4 md:gap-6">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-aetox-accent-subtle flex items-center justify-center text-aetox-accent font-bold text-lg md:text-xl shadow-sm group-hover:scale-110 transition-transform">AI</div>
                     <div>
-                      <p className="text-sm font-bold text-aetox-text-main uppercase tracking-tight">{dict.benchmark?.botLabel || 'บอท AETOX'}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold rounded uppercase">เสถียรภาพ 24/7</span>
-                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold rounded uppercase">โอกาสพลาดน้อยมาก</span>
+                      <p className="text-xs md:text-sm font-bold text-aetox-text-main uppercase tracking-tight">{dict.benchmark?.botLabel || 'บอท AETOX'}</p>
+                      <div className="flex flex-wrap items-center gap-2 mt-1">
+                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[9px] md:text-[10px] font-bold rounded uppercase">เสถียรภาพ 24/7</span>
+                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[9px] md:text-[10px] font-bold rounded uppercase">โอกาสพลาดน้อยมาก</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-12 items-center">
-                    <div className="text-right hidden sm:block">
-                      <p className="text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ระยะเวลางาน</p>
-                      <p className="text-xl font-bold text-aetox-text-main tracking-tight">{calc.botHours.toFixed(1)} {dict.unitHours}</p>
+                  <div className="flex justify-between sm:justify-end gap-6 md:gap-12 items-center border-t sm:border-t-0 border-aetox-border/50 pt-4 sm:pt-0">
+                    <div className="text-left sm:text-right">
+                      <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ระยะเวลางาน</p>
+                      <p className="text-lg md:text-xl font-bold text-aetox-text-main tracking-tight">{calc.botHours.toFixed(1)} {dict.unitHours}</p>
                     </div>
-                    <div className="text-right border-l border-aetox-border pl-12">
-                      <p className="text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ต้นทุนรายเดือน</p>
-                      <p className="text-2xl font-bold text-emerald-400 tracking-tight leading-none">{formatMoney(calc.totalAfter)}</p>
+                    <div className="text-right sm:border-l border-aetox-border sm:pl-6 md:pl-12">
+                      <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ต้นทุนรายเดือน</p>
+                      <p className="text-xl md:text-2xl font-bold text-emerald-400 tracking-tight leading-none">{formatMoney(calc.totalAfter)}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Human Row - Upscaled & Highlight Risks */}
-                <div className="flex items-center justify-between p-6 bg-aetox-surface-lowest rounded-[24px] border border-aetox-border transition-all hover:border-rose-500/50 group hover:shadow-xl hover:shadow-rose-500/5">
-                  <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-400 font-bold text-xl shadow-sm group-hover:scale-110 transition-transform">{staffCount}</div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-6 bg-aetox-surface-lowest rounded-[24px] border border-aetox-border transition-all hover:border-rose-500/50 group hover:shadow-xl hover:shadow-rose-500/5 gap-4">
+                  <div className="flex items-center gap-4 md:gap-6">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-400 font-bold text-lg md:text-xl shadow-sm group-hover:scale-110 transition-transform">{staffCount}</div>
                     <div>
-                      <p className="text-sm font-bold text-aetox-text-main uppercase tracking-tight">{dict.benchmark?.manualLabel || 'ทีมงานคน'}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="px-2 py-0.5 bg-rose-500/10 text-rose-500 text-[10px] font-bold rounded uppercase">ตรวจพบคอขวด</span>
-                        <span className="px-2 py-0.5 bg-rose-500/10 text-rose-500 text-[10px] font-bold rounded uppercase">พื้นที่ความเสี่ยงสูง</span>
+                      <p className="text-xs md:text-sm font-bold text-aetox-text-main uppercase tracking-tight">{dict.benchmark?.manualLabel || 'ทีมงานคน'}</p>
+                      <div className="flex flex-wrap items-center gap-2 mt-1">
+                        <span className="px-2 py-0.5 bg-rose-500/10 text-rose-500 text-[9px] md:text-[10px] font-bold rounded uppercase">ตรวจพบคอขวด</span>
+                        <span className="px-2 py-0.5 bg-rose-500/10 text-rose-500 text-[9px] md:text-[10px] font-bold rounded uppercase">พื้นที่ความเสี่ยงสูง</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-12 items-center">
-                    <div className="text-right hidden sm:block">
-                      <p className="text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ระยะเวลางาน</p>
-                      <p className="text-xl font-bold text-aetox-text-main tracking-tight">{calc.manualDurationHours.toFixed(1)} {dict.unitHours}</p>
+                  <div className="flex justify-between sm:justify-end gap-6 md:gap-12 items-center border-t sm:border-t-0 border-aetox-border/50 pt-4 sm:pt-0">
+                    <div className="text-left sm:text-right">
+                      <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ระยะเวลางาน</p>
+                      <p className="text-lg md:text-xl font-bold text-aetox-text-main tracking-tight">{calc.manualDurationHours.toFixed(1)} {dict.unitHours}</p>
                     </div>
-                    <div className="text-right border-l border-aetox-border pl-12">
-                      <p className="text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ต้นทุนรายเดือน</p>
-                      <p className="text-2xl font-bold text-rose-400 tracking-tight leading-none">{formatMoney(calc.totalBefore)}</p>
+                    <div className="text-right sm:border-l border-aetox-border sm:pl-6 md:pl-12">
+                      <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ต้นทุนรายเดือน</p>
+                      <p className="text-xl md:text-2xl font-bold text-rose-400 tracking-tight leading-none">{formatMoney(calc.totalBefore)}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="px-8 py-6 bg-aetox-accent/5 border-t border-aetox-border flex justify-between items-center font-sans">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-aetox-accent/20 text-aetox-accent shadow-sm"><Clock size={24} /></div>
+              <div className="px-5 md:px-8 py-5 md:py-6 bg-aetox-accent/5 border-t border-aetox-border flex flex-col sm:flex-row justify-between items-center font-sans gap-6">
+                <div className="flex items-center gap-4 w-full sm:w-auto">
+                  <div className="p-2.5 md:p-3 rounded-xl bg-aetox-accent/20 text-aetox-accent shadow-sm"><Clock size={20} className="md:w-6 md:h-6" /></div>
                   <div>
-                    <p className="text-xs font-bold text-aetox-text-muted uppercase tracking-widest mb-1">มูลค่ารวมที่ประหยัดได้ต่อปี</p>
-                    <p className="text-3xl font-bold text-emerald-400 tracking-tight leading-none">{formatMoney(calc.annualSaving, true, false)}</p>
+                    <p className="text-[10px] md:text-xs font-bold text-aetox-text-muted uppercase tracking-widest mb-1">มูลค่าที่ประหยัดได้ต่อปี</p>
+                    <p className="text-2xl md:text-3xl font-bold text-emerald-400 tracking-tight leading-none">{formatMoney(calc.annualSaving, true, false)}</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-1">อัตราการเร่งประสิทธิภาพ</p>
-                  <p className="text-4xl font-bold text-aetox-accent tracking-tight leading-none">{calc.speedX}x <span className="text-lg uppercase ml-1">ไวกว่า</span></p>
+                <div className="text-center sm:text-right w-full sm:w-auto border-t sm:border-t-0 border-aetox-border/50 pt-4 sm:pt-0">
+                  <p className="text-[10px] md:text-xs font-bold text-emerald-500 uppercase tracking-widest mb-1">อัตราการเร่งประสิทธิภาพ</p>
+                  <p className="text-3xl md:text-4xl font-bold text-aetox-accent tracking-tight leading-none">{calc.speedX}x <span className="text-base md:text-lg uppercase ml-1">ไวกว่า</span></p>
                 </div>
               </div>
             </div>
