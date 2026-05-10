@@ -63,9 +63,9 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6">
-      <div className="bg-aetox-surface-lowest/90 backdrop-blur-2xl rounded-[32px] border border-aetox-border overflow-hidden shadow-2xl transition-all duration-500">
+      <div className="bg-aetox-surface-lowest/90 backdrop-blur-2xl rounded-2xl md:rounded-[32px] border border-aetox-border overflow-hidden shadow-2xl transition-all duration-500">
         {/* Mini Header */}
-        <div className="px-5 py-4 border-b border-aetox-border bg-aetox-surface-low/30 flex justify-between items-center font-sans">
+        <div className="px-4 md:px-5 py-3 md:py-4 border-b border-aetox-border bg-aetox-surface-low/30 flex justify-between items-center font-sans">
           <div>
             <h2 className="text-sm md:text-base font-bold text-aetox-text-main uppercase tracking-tight flex items-center gap-2">
               <TrendingUp size={18} className="text-aetox-accent" />
@@ -85,18 +85,18 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           <div className="lg:w-[32%] p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-aetox-border space-y-6 bg-aetox-surface-lowest/50">
             <section className="space-y-3 font-sans">
               <p className="text-[11px] font-bold text-aetox-text-muted uppercase tracking-[0.2em] px-1">{dict.workloadTitle}</p>
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-1.5 md:gap-2">
                 {(Object.keys(workloadConfig) as Complexity[]).map((lvl) => {
                   const active = complexity === lvl;
                   const cfg = workloadConfig[lvl];
                   const d = dict.levels.find((l: any) => l.id === lvl);
                   return (
                     <button key={lvl} onClick={() => updateComplexity(lvl)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all border ${active ? 'bg-aetox-accent text-white border-aetox-accent shadow-lg shadow-aetox-accent/20' : 'bg-aetox-surface border-aetox-border text-aetox-text-soft hover:bg-aetox-surface-high'}`}>
-                      <SimulatorIcon name={cfg.icon} size={16} />
+                      className={`flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl text-left transition-all border ${active ? 'bg-aetox-accent text-white border-aetox-accent shadow-lg shadow-aetox-accent/20' : 'bg-aetox-surface border-aetox-border text-aetox-text-soft hover:bg-aetox-surface-high'}`}>
+                      <SimulatorIcon name={cfg.icon} size={14} />
                       <div className="flex-1 min-w-0">
-                        <p className="text-[11px] font-bold truncate leading-none mb-1">{d?.label || cfg.label}</p>
-                        <p className={`text-[9px] font-bold uppercase tracking-tighter opacity-60 ${active ? 'text-white' : ''}`}>{d?.sublabel || cfg.sublabel}</p>
+                        <p className="text-[10px] md:text-[11px] font-bold truncate leading-none mb-0.5 md:mb-1">{d?.label || cfg.label}</p>
+                        <p className={`text-[8px] md:text-[9px] font-bold uppercase tracking-tighter opacity-60 ${active ? 'text-white' : ''}`}>{d?.sublabel || cfg.sublabel}</p>
                       </div>
                     </button>
                   );
@@ -118,23 +118,23 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           {/* Right: Dashboard Area */}
           <div className="lg:w-[68%] p-4 md:p-8 flex flex-col justify-between space-y-4 md:space-y-6 bg-aetox-surface-lowest/20">
             {/* Top KPI Grid - Balanced Size */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-2 font-sans">
-              <div className="p-4 md:p-5 rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
-                <p className="text-[10px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ต้นทุนที่ลดได้</p>
-                <p className="text-2xl md:text-3xl font-bold text-aetox-text-main leading-none">{calc.costReductionPct}%</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-2 font-sans">
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
+                <p className="text-[9px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ต้นทุนที่ลดได้</p>
+                <p className="text-lg md:text-3xl font-bold text-aetox-text-main leading-none">{calc.costReductionPct}%</p>
               </div>
-              <div className="p-4 md:p-5 rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
-                <p className="text-[10px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ROI ปีแรก</p>
-                <p className="text-2xl md:text-3xl font-bold text-aetox-text-main leading-none">{calc.roi}%</p>
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
+                <p className="text-[9px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ROI ปีแรก</p>
+                <p className="text-lg md:text-3xl font-bold text-aetox-text-main leading-none">{calc.roi}%</p>
               </div>
-              <div className="p-4 md:p-5 rounded-[24px] bg-emerald-500/10 border border-emerald-500/20 text-center shadow-sm transition-all hover:border-emerald-500/40">
-                <p className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest mb-1">{dict.kpis?.monthlySaving || 'ประหยัดได้/เดือน'}</p>
-                <p className="text-xl md:text-2xl font-bold text-emerald-500 tracking-tight">{formatMoney(calc.monthlySaving)}</p>
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-emerald-500/10 border border-emerald-500/20 text-center shadow-sm transition-all hover:border-emerald-500/40">
+                <p className="text-[9px] md:text-[10px] font-bold text-emerald-500 uppercase tracking-widest mb-1">{dict.kpis?.monthlySaving || 'ประหยัดได้/เดือน'}</p>
+                <p className="text-base md:text-2xl font-bold text-emerald-500 tracking-tight">{formatMoney(calc.monthlySaving)}</p>
               </div>
-              <div className="p-4 md:p-5 rounded-[24px] bg-aetox-accent/10 border border-aetox-accent/20 text-center shadow-sm transition-all hover:border-aetox-accent/40">
-                <p className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest mb-1">{dict.kpis?.payback || 'ระยะเวลาคืนทุน'}</p>
-                <p className="text-xl md:text-2xl font-bold text-aetox-accent tracking-tight">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
-                <p className="text-[9px] font-bold text-aetox-accent/70 uppercase">{dict.kpis?.paybackUnit || 'เดือน (Payback)'}</p>
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-accent/10 border border-aetox-accent/20 text-center shadow-sm transition-all hover:border-aetox-accent/40">
+                <p className="text-[9px] md:text-[10px] font-bold text-aetox-accent uppercase tracking-widest mb-1">{dict.kpis?.payback || 'ระยะเวลาคืนทุน'}</p>
+                <p className="text-base md:text-2xl font-bold text-aetox-accent tracking-tight">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
+                <p className="text-[8px] md:text-[9px] font-bold text-aetox-accent/70 uppercase">{dict.kpis?.paybackUnit || 'เดือน (Payback)'}</p>
               </div>
             </div>
 
@@ -152,25 +152,25 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
               <div className="p-2 space-y-3">
                 {/* AI Row - Upscaled */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-6 bg-aetox-surface-lowest rounded-[24px] border border-aetox-border transition-all hover:border-aetox-accent/50 group hover:shadow-xl hover:shadow-aetox-accent/5 gap-4">
-                  <div className="flex items-center gap-4 md:gap-6">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-aetox-accent-subtle flex items-center justify-center text-aetox-accent font-bold text-lg md:text-xl shadow-sm group-hover:scale-110 transition-transform">AI</div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 md:p-6 bg-aetox-surface-lowest rounded-xl md:rounded-[24px] border border-aetox-border transition-all hover:border-aetox-accent/50 group hover:shadow-xl hover:shadow-aetox-accent/5 gap-3">
+                  <div className="flex items-center gap-3 md:gap-6">
+                    <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-aetox-accent-subtle flex items-center justify-center text-aetox-accent font-bold text-base md:text-xl shadow-sm group-hover:scale-110 transition-transform">AI</div>
                     <div>
-                      <p className="text-xs md:text-sm font-bold text-aetox-text-main uppercase tracking-tight">{dict.benchmark?.botLabel || 'บอท AETOX'}</p>
-                      <div className="flex flex-wrap items-center gap-2 mt-1">
-                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[9px] md:text-[10px] font-bold rounded uppercase">เสถียรภาพ 24/7</span>
-                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[9px] md:text-[10px] font-bold rounded uppercase">โอกาสพลาดน้อยมาก</span>
+                      <p className="text-[11px] md:text-sm font-bold text-aetox-text-main uppercase tracking-tight">{dict.benchmark?.botLabel || 'บอท AETOX'}</p>
+                      <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                        <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-500 text-[8px] md:text-[10px] font-bold rounded uppercase">เสถียรภาพ 24/7</span>
+                        <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-500 text-[8px] md:text-[10px] font-bold rounded uppercase">แม่นยำสูง</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-between sm:justify-end gap-6 md:gap-12 items-center border-t sm:border-t-0 border-aetox-border/50 pt-4 sm:pt-0">
+                  <div className="flex justify-between sm:justify-end gap-5 md:gap-12 items-center border-t sm:border-t-0 border-aetox-border/50 pt-3 sm:pt-0">
                     <div className="text-left sm:text-right">
-                      <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ระยะเวลางาน</p>
-                      <p className="text-lg md:text-xl font-bold text-aetox-text-main tracking-tight">{calc.botHours.toFixed(1)} {dict.unitHours}</p>
+                      <p className="text-[8px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-0.5 tracking-widest">ระยะเวลางาน</p>
+                      <p className="text-base md:text-xl font-bold text-aetox-text-main tracking-tight">{calc.botHours.toFixed(1)} {dict.unitHours}</p>
                     </div>
                     <div className="text-right sm:border-l border-aetox-border sm:pl-6 md:pl-12">
-                      <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ต้นทุนรายเดือน</p>
-                      <p className="text-xl md:text-2xl font-bold text-aetox-value tracking-tight leading-none">{formatMoney(calc.totalAfter)}</p>
+                      <p className="text-[8px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-0.5 tracking-widest">ต้นทุนรายเดือน</p>
+                      <p className="text-lg md:text-2xl font-bold text-aetox-value tracking-tight leading-none">{formatMoney(calc.totalAfter)}</p>
                     </div>
                   </div>
                 </div>
@@ -200,17 +200,17 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                 </div>
               </div>
 
-              <div className="px-5 md:px-8 py-5 md:py-6 bg-aetox-accent/5 border-t border-aetox-border flex flex-col sm:flex-row justify-between items-center font-sans gap-6">
-                <div className="flex items-center gap-4 w-full sm:w-auto">
-                  <div className="p-2.5 md:p-3 rounded-xl bg-aetox-accent/20 text-aetox-accent shadow-sm"><Clock size={20} className="md:w-6 md:h-6" /></div>
+              <div className="px-4 md:px-8 py-4 md:py-6 bg-aetox-accent/5 border-t border-aetox-border flex flex-col sm:flex-row justify-between items-center font-sans gap-4 md:gap-6">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="p-2 md:p-3 rounded-lg bg-aetox-accent/20 text-aetox-accent shadow-sm"><Clock size={18} className="md:w-6 md:h-6" /></div>
                   <div>
-                    <p className="text-[10px] md:text-xs font-bold text-aetox-text-muted uppercase tracking-widest mb-1">มูลค่าที่ประหยัดได้ต่อปี</p>
-                    <p className="text-2xl md:text-3xl font-bold text-aetox-value tracking-tight leading-none">{formatMoney(calc.annualSaving, true, false)}</p>
+                    <p className="text-[9px] md:text-xs font-bold text-aetox-text-muted uppercase tracking-widest mb-0.5">มูลค่าที่ประหยัดได้ต่อปี</p>
+                    <p className="text-lg md:text-3xl font-bold text-aetox-value tracking-tight leading-none">{formatMoney(calc.annualSaving, true, false)}</p>
                   </div>
                 </div>
-                <div className="text-center sm:text-right w-full sm:w-auto border-t sm:border-t-0 border-aetox-border/50 pt-4 sm:pt-0">
-                  <p className="text-[10px] md:text-xs font-bold text-emerald-500 uppercase tracking-widest mb-1">อัตราการเร่งประสิทธิภาพ</p>
-                  <p className="text-3xl md:text-4xl font-bold text-aetox-accent tracking-tight leading-none">{calc.speedX}x <span className="text-base md:text-lg uppercase ml-1">ไวกว่า</span></p>
+                <div className="text-center sm:text-right w-full sm:w-auto border-t sm:border-t-0 border-aetox-border/50 pt-3 sm:pt-0">
+                  <p className="text-[9px] md:text-xs font-bold text-emerald-500 uppercase tracking-widest mb-0.5">อัตราการเร่งประสิทธิภาพ</p>
+                  <p className="text-2xl md:text-4xl font-bold text-aetox-accent tracking-tight leading-none">{calc.speedX}x <span className="text-sm md:text-lg uppercase ml-1">ไวกว่า</span></p>
                 </div>
               </div>
             </div>

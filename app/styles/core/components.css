@@ -1,16 +1,16 @@
 @layer components {
   /* ── 1. Buttons ─────────────────────────────────────────── */
   .aetox-btn-main {
-    @apply inline-flex items-center justify-center gap-3 px-6 py-3.5 md:px-8 md:py-4 rounded-2xl 
-           bg-aetox-accent text-white font-bold text-[11px] md:text-sm tracking-widest uppercase
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-8 md:py-4 rounded-xl md:rounded-2xl 
+           bg-aetox-accent text-white font-bold text-[10px] md:text-sm tracking-widest uppercase
            transition-all duration-300 shadow-aetox-glow hover:bg-aetox-accent/80 
            hover:scale-[1.02] active:scale-95;
   }
 
   .aetox-btn-glass {
-    @apply inline-flex items-center justify-center gap-3 px-6 py-3.5 md:px-8 md:py-4 rounded-2xl 
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-8 md:py-4 rounded-xl md:rounded-2xl 
            bg-aetox-surface-lowest/50 border border-aetox-border text-aetox-text-main 
-           font-bold text-[11px] md:text-sm tracking-widest uppercase transition-all duration-300 
+           font-bold text-[10px] md:text-sm tracking-widest uppercase transition-all duration-300 
            hover:bg-aetox-surface-low/80 active:scale-95 backdrop-blur-md;
   }
 
@@ -20,26 +20,26 @@
   }
 
   .aetox-input {
-    @apply w-full bg-aetox-surface-lowest/50 border border-aetox-border rounded-2xl py-4 px-6
+    @apply w-full bg-aetox-surface-lowest/50 border border-aetox-border rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
            text-aetox-text-main placeholder:text-aetox-text-muted
            focus:border-aetox-accent focus:outline-none transition-all duration-300
            text-fluid-p font-medium backdrop-blur-sm;
   }
 
   .aetox-select {
-    @apply w-full bg-aetox-surface-lowest/50 border border-aetox-border rounded-2xl py-4 px-6
+    @apply w-full bg-aetox-surface-lowest/50 border border-aetox-border rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
            text-aetox-text-main appearance-none cursor-pointer
            focus:border-aetox-accent focus:outline-none transition-all duration-300
            text-fluid-p font-medium;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1.5rem center;
-    background-size: 1rem;
+    background-position: right 1rem center;
+    background-size: 0.875rem;
   }
 
   /* ── 3. Cards & Surfaces ────────────────────────────────── */
   .aetox-card {
-    @apply rounded-[32px] md:rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
+    @apply rounded-2xl md:rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
     background-color: var(--aetox-card-bg);
     border-color: var(--aetox-card-border);
   }

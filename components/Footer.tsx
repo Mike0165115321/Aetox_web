@@ -14,7 +14,7 @@ export default function Footer({ dict }: { dict?: any }) {
     rights: ""
   };
   return (
-    <footer className="border-t border-aetox-border bg-aetox-bg py-16 transition-colors duration-500">
+    <footer className="border-t border-aetox-border bg-aetox-bg py-12 md:py-16 transition-colors duration-500">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
           <div className="space-y-4">

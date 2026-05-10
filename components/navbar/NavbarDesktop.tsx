@@ -19,16 +19,16 @@ export default function NavbarDesktop({
     <div className="container mx-auto relative flex items-center justify-between z-[110] px-6">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start">
-        <Link href={`/${currentLang.toLowerCase()}`} className="flex items-center gap-4 hover:opacity-80 transition-opacity group">
+        <Link href={`/${currentLang.toLowerCase()}`} className="flex items-center gap-2 md:gap-4 hover:opacity-80 transition-opacity group">
           <Image 
             src="/images/logo.svg" 
             alt="Aetox Logo" 
-            width={48} 
-            height={48} 
-            className="h-10 w-auto animate-aetox-breathe dark:brightness-0 dark:invert" 
+            width={40} 
+            height={40} 
+            className="h-8 md:h-10 w-auto animate-aetox-breathe dark:brightness-0 dark:invert" 
             priority 
           />
-          <span className="text-2xl font-bold tracking-tighter text-aetox-text-main">
+          <span className="text-xl md:text-2xl font-bold tracking-tighter text-aetox-text-main">
             AETO<span className="text-aetox-accent">X</span>
           </span>
         </Link>

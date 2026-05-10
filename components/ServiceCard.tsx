@@ -18,8 +18,8 @@ interface ServiceCardProps {
 export default function ServiceCard({ id, title, description, features, relatedProjects, Icon, index, deploymentLabel, lang }: ServiceCardProps) {
   const CardContent = (
     <div className="flex flex-col h-full">
-      <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center mb-8 md:mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
-        <Icon className="w-6 h-6 md:w-7 md:h-7" />
+      <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-aetox-bg border border-aetox-border flex items-center justify-center mb-6 md:mb-10 group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500 shadow-aetox-card">
+        <Icon className="w-5 h-5 md:w-7 md:h-7" />
       </div>
       
       <h3 className="text-xl md:text-2xl font-bold text-aetox-text-main mb-4 tracking-tight group-hover:text-aetox-accent transition-colors">
@@ -65,11 +65,11 @@ export default function ServiceCard({ id, title, description, features, relatedP
       className="h-full"
     >
       {id ? (
-        <Link href={`/${lang}/services/${id}`} className="aetox-card group flex flex-col p-6 md:p-10 h-full hover:-translate-y-2">
+        <Link href={`/${lang}/services/${id}`} className="aetox-card group flex flex-col p-5 md:p-10 h-full hover:-translate-y-2">
           {CardContent}
         </Link>
       ) : (
-        <div className="aetox-card group flex flex-col p-6 md:p-10 h-full">
+        <div className="aetox-card group flex flex-col p-5 md:p-10 h-full">
           {CardContent}
         </div>
       )}

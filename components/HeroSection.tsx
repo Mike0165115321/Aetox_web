@@ -68,14 +68,14 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="mb-8 md:mb-12"
+          className="mb-6 md:mb-12"
         >
           <Image 
             src="/images/logo.svg" 
             alt="Aetox Logo" 
-            width={120}
-            height={120}
-            className="w-20 md:w-24 h-auto mx-auto animate-aetox-breathe dark:brightness-0 dark:invert"
+            width={80}
+            height={80}
+            className="w-16 md:w-24 h-auto mx-auto animate-aetox-breathe dark:brightness-0 dark:invert"
             priority
           />
         </motion.div>
@@ -95,7 +95,7 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-md text-fluid-p font-sans text-aetox-text-soft max-w-2xl font-medium"
+          className="mt-4 md:mt-md text-fluid-p font-sans text-aetox-text-soft max-w-2xl font-medium"
         >
           {content.description}
         </motion.p>
@@ -104,7 +104,7 @@ export default function HeroSection({ dict, lang }: { dict: any, lang: string })
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 md:mt-lg flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto"
+          className="mt-6 md:mt-lg flex flex-col sm:flex-row gap-3 md:gap-6 w-full sm:w-auto"
         >
           <Link href={`/${lang}/services`} className="aetox-btn-main group w-full sm:w-auto">
             {content.cta.primary}

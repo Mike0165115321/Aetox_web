@@ -39,13 +39,13 @@ export default function NavbarMobile({
                   <Link 
                     href={`/${currentLang.toLowerCase()}${item.href}`} 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="group flex items-center justify-between text-xl font-bold text-aetox-text-soft hover:text-aetox-text-main transition-all py-3.5 border-b border-aetox-border/50"
+                    className="group flex items-center justify-between text-lg font-bold text-aetox-text-soft hover:text-aetox-text-main transition-all py-3 border-b border-aetox-border/30"
                   >
-                    <span className="flex items-center gap-4">
-                      <span className="text-xs font-bold text-aetox-accent/50 group-hover:text-aetox-accent">0{index + 1}</span>
+                    <span className="flex items-center gap-3">
+                      <span className="text-[10px] font-bold text-aetox-accent/50 group-hover:text-aetox-accent">0{index + 1}</span>
                       <span className="tracking-tight">{item.label}</span>
                     </span>
-                    <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-aetox-accent" />
+                    <ArrowRight className="w-4 h-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-aetox-accent" />
                   </Link>
                 </motion.div>
               ))}
@@ -58,18 +58,18 @@ export default function NavbarMobile({
                 <ThemeToggle />
               </div>
 
-              <div className="p-1 bg-aetox-surface rounded-2xl border border-aetox-border flex items-center gap-1">
+              <div className="p-1 bg-aetox-surface rounded-xl border border-aetox-border flex items-center gap-1">
                 <button 
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all text-xs font-bold tracking-wider ${
-                    currentLang === 'TH' ? 'bg-aetox-bg text-aetox-text-main shadow-xl border border-aetox-border' : 'text-aetox-text-muted'
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all text-[10px] font-bold tracking-wider ${
+                    currentLang === 'TH' ? 'bg-aetox-bg text-aetox-text-main shadow-lg border border-aetox-border' : 'text-aetox-text-muted'
                   }`}
                   onClick={() => switchLanguage('th')}
                 >
                   🇹🇭 {dict?.languages?.th?.split(' ')[1] || "TH"}
                 </button>
                 <button 
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all text-xs font-bold tracking-wider ${
-                    currentLang === 'EN' ? 'bg-aetox-bg text-aetox-text-main shadow-xl border border-aetox-border' : 'text-aetox-text-muted'
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all text-[10px] font-bold tracking-wider ${
+                    currentLang === 'EN' ? 'bg-aetox-bg text-aetox-text-main shadow-lg border border-aetox-border' : 'text-aetox-text-muted'
                   }`}
                   onClick={() => switchLanguage('en')}
                 >
@@ -80,10 +80,10 @@ export default function NavbarMobile({
               <Link 
                 href={`/${currentLang.toLowerCase()}/contact`} 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-aetox-accent text-white text-base font-bold shadow-aetox-glow transition-all active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-aetox-accent text-white text-sm font-bold shadow-aetox-glow transition-all active:scale-[0.98]"
               >
                 <span>{ctaLabel}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
