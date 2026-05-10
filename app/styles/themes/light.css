@@ -1,5 +1,5 @@
 :root {
-  /* ── Surfaces ──────────────────────────────────────────── */
+  /* ── Surfaces (Clean Ivory/Paper base) ─────────────────── */
   --aetox-bg-rgb:              250 249 247;
   --aetox-surface-lowest-rgb:  244 242 239;
   --aetox-surface-low-rgb:     237 234 230;
@@ -7,11 +7,18 @@
   --aetox-surface-high-rgb:    222 218 212;
   --aetox-surface-highest-rgb: 212 208 201;
 
+  /* ── Typography (Deep Charcoal) ────────────────────────── */
   --aetox-text-main-rgb:       26 25 23;
   --aetox-text-soft-rgb:       92 90 86;
   --aetox-text-muted-rgb:      156 154 150;
 
-  --aetox-accent-rgb:          10 132 255;
+  /* ── Core Accents (Unified Brand System) ───────────────── */
+  /* PRIMARY: Emerald - Success, Growth, Trust */
+  --aetox-accent-rgb:          16 185 129;  /* #10B981 */
+  
+  /* SECONDARY: Amber - Premium Value, ROI, Highlights */
+  --aetox-value-rgb:           217 119 6;   /* #D97706 - Slightly deeper for light mode */
+
   --aetox-error-rgb:           217 48 37;
   --aetox-border-rgb:          60 55 50;
 
@@ -27,9 +34,12 @@
   --aetox-text-soft:           #5C5A56;
   --aetox-text-muted:          #9C9A96;
 
-  --aetox-accent:              #0A84FF;
-  --aetox-accent-hover:        #0071E3;
-  --aetox-accent-subtle:       rgba(10, 132, 255, 0.10);
+  --aetox-accent:              #10B981;
+  --aetox-accent-hover:        #059669;
+  --aetox-accent-subtle:       rgba(16, 185, 129, 0.1);
+
+  --aetox-value:               #D97706;
+  --aetox-value-hover:         #B45309;
 
   --aetox-error:               #D93025;
   --aetox-error-surface:       rgba(217, 48, 37, 0.08);
@@ -43,7 +53,10 @@
   --aetox-card-border:         rgba(60, 55, 50, 0.08);
   --aetox-card-hover:          #FDFCFB;
 
-  /* ── Shadows ───────────────────────────────────────────── */
+  /* ── Shadows & Feedback (Refined Logic) ────────────────── */
   --aetox-shadow-card:         0 1px 3px rgba(60,55,50,0.06), 0 8px 24px rgba(60,55,50,0.10);
-  --aetox-shadow-glow:         0 0 0 1px rgba(10,132,255,0.30), 0 8px 24px rgba(10,132,255,0.18);
+  
+  /* Subtle Blue Feedback Glow for Light Mode */
+  --aetox-shadow-glow:         0 0 0 1px rgba(16, 185, 129, 0.2), 0 8px 24px rgba(16, 185, 129, 0.1);
+  --aetox-shadow-focus:        0 0 0 2px rgba(10, 132, 255, 0.3), 0 4px 12px rgba(10, 132, 255, 0.15);
 }

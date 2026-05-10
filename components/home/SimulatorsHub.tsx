@@ -27,10 +27,10 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
   const [activeTab, setActiveTab] = useState<TabType>('automation');
 
   const tabs = [
-    { id: 'automation' as TabType, label: dict.tabs.automation, icon: Zap, color: 'text-emerald-400' },
+    { id: 'automation' as TabType, label: dict.tabs.automation, icon: Zap, color: 'text-aetox-accent' },
     { id: 'aiAgent' as TabType, label: dict.tabs.aiAgent, icon: BrainCircuit, color: 'text-aetox-accent' },
-    { id: 'aiAgentRoi' as TabType, label: dict.tabs.aiAgentRoi, icon: TrendingUp, color: 'text-violet-400' },
-    { id: 'architecture' as TabType, label: dict.tabs.architecture, icon: LayoutGrid, color: 'text-amber-400' },
+    { id: 'aiAgentRoi' as TabType, label: dict.tabs.aiAgentRoi, icon: TrendingUp, color: 'text-aetox-value' },
+    { id: 'architecture' as TabType, label: dict.tabs.architecture, icon: LayoutGrid, color: 'text-aetox-accent' },
   ];
 
   return (

@@ -44,6 +44,7 @@ module.exports = {
         "aetox-accent-subtle":     "rgb(var(--aetox-accent-rgb) / 0.1)",
         "aetox-error":             "rgb(var(--aetox-error-rgb) / <alpha-value>)",
         "aetox-error-surface":     "rgb(var(--aetox-error-rgb) / 0.1)",
+        "aetox-value":             "rgb(var(--aetox-value-rgb) / <alpha-value>)",
         "aetox-aura-1":            "rgb(var(--aetox-accent-rgb) / <alpha-value>)",
         "aetox-grid-line":         "rgb(var(--aetox-border-rgb) / 0.05)",
       },

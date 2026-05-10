@@ -119,6 +119,14 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           <div className="lg:w-[68%] p-4 md:p-8 flex flex-col justify-between space-y-4 md:space-y-6 bg-aetox-surface-lowest/20">
             {/* Top KPI Grid - Balanced Size */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-2 font-sans">
+              <div className="p-4 md:p-5 rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
+                <p className="text-[10px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ต้นทุนที่ลดได้</p>
+                <p className="text-2xl md:text-3xl font-bold text-aetox-text-main leading-none">{calc.costReductionPct}%</p>
+              </div>
+              <div className="p-4 md:p-5 rounded-[24px] bg-aetox-value/10 border border-aetox-value/20 text-center shadow-sm transition-all hover:border-aetox-value/40">
+                <p className="text-[10px] md:text-xs font-bold text-aetox-value uppercase tracking-widest mb-1">ROI ปีแรก</p>
+                <p className="text-2xl md:text-3xl font-bold text-aetox-text-main leading-none">{calc.roi}%</p>
+              </div>
               <div className="p-4 md:p-5 rounded-[24px] bg-emerald-500/10 border border-emerald-500/20 text-center shadow-sm transition-all hover:border-emerald-500/40">
                 <p className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest mb-1">{dict.kpis?.monthlySaving || 'ประหยัดได้/เดือน'}</p>
                 <p className="text-xl md:text-2xl font-bold text-emerald-500 tracking-tight">{formatMoney(calc.monthlySaving)}</p>
@@ -127,14 +135,6 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                 <p className="text-[10px] font-bold text-aetox-accent uppercase tracking-widest mb-1">{dict.kpis?.payback || 'ระยะเวลาคืนทุน'}</p>
                 <p className="text-xl md:text-2xl font-bold text-aetox-accent tracking-tight">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
                 <p className="text-[9px] font-bold text-aetox-accent/70 uppercase">{dict.kpis?.paybackUnit || 'เดือน (Payback)'}</p>
-              </div>
-              <div className="p-4 md:p-5 rounded-[24px] bg-white/5 border border-aetox-border text-center shadow-sm">
-                <p className="text-[10px] font-bold text-aetox-text-muted uppercase tracking-widest mb-1">ต้นทุนที่ลดได้</p>
-                <p className="text-xl md:text-2xl font-bold text-aetox-text-main tracking-tight">{calc.costReductionPct}%</p>
-              </div>
-              <div className="p-4 md:p-5 rounded-[24px] bg-white/5 border border-aetox-border text-center shadow-sm">
-                <p className="text-[10px] font-bold text-aetox-text-muted uppercase tracking-widest mb-1">ROI ปีแรก</p>
-                <p className="text-xl md:text-2xl font-bold text-aetox-text-main tracking-tight">{calc.roi}%</p>
               </div>
             </div>
 
@@ -170,7 +170,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                     </div>
                     <div className="text-right sm:border-l border-aetox-border sm:pl-6 md:pl-12">
                       <p className="text-[9px] md:text-[11px] font-bold text-aetox-text-muted uppercase mb-1 tracking-widest">ต้นทุนรายเดือน</p>
-                      <p className="text-xl md:text-2xl font-bold text-emerald-400 tracking-tight leading-none">{formatMoney(calc.totalAfter)}</p>
+                      <p className="text-xl md:text-2xl font-bold text-aetox-value tracking-tight leading-none">{formatMoney(calc.totalAfter)}</p>
                     </div>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                   <div className="p-2.5 md:p-3 rounded-xl bg-aetox-accent/20 text-aetox-accent shadow-sm"><Clock size={20} className="md:w-6 md:h-6" /></div>
                   <div>
                     <p className="text-[10px] md:text-xs font-bold text-aetox-text-muted uppercase tracking-widest mb-1">มูลค่าที่ประหยัดได้ต่อปี</p>
-                    <p className="text-2xl md:text-3xl font-bold text-emerald-400 tracking-tight leading-none">{formatMoney(calc.annualSaving, true, false)}</p>
+                    <p className="text-2xl md:text-3xl font-bold text-aetox-value tracking-tight leading-none">{formatMoney(calc.annualSaving, true, false)}</p>
                   </div>
                 </div>
                 <div className="text-center sm:text-right w-full sm:w-auto border-t sm:border-t-0 border-aetox-border/50 pt-4 sm:pt-0">

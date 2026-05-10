@@ -1,5 +1,5 @@
 .dark, [data-theme='dark'] {
-            /* ── Surfaces (Neutral Carbon - Cutting out the blue base) ── */
+            /* ── Surfaces (Neutral Carbon - Graphite/Zinc base) ──────── */
             --aetox-bg-rgb:              9 9 11;      /* #09090B - Deep Zinc */
             --aetox-surface-lowest-rgb:  18 18 21;    /* #121215 */
             --aetox-surface-low-rgb:     24 24 27;    /* #18181B */
@@ -12,8 +12,13 @@
             --aetox-text-soft-rgb:       161 161 170; /* #A1A1AA */
             --aetox-text-muted-rgb:      82 82 91;    /* #52525B */
 
-            /* ── Accents & States (Vibrant Emerald for AI/Automation) ─ */
+            /* ── Core Accents ──────────────────────────────────────── */
+            /* PRIMARY: Emerald - Success, Growth, Trust */
             --aetox-accent-rgb:          16 185 129;  /* #10B981 - Emerald 500 */
+            
+            /* SECONDARY: Amber - Premium Value, ROI, Highlights */
+            --aetox-value-rgb:           245 158 11;  /* #F59E0B - Amber 500 */
+
             --aetox-error-rgb:           244 63 94;   /* #F43F5E - Rose 500 */
             --aetox-border-rgb:          255 255 255; 
 
@@ -33,6 +38,9 @@
             --aetox-accent-hover:        #059669;
             --aetox-accent-subtle:       rgba(16, 185, 129, 0.1);
 
+            --aetox-value:               #F59E0B;
+            --aetox-value-hover:         #D97706;
+
             --aetox-error:               #F43F5E;
             --aetox-error-surface:       rgba(244, 63, 94, 0.1);
 
@@ -46,7 +54,11 @@
             --aetox-card-border:         rgba(255, 255, 255, 0.04);
             --aetox-card-hover:          rgba(24, 24, 27, 0.9);
 
-            /* ── Shadows (Keep subtle blue tint as requested for depth) ─ */
-            --aetox-shadow-card:         0 10px 30px -10px rgba(10, 132, 255, 0.15), 0 4px 10px -5px rgba(10, 132, 255, 0.1);
-            --aetox-shadow-glow:         0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(10, 132, 255, 0.1);
+            /* ── Shadows & Feedback (Refined Logic) ────────────────── */
+            /* Ambient Card Shadow (Subtle Blue Tint for Depth) */
+            --aetox-shadow-card:         0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 15px -5px rgba(10, 132, 255, 0.05);
+            
+            /* Interactive Glows (Blue for Focus/Trust, Emerald for Success) */
+            --aetox-shadow-glow:         0 0 20px rgba(16, 185, 129, 0.2);
+            --aetox-shadow-focus:        0 0 25px rgba(10, 132, 255, 0.2);
         }
