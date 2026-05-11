@@ -24,10 +24,10 @@ const PainCard = ({ title, impact, cost, index, observationLabel, costLabel }: P
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="aetox-card group p-6 md:p-10 flex flex-col h-full border border-white/10 shadow-2xl"
+      className="aetox-card group p-6 md:p-10 flex flex-col h-full bg-aetox-surface-low/20 shadow-2xl transition-all duration-500"
     >
       <div className="mb-6 md:mb-10">
-        <div className="w-14 h-14 rounded-2xl bg-aetox-bg border border-white/5 flex items-center justify-center text-aetox-text-muted group-hover:border-aetox-accent/50 group-hover:text-aetox-accent transition-all duration-500">
+        <div className="w-14 h-14 rounded-2xl bg-aetox-surface-low flex items-center justify-center text-aetox-text-muted group-hover:text-aetox-accent transition-all duration-500 shadow-sm">
           <Icon size={28} />
         </div>
       </div>
@@ -113,7 +113,7 @@ export default function PainSection({ dict }: { dict: any }) {
           transition={{ delay: 0.5 }}
           className="mt-20 flex justify-center"
         >
-          <div className="p-8 aetox-card flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full border border-white/10 shadow-2xl">
+          <div className="p-8 aetox-card flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full bg-aetox-surface-low/40 shadow-2xl">
             <div className="flex-1 text-center md:text-left">
               <p className="text-aetox-text-main font-bold text-fluid-h3 tracking-tight">{dict.footerTitle}</p>
               <p className="text-aetox-text-soft text-sm mt-2 font-medium">

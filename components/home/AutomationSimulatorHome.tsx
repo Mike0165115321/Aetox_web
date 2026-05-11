@@ -63,7 +63,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 md:px-0 space-y-6">
-      <div className="bg-aetox-surface-lowest/90 backdrop-blur-2xl rounded-2xl md:rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500">
+      <div className="bg-aetox-surface-low/20 backdrop-blur-3xl rounded-2xl md:rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500">
         {/* Mini Header */}
         <div className="px-4 md:px-5 py-3 md:py-4 bg-aetox-surface-low/30 flex flex-col sm:flex-row justify-between items-center gap-4 font-sans">
           <div className="w-full sm:w-auto">
@@ -82,7 +82,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
         <div className="flex flex-col lg:flex-row">
           {/* Left: Inputs - High Density */}
-          <div className="lg:w-[32%] p-5 md:p-6 space-y-6 bg-aetox-surface-lowest/50">
+          <div className="lg:w-[32%] p-5 md:p-6 space-y-6 bg-aetox-surface-low/40">
             <section className="space-y-3 font-sans">
               <p className="text-xs font-bold text-aetox-text-muted tracking-tight px-1">{dict.workloadTitle}</p>
               <div className="grid grid-cols-1 gap-1.5 md:gap-2">
@@ -116,22 +116,22 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
           </div>
 
           {/* Right: Dashboard Area */}
-          <div className="lg:w-[68%] p-4 md:p-8 flex flex-col justify-between space-y-4 md:space-y-6 bg-aetox-surface-lowest/20">
+          <div className="lg:w-[68%] p-4 md:p-8 flex flex-col justify-between space-y-4 md:space-y-6 bg-aetox-surface-lowest/30">
             {/* Top KPI Grid - Balanced Size */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-2 font-sans">
-              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/10 border border-aetox-border/30 text-center shadow-sm transition-all hover:bg-aetox-value/20">
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/[0.18] text-center shadow-sm transition-all hover:bg-aetox-value/25">
                 <p className="text-[11px] md:text-xs font-bold text-aetox-value mb-1">ต้นทุนที่ลดได้</p>
                 <p className="text-lg md:text-3xl font-bold text-aetox-text-main leading-none">{calc.costReductionPct}%</p>
               </div>
-              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/10 border border-aetox-border/30 text-center shadow-sm transition-all hover:bg-aetox-value/20">
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-value/[0.18] text-center shadow-sm transition-all hover:bg-aetox-value/25">
                 <p className="text-[11px] md:text-xs font-bold text-aetox-value mb-1">ROI ปีแรก</p>
                 <p className="text-lg md:text-3xl font-bold text-aetox-text-main leading-none">{calc.roi}%</p>
               </div>
-              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-emerald-500/10 border border-emerald-500/20 text-center shadow-sm transition-all hover:bg-emerald-500/20">
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-emerald-500/[0.18] text-center shadow-sm transition-all hover:bg-emerald-500/25">
                 <p className="text-xs font-bold text-emerald-500 mb-1">{dict.kpis?.monthlySaving || 'ประหยัดได้/เดือน'}</p>
                 <p className="text-base md:text-2xl font-bold text-emerald-500 tracking-tight">{formatMoney(calc.monthlySaving)}</p>
               </div>
-              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-accent/10 border border-aetox-accent/20 text-center shadow-sm transition-all hover:bg-aetox-accent/20">
+              <div className="p-3 md:p-5 rounded-2xl md:rounded-[24px] bg-aetox-accent/[0.18] text-center shadow-sm transition-all hover:bg-aetox-accent/25">
                 <p className="text-xs font-bold text-aetox-accent mb-1">{dict.kpis?.payback || 'ระยะเวลาคืนทุน'}</p>
                 <p className="text-base md:text-2xl font-bold text-aetox-accent tracking-tight">{calc.paybackMonths < 100 ? calc.paybackMonths.toFixed(1) : '—'}</p>
                 <p className="text-[10px] font-bold text-aetox-accent/70">{dict.kpis?.paybackUnit || 'เดือน (Payback)'}</p>
@@ -152,7 +152,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
 
               <div className="p-2 space-y-3">
                 {/* AI Row - Upscaled */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 md:p-6 bg-aetox-surface-lowest rounded-xl md:rounded-[24px] border border-aetox-border/50 transition-all hover:bg-aetox-surface-low group hover:shadow-xl hover:shadow-aetox-accent/5 gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 md:p-6 bg-aetox-surface-low/40 rounded-xl md:rounded-[24px] transition-all hover:bg-aetox-surface-low group hover:shadow-xl hover:shadow-aetox-accent/5 gap-3">
                   <div className="flex items-center gap-3 md:gap-6">
                     <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-aetox-accent-subtle flex items-center justify-center text-aetox-accent font-bold text-base md:text-xl shadow-sm group-hover:scale-110 transition-transform">AI</div>
                     <div>
@@ -176,7 +176,7 @@ export default function AutomationSimulatorHome({ dict }: { dict: any }) {
                 </div>
 
                 {/* Human Row - Upscaled & Highlight Risks */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-6 bg-aetox-surface-lowest rounded-[24px] border border-aetox-border/50 transition-all hover:bg-aetox-surface-low group hover:shadow-xl hover:shadow-rose-500/5 gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-6 bg-rose-500/[0.04] rounded-[24px] transition-all hover:bg-rose-500/[0.08] group hover:shadow-xl hover:shadow-rose-500/5 gap-4">
                   <div className="flex items-center gap-4 md:gap-6">
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-400 font-bold text-lg md:text-xl shadow-sm group-hover:scale-110 transition-transform">{staffCount}</div>
                     <div>

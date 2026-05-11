@@ -16,21 +16,21 @@
 
   /* ── 2. Inputs & Forms ──────────────────────────────────── */
   .aetox-label {
-    @apply text-fluid-label font-bold uppercase tracking-[0.2em] text-aetox-text-soft mb-2 block ml-1;
+    @apply text-fluid-label font-bold uppercase tracking-[0.2em] text-aetox-text-main/80 mb-2 block ml-1;
   }
 
   .aetox-input {
-    @apply w-full bg-aetox-surface-lowest/50 border border-aetox-border rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
-           text-aetox-text-main placeholder:text-aetox-text-muted
-           focus:border-aetox-accent focus:outline-none transition-all duration-300
-           text-fluid-p font-medium backdrop-blur-sm;
+    @apply w-full bg-black/20 rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
+           text-aetox-text-main placeholder:text-aetox-text-muted/50
+           focus:bg-aetox-accent/[0.05] focus:outline-none focus:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300
+           text-fluid-p font-medium backdrop-blur-sm shadow-inner hover:bg-black/30;
   }
 
   .aetox-select {
-    @apply w-full bg-aetox-surface-lowest/50 border border-aetox-border rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
+    @apply w-full bg-black/20 rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
            text-aetox-text-main appearance-none cursor-pointer
-           focus:border-aetox-accent focus:outline-none transition-all duration-300
-           text-fluid-p font-medium;
+           focus:bg-aetox-accent/[0.05] focus:outline-none focus:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300
+           text-fluid-p font-medium shadow-inner hover:bg-black/30;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
@@ -39,9 +39,8 @@
 
   /* ── 3. Cards & Surfaces ────────────────────────────────── */
   .aetox-card {
-    @apply rounded-2xl md:rounded-[40px] border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
+    @apply rounded-2xl md:rounded-[40px] transition-all duration-500 shadow-aetox-card backdrop-blur-md;
     background-color: var(--aetox-card-bg);
-    border-color: var(--aetox-card-border);
   }
   
   .aetox-card:hover {

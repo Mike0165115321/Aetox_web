@@ -36,7 +36,7 @@ export default function SimulatorsHub({ dict }: { dict: any }) {
   return (
     <div className="w-full space-y-12">
       {/* Tab Switcher: Optimized Grid for Mobile */}
-      <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-1.5 md:gap-2 p-1.5 md:p-2 bg-aetox-card-bg/40 border border-white/5 backdrop-blur-3xl rounded-[28px] max-w-full md:max-w-fit mx-auto shadow-2xl transition-all duration-500">
+      <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-1.5 md:gap-2 p-1.5 md:p-2 bg-aetox-card-bg/70 backdrop-blur-3xl rounded-[28px] max-w-full md:max-w-fit mx-auto shadow-2xl transition-all duration-500">
         {tabs.map((tab) => {
           const active = activeTab === tab.id;
           const Icon = tab.icon;

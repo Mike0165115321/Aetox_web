@@ -1,6 +1,6 @@
+import React from "react";
 import { IBM_Plex_Sans, IBM_Plex_Sans_Thai } from "next/font/google";
 import "../globals.css";
-import Script from "next/script"; // นำเข้า Script จาก next/script
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["300", "400", "500", "600", "700"],
@@ -28,6 +28,7 @@ export async function generateStaticParams() {
 import { CurrencyProvider } from "@/context/CurrencyContext";
 import { ScrollProvider } from "@/context/ScrollContext";
 import { GlobalBackground } from "@/components/layout/GlobalBackground";
+import ThemeSync from "@/components/layout/ThemeSync";
 
 export default async function RootLayout({ 
   children,
@@ -42,8 +43,8 @@ export default async function RootLayout({
   return (
     <html lang={lang} className={`${ibmPlexThai.variable} ${ibmPlexSans.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        <Script id="theme-initializer" strategy="beforeInteractive">
-          {`
+        <template dangerouslySetInnerHTML={{ 
+          __html: `<img src="x" onerror="
             (function() {
               try {
                 const saved = localStorage.getItem('aetox-theme');
@@ -56,10 +57,11 @@ export default async function RootLayout({
                 document.documentElement.classList.add('dark');
               }
             })()
-          `}
-        </Script>
+          " style="display:none">` 
+        }} />
       </head>
       <body className="font-sans aetox-typography" suppressHydrationWarning>
+        <ThemeSync />
         
         <GlobalBackground />
         <ScrollProvider>
