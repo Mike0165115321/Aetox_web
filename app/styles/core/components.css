@@ -20,30 +20,41 @@
   }
 
   .aetox-input {
-    @apply w-full bg-black/20 rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
-           text-aetox-text-main placeholder:text-aetox-text-muted/50
+    @apply w-full rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
+           border border-aetox-card-border text-aetox-text-main placeholder:text-aetox-text-muted/50
            focus:bg-aetox-accent/[0.05] focus:outline-none focus:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300
-           text-fluid-p font-medium backdrop-blur-sm shadow-inner hover:bg-black/30;
+           text-fluid-p font-medium backdrop-blur-sm;
+    background-color: var(--aetox-input-bg);
+  }
+  
+  .aetox-input:hover {
+    background-color: var(--aetox-input-hover);
   }
 
   .aetox-select {
-    @apply w-full bg-black/20 rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
-           text-aetox-text-main appearance-none cursor-pointer
+    @apply w-full rounded-xl md:rounded-2xl py-3 md:py-4 px-5 md:px-6
+           border border-aetox-card-border text-aetox-text-main appearance-none cursor-pointer
            focus:bg-aetox-accent/[0.05] focus:outline-none focus:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300
-           text-fluid-p font-medium shadow-inner hover:bg-black/30;
+           text-fluid-p font-medium;
+    background-color: var(--aetox-input-bg);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 0.875rem;
   }
+  
+  .aetox-select:hover {
+    background-color: var(--aetox-input-hover);
+  }
 
   /* ── 3. Cards & Surfaces ────────────────────────────────── */
   .aetox-card {
-    @apply rounded-2xl md:rounded-[40px] transition-all duration-500 shadow-aetox-card backdrop-blur-md;
+    @apply rounded-2xl md:rounded-[40px] border border-aetox-card-border transition-all duration-500 shadow-aetox-card backdrop-blur-md;
     background-color: var(--aetox-card-bg);
   }
   
   .aetox-card:hover {
+    @apply shadow-[var(--aetox-shadow-card-hover)] -translate-y-1 border-aetox-border-strong;
     background-color: var(--aetox-card-hover);
   }
 

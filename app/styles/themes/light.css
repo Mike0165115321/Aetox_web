@@ -1,62 +1,68 @@
 :root {
-  /* ── Surfaces (Clean Ivory/Paper base) ─────────────────── */
-  --aetox-bg-rgb:              250 249 247;
-  --aetox-surface-lowest-rgb:  244 242 239;
-  --aetox-surface-low-rgb:     237 234 230;
-  --aetox-surface-rgb:         230 227 222;
-  --aetox-surface-high-rgb:    222 218 212;
-  --aetox-surface-highest-rgb: 212 208 201;
+  /* ── Clean Minimalist Zinc/Slate Base (Nordic Luxury) ────── */
+  --aetox-bg-rgb:              250 250 250;      /* #FAFAFA - Ultra-clean slate off-white */
+  --aetox-surface-lowest-rgb:  255 255 255;      /* Pure white paper */
+  --aetox-surface-low-rgb:     244 244 245;      /* #F4F4F5 - Clean Zinc-100 */
+  --aetox-surface-rgb:         228 228 231;      /* #E4E4E7 - Clean Zinc-200 */
+  --aetox-surface-high-rgb:    212 212 216;      /* #D4D4D8 - Clean Zinc-300 */
+  --aetox-surface-highest-rgb: 161 161 170;      /* #A1A1AA - Clean Zinc-400 */
 
-  /* ── Typography (Deep Charcoal) ────────────────────────── */
-  --aetox-text-main-rgb:       26 25 23;
-  --aetox-text-soft-rgb:       92 90 86;
-  --aetox-text-muted-rgb:      156 154 150;
+  /* ── Premium High-End Typography (Deep Obsidian & Charcoal) ─ */
+  --aetox-text-main-rgb:       9 9 11;           /* #09090B - Deep obsidian black */
+  --aetox-text-soft-rgb:       82 82 91;         /* #52525B - Rich zinc slate */
+  --aetox-text-muted-rgb:      161 161 170;      /* #A1A1AA - Clean muted zinc */
 
-  /* ── Core Accents (Unified Brand System) ───────────────── */
-  /* PRIMARY: Emerald - Success, Growth, Trust */
-  --aetox-accent-rgb:          16 185 129;  /* #10B981 */
+  /* ── Core Accents (Sophisticated Emerald & Gold) ─────────── */
+  /* PRIMARY: Professional High-End Teal/Emerald */
+  --aetox-accent-rgb:          16 185 129;       /* #10B981 - Crisp luxury emerald */
   
-  /* SECONDARY: Amber - Premium Value, ROI, Highlights */
-  --aetox-value-rgb:           217 119 6;   /* #D97706 - Slightly deeper for light mode */
+  /* SECONDARY: Deeper Muted Amber/Gold for ROI */
+  --aetox-value-rgb:           180 83 9;         /* #B45309 - Premium Amber */
 
-  --aetox-error-rgb:           217 48 37;
-  --aetox-border-rgb:          60 55 50;
+  /* feedback colors */
+  --aetox-error-rgb:           239 68 68;
+  --aetox-border-rgb:          228 228 231;
 
   /* ── Semantic Colors ───────────────────────────────────── */
-  --aetox-bg:                  #FAF9F7;
-  --aetox-surface-lowest:      #F4F2EF;
-  --aetox-surface-low:         #EDEAE6;
-  --aetox-surface:             #E6E3DE;
-  --aetox-surface-high:        #DEDAD4;
-  --aetox-surface-highest:     #D4D0C9;
+  --aetox-bg:                  #FAFAFA;
+  --aetox-surface-lowest:      #FFFFFF;
+  --aetox-surface-low:         #F4F4F5;
+  --aetox-surface:             #E4E4E7;
+  --aetox-surface-high:        #D4D4D8;
+  --aetox-surface-highest:     #A1A1AA;
 
-  --aetox-text-main:           #1A1917;
-  --aetox-text-soft:           #5C5A56;
-  --aetox-text-muted:          #9C9A96;
+  --aetox-text-main:           #09090B;
+  --aetox-text-soft:           #52525B;
+  --aetox-text-muted:          #A1A1AA;
 
   --aetox-accent:              #10B981;
   --aetox-accent-hover:        #059669;
-  --aetox-accent-subtle:       rgba(16, 185, 129, 0.1);
+  --aetox-accent-subtle:       rgba(16, 185, 129, 0.05);
 
-  --aetox-value:               #D97706;
-  --aetox-value-hover:         #B45309;
+  --aetox-value:               #B45309;
+  --aetox-value-hover:         #92400E;
 
-  --aetox-error:               #D93025;
-  --aetox-error-surface:       rgba(217, 48, 37, 0.08);
+  --aetox-error:               #EF4444;
+  --aetox-error-surface:       rgba(239, 68, 68, 0.05);
 
-  --aetox-border:              rgba(60, 55, 50, 0.08);
-  --aetox-border-strong:       rgba(60, 55, 50, 0.15);
-  --aetox-grid-line:           rgba(60, 55, 50, 0.04);
+  /* Super fine transparent border lines for high elegance */
+  --aetox-border:              rgba(9, 9, 11, 0.05);
+  --aetox-border-strong:       rgba(9, 9, 11, 0.1);
+  --aetox-grid-line:           rgba(9, 9, 11, 0.02);
 
-  /* ── UI Components ─────────────────────────────────────── */
-  --aetox-card-bg:             #FFFFFF;
-  --aetox-card-border:         rgba(60, 55, 50, 0.08);
-  --aetox-card-hover:          #FDFCFB;
+  /* ── UI Components (Glassmorphism Light) ─────────────────── */
+  --aetox-card-bg:             rgba(255, 255, 255, 0.7);
+  --aetox-card-border:         rgba(9, 9, 11, 0.04);
+  --aetox-card-hover:          #FFFFFF;
+  --aetox-input-bg:            rgba(9, 9, 11, 0.03);
+  --aetox-input-hover:         rgba(9, 9, 11, 0.05);
 
   /* ── Shadows & Feedback (Refined Logic) ────────────────── */
-  --aetox-shadow-card:         0 1px 3px rgba(60,55,50,0.06), 0 8px 24px rgba(60,55,50,0.10);
+  /* Layered glass reflection shadow with desaturated emerald refraction */
+  --aetox-shadow-card:         0 2px 8px rgba(0, 0, 0, 0.005), 0 16px 36px rgba(9, 9, 11, 0.02), 0 32px 64px -12px rgba(16, 185, 129, 0.03);
+  --aetox-shadow-card-hover:   0 4px 12px rgba(0, 0, 0, 0.008), 0 24px 48px rgba(9, 9, 11, 0.03), 0 40px 80px -16px rgba(16, 185, 129, 0.08);
   
-  /* Subtle Blue Feedback Glow for Light Mode */
-  --aetox-shadow-glow:         0 0 0 1px rgba(16, 185, 129, 0.2), 0 8px 24px rgba(16, 185, 129, 0.1);
-  --aetox-shadow-focus:        0 0 0 2px rgba(10, 132, 255, 0.3), 0 4px 12px rgba(10, 132, 255, 0.15);
+  /* Delicate focus ring & glow for light mode */
+  --aetox-shadow-glow:         0 0 0 1px rgba(16, 185, 129, 0.1), 0 12px 30px rgba(16, 185, 129, 0.04);
+  --aetox-shadow-focus:        0 0 0 2px rgba(16, 185, 129, 0.2), 0 4px 12px rgba(16, 185, 129, 0.08);
 }

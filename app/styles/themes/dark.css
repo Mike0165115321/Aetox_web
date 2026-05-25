@@ -53,10 +53,13 @@
             --aetox-card-bg:             rgba(18, 18, 21, 0.8);
             --aetox-card-border:         rgba(255, 255, 255, 0.04);
             --aetox-card-hover:          rgba(24, 24, 27, 0.9);
+            --aetox-input-bg:            rgba(0, 0, 0, 0.25);
+            --aetox-input-hover:         rgba(0, 0, 0, 0.35);
 
             /* ── Shadows & Feedback (Refined Logic) ────────────────── */
             /* Ambient Card Shadow (Subtle Blue Tint for Depth) */
             --aetox-shadow-card:         0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 15px -5px rgba(10, 132, 255, 0.05);
+            --aetox-shadow-card-hover:   0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(16, 185, 129, 0.25);
             
             /* Interactive Glows (Blue for Focus/Trust, Emerald for Success) */
             --aetox-shadow-glow:         0 0 20px rgba(16, 185, 129, 0.2);

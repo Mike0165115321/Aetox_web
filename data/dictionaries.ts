@@ -13,6 +13,7 @@ const th = {
   projects: () => import('./content/th/projects/index').then((module) => module.default),
   admin: () => import('./content/th/admin').then((module) => module.default),
   about: () => import('./content/th/about').then((module) => module.default),
+  problems: () => import('./content/th/problems').then((module) => module.default),
 };
 
 const dictionaries = {
@@ -33,6 +34,7 @@ const dictionaries = {
     projects: () => import('./content/en/projects/index').then((module) => module.default),
     admin: () => import('./content/en/admin').then((module) => module.default),
     about: () => import('./content/en/about').then((module) => module.default),
+    problems: () => import('./content/en/problems').then((module) => module.default),
   }
 
 };

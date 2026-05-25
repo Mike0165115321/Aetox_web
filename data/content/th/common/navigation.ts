@@ -3,6 +3,7 @@ export const navigationContent = {
     menu: [
       { label: "หน้าแรก", href: "/" },
       { label: "บริการ", href: "/services" },
+      { label: "ปัญหาที่พบ", href: "/problems" },
       { label: "ผลงาน", href: "/authority" },
       { label: "เกี่ยวกับเรา", href: "/about" },
       { label: "ติดต่อ", href: "/contact" }

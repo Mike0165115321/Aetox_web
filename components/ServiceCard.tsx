@@ -65,11 +65,15 @@ export default function ServiceCard({ id, title, description, features, relatedP
       className="h-full"
     >
       {id ? (
-        <Link href={`/${lang}/services/${id}`} className="aetox-card group flex flex-col p-5 md:p-10 h-full hover:-translate-y-2">
+        <Link href={`/${lang}/services/${id}`} className="aetox-card group flex flex-col p-5 md:p-10 h-full hover:-translate-y-2 relative overflow-hidden">
+          {/* Glowing Top Metallic Reflective Edge in Dark Mode (Reflects light from above) */}
+          <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-aetox-accent/35 to-transparent opacity-0 dark:opacity-100 group-hover:via-aetox-accent transition-all duration-500 z-10" />
           {CardContent}
         </Link>
       ) : (
-        <div className="aetox-card group flex flex-col p-5 md:p-10 h-full">
+        <div className="aetox-card group flex flex-col p-5 md:p-10 h-full relative overflow-hidden">
+          {/* Glowing Top Metallic Reflective Edge in Dark Mode (Reflects light from above) */}
+          <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-aetox-accent/35 to-transparent opacity-0 dark:opacity-100 group-hover:via-aetox-accent transition-all duration-500 z-10" />
           {CardContent}
         </div>
       )}

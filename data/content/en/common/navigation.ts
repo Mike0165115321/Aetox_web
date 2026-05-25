@@ -3,6 +3,7 @@ export const navigationContent = {
     menu: [
       { label: "Home", href: "/" },
       { label: "Services", href: "/services" },
+      { label: "Problems", href: "/problems" },
       { label: "Authority", href: "/authority" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" }
