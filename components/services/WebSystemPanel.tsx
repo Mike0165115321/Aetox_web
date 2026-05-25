@@ -34,10 +34,10 @@ export default function WebSystemPanel() {
           {/* Text Editor Mockup */}
           <div className="space-y-4">
             <p className="text-xs md:text-sm text-aetox-text-main font-bold leading-relaxed tracking-tight">
-              What if Blackbeard stole Luffy's Devil Fruit... the Hito Hito no Mi: Model Nika?! 🤨
+              {"What if Blackbeard stole Luffy's Devil Fruit... the Hito Hito no Mi: Model Nika?! 🤨"}
             </p>
             <p className="text-xs text-aetox-text-soft leading-relaxed font-medium">
-              This isn't just rubber powers anymore—it's the fruit of a literal Sun God. Imagination becomes reality, and Blackbeard's already rocking two fruits. Add Nika to the mix, and this man becomes a chaos god.
+              {"This isn't just rubber powers anymore—it's the fruit of a literal Sun God. Imagination becomes reality, and Blackbeard's already rocking two fruits. Add Nika to the mix, and this man becomes a chaos god."}
             </p>
             <div className="w-fit flex items-center gap-1.5 text-[10px] text-aetox-text-muted hover:text-aetox-text-main transition-colors cursor-pointer font-bold border border-dashed border-aetox-border/60 px-3 py-1.5 rounded-xl">
               <span>+ Add speaker node</span>
